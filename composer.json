@@ -1,0 +1,6 @@
+{
+    "name": "phalcon/phql",
+    "require": {
+        "php": ">=8.1"
+    }
+}
