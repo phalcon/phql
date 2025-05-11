@@ -1,3 +1,4 @@
+<?php
 /* scanner.re
  * This file is part of the Phalcon Framework.
  *

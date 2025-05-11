@@ -1,5 +1,5 @@
 <?php
-/* scanner.rex
+/* scanner.re
  * This file is part of the Phalcon Framework.
  *
  * (c) Phalcon Team <team@phalcon.io>

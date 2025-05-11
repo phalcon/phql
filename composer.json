@@ -8,7 +8,8 @@
             "Phalcon\\Phql\\": "src/"
         },
         "files": [
-            "resources/files/parser.php"
+            "resources/files/parser.php",
+            "resources/files/scanner.php"
         ]
     }
 }
