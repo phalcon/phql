@@ -5474,3 +5474,13 @@ function phql_ret_expr(&$ret, $type, $left, $right): void
         $ret["right"] = $right;
     }
 }
+
+function phql_ret_literal_zval(int $type, $T = null): array
+{
+    $ret = ['type' => $type];
+    if ($T !== null) {
+        $ret['value'] = $T->value;
+    }
+
+    return $ret;
+}
