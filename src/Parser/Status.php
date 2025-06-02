@@ -16,6 +16,8 @@ class Status
 
     protected ?Token $token = null;
 
+    protected bool $enableLiterals = false;
+
     public function __construct(
         protected State $scannerState,
         protected int $status = self::PHQL_PARSING_OK,
@@ -25,6 +27,18 @@ class Status
     public function getState(): State
     {
         return $this->scannerState;
+    }
+
+    public function setEnableLiterals(bool $enable): self
+    {
+        $this->enableLiterals = $enable;
+
+        return $this;
+    }
+
+    public function getEnableLiterals(): bool
+    {
+        return $this->enableLiterals;
     }
 
     public function getStatus(): int

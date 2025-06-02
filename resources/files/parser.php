@@ -30,6 +30,13 @@ use Phalcon\Phql\Tokens;
 
 class phql_Parser
 {
+    protected array $output = [];
+
+    public function getOutput(): array
+    {
+        return $this->output;
+    }
+
         const PHQL_AGAINST           = 1;                    /* Index of top element in stack */
         const PHQL_ALL               = 30;                 /* Shifts left before out of the error */
     // phql_ARG_SDECL                /* A place to hold %extra_argument */
@@ -3402,7 +3409,7 @@ var $yystack = [];
 ** value.
 */
 
-    public function __construct(private Status $status)
+    public function __construct(private readonly Status $status)
     {
     }
 
@@ -3419,13 +3426,13 @@ var $yystack = [];
 ** the value.
 */
 
-    function phql_(
+    public function phql_(
         $yymajor,                 /* The major token code number */
         $yyminor = null           /* The value for the token */
     )
     {
         $yyact        = 0;            /* The parser action. */
-        $yyendofinput = 0;     /* True if we are at the end of input */
+        $yyendofinput = false;     /* True if we are at the end of input */
         $yyerrorhit   = 0;   /* True if yymajor has invoked an error */
 
         /* (re)initialize the parser, if necessary */
@@ -3588,7 +3595,7 @@ var $yystack = [];
 ** </ul>
 */
 
-    function phql_Trace(/* stream */ $TraceFILE, /* string */ $zTracePrompt)
+    function phql_Trace($TraceFILE, $zTracePrompt = ''): void
     {
         $this->yyTraceFILE   = $TraceFILE;
         $this->yyTracePrompt = $zTracePrompt;
@@ -3972,7 +3979,7 @@ var $yystack = [];
             case 91:
             case 135:
             case 137:
-                unset($yygotominor);
+                //unset($yygotominor);
                 break;
             case 10:
             case 17:
@@ -4522,7 +4529,6 @@ var $yystack = [];
 #line 1759 "c/parser.php.php"
                 break;
             case 104:
-#line 688 "c/parser.php.lemon"
                 {
                     phql_ret_expr(
                         $yygotominor,
@@ -4532,10 +4538,8 @@ var $yystack = [];
                     );
                     $this->yy_destructor(11, $this->yystack[$this->yyidx + -1]->minor);
                 }
-#line 1767 "c/parser.php.php"
                 break;
             case 105:
-#line 692 "c/parser.php.lemon"
                 {
                     phql_ret_expr(
                         $yygotominor,
@@ -4545,10 +4549,8 @@ var $yystack = [];
                     );
                     $this->yy_destructor(14, $this->yystack[$this->yyidx + -1]->minor);
                 }
-#line 1775 "c/parser.php.php"
                 break;
             case 106:
-#line 696 "c/parser.php.lemon"
                 {
                     phql_ret_expr(
                         $yygotominor,
@@ -4558,10 +4560,8 @@ var $yystack = [];
                     );
                     $this->yy_destructor(15, $this->yystack[$this->yyidx + -1]->minor);
                 }
-#line 1783 "c/parser.php.php"
                 break;
             case 107:
-#line 700 "c/parser.php.lemon"
                 {
                     phql_ret_expr(
                         $yygotominor,
@@ -4571,10 +4571,8 @@ var $yystack = [];
                     );
                     $this->yy_destructor(16, $this->yystack[$this->yyidx + -1]->minor);
                 }
-#line 1791 "c/parser.php.php"
                 break;
             case 108:
-#line 704 "c/parser.php.lemon"
                 {
                     phql_ret_expr(
                         $yygotominor,
@@ -4584,7 +4582,6 @@ var $yystack = [];
                     );
                     $this->yy_destructor(4, $this->yystack[$this->yyidx + -1]->minor);
                 }
-#line 1799 "c/parser.php.php"
                 break;
             case 109:
 #line 708 "c/parser.php.lemon"
@@ -4779,7 +4776,7 @@ var $yystack = [];
 #line 772 "c/parser.php.lemon"
                 {
                     {
-                        $qualified = null;
+                        $qualified = [];
                         phql_ret_raw_qualified_name($qualified, $this->yystack[$this->yyidx + -1]->minor, null);
                         phql_ret_expr(
                             $yygotominor,
@@ -4799,7 +4796,7 @@ var $yystack = [];
 #line 780 "c/parser.php.lemon"
                 {
                     {
-                        $qualified = null;
+                        $qualified = [];
                         phql_ret_raw_qualified_name($qualified, $this->yystack[$this->yyidx + -1]->minor, null);
                         phql_ret_expr(
                             $yygotominor,
@@ -4984,6 +4981,8 @@ var $yystack = [];
                 $this->yy_accept();
             }
         }
+
+        $this->output = $yygotominor;
     }
 
     /*
@@ -5047,8 +5046,8 @@ var $yystack = [];
 
         if ($this->status->getState()->getStartLength()) {
 			if ($active_token) {
-                if (in_array($active_token, $tokens)) {
-                    $token_name = array_search($active_token, $tokens);
+                if (in_array($active_token->getOpcode(), $tokens)) {
+                    $token_name = array_search($active_token->getOpcode(), $tokens);
                 }
             }
 
@@ -5057,40 +5056,36 @@ var $yystack = [];
             }
 
 			if ($near_length > 0) {
-                if ($this->status->getToken()->value) {
+                if ($this->status->getToken()->getValue()) {
                     $this->status->setSyntaxError(sprintf(
-                        "Syntax error, unexpected token %s(%s), near to '%s', when parsing: %s (%d)",
+                        "Syntax error, unexpected token %s(%s), near to '%s', when parsing: %s",
                         $token_name,
-                        $this->status->getToken()->value,
+                        $this->status->getToken()->getValue(),
                         $this->status->getState()->getStart(),
-                        $this->status->phql,
-                        $this->status->phql_length
+                        $this->status->getState()->getRawBuffer(),
                     ));
                 } else {
                     $this->status->setSyntaxError(sprintf(
-                        "Syntax error, unexpected token %s, near to '%s', when parsing: %s (%d)",
+                        "Syntax error, unexpected token %s, near to '%s', when parsing: %s",
                         $token_name,
                         $this->status->getState()->getStart(),
-                        $this->status->phql,
-                        $this->status->phql_length
+                        $this->status->getState()->getRawBuffer(),
                     ));
                 }
             } else {
                 if ($active_token != Opcode::PHQL_T_IGNORE) {
-                    if ($this->status->getToken()->value) {
+                    if ($this->status->getToken()->getValue()) {
                         $this->status->setSyntaxError(sprintf(
-                            "Syntax error, unexpected token %s(%s), at the end of query, when parsing: %s (%d)",
+                            "Syntax error, unexpected token %s(%s), at the end of query, when parsing: %s",
                             $token_name,
-                            $this->status->getToken()->value,
-                            $this->status->phql,
-                            $this->status->phql_length
+                            $this->status->getToken()->getValue(),
+                            $this->status->getState()->getRawBuffer(),
                         ));
                     } else {
                         $this->status->setSyntaxError(sprintf(
-                            "Syntax error, unexpected token %s, at the end of query, when parsing: %s (%d)",
+                            "Syntax error, unexpected token %s, at the end of query, when parsing: %s",
                             $token_name,
-                            $this->status->phql,
-                            $this->status->phql_length
+                            $this->status->getState()->getRawBuffer(),
                         ));
                     }
                 } else {
@@ -5194,7 +5189,7 @@ function phql_ret_expr(&$ret, $type, $left, $right): void
     }
 }
 
-function phql_ret_literal_zval(int $type, $T = null): array
+function phql_ret_literal_zval(&$ret, int $type, $T = null): array
 {
     $ret = ['type' => $type];
     if ($T !== null) {

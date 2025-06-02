@@ -10,6 +10,8 @@ class State
     public int $startLength;
     protected int $cursor = 0;
 
+    public string $rawBuffer;
+
     protected ?string $end = null;
     protected ?string $start = null;
 
@@ -78,5 +80,17 @@ class State
         $this->startLength = $startLength;
 
         return $this;
+    }
+
+    public function setActiveToken(mixed $activeToken): self
+    {
+        $this->activeToken = $activeToken;
+
+        return $this;
+    }
+
+    public function getRawBuffer(): string
+    {
+        return $this->rawBuffer;
     }
 }
