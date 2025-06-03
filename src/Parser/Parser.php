@@ -14,11 +14,10 @@ class Parser
 {
     private ?Token $token = null;
 
-    private string $debugFile = 'volt.txt';
+    private string $debugFile = 'phql.txt';
 
-    public function __construct(private bool $debug = false)
+    public function __construct(private readonly bool $debug = false)
     {
-        $this->debug = $debug;
     }
 
     public function parse(string $phql): array

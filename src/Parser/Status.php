@@ -58,6 +58,7 @@ class Status
 
     public function setStatus(int $status): self
     {
+        throw new \Exception('Test');
         $this->status = $status;
 
         return $this;

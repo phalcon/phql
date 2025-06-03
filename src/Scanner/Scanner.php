@@ -59,6 +59,7 @@ class Scanner
             $yyaccept = 0;
             $yystate  = 0;
             while (true) {
+                var_dump($yystate);
                 switch ($yystate) {
                     case 0:
                         $yych = $this->state->getStart();
@@ -67,9 +68,9 @@ class Scanner
                             case null:
                                 $yystate = 1;
                                 break 2;
-                            case '\t':
-                            case '\n':
-                            case '\r':
+                            case "\t":
+                            case "\n":
+                            case "\r":
                             case ' ':
                                 $yystate = 4;
                                 break 2;
@@ -275,9 +276,9 @@ class Scanner
                     case 4:
                         $yych = $this->state->getStart();
                         switch ($yych) {
-                            case '\t':
-                            case '\n':
-                            case '\r':
+                            case "\t":
+                            case "\n":
+                            case "\r":
                             case ' ':
                                 $this->state->incrementStart();
                                 $yystate  = 4;
@@ -287,7 +288,6 @@ class Scanner
                                 break 2;
                         }
                     case 5:
-
                         $this->token->setOpcode(Opcode::PHQL_T_IGNORE);
                         return 0;
 
@@ -338,7 +338,6 @@ class Scanner
                                 break 2;
                         }
                     case 11:
-
                         $this->token->setOpcode(Opcode::PHQL_T_BITWISE_AND);
                         return 0;
 
@@ -353,7 +352,6 @@ class Scanner
                         $yystate = 74;
                         break 2;
                     case 13:
-
                         $this->token->setOpcode(Opcode::PHQL_T_PARENTHESES_OPEN);
                         return 0;
 
@@ -363,22 +361,18 @@ class Scanner
                         return 0;
 
                     case 15:
-
                         $this->token->setOpcode(Opcode::PHQL_T_MUL);
                         return 0;
 
                     case 16:
-
                         $this->token->setOpcode(Opcode::PHQL_T_ADD);
                         return 0;
 
                     case 17:
-
                         $this->token->setOpcode(Opcode::PHQL_T_COMMA);
                         return 0;
 
                     case 18:
-
                         $this->token->setOpcode(Opcode::PHQL_T_SUB);
                         return 0;
 
@@ -403,12 +397,10 @@ class Scanner
                                 break 2;
                         }
                     case 20:
-
                         $this->token->setOpcode(Opcode::PHQL_T_DOT);
                         return 0;
 
                     case 21:
-
                         $this->token->setOpcode(Opcode::PHQL_T_DIV);
                         return 0;
 
@@ -455,8 +447,10 @@ class Scanner
                     case 23:
 
                         $this->token->setOpcode(Opcode::PHQL_T_INTEGER);
-                        $token->value  = estrndup(q, YYCURSOR - q);
-                        $q             = YYCURSOR;
+                        $this->token->setValue(
+                            substr($this->state->getRawBuffer(), $start, $this->state->getCursor() - $start)
+                        );
+                        //$q             = YYCURSOR;
                         return 0;
 
                     case 24:
@@ -644,7 +638,9 @@ class Scanner
                                 break 2;
                         }
                     case 34:
-                        $token->value = estrndup(q, YYCURSOR - q);
+                        $this->token->setValue(
+                            substr($this->state->getRawBuffer(), $start, $this->state->getCursor() - $start)
+                        );
                         if ($token->len > 2 && !memcmp($token->value, "0x", 2)) {
                             $this->token->setOpcode(Opcode::PHQL_T_HINTEGER);
                         } else {
@@ -664,7 +660,7 @@ class Scanner
                             }
                         }
 
-                        $q = YYCURSOR;
+                        //$q = YYCURSOR;
                         return 0;
 
                     case 35:
@@ -788,14 +784,12 @@ class Scanner
                                 break 2;
                         }
                     case 41:
-
                         $this->token->setOpcode(Opcode::PHQL_T_IDENTIFIER);
                         if (($this->state->getCursor() - $start) > 1) {
                             if ($this->state->getStart() == '\\') {
                                 $this->token->setValue(
-                                    substr($this->state->getRawBuffer(), $start, $this->state->getCursor() - $start)
+                                    substr($this->state->getRawBuffer(), $start + 1, $this->state->getCursor() - $start)
                                 );
-                                //$token->value = estrndup(q + 1, YYCURSOR - q - 1);
                             } else {
                                 $this->token->setValue(
                                     substr($this->state->getRawBuffer(), $start, $this->state->getCursor() - $start)
@@ -806,7 +800,6 @@ class Scanner
                                 substr($this->state->getRawBuffer(), $start, $this->state->getCursor() - $start)
                             );
                         }
-                        //$q = YYCURSOR;
                         return 0;
 
                     case 42:
@@ -858,7 +851,7 @@ class Scanner
                     case 45:
                         $yych    = $this->state->getStart();
                         $yystate = 46;
-                        break 2;
+                        break;
                     case 46:
                         switch ($yych) {
                             case '0':
@@ -3868,7 +3861,7 @@ class Scanner
 
                         $this->token->setOpcode(Opcode::PHQL_T_BPLACEHOLDER);
                         $token->value  = estrndup(q, YYCURSOR - q - 1);
-                        $q             = YYCURSOR;
+                        //$q             = YYCURSOR;
                         return 0;
 
                     case 195:

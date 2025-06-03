@@ -3429,10 +3429,8 @@ var $yystack = [];
     public function phql_(
         $yymajor,                 /* The major token code number */
         $yyminor = null           /* The value for the token */
-    )
-    {
-        $yyact        = 0;            /* The parser action. */
-        $yyendofinput = false;     /* True if we are at the end of input */
+    ): void {
+        $yyendofinput = ($yymajor == 0);     /* True if we are at the end of input */
         $yyerrorhit   = 0;   /* True if yymajor has invoked an error */
 
         /* (re)initialize the parser, if necessary */
@@ -3448,14 +3446,14 @@ var $yystack = [];
             $this->YY_ACCEPT_ACTION = self::YYNSTATE + self::YYNRULE + 1;
             $this->YY_ERROR_ACTION  = self::YYNSTATE + self::YYNRULE;
         }
-        $yyendofinput = ($yymajor == 0);
+        $yytos = $this->yystack[$this->yyidx];
 
         if ($this->yyTraceFILE) {
             fprintf(
                 $this->yyTraceFILE,
                 "%sInput %s\n",
                 $this->yyTracePrompt,
-                self::$yyTokenName[$yymajor]
+                self::$yyTokenName[$yytos->major]
             );
         }
 
@@ -3546,7 +3544,7 @@ var $yystack = [];
                              * three input tokens have been successfully shifted.
                              */
                             if ($this->yyerrcnt <= 0) {
-                                $this->yy_syntax_error($yymajor, $yyminor);
+                                $this->yy_syntax_error();
                             }
                             $this->yyerrcnt = 3;
                             $this->yy_destructor($yymajor, $yyminor);
