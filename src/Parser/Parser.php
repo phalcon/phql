@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Phalcon\Phql\Parser;
 
+use Phalcon\Phql\Exception;
 use Phalcon\Phql\Scanner\Opcode;
 use Phalcon\Phql\Scanner\Scanner;
 use Phalcon\Phql\Scanner\State;
@@ -339,6 +340,9 @@ class Parser
             }
 
             if ($parserStatus->getStatus() === Status::PHQL_PARSING_FAILED) {
+                if ($parserStatus->getSyntaxError()) {
+                    throw new Exception($parserStatus->getSyntaxError());
+                }
                 break;
             }
 
@@ -397,6 +401,6 @@ class Parser
 
         $this->token = $newToken;
 
-        $parser->phql_($opcode, $parserCode);
+        $parser->phql_($parserCode, $newToken);
     }
 }
