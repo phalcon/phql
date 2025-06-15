@@ -4984,11 +4984,11 @@ function phql_ret_expr(&$ret, $type, $left, $right): void
     }
 }
 
-function phql_ret_literal_zval(&$ret, int $type, $T = null): array
+function phql_ret_literal_zval(&$ret, int $type, ?Token $T = null): array
 {
     $ret = ['type' => $type];
     if ($T !== null) {
-        $ret['value'] = $T->value;
+        $ret['value'] = $T->getValue();
     }
 
     return $ret;
@@ -5177,11 +5177,11 @@ function phql_ret_limit_clause(array &$ret, $limit, $offset = null): void
     }
 }
 
-function phql_ret_placeholder_zval(array &$ret, int $type, string $value): void
+function phql_ret_placeholder_zval(array &$ret, int $type, ?Token $value = null): void
 {
     $ret = [];
     $ret['type'] = $type;
-    $ret['value'] = $value;
+    $ret['value'] = $value->getValue() ?? null;
 }
 
 function phql_ret_raw_qualified_name(array &$ret, string $tokenA, ?string $tokenB = null): void
