@@ -4,9 +4,6 @@ declare(strict_types=1);
 
 namespace Phalcon\Phql\Scanner;
 
-use Phalcon\Phql\Scanner\State;
-use Phalcon\Phql\Scanner\Token;
-
 /* scanner.rex
  * This file is part of the Phalcon Framework.
  *
@@ -60,7 +57,7 @@ class Scanner
             $yyaccept = 0;
             $yystate  = 0;
             while (true) {
-                var_dump("State " . $yystate . " Char " . $yych . " Accept " . $yyaccept);
+                //var_dump("State " . $yystate . " Char " . $yych . " Accept " . $yyaccept);
                 switch ($yystate) {
                     case 0:
                         $yych = $this->state->getStart();
@@ -280,7 +277,7 @@ class Scanner
                             case "\r":
                             case ' ':
                                 $this->state->incrementStart();
-                                $yystate  = 4;
+                                $yystate = 4;
                                 break 2;
                             default:
                                 $yystate = 5;
@@ -1074,6 +1071,7 @@ class Scanner
                         }
                     case 56:
                         $yyaccept = 0;
+                        $this->state->incrementStart();
                         $yymarker = $this->state->getCursor();
                         $yych     = $this->state->getStart();
                         switch ($yych) {
