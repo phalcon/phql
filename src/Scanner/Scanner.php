@@ -636,12 +636,13 @@ class Scanner
                         $this->token->setValue(
                             substr($this->state->getRawBuffer(), $this->start, $this->state->getCursor() - $this->start)
                         );
-                        if ($token->len > 2 && !memcmp($token->value, "0x", 2)) {
+
+                        if (($this->token->getLength() > 2) && !strncmp($this->token->getValue(), "0x", 2)) {
                             $this->token->setOpcode(Opcode::PHQL_T_HINTEGER);
                         } else {
                             $alpha = 0;
-                            for ($i = 0; $i < $token->len; $i++) {
-                                $ch = $token->value[$i];
+                            for ($i = 0; $i < $this->token->getLength(); $i++) {
+                                $ch = $this->token->getValue()[$i];
                                 if (!(($ch >= '0') && ($ch <= '9'))) {
                                     $alpha = 1;
                                     break;
@@ -1488,10 +1489,11 @@ class Scanner
                                 break 2;
                         }
                     case 77:
-
                         $this->token->setOpcode(Opcode::PHQL_T_DOUBLE);
-                        $token->value  = estrndup($q, YYCURSOR - $q);
-                        $q             = YYCURSOR;
+                        $this->token->setValue(
+                            substr($this->state->getRawBuffer(), $this->start, $this->state->getCursor() - $this->start)
+                        );
+                        $this->start = $this->state->getCursor();
                         return 0;
 
                     case 78:
@@ -1636,8 +1638,10 @@ class Scanner
                         }
                     case 84:
                         $this->token->setOpcode(Opcode::PHQL_T_NPLACEHOLDER);
-                        $token->value  = estrndup(q, YYCURSOR - q);
-                        $q             = YYCURSOR;
+                        $this->token->setValue(
+                            substr($this->state->getRawBuffer(), $this->start, $this->state->getCursor() - $this->start)
+                        );
+                        $this->start = $this->state->getCursor();
                         return 0;
                     case 85:
                         $this->token->setOpcode(Opcode::PHQL_T_TS_CONTAINS_ANOTHER);
