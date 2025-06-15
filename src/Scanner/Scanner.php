@@ -60,7 +60,7 @@ class Scanner
             $yyaccept = 0;
             $yystate  = 0;
             while (true) {
-                var_dump($yystate);
+                var_dump("State " . $yystate . " Char " . $yych . " Accept " . $yyaccept);
                 switch ($yystate) {
                     case 0:
                         $yych = $this->state->getStart();
@@ -262,16 +262,13 @@ class Scanner
                                 break 2;
                         }
                     case 1:
-
                         $status = self::PHQL_SCANNER_RETCODE_EOF;
-                        break;
-
+                        break 2;
                     case 2:
                         $yystate = 3;
                         $this->state->incrementStart();
                         break 2;
                     case 3:
-
                         $status = self::PHQL_SCANNER_RETCODE_ERR;
                         break;
 
@@ -2593,7 +2590,7 @@ class Scanner
                     case 135:
                         $yych    = $this->state->getStart();
                         $yystate = 136;
-                        break 2;
+                        break;
                     case 136:
                         switch ($yych) {
                             case 0x00:
@@ -2698,7 +2695,7 @@ class Scanner
                         }
                     case 138:
                         $yystate = 139;
-                        break 2;
+                        break;
                     case 139:
                         $this->token->setOpcode(Opcode::PHQL_T_IDENTIFIER);
                         $this->token->setValue(

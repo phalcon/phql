@@ -3905,10 +3905,8 @@ class phql_Parser
              *     break;
              */
             case 0:
-                {
-                    var_dump('Exit 0');
-                    //ZVAL_ZVAL($status->ret, $this->yystack[$this->yyidx + 0]->minor, 1, 1);
-                }
+                $yygotominor = $this->yystack[$this->yyidx + 0]->minor;
+                //ZVAL_ZVAL($status->ret, $this->yystack[$this->yyidx + 0]->minor, 1, 1);
                 break;
             case 1:
             case 2:
@@ -4193,7 +4191,6 @@ class phql_Parser
                     $yygotominor,
                     $this->yystack[$this->yyidx + -2]->minor,
                     $this->yystack[$this->yyidx + 0]->minor,
-                    null
                 );
                 $this->yy_destructor(33, $this->yystack[$this->yyidx + -1]->minor);
                 break;
@@ -4205,7 +4202,7 @@ class phql_Parser
                 );
                 break;
             case 57:
-                phql_ret_assoc_name($yygotominor, $this->yystack[$this->yyidx + 0]->minor, null, null);
+                phql_ret_assoc_name($yygotominor, $this->yystack[$this->yyidx + 0]->minor);
                 break;
             case 58:
                 phql_ret_assoc_name(
@@ -4279,7 +4276,7 @@ class phql_Parser
                 $this->yy_destructor(53, $this->yystack[$this->yyidx + -1]->minor);
                 break;
             case 74:
-                phql_ret_order_item($yygotominor, $this->yystack[$this->yyidx + 0]->minor, 0);
+                phql_ret_order_item($yygotominor, $this->yystack[$this->yyidx + 0]->minor);
                 break;
             case 75:
                 phql_ret_order_item($yygotominor, $this->yystack[$this->yyidx + -1]->minor, Opcode::PHQL_T_ASC);
@@ -4937,22 +4934,22 @@ function phql_ret_select_statement(&$ret, $S, $W, $O, $G, $H, $L, $F): void
         "select" => $S,
     ];
 
-    if ($W !== null) {
+    if (!empty($W)) {
         $ret["where"] = $W;
     }
-    if ($O !== null) {
+    if (!empty($O)) {
         $ret["orderBy"] = $O;
     }
-    if ($G !== null) {
+    if (!empty($G)) {
         $ret["groupBy"] = $G;
     }
-    if ($H !== null) {
+    if (!empty($H)) {
         $ret["having"] = $H;
     }
-    if ($L !== null) {
+    if (!empty($L)) {
         $ret["limit"] = $L;
     }
-    if ($F !== null) {
+    if (!empty($F)) {
         $ret["forUpdate"] = $F;
     }
 }
@@ -4968,7 +4965,7 @@ function phql_ret_select_clause(&$ret, $distinct, $columns, $tables, $join_list)
     $ret["columns"] = $columns;
     $ret["tables"] = $tables;
 
-    if ($join_list !== null) {
+    if (!empty($join_list)) {
         $ret["joins"] = $join_list;
     }
 }
@@ -5027,8 +5024,9 @@ function phql_ret_column_item(
     ?Token $alias = null
 ): array
 {
-    $ret = [];
-    $ret['type'] = $type;
+    $ret = [
+        'type' => $type,
+    ];
 
     if ($column !== null) {
         $ret['column'] = $column;
@@ -5053,23 +5051,18 @@ function phql_ret_join_item(
           $conditions = null
 ): void
 {
-    /* array_init(ret); */
-    $ret = [];
+    $ret = [
+        'type' => $type,
+    ];
 
-    /* add_assoc_zval(ret, "type", type); */
-    $ret['type'] = $type;
-
-    /* if (qualified && Z_TYPE_P(qualified) != IS_UNDEF) */
     if ($qualified !== null) {
         $ret['qualified'] = $qualified;
     }
 
-    /* if (alias && Z_TYPE_P(alias) != IS_UNDEF) */
     if ($alias !== null) {
         $ret['alias'] = $alias;
     }
 
-    /* if (conditions && Z_TYPE_P(conditions) != IS_UNDEF) */
     if ($conditions !== null) {
         $ret['conditions'] = $conditions;
     }
@@ -5098,190 +5091,102 @@ function phql_ret_qualified_name(
     $ret['name'] = $name->getValue();
 }
 
-function phql_ret_update_statement(
-    array &$ret,
-          $update,
-          $where = null,
-          $limit = null
-): void
+function phql_ret_update_statement(array &$ret, $update, $where = null, $limit = null): void
 {
-    /* array_init(ret); */
     $ret = [];
-
-    /* add_assoc_long(ret, "type", PHQL_T_UPDATE); */
     $ret['type'] = defined('PHQL_T_UPDATE') ? PHQL_T_UPDATE : 0;
-
-    /* add_assoc_zval(ret, "update", U); */
     $ret['update'] = $update;
 
-    /* if (W && Z_TYPE_P(W) != IS_UNDEF) */
     if ($where !== null) {
         $ret['where'] = $where;
     }
 
-    /* if (L && Z_TYPE_P(L) != IS_UNDEF) */
     if ($limit !== null) {
         $ret['limit'] = $limit;
     }
 }
 
-function phql_ret_update_clause(
-    array &$ret,
-          $tables,
-          $values
-): void
+function phql_ret_update_clause(array &$ret, $tables, $values): void
 {
-    /* array_init(ret); */
     $ret = [];
-
-    /* add_assoc_zval(ret, "tables", tables); */
     $ret['tables'] = $tables;
-
-    /* add_assoc_zval(ret, "values", values); */
     $ret['values'] = $values;
 }
 
-function phql_ret_update_item(
-    array &$ret,
-          $column,
-          $expr
-): void
+function phql_ret_update_item(array &$ret, $column, $expr): void
 {
-    /* array_init(ret); */
     $ret = [];
-
-    /* add_assoc_zval(ret, "column", column); */
     $ret['column'] = $column;
-
-    /* add_assoc_zval(ret, "expr", expr); */
     $ret['expr'] = $expr;
 }
 
-function phql_ret_delete_statement(
-    array &$ret,
-          $delete,
-          $where = null,
-          $limit = null
-): void
+function phql_ret_delete_statement(array &$ret, $delete, $where = null, $limit = null): void
 {
-    /* array_init(ret); */
     $ret = [];
-
-    /* add_assoc_long(ret, "type", PHQL_T_DELETE); */
     $ret['type'] = defined('PHQL_T_DELETE') ? PHQL_T_DELETE : 0;
-
-    /* add_assoc_zval(ret, "delete", D); */
     $ret['delete'] = $delete;
 
-    /* if (W && Z_TYPE_P(W) != IS_UNDEF) */
     if ($where !== null) {
         $ret['where'] = $where;
     }
 
-    /* if (L && Z_TYPE_P(L) != IS_UNDEF) */
     if ($limit !== null) {
         $ret['limit'] = $limit;
     }
 }
 
-function phql_ret_delete_clause(
-    array &$ret,
-          $tables
-): void
+function phql_ret_delete_clause(array &$ret, $tables): void
 {
-    /* array_init(ret); */
-    $ret = [];
-
-    /* add_assoc_zval(ret, "tables", tables); */
-    $ret['tables'] = $tables;
+    $ret = [
+        'tables' => $tables,
+    ];
 }
 
-function phql_ret_assoc_name(
-    array   &$ret,
-            $qualifiedName,
-    ?string $alias = null,
-            $with = null
-): void
+function phql_ret_assoc_name(array &$ret, $qualifiedName, ?string $alias = null, $with = null): void
 {
-    /* array_init(ret); */
-    $ret = [];
+    $ret = [
+        'qualifiedName' => $qualifiedName,
+    ];
 
-    /* add_assoc_zval(ret, "qualifiedName", qualified_name); */
-    $ret['qualifiedName'] = $qualifiedName;
-
-    /* if (alias) phql_add_assoc_stringl(..., "alias", ...) */
     if ($alias !== null) {
         $ret['alias'] = $alias;
     }
 
-    /* if (with && Z_TYPE_P(with) != IS_UNDEF) */
     if ($with !== null) {
         $ret['with'] = $with;
     }
 }
 
-function phql_ret_order_item(
-    array &$ret,
-          $column,
-    int   $sort = 0
-): void
+function phql_ret_order_item(array &$ret, $column, int $sort = 0): void
 {
-    /* array_init(ret); */
-    $ret = [];
-
-    /* add_assoc_zval(ret, "column", column); */
-    $ret['column'] = $column;
-
-    /* if (sort) add_assoc_long(ret, "sort", sort); */
+    $ret = [
+        'column' => $column,
+    ];
     if ($sort !== 0) {
         $ret['sort'] = $sort;
     }
 }
 
-function phql_ret_limit_clause(
-    array &$ret,
-          $limit,
-          $offset = null
-): void
+function phql_ret_limit_clause(array &$ret, $limit, $offset = null): void
 {
-    /* array_init(ret); */
-    $ret = [];
-
-    /* add_assoc_zval(ret, "number", L); */
-    $ret['number'] = $limit;
-
-    /* if (O && Z_TYPE_P(O) != IS_UNDEF) */
+    $ret = [
+        'number' => $limit,
+    ];
     if ($offset !== null) {
         $ret['offset'] = $offset;
     }
 }
 
-function phql_ret_placeholder_zval(
-    array  &$ret,
-    int    $type,
-    string $value
-): void
+function phql_ret_placeholder_zval(array &$ret, int $type, string $value): void
 {
-    /* array_init(ret); */
     $ret = [];
-
-    /* add_assoc_long(ret, "type", type); */
     $ret['type'] = $type;
-
-    /* phql_add_assoc_stringl(ret, "value", T->token, ...) */
     $ret['value'] = $value;
 }
 
-function phql_ret_raw_qualified_name(
-    array   &$ret,
-    string  $tokenA,
-    ?string $tokenB = null
-): void
+function phql_ret_raw_qualified_name(array &$ret, string $tokenA, ?string $tokenB = null): void
 {
-    /* array_init(ret); */
     $ret = [];
-
-    /* add_assoc_long(ret, "type", PHQL_T_RAW_QUALIFIED); */
     $ret['type'] = defined('PHQL_T_RAW_QUALIFIED') ? PHQL_T_RAW_QUALIFIED : 0;
 
     if ($tokenB !== null) {
@@ -5294,20 +5199,10 @@ function phql_ret_raw_qualified_name(
     }
 }
 
-function phql_ret_func_call(
-    array  &$ret,
-    string $name,
-           $arguments = null,
-           $distinct = null
-): void
+function phql_ret_func_call(array  &$ret, string $name, $arguments = null, $distinct = null): void
 {
-    /* array_init(ret); */
     $ret = [];
-
-    /* add_assoc_long(ret, "type", PHQL_T_FCALL); */
     $ret['type'] = defined('PHQL_T_FCALL') ? PHQL_T_FCALL : 0;
-
-    /* phql_add_assoc_stringl(ret, "name", name->token, ...) */
     $ret['name'] = $name;
 
     /* if (arguments && Z_TYPE_P(arguments) != IS_UNDEF) */

@@ -340,13 +340,16 @@ class Parser
             }
 
             if ($parserStatus->getStatus() === Status::PHQL_PARSING_FAILED) {
-                if ($parserStatus->getSyntaxError()) {
-                    throw new Exception($parserStatus->getSyntaxError());
-                }
                 break;
             }
 
             $state->setEnd($state->getStart());
+        }
+
+        if ($scannerStatus === Scanner::PHQL_SCANNER_RETCODE_ERR || $scannerStatus === Scanner::PHQL_SCANNER_RETCODE_IMPOSSIBLE) {
+            throw new Exception($parserStatus->getSyntaxError());
+        } elseif ($scannerStatus === Scanner::PHQL_SCANNER_RETCODE_EOF) {
+            $parser->phql_(0);
         }
 
         /**
@@ -387,6 +390,10 @@ class Parser
         $state->setStartLength(0);
         $state->setActiveToken(0);
 
+        if ($parserStatus->getStatus() !== Status::PHQL_PARSING_OK) {
+            throw new Exception($parserStatus->getSyntaxError());
+        }
+
         return $parser->getOutput();
     }
 
@@ -395,6 +402,7 @@ class Parser
         int $opcode,
         int $parserCode,
     ): void {
+        var_dump($this->token->getValue());
         $newToken = new Token();
         $newToken->setOpcode($opcode);
         $newToken->setValue($this->token->getValue());
