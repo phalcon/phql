@@ -17,6 +17,9 @@ use Phalcon\Phql\Scanner\Token;
  */
 final class Parser
 {
+    /** @var array<string, array<string, mixed>> */
+    private static array $parserCache = [];
+
     private bool $enableLiterals = true;
 
     /**
@@ -29,6 +32,10 @@ final class Parser
     {
         if ($phql === '') {
             throw new Exception('PHQL statement cannot be NULL');
+        }
+
+        if (isset(self::$parserCache[$phql])) {
+            return self::$parserCache[$phql];
         }
 
         $state        = new State($phql);
@@ -196,7 +203,14 @@ final class Parser
             throw new Exception('PHQL parsing produced no result'); // @codeCoverageIgnore
         }
 
+        self::$parserCache[$phql] = $ast;
+
         return $ast;
+    }
+
+    public static function clean(): void
+    {
+        self::$parserCache = [];
     }
 
     public function setEnableLiterals(bool $enable): static
