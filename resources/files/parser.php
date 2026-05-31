@@ -3991,8 +3991,12 @@ class phql_Parser
                 $yygotominor = null;
                 break;
             case 20:
-            case 27:
                 $yygotominor = [];
+                break;
+            case 27:
+                // join_associated_name ::= (empty) - no alias
+                // Matches cphalcon ZVAL_UNDEF so phql_ret_join_item skips the key
+                $yygotominor = null;
                 break;
             case 38:
                 $yygotominor = null;

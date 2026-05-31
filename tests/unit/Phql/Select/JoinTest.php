@@ -370,6 +370,77 @@ final class JoinTest extends AbstractUnitTestCase
     }
 
     /**
+     * A JOIN without an alias must not emit an 'alias' key in the AST. The
+     * empty `join_associated_name` production maps to cphalcon's ZVAL_UNDEF,
+     * i.e. PHP null, so phql_ret_join_item() skips the key. A stray empty
+     * 'alias' makes the consumer (Query::getJoins) treat the join as aliased,
+     * register it under an empty alias and fail to resolve the model.
+     *
+     * @return void
+     *
+     * @author Phalcon Team <team@phalcon.io>
+     * @since  2026-05-30
+     */
+    public function testMvcModelQueryPhqlSelectInnerJoinWithoutAlias(): void
+    {
+        $source   = "SELECT i.inv_id, Customers.name "
+            . "FROM Invoices AS i "
+            . "INNER JOIN Customers ON i.inv_cst_id = Customers.id";
+        $expected = [
+            'type' => Opcode::SELECT->value,
+            'select' => [
+                'columns' => [
+                    0 => [
+                        'type' => Opcode::EXPR->value,
+                        'column' => [
+                            'type' => Opcode::QUALIFIED->value,
+                            'domain' => 'i',
+                            'name'   => 'inv_id',
+                        ],
+                    ],
+                    1 => [
+                        'type' => Opcode::EXPR->value,
+                        'column' => [
+                            'type' => Opcode::QUALIFIED->value,
+                            'domain' => 'Customers',
+                            'name'   => 'name',
+                        ],
+                    ],
+                ],
+                'tables'  => [
+                    'qualifiedName' => [
+                        'type' => Opcode::QUALIFIED->value,
+                        'name' => 'Invoices',
+                    ],
+                    'alias'         => 'i',
+                ],
+                'joins'   => [
+                    'type' => Opcode::INNERJOIN->value,
+                    'qualified'  => [
+                        'type' => Opcode::QUALIFIED->value,
+                        'name' => 'Customers',
+                    ],
+                    'conditions' => [
+                        'type' => Opcode::EQUALS->value,
+                        'left'  => [
+                            'type' => Opcode::QUALIFIED->value,
+                            'domain' => 'i',
+                            'name'   => 'inv_cst_id',
+                        ],
+                        'right' => [
+                            'type' => Opcode::QUALIFIED->value,
+                            'domain' => 'Customers',
+                            'name'   => 'id',
+                        ],
+                    ],
+                ],
+            ],
+        ];
+        $actual   = (new Parser())->parse($source);
+        $this->assertSame($expected, $actual);
+    }
+
+    /**
      * @return void
      *
      * @author Phalcon Team <team@phalcon.io>
