@@ -36,14 +36,14 @@ final class BracketsWithEscapedNameTest extends AbstractUnitTestCase
                         'type' => Opcode::EXPR->value,
                         'column' => [
                             'type' => Opcode::QUALIFIED->value,
-                            'name' => '',
+                            'name' => 'col\[0\]',
                         ],
                     ],
                     1 => [
                         'type' => Opcode::EXPR->value,
                         'column' => [
                             'type' => Opcode::QUALIFIED->value,
-                            'name' => '',
+                            'name' => 'col\[1\]',
                         ],
                     ],
                 ],

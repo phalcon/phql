@@ -773,22 +773,23 @@ class Scanner
                                 break 2;
                         }
                     case 41:
-                        // Use $yymarker (PPMARKER in C re2c) as token start.
-                        // Keyword save-point states (e.g. NOT at state 176) overwrite $yymarker,
-                        // so identifiers like "Notes" yield the post-keyword suffix ("es").
+                        // Use $q (the token start), not the re2c save-point $yymarker.
+                        // Keyword save-point states (e.g. NOT at state 176) overwrite
+                        // $yymarker, which would otherwise truncate identifiers like
+                        // "Notes" to the post-keyword suffix ("es").
                         $tokenValue = null;
                         $tokenLen   = 0;
-                        if (($yycursor - $yymarker) > 1) {
-                            if ($yyinput[$yymarker] === '\\') {
-                                $tokenValue = substr($yyinput, $yymarker + 1, $yycursor - $yymarker - 1);
-                                $tokenLen   = $yycursor - $yymarker - 1;
+                        if (($yycursor - $q) > 1) {
+                            if ($yyinput[$q] === '\\') {
+                                $tokenValue = substr($yyinput, $q + 1, $yycursor - $q - 1);
+                                $tokenLen   = $yycursor - $q - 1;
                             } else {
-                                $tokenValue = substr($yyinput, $yymarker, $yycursor - $yymarker);
-                                $tokenLen   = $yycursor - $yymarker;
+                                $tokenValue = substr($yyinput, $q, $yycursor - $q);
+                                $tokenLen   = $yycursor - $q;
                             }
                         } else {
-                            $tokenValue = substr($yyinput, $yymarker, $yycursor - $yymarker);
-                            $tokenLen   = $yycursor - $yymarker;
+                            $tokenValue = substr($yyinput, $q, $yycursor - $q);
+                            $tokenLen   = $yycursor - $q;
                         }
                         $q = $yycursor;
                         $this->state->setCursor($yycursor);
@@ -1405,12 +1406,11 @@ class Scanner
                                 break 2;
                         }
                     case 70:
-                        // $yymarker points to position after the opening quote (set in state 8/12)
-                        // $yycursor is past the closing quote; subtract 1 to exclude it
+                        // $q is the opening quote; skip it and drop the closing quote.
                         $this->token = new Token(
                             Opcode::STRING,
-                            substr($yyinput, $yymarker, $yycursor - $yymarker - 1),
-                            $yycursor - $yymarker - 1
+                            substr($yyinput, $q + 1, $yycursor - $q - 2),
+                            $yycursor - $q - 2
                         );
                         $q = $yycursor;
                         $this->state->setCursor($yycursor);
@@ -2696,13 +2696,13 @@ class Scanner
                                 break 2;
                         }
                     case 138:
-                        // Bracket-enclosed identifier: [name] or [First Name]
-                        // Use $yymarker (set by state 56 after '[', updated by state 193 after '\]')
-                        // so that escaped-bracket sequences correctly yield the post-escape substring.
+                        // Bracket-enclosed identifier: [name] or [First Name].
+                        // Use $q (the opening '['); $yymarker is moved by escaped-bracket
+                        // states (e.g. 193 after '\]'), which corrupts the value.
                         $this->token = new Token(
                             Opcode::IDENTIFIER,
-                            substr($yyinput, $yymarker, $yycursor - $yymarker - 1),
-                            $yycursor - $yymarker - 1
+                            substr($yyinput, $q + 1, $yycursor - $q - 2),
+                            $yycursor - $q - 2
                         );
                         $q = $yycursor;
                         $this->state->setCursor($yycursor);
