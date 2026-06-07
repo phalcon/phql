@@ -154,6 +154,533 @@ final class CombinationTest extends AbstractUnitTestCase
     }
 
     /**
+     * Tests UPDATE with an INNER JOIN and no WHERE clause.
+     *
+     * @return void
+     *
+     * @issue  https://github.com/phalcon/cphalcon/issues/16984
+     * @author Phalcon Team <team@phalcon.io>
+     * @since  2026-06-06
+     */
+    public function testMvcModelQueryPhqlUpdateInnerJoin(): void
+    {
+        $source   = "UPDATE Invoices "
+            . "INNER JOIN Customers ON Customers.cst_id = Invoices.inv_cst_id "
+            . "SET inv_total = 999";
+        $expected = [
+            'type'   => Opcode::UPDATE->value,
+            'update' => [
+                'tables' => [
+                    'qualifiedName' => [
+                        'type' => Opcode::QUALIFIED->value,
+                        'name' => 'Invoices',
+                    ],
+                ],
+                'joins'  => [
+                    'type'       => Opcode::INNERJOIN->value,
+                    'qualified'  => [
+                        'type' => Opcode::QUALIFIED->value,
+                        'name' => 'Customers',
+                    ],
+                    'conditions' => [
+                        'type'  => Opcode::EQUALS->value,
+                        'left'  => [
+                            'type'   => Opcode::QUALIFIED->value,
+                            'domain' => 'Customers',
+                            'name'   => 'cst_id',
+                        ],
+                        'right' => [
+                            'type'   => Opcode::QUALIFIED->value,
+                            'domain' => 'Invoices',
+                            'name'   => 'inv_cst_id',
+                        ],
+                    ],
+                ],
+                'values' => [
+                    'column' => [
+                        'type' => Opcode::QUALIFIED->value,
+                        'name' => 'inv_total',
+                    ],
+                    'expr'   => [
+                        'type'  => Opcode::INTEGER->value,
+                        'value' => '999',
+                    ],
+                ],
+            ],
+        ];
+        $actual   = (new Parser())->parse($source);
+        $this->assertSame($expected, $actual);
+    }
+
+    /**
+     * Tests UPDATE with an INNER JOIN using aliased tables.
+     *
+     * @return void
+     *
+     * @issue  https://github.com/phalcon/cphalcon/issues/16984
+     * @author Phalcon Team <team@phalcon.io>
+     * @since  2026-06-06
+     */
+    public function testMvcModelQueryPhqlUpdateInnerJoinAliasesWhereNum(): void
+    {
+        $source   = "UPDATE Invoices AS i "
+            . "INNER JOIN Customers AS c ON c.cst_id = i.inv_cst_id "
+            . "SET i.inv_total = 999 "
+            . "WHERE c.cst_id = 1";
+        $expected = [
+            'type'   => Opcode::UPDATE->value,
+            'update' => [
+                'tables' => [
+                    'qualifiedName' => [
+                        'type' => Opcode::QUALIFIED->value,
+                        'name' => 'Invoices',
+                    ],
+                    'alias'         => 'i',
+                ],
+                'joins'  => [
+                    'type'       => Opcode::INNERJOIN->value,
+                    'qualified'  => [
+                        'type' => Opcode::QUALIFIED->value,
+                        'name' => 'Customers',
+                    ],
+                    'alias'      => [
+                        'type' => Opcode::QUALIFIED->value,
+                        'name' => 'c',
+                    ],
+                    'conditions' => [
+                        'type'  => Opcode::EQUALS->value,
+                        'left'  => [
+                            'type'   => Opcode::QUALIFIED->value,
+                            'domain' => 'c',
+                            'name'   => 'cst_id',
+                        ],
+                        'right' => [
+                            'type'   => Opcode::QUALIFIED->value,
+                            'domain' => 'i',
+                            'name'   => 'inv_cst_id',
+                        ],
+                    ],
+                ],
+                'values' => [
+                    'column' => [
+                        'type'   => Opcode::QUALIFIED->value,
+                        'domain' => 'i',
+                        'name'   => 'inv_total',
+                    ],
+                    'expr'   => [
+                        'type'  => Opcode::INTEGER->value,
+                        'value' => '999',
+                    ],
+                ],
+            ],
+            'where'  => [
+                'type'  => Opcode::EQUALS->value,
+                'left'  => [
+                    'type'   => Opcode::QUALIFIED->value,
+                    'domain' => 'c',
+                    'name'   => 'cst_id',
+                ],
+                'right' => [
+                    'type'  => Opcode::INTEGER->value,
+                    'value' => '1',
+                ],
+            ],
+        ];
+        $actual   = (new Parser())->parse($source);
+        $this->assertSame($expected, $actual);
+    }
+
+    /**
+     * Tests UPDATE with an INNER JOIN used to filter the rows to update.
+     *
+     * @return void
+     *
+     * @issue  https://github.com/phalcon/cphalcon/issues/16984
+     * @author Phalcon Team <team@phalcon.io>
+     * @since  2026-06-06
+     */
+    public function testMvcModelQueryPhqlUpdateInnerJoinWhereNum(): void
+    {
+        $source   = "UPDATE Invoices "
+            . "INNER JOIN Customers ON Customers.cst_id = Invoices.inv_cst_id "
+            . "SET inv_total = 999 "
+            . "WHERE Customers.cst_id = 1";
+        $expected = [
+            'type'   => Opcode::UPDATE->value,
+            'update' => [
+                'tables' => [
+                    'qualifiedName' => [
+                        'type' => Opcode::QUALIFIED->value,
+                        'name' => 'Invoices',
+                    ],
+                ],
+                'joins'  => [
+                    'type'       => Opcode::INNERJOIN->value,
+                    'qualified'  => [
+                        'type' => Opcode::QUALIFIED->value,
+                        'name' => 'Customers',
+                    ],
+                    'conditions' => [
+                        'type'  => Opcode::EQUALS->value,
+                        'left'  => [
+                            'type'   => Opcode::QUALIFIED->value,
+                            'domain' => 'Customers',
+                            'name'   => 'cst_id',
+                        ],
+                        'right' => [
+                            'type'   => Opcode::QUALIFIED->value,
+                            'domain' => 'Invoices',
+                            'name'   => 'inv_cst_id',
+                        ],
+                    ],
+                ],
+                'values' => [
+                    'column' => [
+                        'type' => Opcode::QUALIFIED->value,
+                        'name' => 'inv_total',
+                    ],
+                    'expr'   => [
+                        'type'  => Opcode::INTEGER->value,
+                        'value' => '999',
+                    ],
+                ],
+            ],
+            'where'  => [
+                'type'  => Opcode::EQUALS->value,
+                'left'  => [
+                    'type'   => Opcode::QUALIFIED->value,
+                    'domain' => 'Customers',
+                    'name'   => 'cst_id',
+                ],
+                'right' => [
+                    'type'  => Opcode::INTEGER->value,
+                    'value' => '1',
+                ],
+            ],
+        ];
+        $actual   = (new Parser())->parse($source);
+        $this->assertSame($expected, $actual);
+    }
+
+    /**
+     * Tests UPDATE with an INNER JOIN, a WHERE clause and a LIMIT clause.
+     *
+     * @return void
+     *
+     * @issue  https://github.com/phalcon/cphalcon/issues/16984
+     * @author Phalcon Team <team@phalcon.io>
+     * @since  2026-06-06
+     */
+    public function testMvcModelQueryPhqlUpdateInnerJoinWhereNumLimit(): void
+    {
+        $source   = "UPDATE Invoices "
+            . "INNER JOIN Customers ON Customers.cst_id = Invoices.inv_cst_id "
+            . "SET inv_total = 999 "
+            . "WHERE Customers.cst_id = 1 "
+            . "LIMIT 10";
+        $expected = [
+            'type'   => Opcode::UPDATE->value,
+            'update' => [
+                'tables' => [
+                    'qualifiedName' => [
+                        'type' => Opcode::QUALIFIED->value,
+                        'name' => 'Invoices',
+                    ],
+                ],
+                'joins'  => [
+                    'type'       => Opcode::INNERJOIN->value,
+                    'qualified'  => [
+                        'type' => Opcode::QUALIFIED->value,
+                        'name' => 'Customers',
+                    ],
+                    'conditions' => [
+                        'type'  => Opcode::EQUALS->value,
+                        'left'  => [
+                            'type'   => Opcode::QUALIFIED->value,
+                            'domain' => 'Customers',
+                            'name'   => 'cst_id',
+                        ],
+                        'right' => [
+                            'type'   => Opcode::QUALIFIED->value,
+                            'domain' => 'Invoices',
+                            'name'   => 'inv_cst_id',
+                        ],
+                    ],
+                ],
+                'values' => [
+                    'column' => [
+                        'type' => Opcode::QUALIFIED->value,
+                        'name' => 'inv_total',
+                    ],
+                    'expr'   => [
+                        'type'  => Opcode::INTEGER->value,
+                        'value' => '999',
+                    ],
+                ],
+            ],
+            'where'  => [
+                'type'  => Opcode::EQUALS->value,
+                'left'  => [
+                    'type'   => Opcode::QUALIFIED->value,
+                    'domain' => 'Customers',
+                    'name'   => 'cst_id',
+                ],
+                'right' => [
+                    'type'  => Opcode::INTEGER->value,
+                    'value' => '1',
+                ],
+            ],
+            'limit'  => [
+                'number' => [
+                    'type'  => Opcode::INTEGER->value,
+                    'value' => '10',
+                ],
+            ],
+        ];
+        $actual   = (new Parser())->parse($source);
+        $this->assertSame($expected, $actual);
+    }
+
+    /**
+     * Tests UPDATE with an INNER JOIN and named placeholders.
+     *
+     * @return void
+     *
+     * @issue  https://github.com/phalcon/cphalcon/issues/16984
+     * @author Phalcon Team <team@phalcon.io>
+     * @since  2026-06-06
+     */
+    public function testMvcModelQueryPhqlUpdateInnerJoinWherePlaceholder(): void
+    {
+        $source   = "UPDATE Invoices "
+            . "INNER JOIN Customers ON Customers.cst_id = Invoices.inv_cst_id "
+            . "SET inv_total = :total: "
+            . "WHERE Customers.cst_id = :custId:";
+        $expected = [
+            'type'   => Opcode::UPDATE->value,
+            'update' => [
+                'tables' => [
+                    'qualifiedName' => [
+                        'type' => Opcode::QUALIFIED->value,
+                        'name' => 'Invoices',
+                    ],
+                ],
+                'joins'  => [
+                    'type'       => Opcode::INNERJOIN->value,
+                    'qualified'  => [
+                        'type' => Opcode::QUALIFIED->value,
+                        'name' => 'Customers',
+                    ],
+                    'conditions' => [
+                        'type'  => Opcode::EQUALS->value,
+                        'left'  => [
+                            'type'   => Opcode::QUALIFIED->value,
+                            'domain' => 'Customers',
+                            'name'   => 'cst_id',
+                        ],
+                        'right' => [
+                            'type'   => Opcode::QUALIFIED->value,
+                            'domain' => 'Invoices',
+                            'name'   => 'inv_cst_id',
+                        ],
+                    ],
+                ],
+                'values' => [
+                    'column' => [
+                        'type' => Opcode::QUALIFIED->value,
+                        'name' => 'inv_total',
+                    ],
+                    'expr'   => [
+                        'type'  => Opcode::SPLACEHOLDER->value,
+                        'value' => 'total',
+                    ],
+                ],
+            ],
+            'where'  => [
+                'type'  => Opcode::EQUALS->value,
+                'left'  => [
+                    'type'   => Opcode::QUALIFIED->value,
+                    'domain' => 'Customers',
+                    'name'   => 'cst_id',
+                ],
+                'right' => [
+                    'type'  => Opcode::SPLACEHOLDER->value,
+                    'value' => 'custId',
+                ],
+            ],
+        ];
+        $actual   = (new Parser())->parse($source);
+        $this->assertSame($expected, $actual);
+    }
+
+    /**
+     * Tests UPDATE with a LEFT JOIN.
+     *
+     * @return void
+     *
+     * @issue  https://github.com/phalcon/cphalcon/issues/16984
+     * @author Phalcon Team <team@phalcon.io>
+     * @since  2026-06-06
+     */
+    public function testMvcModelQueryPhqlUpdateLeftJoinWhereNum(): void
+    {
+        $source   = "UPDATE Invoices "
+            . "LEFT JOIN Customers ON Customers.cst_id = Invoices.inv_cst_id "
+            . "SET inv_total = 999 "
+            . "WHERE Customers.cst_id = 1";
+        $expected = [
+            'type'   => Opcode::UPDATE->value,
+            'update' => [
+                'tables' => [
+                    'qualifiedName' => [
+                        'type' => Opcode::QUALIFIED->value,
+                        'name' => 'Invoices',
+                    ],
+                ],
+                'joins'  => [
+                    'type'       => Opcode::LEFTJOIN->value,
+                    'qualified'  => [
+                        'type' => Opcode::QUALIFIED->value,
+                        'name' => 'Customers',
+                    ],
+                    'conditions' => [
+                        'type'  => Opcode::EQUALS->value,
+                        'left'  => [
+                            'type'   => Opcode::QUALIFIED->value,
+                            'domain' => 'Customers',
+                            'name'   => 'cst_id',
+                        ],
+                        'right' => [
+                            'type'   => Opcode::QUALIFIED->value,
+                            'domain' => 'Invoices',
+                            'name'   => 'inv_cst_id',
+                        ],
+                    ],
+                ],
+                'values' => [
+                    'column' => [
+                        'type' => Opcode::QUALIFIED->value,
+                        'name' => 'inv_total',
+                    ],
+                    'expr'   => [
+                        'type'  => Opcode::INTEGER->value,
+                        'value' => '999',
+                    ],
+                ],
+            ],
+            'where'  => [
+                'type'  => Opcode::EQUALS->value,
+                'left'  => [
+                    'type'   => Opcode::QUALIFIED->value,
+                    'domain' => 'Customers',
+                    'name'   => 'cst_id',
+                ],
+                'right' => [
+                    'type'  => Opcode::INTEGER->value,
+                    'value' => '1',
+                ],
+            ],
+        ];
+        $actual   = (new Parser())->parse($source);
+        $this->assertSame($expected, $actual);
+    }
+
+    /**
+     * Tests UPDATE with multiple JOINs.
+     *
+     * @return void
+     *
+     * @issue  https://github.com/phalcon/cphalcon/issues/16984
+     * @author Phalcon Team <team@phalcon.io>
+     * @since  2026-06-06
+     */
+    public function testMvcModelQueryPhqlUpdateMultipleJoinsWhereNum(): void
+    {
+        $source   = "UPDATE Invoices "
+            . "INNER JOIN Customers ON Customers.cst_id = Invoices.inv_cst_id "
+            . "INNER JOIN Orders ON Orders.ord_cst_id = Customers.cst_id "
+            . "SET inv_total = 999 "
+            . "WHERE Orders.ord_id = 1";
+        $expected = [
+            'type'   => Opcode::UPDATE->value,
+            'update' => [
+                'tables' => [
+                    'qualifiedName' => [
+                        'type' => Opcode::QUALIFIED->value,
+                        'name' => 'Invoices',
+                    ],
+                ],
+                'joins'  => [
+                    0 => [
+                        'type'       => Opcode::INNERJOIN->value,
+                        'qualified'  => [
+                            'type' => Opcode::QUALIFIED->value,
+                            'name' => 'Customers',
+                        ],
+                        'conditions' => [
+                            'type'  => Opcode::EQUALS->value,
+                            'left'  => [
+                                'type'   => Opcode::QUALIFIED->value,
+                                'domain' => 'Customers',
+                                'name'   => 'cst_id',
+                            ],
+                            'right' => [
+                                'type'   => Opcode::QUALIFIED->value,
+                                'domain' => 'Invoices',
+                                'name'   => 'inv_cst_id',
+                            ],
+                        ],
+                    ],
+                    1 => [
+                        'type'       => Opcode::INNERJOIN->value,
+                        'qualified'  => [
+                            'type' => Opcode::QUALIFIED->value,
+                            'name' => 'Orders',
+                        ],
+                        'conditions' => [
+                            'type'  => Opcode::EQUALS->value,
+                            'left'  => [
+                                'type'   => Opcode::QUALIFIED->value,
+                                'domain' => 'Orders',
+                                'name'   => 'ord_cst_id',
+                            ],
+                            'right' => [
+                                'type'   => Opcode::QUALIFIED->value,
+                                'domain' => 'Customers',
+                                'name'   => 'cst_id',
+                            ],
+                        ],
+                    ],
+                ],
+                'values' => [
+                    'column' => [
+                        'type' => Opcode::QUALIFIED->value,
+                        'name' => 'inv_total',
+                    ],
+                    'expr'   => [
+                        'type'  => Opcode::INTEGER->value,
+                        'value' => '999',
+                    ],
+                ],
+            ],
+            'where'  => [
+                'type'  => Opcode::EQUALS->value,
+                'left'  => [
+                    'type'   => Opcode::QUALIFIED->value,
+                    'domain' => 'Orders',
+                    'name'   => 'ord_id',
+                ],
+                'right' => [
+                    'type'  => Opcode::INTEGER->value,
+                    'value' => '1',
+                ],
+            ],
+        ];
+        $actual   = (new Parser())->parse($source);
+        $this->assertSame($expected, $actual);
+    }
+
+    /**
      * @return void
      *
      * @author Phalcon Team <team@phalcon.io>
@@ -658,533 +1185,6 @@ final class CombinationTest extends AbstractUnitTestCase
                 'right' => [
                     'type' => Opcode::INTEGER->value,
                     'value' => '0',
-                ],
-            ],
-        ];
-        $actual   = (new Parser())->parse($source);
-        $this->assertSame($expected, $actual);
-    }
-
-    /**
-     * Tests UPDATE with an INNER JOIN used to filter the rows to update.
-     *
-     * @return void
-     *
-     * @issue  https://github.com/phalcon/cphalcon/issues/16984
-     * @author Phalcon Team <team@phalcon.io>
-     * @since  2026-06-06
-     */
-    public function testMvcModelQueryPhqlUpdateInnerJoinWhereNum(): void
-    {
-        $source   = "UPDATE Invoices "
-            . "INNER JOIN Customers ON Customers.cst_id = Invoices.inv_cst_id "
-            . "SET inv_total = 999 "
-            . "WHERE Customers.cst_id = 1";
-        $expected = [
-            'type'   => Opcode::UPDATE->value,
-            'update' => [
-                'tables' => [
-                    'qualifiedName' => [
-                        'type' => Opcode::QUALIFIED->value,
-                        'name' => 'Invoices',
-                    ],
-                ],
-                'joins'  => [
-                    'type'       => Opcode::INNERJOIN->value,
-                    'qualified'  => [
-                        'type' => Opcode::QUALIFIED->value,
-                        'name' => 'Customers',
-                    ],
-                    'conditions' => [
-                        'type'  => Opcode::EQUALS->value,
-                        'left'  => [
-                            'type'   => Opcode::QUALIFIED->value,
-                            'domain' => 'Customers',
-                            'name'   => 'cst_id',
-                        ],
-                        'right' => [
-                            'type'   => Opcode::QUALIFIED->value,
-                            'domain' => 'Invoices',
-                            'name'   => 'inv_cst_id',
-                        ],
-                    ],
-                ],
-                'values' => [
-                    'column' => [
-                        'type' => Opcode::QUALIFIED->value,
-                        'name' => 'inv_total',
-                    ],
-                    'expr'   => [
-                        'type'  => Opcode::INTEGER->value,
-                        'value' => '999',
-                    ],
-                ],
-            ],
-            'where'  => [
-                'type'  => Opcode::EQUALS->value,
-                'left'  => [
-                    'type'   => Opcode::QUALIFIED->value,
-                    'domain' => 'Customers',
-                    'name'   => 'cst_id',
-                ],
-                'right' => [
-                    'type'  => Opcode::INTEGER->value,
-                    'value' => '1',
-                ],
-            ],
-        ];
-        $actual   = (new Parser())->parse($source);
-        $this->assertSame($expected, $actual);
-    }
-
-    /**
-     * Tests UPDATE with an INNER JOIN and no WHERE clause.
-     *
-     * @return void
-     *
-     * @issue  https://github.com/phalcon/cphalcon/issues/16984
-     * @author Phalcon Team <team@phalcon.io>
-     * @since  2026-06-06
-     */
-    public function testMvcModelQueryPhqlUpdateInnerJoin(): void
-    {
-        $source   = "UPDATE Invoices "
-            . "INNER JOIN Customers ON Customers.cst_id = Invoices.inv_cst_id "
-            . "SET inv_total = 999";
-        $expected = [
-            'type'   => Opcode::UPDATE->value,
-            'update' => [
-                'tables' => [
-                    'qualifiedName' => [
-                        'type' => Opcode::QUALIFIED->value,
-                        'name' => 'Invoices',
-                    ],
-                ],
-                'joins'  => [
-                    'type'       => Opcode::INNERJOIN->value,
-                    'qualified'  => [
-                        'type' => Opcode::QUALIFIED->value,
-                        'name' => 'Customers',
-                    ],
-                    'conditions' => [
-                        'type'  => Opcode::EQUALS->value,
-                        'left'  => [
-                            'type'   => Opcode::QUALIFIED->value,
-                            'domain' => 'Customers',
-                            'name'   => 'cst_id',
-                        ],
-                        'right' => [
-                            'type'   => Opcode::QUALIFIED->value,
-                            'domain' => 'Invoices',
-                            'name'   => 'inv_cst_id',
-                        ],
-                    ],
-                ],
-                'values' => [
-                    'column' => [
-                        'type' => Opcode::QUALIFIED->value,
-                        'name' => 'inv_total',
-                    ],
-                    'expr'   => [
-                        'type'  => Opcode::INTEGER->value,
-                        'value' => '999',
-                    ],
-                ],
-            ],
-        ];
-        $actual   = (new Parser())->parse($source);
-        $this->assertSame($expected, $actual);
-    }
-
-    /**
-     * Tests UPDATE with an INNER JOIN using aliased tables.
-     *
-     * @return void
-     *
-     * @issue  https://github.com/phalcon/cphalcon/issues/16984
-     * @author Phalcon Team <team@phalcon.io>
-     * @since  2026-06-06
-     */
-    public function testMvcModelQueryPhqlUpdateInnerJoinAliasesWhereNum(): void
-    {
-        $source   = "UPDATE Invoices AS i "
-            . "INNER JOIN Customers AS c ON c.cst_id = i.inv_cst_id "
-            . "SET i.inv_total = 999 "
-            . "WHERE c.cst_id = 1";
-        $expected = [
-            'type'   => Opcode::UPDATE->value,
-            'update' => [
-                'tables' => [
-                    'qualifiedName' => [
-                        'type' => Opcode::QUALIFIED->value,
-                        'name' => 'Invoices',
-                    ],
-                    'alias'         => 'i',
-                ],
-                'joins'  => [
-                    'type'       => Opcode::INNERJOIN->value,
-                    'qualified'  => [
-                        'type' => Opcode::QUALIFIED->value,
-                        'name' => 'Customers',
-                    ],
-                    'alias'      => [
-                        'type' => Opcode::QUALIFIED->value,
-                        'name' => 'c',
-                    ],
-                    'conditions' => [
-                        'type'  => Opcode::EQUALS->value,
-                        'left'  => [
-                            'type'   => Opcode::QUALIFIED->value,
-                            'domain' => 'c',
-                            'name'   => 'cst_id',
-                        ],
-                        'right' => [
-                            'type'   => Opcode::QUALIFIED->value,
-                            'domain' => 'i',
-                            'name'   => 'inv_cst_id',
-                        ],
-                    ],
-                ],
-                'values' => [
-                    'column' => [
-                        'type'   => Opcode::QUALIFIED->value,
-                        'domain' => 'i',
-                        'name'   => 'inv_total',
-                    ],
-                    'expr'   => [
-                        'type'  => Opcode::INTEGER->value,
-                        'value' => '999',
-                    ],
-                ],
-            ],
-            'where'  => [
-                'type'  => Opcode::EQUALS->value,
-                'left'  => [
-                    'type'   => Opcode::QUALIFIED->value,
-                    'domain' => 'c',
-                    'name'   => 'cst_id',
-                ],
-                'right' => [
-                    'type'  => Opcode::INTEGER->value,
-                    'value' => '1',
-                ],
-            ],
-        ];
-        $actual   = (new Parser())->parse($source);
-        $this->assertSame($expected, $actual);
-    }
-
-    /**
-     * Tests UPDATE with an INNER JOIN, a WHERE clause and a LIMIT clause.
-     *
-     * @return void
-     *
-     * @issue  https://github.com/phalcon/cphalcon/issues/16984
-     * @author Phalcon Team <team@phalcon.io>
-     * @since  2026-06-06
-     */
-    public function testMvcModelQueryPhqlUpdateInnerJoinWhereNumLimit(): void
-    {
-        $source   = "UPDATE Invoices "
-            . "INNER JOIN Customers ON Customers.cst_id = Invoices.inv_cst_id "
-            . "SET inv_total = 999 "
-            . "WHERE Customers.cst_id = 1 "
-            . "LIMIT 10";
-        $expected = [
-            'type'   => Opcode::UPDATE->value,
-            'update' => [
-                'tables' => [
-                    'qualifiedName' => [
-                        'type' => Opcode::QUALIFIED->value,
-                        'name' => 'Invoices',
-                    ],
-                ],
-                'joins'  => [
-                    'type'       => Opcode::INNERJOIN->value,
-                    'qualified'  => [
-                        'type' => Opcode::QUALIFIED->value,
-                        'name' => 'Customers',
-                    ],
-                    'conditions' => [
-                        'type'  => Opcode::EQUALS->value,
-                        'left'  => [
-                            'type'   => Opcode::QUALIFIED->value,
-                            'domain' => 'Customers',
-                            'name'   => 'cst_id',
-                        ],
-                        'right' => [
-                            'type'   => Opcode::QUALIFIED->value,
-                            'domain' => 'Invoices',
-                            'name'   => 'inv_cst_id',
-                        ],
-                    ],
-                ],
-                'values' => [
-                    'column' => [
-                        'type' => Opcode::QUALIFIED->value,
-                        'name' => 'inv_total',
-                    ],
-                    'expr'   => [
-                        'type'  => Opcode::INTEGER->value,
-                        'value' => '999',
-                    ],
-                ],
-            ],
-            'where'  => [
-                'type'  => Opcode::EQUALS->value,
-                'left'  => [
-                    'type'   => Opcode::QUALIFIED->value,
-                    'domain' => 'Customers',
-                    'name'   => 'cst_id',
-                ],
-                'right' => [
-                    'type'  => Opcode::INTEGER->value,
-                    'value' => '1',
-                ],
-            ],
-            'limit'  => [
-                'number' => [
-                    'type'  => Opcode::INTEGER->value,
-                    'value' => '10',
-                ],
-            ],
-        ];
-        $actual   = (new Parser())->parse($source);
-        $this->assertSame($expected, $actual);
-    }
-
-    /**
-     * Tests UPDATE with an INNER JOIN and named placeholders.
-     *
-     * @return void
-     *
-     * @issue  https://github.com/phalcon/cphalcon/issues/16984
-     * @author Phalcon Team <team@phalcon.io>
-     * @since  2026-06-06
-     */
-    public function testMvcModelQueryPhqlUpdateInnerJoinWherePlaceholder(): void
-    {
-        $source   = "UPDATE Invoices "
-            . "INNER JOIN Customers ON Customers.cst_id = Invoices.inv_cst_id "
-            . "SET inv_total = :total: "
-            . "WHERE Customers.cst_id = :custId:";
-        $expected = [
-            'type'   => Opcode::UPDATE->value,
-            'update' => [
-                'tables' => [
-                    'qualifiedName' => [
-                        'type' => Opcode::QUALIFIED->value,
-                        'name' => 'Invoices',
-                    ],
-                ],
-                'joins'  => [
-                    'type'       => Opcode::INNERJOIN->value,
-                    'qualified'  => [
-                        'type' => Opcode::QUALIFIED->value,
-                        'name' => 'Customers',
-                    ],
-                    'conditions' => [
-                        'type'  => Opcode::EQUALS->value,
-                        'left'  => [
-                            'type'   => Opcode::QUALIFIED->value,
-                            'domain' => 'Customers',
-                            'name'   => 'cst_id',
-                        ],
-                        'right' => [
-                            'type'   => Opcode::QUALIFIED->value,
-                            'domain' => 'Invoices',
-                            'name'   => 'inv_cst_id',
-                        ],
-                    ],
-                ],
-                'values' => [
-                    'column' => [
-                        'type' => Opcode::QUALIFIED->value,
-                        'name' => 'inv_total',
-                    ],
-                    'expr'   => [
-                        'type'  => Opcode::SPLACEHOLDER->value,
-                        'value' => 'total',
-                    ],
-                ],
-            ],
-            'where'  => [
-                'type'  => Opcode::EQUALS->value,
-                'left'  => [
-                    'type'   => Opcode::QUALIFIED->value,
-                    'domain' => 'Customers',
-                    'name'   => 'cst_id',
-                ],
-                'right' => [
-                    'type'  => Opcode::SPLACEHOLDER->value,
-                    'value' => 'custId',
-                ],
-            ],
-        ];
-        $actual   = (new Parser())->parse($source);
-        $this->assertSame($expected, $actual);
-    }
-
-    /**
-     * Tests UPDATE with a LEFT JOIN.
-     *
-     * @return void
-     *
-     * @issue  https://github.com/phalcon/cphalcon/issues/16984
-     * @author Phalcon Team <team@phalcon.io>
-     * @since  2026-06-06
-     */
-    public function testMvcModelQueryPhqlUpdateLeftJoinWhereNum(): void
-    {
-        $source   = "UPDATE Invoices "
-            . "LEFT JOIN Customers ON Customers.cst_id = Invoices.inv_cst_id "
-            . "SET inv_total = 999 "
-            . "WHERE Customers.cst_id = 1";
-        $expected = [
-            'type'   => Opcode::UPDATE->value,
-            'update' => [
-                'tables' => [
-                    'qualifiedName' => [
-                        'type' => Opcode::QUALIFIED->value,
-                        'name' => 'Invoices',
-                    ],
-                ],
-                'joins'  => [
-                    'type'       => Opcode::LEFTJOIN->value,
-                    'qualified'  => [
-                        'type' => Opcode::QUALIFIED->value,
-                        'name' => 'Customers',
-                    ],
-                    'conditions' => [
-                        'type'  => Opcode::EQUALS->value,
-                        'left'  => [
-                            'type'   => Opcode::QUALIFIED->value,
-                            'domain' => 'Customers',
-                            'name'   => 'cst_id',
-                        ],
-                        'right' => [
-                            'type'   => Opcode::QUALIFIED->value,
-                            'domain' => 'Invoices',
-                            'name'   => 'inv_cst_id',
-                        ],
-                    ],
-                ],
-                'values' => [
-                    'column' => [
-                        'type' => Opcode::QUALIFIED->value,
-                        'name' => 'inv_total',
-                    ],
-                    'expr'   => [
-                        'type'  => Opcode::INTEGER->value,
-                        'value' => '999',
-                    ],
-                ],
-            ],
-            'where'  => [
-                'type'  => Opcode::EQUALS->value,
-                'left'  => [
-                    'type'   => Opcode::QUALIFIED->value,
-                    'domain' => 'Customers',
-                    'name'   => 'cst_id',
-                ],
-                'right' => [
-                    'type'  => Opcode::INTEGER->value,
-                    'value' => '1',
-                ],
-            ],
-        ];
-        $actual   = (new Parser())->parse($source);
-        $this->assertSame($expected, $actual);
-    }
-
-    /**
-     * Tests UPDATE with multiple JOINs.
-     *
-     * @return void
-     *
-     * @issue  https://github.com/phalcon/cphalcon/issues/16984
-     * @author Phalcon Team <team@phalcon.io>
-     * @since  2026-06-06
-     */
-    public function testMvcModelQueryPhqlUpdateMultipleJoinsWhereNum(): void
-    {
-        $source   = "UPDATE Invoices "
-            . "INNER JOIN Customers ON Customers.cst_id = Invoices.inv_cst_id "
-            . "INNER JOIN Orders ON Orders.ord_cst_id = Customers.cst_id "
-            . "SET inv_total = 999 "
-            . "WHERE Orders.ord_id = 1";
-        $expected = [
-            'type'   => Opcode::UPDATE->value,
-            'update' => [
-                'tables' => [
-                    'qualifiedName' => [
-                        'type' => Opcode::QUALIFIED->value,
-                        'name' => 'Invoices',
-                    ],
-                ],
-                'joins'  => [
-                    0 => [
-                        'type'       => Opcode::INNERJOIN->value,
-                        'qualified'  => [
-                            'type' => Opcode::QUALIFIED->value,
-                            'name' => 'Customers',
-                        ],
-                        'conditions' => [
-                            'type'  => Opcode::EQUALS->value,
-                            'left'  => [
-                                'type'   => Opcode::QUALIFIED->value,
-                                'domain' => 'Customers',
-                                'name'   => 'cst_id',
-                            ],
-                            'right' => [
-                                'type'   => Opcode::QUALIFIED->value,
-                                'domain' => 'Invoices',
-                                'name'   => 'inv_cst_id',
-                            ],
-                        ],
-                    ],
-                    1 => [
-                        'type'       => Opcode::INNERJOIN->value,
-                        'qualified'  => [
-                            'type' => Opcode::QUALIFIED->value,
-                            'name' => 'Orders',
-                        ],
-                        'conditions' => [
-                            'type'  => Opcode::EQUALS->value,
-                            'left'  => [
-                                'type'   => Opcode::QUALIFIED->value,
-                                'domain' => 'Orders',
-                                'name'   => 'ord_cst_id',
-                            ],
-                            'right' => [
-                                'type'   => Opcode::QUALIFIED->value,
-                                'domain' => 'Customers',
-                                'name'   => 'cst_id',
-                            ],
-                        ],
-                    ],
-                ],
-                'values' => [
-                    'column' => [
-                        'type' => Opcode::QUALIFIED->value,
-                        'name' => 'inv_total',
-                    ],
-                    'expr'   => [
-                        'type'  => Opcode::INTEGER->value,
-                        'value' => '999',
-                    ],
-                ],
-            ],
-            'where'  => [
-                'type'  => Opcode::EQUALS->value,
-                'left'  => [
-                    'type'   => Opcode::QUALIFIED->value,
-                    'domain' => 'Orders',
-                    'name'   => 'ord_id',
-                ],
-                'right' => [
-                    'type'  => Opcode::INTEGER->value,
-                    'value' => '1',
                 ],
             ],
         ];

@@ -130,6 +130,74 @@ final class ComplexTest extends AbstractUnitTestCase
      * @author Phalcon Team <team@phalcon.io>
      * @since  2026-04-09
      */
+    public function testMvcModelQueryPhqlSelectCountFieldWhereGroupByOrderBy(): void
+    {
+        $source   = "SELECT COUNT(*) AS cnt, inv_status_flag "
+            . "FROM Invoices "
+            . "WHERE inv_created_at IS NOT NULL "
+            . "GROUP BY inv_status_flag "
+            . "ORDER BY cnt DESC";
+        $expected = [
+            'type' => Opcode::SELECT->value,
+            'select'  => [
+                'columns' => [
+                    0 => [
+                        'type' => Opcode::EXPR->value,
+                        'column' => [
+                            'type' => Opcode::FCALL->value,
+                            'name'      => 'COUNT',
+                            'arguments' => [
+                                0 => [
+                                    'type' => Opcode::STARALL->value,
+                                ],
+                            ],
+                        ],
+                        'alias'  => 'cnt',
+                    ],
+                    1 => [
+                        'type' => Opcode::EXPR->value,
+                        'column' => [
+                            'type' => Opcode::QUALIFIED->value,
+                            'name' => 'inv_status_flag',
+                        ],
+                    ],
+                ],
+                'tables'  => [
+                    'qualifiedName' => [
+                        'type' => Opcode::QUALIFIED->value,
+                        'name' => 'Invoices',
+                    ],
+                ],
+            ],
+            'where'   => [
+                'type' => Opcode::ISNOTNULL->value,
+                'left' => [
+                    'type' => Opcode::QUALIFIED->value,
+                    'name' => 'inv_created_at',
+                ],
+            ],
+            'orderBy' => [
+                'column' => [
+                    'type' => Opcode::QUALIFIED->value,
+                    'name' => 'cnt',
+                ],
+                'sort'   => 328,
+            ],
+            'groupBy' => [
+                'type' => Opcode::QUALIFIED->value,
+                'name' => 'inv_status_flag',
+            ],
+        ];
+        $actual   = (new Parser())->parse($source);
+        $this->assertSame($expected, $actual);
+    }
+
+    /**
+     * @return void
+     *
+     * @author Phalcon Team <team@phalcon.io>
+     * @since  2026-04-09
+     */
     public function testMvcModelQueryPhqlSelectSumFieldWhereGroupByHavingOrderByLimit(): void
     {
         $source   = "SELECT i.inv_id, i.inv_title, SUM(i.inv_total) AS total "
@@ -230,74 +298,6 @@ final class ComplexTest extends AbstractUnitTestCase
                     'type' => Opcode::INTEGER->value,
                     'value' => '10',
                 ],
-            ],
-        ];
-        $actual   = (new Parser())->parse($source);
-        $this->assertSame($expected, $actual);
-    }
-
-    /**
-     * @return void
-     *
-     * @author Phalcon Team <team@phalcon.io>
-     * @since  2026-04-09
-     */
-    public function testMvcModelQueryPhqlSelectCountFieldWhereGroupByOrderBy(): void
-    {
-        $source   = "SELECT COUNT(*) AS cnt, inv_status_flag "
-            . "FROM Invoices "
-            . "WHERE inv_created_at IS NOT NULL "
-            . "GROUP BY inv_status_flag "
-            . "ORDER BY cnt DESC";
-        $expected = [
-            'type' => Opcode::SELECT->value,
-            'select'  => [
-                'columns' => [
-                    0 => [
-                        'type' => Opcode::EXPR->value,
-                        'column' => [
-                            'type' => Opcode::FCALL->value,
-                            'name'      => 'COUNT',
-                            'arguments' => [
-                                0 => [
-                                    'type' => Opcode::STARALL->value,
-                                ],
-                            ],
-                        ],
-                        'alias'  => 'cnt',
-                    ],
-                    1 => [
-                        'type' => Opcode::EXPR->value,
-                        'column' => [
-                            'type' => Opcode::QUALIFIED->value,
-                            'name' => 'inv_status_flag',
-                        ],
-                    ],
-                ],
-                'tables'  => [
-                    'qualifiedName' => [
-                        'type' => Opcode::QUALIFIED->value,
-                        'name' => 'Invoices',
-                    ],
-                ],
-            ],
-            'where'   => [
-                'type' => Opcode::ISNOTNULL->value,
-                'left' => [
-                    'type' => Opcode::QUALIFIED->value,
-                    'name' => 'inv_created_at',
-                ],
-            ],
-            'orderBy' => [
-                'column' => [
-                    'type' => Opcode::QUALIFIED->value,
-                    'name' => 'cnt',
-                ],
-                'sort'   => 328,
-            ],
-            'groupBy' => [
-                'type' => Opcode::QUALIFIED->value,
-                'name' => 'inv_status_flag',
             ],
         ];
         $actual   = (new Parser())->parse($source);

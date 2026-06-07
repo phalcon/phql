@@ -197,46 +197,6 @@ final class WhereTest extends AbstractUnitTestCase
      * @author Phalcon Team <team@phalcon.io>
      * @since  2026-04-09
      */
-    public function testMvcModelQueryPhqlSelectWhereGtFloat(): void
-    {
-        $source   = "SELECT * FROM Invoices WHERE inv_total > 100.00";
-        $expected = [
-            'type' => Opcode::SELECT->value,
-            'select' => [
-                'columns' => [
-                    0 => [
-                        'type' => Opcode::STARALL->value,
-                    ],
-                ],
-                'tables'  => [
-                    'qualifiedName' => [
-                        'type' => Opcode::QUALIFIED->value,
-                        'name' => 'Invoices',
-                    ],
-                ],
-            ],
-            'where'  => [
-                'type' => Opcode::GREATER->value,
-                'left'  => [
-                    'type' => Opcode::QUALIFIED->value,
-                    'name' => 'inv_total',
-                ],
-                'right' => [
-                    'type' => Opcode::DOUBLE->value,
-                    'value' => '100.00',
-                ],
-            ],
-        ];
-        $actual   = (new Parser())->parse($source);
-        $this->assertSame($expected, $actual);
-    }
-
-    /**
-     * @return void
-     *
-     * @author Phalcon Team <team@phalcon.io>
-     * @since  2026-04-09
-     */
     public function testMvcModelQueryPhqlSelectWhereGteFloat(): void
     {
         $source   = "SELECT * FROM Invoices WHERE inv_total >= 100.00";
@@ -277,9 +237,9 @@ final class WhereTest extends AbstractUnitTestCase
      * @author Phalcon Team <team@phalcon.io>
      * @since  2026-04-09
      */
-    public function testMvcModelQueryPhqlSelectWhereLtFloat(): void
+    public function testMvcModelQueryPhqlSelectWhereGtFloat(): void
     {
-        $source   = "SELECT * FROM Invoices WHERE inv_total < 100.00";
+        $source   = "SELECT * FROM Invoices WHERE inv_total > 100.00";
         $expected = [
             'type' => Opcode::SELECT->value,
             'select' => [
@@ -296,7 +256,7 @@ final class WhereTest extends AbstractUnitTestCase
                 ],
             ],
             'where'  => [
-                'type' => Opcode::LESS->value,
+                'type' => Opcode::GREATER->value,
                 'left'  => [
                     'type' => Opcode::QUALIFIED->value,
                     'name' => 'inv_total',
@@ -337,6 +297,46 @@ final class WhereTest extends AbstractUnitTestCase
             ],
             'where'  => [
                 'type' => Opcode::LESSEQUAL->value,
+                'left'  => [
+                    'type' => Opcode::QUALIFIED->value,
+                    'name' => 'inv_total',
+                ],
+                'right' => [
+                    'type' => Opcode::DOUBLE->value,
+                    'value' => '100.00',
+                ],
+            ],
+        ];
+        $actual   = (new Parser())->parse($source);
+        $this->assertSame($expected, $actual);
+    }
+
+    /**
+     * @return void
+     *
+     * @author Phalcon Team <team@phalcon.io>
+     * @since  2026-04-09
+     */
+    public function testMvcModelQueryPhqlSelectWhereLtFloat(): void
+    {
+        $source   = "SELECT * FROM Invoices WHERE inv_total < 100.00";
+        $expected = [
+            'type' => Opcode::SELECT->value,
+            'select' => [
+                'columns' => [
+                    0 => [
+                        'type' => Opcode::STARALL->value,
+                    ],
+                ],
+                'tables'  => [
+                    'qualifiedName' => [
+                        'type' => Opcode::QUALIFIED->value,
+                        'name' => 'Invoices',
+                    ],
+                ],
+            ],
+            'where'  => [
+                'type' => Opcode::LESS->value,
                 'left'  => [
                     'type' => Opcode::QUALIFIED->value,
                     'name' => 'inv_total',
