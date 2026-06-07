@@ -1,65 +1,79 @@
+# For local development only.
+
+name: ${PROJECT_PREFIX:-phql}
+
 services:
   phql-dev-8.1:
-    container_name: phql-dev-8.1
-    hostname: phql-dev-81
+    container_name: ${PROJECT_PREFIX:-phql}-dev-8.1
+    hostname: ${PROJECT_PREFIX:-phql}-dev-81
     build:
       dockerfile: resources/docker/develop/Dockerfile
       args:
         PHP_VERSION: 8.1
-    working_dir: /app
+        UID: ${UID:-1000}
+        GID: ${GID:-1000}
+    working_dir: /srv
     volumes:
-      - .:/app
+      - .:/srv
     extra_hosts:
       - "host.docker.internal:host-gateway"
 
   phql-dev-8.2:
-    container_name: phql-dev-8.2
-    hostname: phql-dev-82
+    container_name: ${PROJECT_PREFIX:-phql}-dev-8.2
+    hostname: ${PROJECT_PREFIX:-phql}-dev-82
     build:
       dockerfile: resources/docker/develop/Dockerfile
       args:
         PHP_VERSION: 8.2
-    working_dir: /app
+        UID: ${UID:-1000}
+        GID: ${GID:-1000}
+    working_dir: /srv
     volumes:
-      - .:/app
+      - .:/srv
     extra_hosts:
       - "host.docker.internal:host-gateway"
 
   phql-dev-8.3:
-    container_name: phql-dev-8.3
-    hostname: phql-dev-83
+    container_name: ${PROJECT_PREFIX:-phql}-dev-8.3
+    hostname: ${PROJECT_PREFIX:-phql}-dev-83
     build:
       dockerfile: resources/docker/develop/Dockerfile
       args:
         PHP_VERSION: 8.3
-    working_dir: /app
+        UID: ${UID:-1000}
+        GID: ${GID:-1000}
+    working_dir: /srv
     volumes:
-      - .:/app
+      - .:/srv
     extra_hosts:
       - "host.docker.internal:host-gateway"
 
   phql-dev-8.4:
-    container_name: phql-dev-8.4
-    hostname: phql-dev-84
+    container_name: ${PROJECT_PREFIX:-phql}-dev-8.4
+    hostname: ${PROJECT_PREFIX:-phql}-dev-84
     build:
       dockerfile: resources/docker/develop/Dockerfile
       args:
         PHP_VERSION: 8.4
-    working_dir: /app
+        UID: ${UID:-1000}
+        GID: ${GID:-1000}
+    working_dir: /srv
     volumes:
-      - .:/app
+      - .:/srv
     extra_hosts:
       - "host.docker.internal:host-gateway"
 
   phql-dev-8.5:
-    container_name: phql-dev-8.5
-    hostname: phql-dev-85
+    container_name: ${PROJECT_PREFIX:-phql}-dev-8.5
+    hostname: ${PROJECT_PREFIX:-phql}-dev-85
     build:
       dockerfile: resources/docker/develop/Dockerfile
       args:
         PHP_VERSION: 8.5
-    working_dir: /app
+        UID: ${UID:-1000}
+        GID: ${GID:-1000}
+    working_dir: /srv
     volumes:
-      - .:/app
+      - .:/srv
     extra_hosts:
       - "host.docker.internal:host-gateway"
