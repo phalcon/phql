@@ -39,12 +39,12 @@ class phql_Parser
     }
 
     const PHQL_AGAINST = 1;                    /* Index of top element in stack */
-    const PHQL_ALL = 30;                 /* Shifts left before out of the error */
+    const PHQL_ALL = 39;                 /* Shifts left before out of the error */
     // phql_ARG_SDECL                /* A place to hold %extra_argument */
     /* The parser's stack */
-    const PHQL_AND = 10; /* of YYSTACKDEPTH elements */
-    const PHQL_AS = 33;
-    const PHQL_ASC = 54;
+    const PHQL_AND = 14; /* of YYSTACKDEPTH elements */
+    const PHQL_AS = 42;
+    const PHQL_ASC = 63;
 
 
     /* Next is all token values, in a form suitable for use by makeheaders.
@@ -59,83 +59,92 @@ class phql_Parser
 */
     const PHQL_BETWEEN = 2;
     const PHQL_BETWEEN_NOT = 3;
-    const PHQL_BITWISE_AND = 14;
-    const PHQL_BITWISE_NOT = 25;
-    const PHQL_BITWISE_OR = 15;
-    const PHQL_BITWISE_XOR = 16;
-    const PHQL_BPLACEHOLDER = 65;
-    const PHQL_BY = 53;
-    const PHQL_CASE = 70;
-    const PHQL_CAST = 67;
-    const PHQL_COMMA = 26;
-    const PHQL_CONVERT = 68;
-    const PHQL_CROSS = 36;
-    const PHQL_DELETE = 49;
-    const PHQL_DESC = 55;
-    const PHQL_DISTINCT = 29;
-    const PHQL_DIVIDE = 17;
-    const PHQL_DOT = 32;
-    const PHQL_DOUBLE = 77;
-    const PHQL_ELSE = 74;
-    const PHQL_END = 71;
+    const PHQL_BITWISE_AND = 18;
+    const PHQL_BITWISE_NOT = 30;
+    const PHQL_BITWISE_OR = 19;
+    const PHQL_BITWISE_XOR = 20;
+    const PHQL_BPLACEHOLDER = 74;
+    const PHQL_BY = 62;
+    const PHQL_CASE = 79;
+    const PHQL_CAST = 76;
+    const PHQL_COMMA = 35;
+    const PHQL_CONVERT = 77;
+    const PHQL_CROSS = 45;
+    const PHQL_DELETE = 58;
+    const PHQL_DESC = 64;
+    const PHQL_DISTINCT = 38;
+    const PHQL_DIVIDE = 21;
+    const PHQL_DOT = 41;
+    const PHQL_DOUBLE = 86;
+    const PHQL_ELSE = 83;
+    const PHQL_END = 80;
     const PHQL_EQUALS = 4;
-    const PHQL_EXISTS = 66;
-    const PHQL_FALSE = 79;
-    const PHQL_FOR = 58;
-    const PHQL_FROM = 28;
-    const PHQL_FULL = 40;
+    const PHQL_EXISTS = 75;
+    const PHQL_FALSE = 88;
+    const PHQL_FOR = 67;
+    const PHQL_FROM = 37;
+    const PHQL_FULL = 49;
     const PHQL_GREATER = 7;
     const PHQL_GREATEREQUAL = 8;
-    const PHQL_GROUP = 56;
-    const PHQL_HAVING = 57;
-    const PHQL_HINTEGER = 62;
-    const PHQL_IDENTIFIER = 31;
-    const PHQL_ILIKE = 13;
-    const PHQL_IN = 23;
-    const PHQL_INNER = 34;
-    const PHQL_INSERT = 42;
-    const PHQL_INTEGER = 61;
-    const PHQL_INTO = 43;
-    const PHQL_IS = 22;
-    const PHQL_JOIN = 35;
-    const PHQL_LEFT = 37;
+    const PHQL_GROUP = 65;
+    const PHQL_HAVING = 66;
+    const PHQL_HINTEGER = 71;
+    const PHQL_IDENTIFIER = 40;
+    const PHQL_ILIKE = 17;
+    const PHQL_IN = 28;
+    const PHQL_INNER = 43;
+    const PHQL_INSERT = 51;
+    const PHQL_INTEGER = 70;
+    const PHQL_INTO = 52;
+    const PHQL_IS = 27;
+    const PHQL_JOIN = 44;
+    const PHQL_LEFT = 46;
     const PHQL_LESS = 6;
     const PHQL_LESSEQUAL = 9;
-    const PHQL_LIKE = 12;
-    const PHQL_LIMIT = 59;
-    const PHQL_MINUS = 21;
-    const PHQL_MOD = 19;
-    const PHQL_NOT = 24;
+    const PHQL_LIKE = 16;
+    const PHQL_LIMIT = 68;
+    const PHQL_MINUS = 25;
+    const PHQL_MOD = 23;
+    const PHQL_NOT = 29;
     const PHQL_NOTEQUALS = 5;
-    const PHQL_NPLACEHOLDER = 63;
-    const PHQL_NULL = 75;
-    const PHQL_OFFSET = 60;
-    const PHQL_ON = 41;
-    const PHQL_OR = 11;
-    const PHQL_ORDER = 52;
-    const PHQL_OUTER = 38;
-    const PHQL_PARENTHESES_CLOSE = 46;
-    const PHQL_PARENTHESES_OPEN = 45;
-    const PHQL_PLUS = 20;
-    const PHQL_RIGHT = 39;
-    const PHQL_SELECT = 27;
-    const PHQL_SET = 48;
-    const PHQL_SPLACEHOLDER = 64;
-    const PHQL_STRING = 76;
-    const PHQL_THEN = 73;
-    const PHQL_TIMES = 18;
-    const PHQL_TRUE = 78;
-    const PHQL_UPDATE = 47;
-    const PHQL_USING = 69;
-    const PHQL_VALUES = 44;
-    const PHQL_WHEN = 72;
-    const PHQL_WHERE = 51;
-    const PHQL_WITH = 50;
-    const YYERRORSYMBOL = 80;
-    const YYNOCODE   = 135;
-    const YYWILDCARD = 135; /* No %wildcard in this grammar; use YYNOCODE so the wildcard path never matches */
-    const YYNRULE = 162;
-    const YYNSTATE = 296;
+    const PHQL_NPLACEHOLDER = 72;
+    const PHQL_NULL = 84;
+    const PHQL_OFFSET = 69;
+    const PHQL_ON = 50;
+    const PHQL_OP_CONCAT = 26;
+    const PHQL_OP_CONTAINED = 12;
+    const PHQL_OP_CONTAINS = 11;
+    const PHQL_OP_JSON_GET = 31;
+    const PHQL_OP_JSON_GET_TEXT = 32;
+    const PHQL_OP_JSON_PATH = 33;
+    const PHQL_OP_JSON_PATH_TEXT = 34;
+    const PHQL_OP_MATCHES = 10;
+    const PHQL_OP_OVERLAPS = 13;
+    const PHQL_OR = 15;
+    const PHQL_ORDER = 61;
+    const PHQL_OUTER = 47;
+    const PHQL_PARENTHESES_CLOSE = 55;
+    const PHQL_PARENTHESES_OPEN = 54;
+    const PHQL_PLUS = 24;
+    const PHQL_RIGHT = 48;
+    const PHQL_SELECT = 36;
+    const PHQL_SET = 57;
+    const PHQL_SPLACEHOLDER = 73;
+    const PHQL_STRING = 85;
+    const PHQL_THEN = 82;
+    const PHQL_TIMES = 22;
+    const PHQL_TRUE = 87;
+    const PHQL_UPDATE = 56;
+    const PHQL_USING = 78;
+    const PHQL_VALUES = 53;
+    const PHQL_WHEN = 81;
+    const PHQL_WHERE = 60;
+    const PHQL_WITH = 59;
+    const YYERRORSYMBOL = 89;
+    const YYNOCODE   = 144;
+    const YYWILDCARD = 144; /* No %wildcard in this grammar; use YYNOCODE so the wildcard path never matches */
+    const YYNRULE = 171;
+    const YYNSTATE = 314;
     const YYSTACKDEPTH = 100;
     /* The next thing included is series of defines which control
 ** various aspects of the generated parser.
@@ -170,11 +179,11 @@ class phql_Parser
 **    YYERRORSYMBOL      is the code number of the error symbol.  If not
 **                       defined, then do no error processing.
 */
-    const YY_REDUCE_MAX = 181;
+    const YY_REDUCE_MAX = 313;
 #define phql_TOKENTYPE phql_parser_token*
-    const YY_REDUCE_USE_DFLT = -67;
-    const YY_SHIFT_MAX = 295;
-    const YY_SHIFT_USE_DFLT = -3;
+    const YY_REDUCE_USE_DFLT = -1;
+    const YY_SHIFT_MAX = 313;
+    const YY_SHIFT_USE_DFLT = -2;
     var $YY_ACCEPT_ACTION;
 
     /* since we cant use expressions to initialize these as class
@@ -240,333 +249,351 @@ class phql_Parser
      *     unsigned char nrhs;     // Number of right-hand side symbols in the rule
      *   } yyRuleInfo[] = {
      */
-    static $yyRuleInfo = [
-        81,
+        static $yyRuleInfo = [
+        90,
         1,
-        82,
+        91,
         1,
-        82,
+        91,
         1,
-        82,
+        91,
         1,
-        82,
+        91,
         1,
-        83,
+        92,
         7,
-        87,
+        96,
         6,
-        94,
-        1,
-        94,
-        1,
-        94,
-        0,
-        95,
-        3,
-        95,
-        1,
-        98,
-        1,
-        98,
-        3,
-        98,
-        3,
-        98,
-        2,
-        98,
-        1,
-        96,
-        3,
-        96,
-        1,
-        97,
-        1,
-        97,
-        0,
-        101,
-        2,
-        101,
-        1,
-        102,
+        103,
         1,
         103,
-        4,
-        106,
+        1,
+        103,
+        0,
+        104,
+        3,
+        104,
+        1,
+        107,
+        1,
+        107,
+        3,
+        107,
+        3,
+        107,
         2,
+        107,
+        1,
+        105,
+        3,
+        105,
+        1,
         106,
         1,
         106,
         0,
-        104,
+        110,
         2,
-        104,
-        2,
-        104,
-        3,
-        104,
-        2,
-        104,
-        3,
-        104,
-        2,
-        104,
-        3,
-        104,
-        2,
-        104,
-        1,
-        107,
-        2,
-        107,
-        0,
-        84,
-        7,
-        84,
-        10,
-        108,
-        3,
-        108,
+        110,
         1,
         111,
         1,
-        109,
-        3,
-        109,
-        1,
         112,
+        4,
+        115,
+        2,
+        115,
         1,
-        85,
+        115,
+        0,
+        113,
+        2,
+        113,
+        2,
+        113,
         3,
         113,
-        5,
-        115,
+        2,
+        113,
         3,
-        115,
+        113,
+        2,
+        113,
+        3,
+        113,
+        2,
+        113,
         1,
         116,
-        3,
-        118,
-        1,
-        86,
-        3,
-        119,
-        3,
-        100,
-        3,
-        100,
         2,
-        100,
-        1,
-        100,
-        5,
-        100,
+        116,
+        0,
+        93,
         7,
-        100,
-        6,
-        100,
-        4,
-        100,
-        5,
-        100,
+        93,
+        10,
+        117,
         3,
-        121,
-        3,
-        121,
+        117,
         1,
         120,
         1,
-        105,
-        1,
-        88,
-        2,
-        88,
-        0,
-        91,
+        118,
         3,
-        91,
-        0,
-        122,
+        118,
+        1,
+        121,
+        1,
+        94,
         3,
         122,
-        1,
-        123,
-        1,
-        123,
-        2,
-        123,
-        2,
-        89,
-        3,
-        89,
-        0,
+        5,
         124,
         3,
         124,
         1,
         125,
+        3,
+        127,
         1,
-        90,
-        2,
-        90,
-        0,
-        93,
-        2,
-        93,
-        0,
-        92,
-        2,
-        92,
-        4,
-        92,
-        4,
-        92,
-        0,
-        114,
-        2,
-        114,
-        0,
-        126,
-        1,
-        126,
-        1,
-        126,
-        1,
-        126,
-        1,
-        126,
-        1,
-        99,
-        2,
-        99,
+        95,
         3,
-        99,
-        3,
-        99,
-        3,
-        99,
-        3,
-        99,
-        3,
-        99,
-        3,
-        99,
-        3,
-        99,
-        3,
-        99,
-        3,
-        99,
-        3,
-        99,
-        3,
-        99,
-        3,
-        99,
-        3,
-        99,
-        3,
-        99,
-        3,
-        99,
-        3,
-        99,
-        3,
-        99,
-        4,
-        99,
-        3,
-        99,
-        4,
-        99,
-        5,
-        99,
-        6,
-        99,
-        3,
-        99,
-        5,
-        99,
-        6,
-        99,
-        4,
-        99,
-        3,
-        99,
-        6,
-        99,
-        6,
-        99,
-        4,
         128,
+        3,
+        109,
+        3,
+        109,
         2,
-        128,
+        109,
         1,
-        129,
+        109,
+        5,
+        109,
+        7,
+        109,
+        6,
+        109,
         4,
-        129,
-        2,
-        99,
-        1,
+        109,
+        5,
+        109,
+        3,
         130,
-        5,
+        3,
+        130,
+        1,
+        129,
+        1,
+        114,
+        1,
+        97,
+        2,
+        97,
+        0,
+        100,
+        3,
+        100,
+        0,
+        131,
+        3,
         131,
         1,
-        131,
-        0,
         132,
         1,
         132,
+        2,
+        132,
+        2,
+        98,
+        3,
+        98,
         0,
-        127,
+        133,
         3,
-        127,
-        1,
         133,
         1,
-        133,
+        134,
         1,
         99,
-        3,
+        2,
         99,
+        0,
+        102,
+        2,
+        102,
+        0,
+        101,
+        2,
+        101,
         4,
-        99,
-        3,
-        99,
-        3,
-        99,
+        101,
+        4,
+        101,
+        0,
+        123,
         2,
-        99,
+        123,
+        0,
+        135,
+        1,
+        135,
+        1,
+        135,
+        1,
+        135,
+        1,
+        135,
+        1,
+        108,
         2,
-        99,
+        108,
         3,
-        99,
-        1,
-        99,
-        1,
-        99,
-        1,
-        99,
-        1,
-        99,
-        1,
-        99,
-        1,
-        99,
-        1,
-        99,
-        1,
-        99,
-        1,
-        99,
-        1,
-        99,
-        1,
-        117,
+        108,
         3,
-        117,
+        108,
+        3,
+        108,
+        3,
+        108,
+        3,
+        108,
+        3,
+        108,
+        3,
+        108,
+        3,
+        108,
+        3,
+        108,
+        3,
+        108,
+        3,
+        108,
+        3,
+        108,
+        3,
+        108,
+        3,
+        108,
+        3,
+        108,
+        3,
+        108,
+        3,
+        108,
+        3,
+        108,
+        3,
+        108,
+        3,
+        108,
+        3,
+        108,
+        3,
+        108,
+        3,
+        108,
+        3,
+        108,
+        3,
+        108,
+        3,
+        108,
+        4,
+        108,
+        3,
+        108,
+        4,
+        108,
+        5,
+        108,
+        6,
+        108,
+        3,
+        108,
+        5,
+        108,
+        6,
+        108,
+        4,
+        108,
+        3,
+        108,
+        6,
+        108,
+        6,
+        108,
+        4,
+        137,
+        2,
+        137,
+        1,
+        138,
+        4,
+        138,
+        2,
+        108,
+        1,
+        139,
+        5,
+        140,
+        1,
+        140,
+        0,
+        141,
+        1,
+        141,
+        0,
+        136,
+        3,
+        136,
+        1,
+        142,
+        1,
+        142,
+        1,
+        108,
+        3,
+        108,
+        4,
+        108,
+        3,
+        108,
+        3,
+        108,
+        2,
+        108,
+        2,
+        108,
+        3,
+        108,
+        1,
+        108,
+        1,
+        108,
+        1,
+        108,
+        1,
+        108,
+        1,
+        108,
+        1,
+        108,
+        1,
+        108,
+        1,
+        108,
+        1,
+        108,
+        1,
+        108,
+        1,
+        126,
+        3,
+        126,
         1,
     ];
-    static $yyRuleName = [
+        static $yyRuleName = [
         /*   0 */
         "program ::= query_language",
         /*   1 */
@@ -784,115 +811,133 @@ class phql_Parser
         /* 107 */
         "expr ::= expr BITWISE_XOR expr",
         /* 108 */
-        "expr ::= expr EQUALS expr",
+        "expr ::= expr OP_MATCHES expr",
         /* 109 */
-        "expr ::= expr NOTEQUALS expr",
+        "expr ::= expr OP_CONTAINS expr",
         /* 110 */
-        "expr ::= expr LESS expr",
+        "expr ::= expr OP_CONTAINED expr",
         /* 111 */
-        "expr ::= expr GREATER expr",
+        "expr ::= expr OP_OVERLAPS expr",
         /* 112 */
-        "expr ::= expr GREATEREQUAL expr",
+        "expr ::= expr OP_CONCAT expr",
         /* 113 */
-        "expr ::= expr LESSEQUAL expr",
+        "expr ::= expr OP_JSON_GET expr",
         /* 114 */
-        "expr ::= expr LIKE expr",
+        "expr ::= expr OP_JSON_GET_TEXT expr",
         /* 115 */
-        "expr ::= expr NOT LIKE expr",
+        "expr ::= expr OP_JSON_PATH expr",
         /* 116 */
-        "expr ::= expr ILIKE expr",
+        "expr ::= expr OP_JSON_PATH_TEXT expr",
         /* 117 */
-        "expr ::= expr NOT ILIKE expr",
+        "expr ::= expr EQUALS expr",
         /* 118 */
-        "expr ::= expr IN PARENTHESES_OPEN argument_list PARENTHESES_CLOSE",
+        "expr ::= expr NOTEQUALS expr",
         /* 119 */
-        "expr ::= expr NOT IN PARENTHESES_OPEN argument_list PARENTHESES_CLOSE",
+        "expr ::= expr LESS expr",
         /* 120 */
-        "expr ::= PARENTHESES_OPEN select_statement PARENTHESES_CLOSE",
+        "expr ::= expr GREATER expr",
         /* 121 */
-        "expr ::= expr IN PARENTHESES_OPEN select_statement PARENTHESES_CLOSE",
+        "expr ::= expr GREATEREQUAL expr",
         /* 122 */
-        "expr ::= expr NOT IN PARENTHESES_OPEN select_statement PARENTHESES_CLOSE",
+        "expr ::= expr LESSEQUAL expr",
         /* 123 */
-        "expr ::= EXISTS PARENTHESES_OPEN select_statement PARENTHESES_CLOSE",
+        "expr ::= expr LIKE expr",
         /* 124 */
-        "expr ::= expr AGAINST expr",
+        "expr ::= expr NOT LIKE expr",
         /* 125 */
-        "expr ::= CAST PARENTHESES_OPEN expr AS IDENTIFIER PARENTHESES_CLOSE",
+        "expr ::= expr ILIKE expr",
         /* 126 */
-        "expr ::= CONVERT PARENTHESES_OPEN expr USING IDENTIFIER PARENTHESES_CLOSE",
+        "expr ::= expr NOT ILIKE expr",
         /* 127 */
-        "expr ::= CASE expr when_clauses END",
+        "expr ::= expr IN PARENTHESES_OPEN argument_list PARENTHESES_CLOSE",
         /* 128 */
-        "when_clauses ::= when_clauses when_clause",
+        "expr ::= expr NOT IN PARENTHESES_OPEN argument_list PARENTHESES_CLOSE",
         /* 129 */
-        "when_clauses ::= when_clause",
+        "expr ::= PARENTHESES_OPEN select_statement PARENTHESES_CLOSE",
         /* 130 */
-        "when_clause ::= WHEN expr THEN expr",
+        "expr ::= expr IN PARENTHESES_OPEN select_statement PARENTHESES_CLOSE",
         /* 131 */
-        "when_clause ::= ELSE expr",
+        "expr ::= expr NOT IN PARENTHESES_OPEN select_statement PARENTHESES_CLOSE",
         /* 132 */
-        "expr ::= function_call",
+        "expr ::= EXISTS PARENTHESES_OPEN select_statement PARENTHESES_CLOSE",
         /* 133 */
-        "function_call ::= IDENTIFIER PARENTHESES_OPEN distinct_or_null argument_list_or_null PARENTHESES_CLOSE",
+        "expr ::= expr AGAINST expr",
         /* 134 */
-        "distinct_or_null ::= DISTINCT",
+        "expr ::= CAST PARENTHESES_OPEN expr AS IDENTIFIER PARENTHESES_CLOSE",
         /* 135 */
-        "distinct_or_null ::=",
+        "expr ::= CONVERT PARENTHESES_OPEN expr USING IDENTIFIER PARENTHESES_CLOSE",
         /* 136 */
-        "argument_list_or_null ::= argument_list",
+        "expr ::= CASE expr when_clauses END",
         /* 137 */
-        "argument_list_or_null ::=",
+        "when_clauses ::= when_clauses when_clause",
         /* 138 */
-        "argument_list ::= argument_list COMMA argument_item",
+        "when_clauses ::= when_clause",
         /* 139 */
-        "argument_list ::= argument_item",
+        "when_clause ::= WHEN expr THEN expr",
         /* 140 */
-        "argument_item ::= TIMES",
+        "when_clause ::= ELSE expr",
         /* 141 */
-        "argument_item ::= expr",
+        "expr ::= function_call",
         /* 142 */
-        "expr ::= expr IS NULL",
+        "function_call ::= IDENTIFIER PARENTHESES_OPEN distinct_or_null argument_list_or_null PARENTHESES_CLOSE",
         /* 143 */
-        "expr ::= expr IS NOT NULL",
+        "distinct_or_null ::= DISTINCT",
         /* 144 */
-        "expr ::= expr BETWEEN expr",
+        "distinct_or_null ::=",
         /* 145 */
-        "expr ::= expr BETWEEN_NOT expr",
+        "argument_list_or_null ::= argument_list",
         /* 146 */
-        "expr ::= NOT expr",
+        "argument_list_or_null ::=",
         /* 147 */
-        "expr ::= BITWISE_NOT expr",
+        "argument_list ::= argument_list COMMA argument_item",
         /* 148 */
-        "expr ::= PARENTHESES_OPEN expr PARENTHESES_CLOSE",
+        "argument_list ::= argument_item",
         /* 149 */
-        "expr ::= qualified_name",
+        "argument_item ::= TIMES",
         /* 150 */
-        "expr ::= INTEGER",
+        "argument_item ::= expr",
         /* 151 */
-        "expr ::= HINTEGER",
+        "expr ::= expr IS NULL",
         /* 152 */
-        "expr ::= STRING",
+        "expr ::= expr IS NOT NULL",
         /* 153 */
-        "expr ::= DOUBLE",
+        "expr ::= expr BETWEEN expr",
         /* 154 */
-        "expr ::= NULL",
+        "expr ::= expr BETWEEN_NOT expr",
         /* 155 */
-        "expr ::= TRUE",
+        "expr ::= NOT expr",
         /* 156 */
-        "expr ::= FALSE",
+        "expr ::= BITWISE_NOT expr",
         /* 157 */
-        "expr ::= NPLACEHOLDER",
+        "expr ::= PARENTHESES_OPEN expr PARENTHESES_CLOSE",
         /* 158 */
-        "expr ::= SPLACEHOLDER",
+        "expr ::= qualified_name",
         /* 159 */
-        "expr ::= BPLACEHOLDER",
+        "expr ::= INTEGER",
         /* 160 */
-        "qualified_name ::= IDENTIFIER DOT IDENTIFIER",
+        "expr ::= HINTEGER",
         /* 161 */
+        "expr ::= STRING",
+        /* 162 */
+        "expr ::= DOUBLE",
+        /* 163 */
+        "expr ::= NULL",
+        /* 164 */
+        "expr ::= TRUE",
+        /* 165 */
+        "expr ::= FALSE",
+        /* 166 */
+        "expr ::= NPLACEHOLDER",
+        /* 167 */
+        "expr ::= SPLACEHOLDER",
+        /* 168 */
+        "expr ::= BPLACEHOLDER",
+        /* 169 */
+        "qualified_name ::= IDENTIFIER DOT IDENTIFIER",
+        /* 170 */
         "qualified_name ::= IDENTIFIER",
     ];
-    static $yyTokenName = [
+        static $yyTokenName = [
         '$',
         'AGAINST',
         'BETWEEN',
@@ -903,6 +948,10 @@ class phql_Parser
         'GREATER',
         'GREATEREQUAL',
         'LESSEQUAL',
+        'OP_MATCHES',
+        'OP_CONTAINS',
+        'OP_CONTAINED',
+        'OP_OVERLAPS',
         'AND',
         'OR',
         'LIKE',
@@ -915,10 +964,15 @@ class phql_Parser
         'MOD',
         'PLUS',
         'MINUS',
+        'OP_CONCAT',
         'IS',
         'IN',
         'NOT',
         'BITWISE_NOT',
+        'OP_JSON_GET',
+        'OP_JSON_GET_TEXT',
+        'OP_JSON_PATH',
+        'OP_JSON_PATH_TEXT',
         'COMMA',
         'SELECT',
         'FROM',
@@ -1030,1726 +1084,1416 @@ class phql_Parser
     ];
     public mixed $yyTraceFILE   = null;
     public ?string $yyTracePrompt = '';
-    static $yy_action = [
+        static $yy_action = [
         /*     0 */
-        50,
-        46,
-        45,
-        19,
-        52,
-        49,
-        40,
-        42,
-        20,
-        28,
-        /*    10 */
-        25,
-        24,
-        30,
-        23,
-        22,
-        21,
-        33,
-        37,
-        31,
-        41,
-        /*    20 */
-        48,
-        134,
-        162,
-        129,
-        69,
-        50,
-        46,
-        45,
-        19,
-        52,
-        /*    30 */
-        49,
-        40,
-        42,
-        20,
-        28,
-        25,
-        24,
-        30,
-        23,
-        22,
-        /*    40 */
-        21,
-        33,
-        37,
-        31,
-        41,
-        48,
-        134,
-        162,
-        129,
-        182,
-        /*    50 */
-        292,
-        154,
-        183,
-        208,
-        209,
-        270,
-        82,
-        157,
-        68,
-        50,
-        /*    60 */
-        46,
-        45,
-        19,
-        52,
-        49,
-        40,
-        42,
-        20,
-        28,
-        25,
-        /*    70 */
-        24,
-        30,
-        23,
-        22,
-        21,
-        33,
-        37,
-        31,
-        41,
-        48,
-        /*    80 */
-        134,
-        162,
-        129,
-        50,
-        46,
-        45,
-        19,
-        52,
-        49,
-        40,
-        /*    90 */
-        42,
-        20,
-        28,
-        25,
-        24,
-        30,
-        23,
-        22,
-        21,
-        33,
-        /*   100 */
-        37,
-        31,
-        41,
-        48,
-        134,
-        162,
-        129,
-        19,
-        52,
-        49,
-        /*   110 */
-        40,
-        42,
-        20,
-        28,
-        25,
-        24,
-        30,
-        23,
-        22,
-        21,
-        /*   120 */
-        33,
-        37,
-        31,
-        41,
-        48,
-        134,
-        162,
-        129,
-        216,
-        147,
-        /*   130 */
-        32,
-        38,
-        44,
-        28,
-        25,
-        24,
-        30,
-        23,
-        22,
-        21,
-        /*   140 */
-        33,
-        37,
-        31,
-        41,
-        48,
-        134,
-        162,
-        129,
-        223,
-        224,
-        /*   150 */
-        60,
-        192,
-        160,
-        50,
-        46,
-        45,
-        19,
-        52,
-        49,
-        40,
-        /*   160 */
-        42,
-        20,
-        28,
-        25,
-        24,
-        30,
-        23,
-        22,
-        21,
-        33,
-        /*   170 */
-        37,
-        31,
-        41,
-        48,
-        134,
-        162,
-        129,
-        24,
-        30,
-        23,
-        /*   180 */
-        22,
-        21,
-        33,
-        37,
-        31,
-        41,
-        48,
-        134,
-        162,
-        129,
-        /*   190 */
-        33,
-        37,
-        31,
-        41,
-        48,
-        134,
-        162,
-        129,
-        228,
-        72,
-        /*   200 */
-        50,
-        46,
-        45,
-        19,
-        52,
-        49,
-        40,
-        42,
-        20,
-        28,
-        /*   210 */
-        25,
-        24,
-        30,
-        23,
-        22,
-        21,
-        33,
-        37,
-        31,
-        41,
-        /*   220 */
-        48,
-        134,
-        162,
-        129,
-        170,
-        263,
-        161,
-        146,
-        133,
-        145,
-        /*   230 */
+        138,
         144,
-        287,
-        187,
-        215,
-        50,
-        46,
+        146,
+        73,
+        75,
+        77,
+        79,
+        81,
+        83,
+        55,
+        /*    10 */
+        57,
+        59,
+        61,
         45,
-        19,
-        52,
+        47,
+        85,
+        90,
         49,
-        /*   240 */
-        40,
-        42,
-        20,
-        28,
-        25,
-        24,
-        30,
-        23,
-        22,
-        21,
-        /*   250 */
-        33,
-        37,
-        31,
+        51,
+        53,
+        /*    20 */
         41,
-        48,
-        134,
-        162,
-        129,
-        50,
-        46,
+        39,
+        43,
+        37,
+        34,
+        63,
+        140,
+        92,
+        87,
+        314,
+        /*    30 */
+        65,
+        67,
+        69,
+        71,
+        45,
+        47,
+        85,
+        90,
+        49,
+        51,
+        /*    40 */
+        53,
+        41,
+        39,
+        43,
+        37,
+        34,
+        63,
+        140,
+        92,
+        87,
+        /*    50 */
+        315,
+        65,
+        67,
+        69,
+        71,
+        212,
+        228,
+        214,
+        216,
+        17,
+        /*    60 */
+        220,
+        224,
+        32,
+        33,
+        138,
+        144,
+        146,
+        73,
+        75,
+        77,
+        /*    70 */
+        79,
+        81,
+        83,
+        55,
+        57,
+        59,
+        61,
+        45,
+        47,
+        85,
+        /*    80 */
+        90,
+        49,
+        51,
+        53,
+        41,
+        39,
+        43,
+        37,
+        34,
+        63,
+        /*    90 */
+        140,
+        92,
+        87,
+        24,
+        65,
+        67,
+        69,
+        71,
+        138,
+        144,
+        /*   100 */
+        146,
+        73,
+        75,
+        77,
+        79,
+        81,
+        83,
+        55,
+        57,
+        59,
+        /*   110 */
+        61,
+        45,
+        47,
+        85,
+        90,
+        49,
+        51,
+        53,
+        41,
+        39,
+        /*   120 */
+        43,
+        37,
+        34,
+        63,
+        140,
+        92,
+        87,
+        267,
+        65,
+        67,
+        /*   130 */
+        69,
+        71,
+        19,
+        20,
+        21,
+        22,
+        23,
+        240,
+        87,
+        238,
+        /*   140 */
+        65,
+        67,
+        69,
+        71,
+        174,
+        231,
+        206,
+        97,
+        138,
+        144,
+        /*   150 */
+        146,
+        73,
+        75,
+        77,
+        79,
+        81,
+        83,
+        55,
+        57,
+        59,
+        /*   160 */
+        61,
+        45,
+        47,
+        85,
+        90,
+        49,
+        51,
+        53,
+        41,
+        39,
+        /*   170 */
+        43,
+        37,
+        34,
+        63,
+        140,
+        92,
+        87,
+        316,
+        65,
+        67,
+        /*   180 */
+        69,
+        71,
+        85,
+        90,
+        49,
+        51,
+        53,
+        41,
+        39,
+        43,
+        /*   190 */
+        37,
+        34,
+        63,
+        140,
+        92,
+        87,
+        317,
+        65,
+        67,
+        69,
+        /*   200 */
+        71,
+        318,
+        150,
+        7,
+        138,
+        144,
+        146,
+        73,
+        75,
+        77,
+        /*   210 */
+        79,
+        81,
+        83,
+        55,
+        57,
+        59,
+        61,
+        45,
+        47,
+        85,
+        /*   220 */
+        90,
+        49,
+        51,
+        53,
+        41,
+        39,
+        43,
+        37,
+        34,
+        63,
+        /*   230 */
+        140,
+        92,
+        87,
+        127,
+        65,
+        67,
+        69,
+        71,
+        130,
+        131,
+        /*   240 */
+        132,
+        172,
+        174,
+        260,
+        206,
+        160,
+        180,
+        138,
+        144,
+        146,
+        /*   250 */
+        73,
+        75,
+        77,
+        79,
+        81,
+        83,
+        55,
+        57,
+        59,
+        61,
         /*   260 */
         45,
-        19,
-        52,
+        47,
+        85,
+        90,
         49,
-        40,
-        42,
-        20,
-        28,
-        25,
-        24,
-        /*   270 */
-        30,
-        23,
-        22,
-        21,
-        33,
-        37,
-        31,
-        41,
-        48,
-        134,
-        /*   280 */
-        162,
-        129,
-        238,
-        233,
-        32,
-        47,
-        44,
-        101,
-        27,
-        26,
-        /*   290 */
-        286,
-        72,
-        92,
-        16,
-        268,
-        143,
-        132,
-        72,
-        234,
-        283,
-        /*   300 */
-        41,
-        48,
-        134,
-        162,
-        129,
-        239,
-        18,
-        222,
-        238,
-        4,
-        /*   310 */
-        239,
-        47,
-        163,
-        284,
-        27,
-        26,
-        207,
-        55,
-        235,
-        173,
-        /*   320 */
-        141,
-        143,
-        131,
-        235,
-        169,
-        240,
-        241,
-        247,
-        248,
-        249,
-        /*   330 */
-        191,
-        184,
-        190,
-        90,
-        35,
-        4,
-        56,
-        290,
-        154,
-        244,
-        /*   340 */
-        242,
-        243,
-        245,
-        246,
-        170,
-        263,
-        161,
-        146,
-        158,
-        145,
-        /*   350 */
-        144,
-        240,
-        241,
-        247,
-        248,
-        249,
-        191,
-        184,
-        190,
-        137,
-        /*   360 */
-        35,
-        90,
-        206,
-        266,
-        91,
-        244,
-        242,
-        243,
-        245,
-        246,
-        /*   370 */
-        267,
-        221,
-        200,
-        47,
-        210,
-        226,
-        27,
-        26,
+        51,
         53,
-        264,
-        /*   380 */
-        224,
-        60,
-        239,
-        142,
-        23,
-        22,
-        21,
-        33,
-        37,
-        31,
-        /*   390 */
         41,
-        48,
-        134,
-        162,
-        129,
-        235,
-        5,
-        4,
-        75,
-        47,
-        /*   400 */
-        29,
+        39,
+        43,
+        /*   270 */
+        37,
         34,
-        27,
-        26,
-        289,
-        72,
-        180,
-        181,
-        186,
-        143,
-        /*   410 */
-        221,
-        151,
-        128,
-        240,
-        241,
-        247,
-        248,
-        249,
-        191,
-        184,
-        /*   420 */
-        190,
-        212,
-        35,
-        4,
-        221,
-        74,
-        220,
-        244,
-        242,
-        243,
-        /*   430 */
-        245,
-        246,
-        78,
-        189,
-        155,
-        216,
-        135,
-        82,
-        82,
-        240,
-        /*   440 */
-        241,
-        247,
-        248,
-        249,
-        191,
-        184,
-        190,
-        88,
-        35,
-        105,
-        /*   450 */
-        95,
-        218,
-        175,
-        244,
-        242,
-        243,
-        245,
-        246,
-        101,
-        262,
-        /*   460 */
-        260,
-        47,
-        171,
-        177,
-        27,
-        26,
-        214,
-        239,
-        239,
-        211,
-        /*   470 */
-        282,
-        143,
+        63,
+        140,
+        92,
+        87,
+        258,
+        65,
+        67,
+        69,
+        /*   280 */
         71,
-        252,
-        128,
-        285,
-        239,
         138,
-        10,
-        150,
-        /*   480 */
-        235,
-        235,
-        265,
+        144,
+        146,
+        73,
+        75,
+        77,
+        79,
+        81,
+        83,
+        /*   290 */
+        55,
+        57,
+        59,
+        61,
+        45,
+        47,
+        85,
+        90,
+        49,
+        51,
+        /*   300 */
+        53,
+        41,
+        39,
+        43,
+        37,
+        34,
+        63,
+        140,
+        92,
+        87,
+        /*   310 */
+        8,
+        65,
+        67,
+        69,
+        71,
+        140,
+        92,
+        87,
+        9,
+        65,
+        /*   320 */
+        67,
+        69,
+        71,
+        211,
+        166,
+        209,
+        138,
+        144,
+        146,
+        73,
+        /*   330 */
+        75,
+        77,
+        79,
+        81,
+        83,
+        55,
+        57,
+        59,
+        61,
+        45,
+        /*   340 */
+        47,
+        85,
+        90,
+        49,
+        51,
+        53,
+        41,
+        39,
+        43,
+        37,
+        /*   350 */
+        34,
+        63,
+        140,
+        92,
+        87,
+        142,
+        65,
+        67,
+        69,
+        71,
+        /*   360 */
+        242,
+        243,
+        176,
+        73,
+        75,
+        77,
+        79,
+        81,
+        83,
+        55,
+        /*   370 */
+        57,
+        59,
+        61,
+        45,
+        47,
+        85,
+        90,
+        49,
+        51,
+        53,
+        /*   380 */
+        41,
+        39,
+        43,
+        37,
+        34,
+        63,
+        140,
+        92,
+        87,
+        94,
+        /*   390 */
+        65,
+        67,
+        69,
+        71,
+        188,
+        88,
+        248,
+        35,
+        114,
+        155,
+        /*   400 */
+        103,
+        189,
+        191,
+        6,
+        269,
+        100,
+        182,
         250,
-        215,
+        94,
+        296,
+        /*   410 */
+        141,
+        311,
+        179,
+        212,
+        228,
+        214,
+        216,
+        120,
+        220,
+        224,
+        /*   420 */
+        188,
+        110,
+        112,
+        35,
+        193,
+        112,
+        148,
+        189,
+        191,
+        486,
+        /*   430 */
+        1,
+        2,
+        3,
         4,
-        221,
-        128,
-        254,
-        235,
-        /*   490 */
-        164,
-        459,
-        294,
+        5,
+        6,
+        107,
+        178,
+        179,
+        116,
+        /*   440 */
+        187,
+        109,
         194,
         195,
-        196,
-        197,
-        82,
-        64,
-        221,
-        /*   500 */
-        89,
-        240,
-        241,
-        247,
-        248,
-        249,
-        191,
-        184,
-        190,
-        12,
-        /*   510 */
-        35,
-        17,
-        293,
-        105,
-        92,
-        244,
-        242,
-        243,
-        245,
-        246,
-        /*   520 */
-        134,
-        162,
-        129,
-        84,
-        153,
-        272,
-        273,
-        70,
-        82,
-        86,
-        /*   530 */
-        140,
-        239,
-        239,
-        271,
-        91,
-        87,
-        215,
-        179,
-        278,
-        258,
-        /*   540 */
-        105,
-        167,
-        148,
-        193,
-        235,
-        235,
-        165,
-        250,
-        128,
-        105,
-        /*   550 */
-        65,
-        156,
-        239,
         201,
         202,
         203,
-        204,
-        205,
-        239,
-        43,
-        /*   560 */
-        221,
+        153,
+        157,
+        163,
+        /*   450 */
+        26,
+        169,
+        148,
+        460,
+        171,
+        208,
+        198,
+        196,
+        197,
+        199,
+        /*   460 */
+        200,
+        291,
+        300,
+        307,
+        303,
+        113,
+        108,
+        308,
+        194,
+        195,
+        /*   470 */
+        201,
+        202,
+        203,
+        153,
+        157,
+        163,
+        10,
+        169,
+        15,
+        182,
+        /*   480 */
+        113,
+        117,
+        198,
+        196,
+        197,
+        199,
+        200,
+        212,
+        228,
+        214,
+        /*   490 */
+        216,
+        233,
+        220,
+        224,
+        35,
+        110,
+        98,
+        193,
+        189,
+        191,
+        /*   500 */
+        230,
+        334,
+        110,
+        31,
+        112,
+        102,
+        235,
+        185,
+        13,
+        234,
+        /*   510 */
+        178,
         101,
-        166,
-        66,
-        99,
-        235,
-        79,
-        239,
-        139,
-        152,
+        183,
+        204,
+        11,
+        118,
+        102,
+        125,
+        121,
+        180,
+        /*   520 */
+        35,
+        193,
+        123,
+        148,
+        189,
+        191,
+        28,
+        257,
+        125,
+        12,
+        /*   530 */
+        219,
+        94,
+        265,
+        217,
+        178,
+        179,
+        113,
+        122,
+        14,
+        194,
+        /*   540 */
+        195,
+        201,
+        202,
+        203,
+        153,
+        157,
+        163,
+        133,
+        169,
+        148,
+        /*   550 */
+        193,
+        272,
+        280,
+        198,
+        196,
+        197,
+        199,
+        200,
+        264,
+        125,
+        /*   560 */
+        246,
+        271,
+        27,
+        178,
+        6,
+        194,
+        195,
+        201,
+        202,
+        203,
         /*   570 */
-        136,
-        235,
-        288,
-        283,
-        250,
+        153,
+        157,
+        163,
+        125,
+        169,
+        223,
+        182,
+        16,
+        221,
+        198,
+        /*   580 */
+        196,
+        197,
+        199,
+        200,
+        227,
+        297,
+        18,
+        225,
+        188,
+        96,
+        /*   590 */
+        102,
+        35,
+        241,
+        237,
+        193,
+        189,
+        191,
+        232,
+        237,
+        186,
+        /*   600 */
+        265,
+        25,
+        125,
+        29,
+        244,
+        236,
+        179,
         178,
         99,
-        198,
-        102,
-        239,
-        /*   580 */
-        235,
-        94,
-        239,
-        237,
-        67,
-        58,
-        124,
-        239,
-        51,
-        159,
-        /*   590 */
-        280,
-        85,
-        235,
         93,
-        239,
-        235,
-        239,
-        291,
-        77,
-        239,
-        /*   600 */
-        235,
-        123,
-        279,
-        239,
-        239,
-        118,
-        39,
-        235,
-        168,
-        235,
         /*   610 */
-        117,
-        239,
-        235,
-        115,
-        80,
-        97,
-        235,
-        235,
-        219,
-        239,
-        /*   620 */
-        216,
-        130,
-        77,
-        239,
-        235,
-        83,
-        239,
-        225,
-        239,
-        103,
-        /*   630 */
-        98,
-        239,
-        235,
-        239,
-        113,
-        81,
-        235,
-        96,
-        122,
-        235,
-        /*   640 */
-        116,
-        235,
-        213,
-        251,
-        235,
-        172,
-        235,
-        239,
-        239,
-        174,
-        /*   650 */
-        11,
-        232,
-        239,
-        3,
-        104,
-        239,
-        239,
-        112,
-        239,
-        9,
-        /*   660 */
-        235,
-        235,
-        257,
-        239,
-        110,
-        235,
-        16,
-        239,
-        235,
-        235,
-        /*   670 */
-        276,
-        235,
-        239,
-        121,
-        119,
-        239,
-        235,
-        2,
-        120,
-        107,
-        /*   680 */
-        235,
-        108,
-        239,
-        106,
-        215,
-        235,
-        281,
+        204,
+        193,
         129,
-        235,
-        125,
-        /*   690 */
-        100,
-        239,
-        239,
-        127,
-        275,
-        235,
-        239,
-        239,
-        63,
-        239,
-        /*   700 */
-        109,
-        239,
-        11,
-        77,
-        235,
-        235,
-        14,
-        239,
-        239,
-        235,
-        /*   710 */
-        235,
-        239,
-        235,
         229,
-        235,
-        114,
+        131,
+        132,
+        193,
+        35,
+        193,
+        459,
+        /*   620 */
+        148,
+        189,
+        191,
+        128,
+        178,
+        262,
+        266,
+        95,
         126,
-        111,
-        239,
-        6,
-        /*   720 */
-        235,
-        235,
-        274,
-        217,
-        235,
-        269,
-        222,
-        15,
-        158,
-        1,
-        /*   730 */
-        62,
-        235,
-        256,
-        239,
-        239,
-        239,
-        253,
-        236,
-        7,
-        11,
-        /*   740 */
-        227,
-        255,
-        261,
-        54,
-        176,
-        259,
-        235,
-        235,
-        235,
-        8,
-        /*   750 */
-        199,
-        13,
-        59,
-        185,
-        188,
-        149,
-        299,
-        57,
-        76,
-        299,
-        /*   760 */
-        230,
-        73,
-        231,
-        277,
-        36,
-        61,
-        460,
-        460,
-        460,
-        460,
-        /*   770 */
-        460,
-        460,
-        460,
-        460,
-        460,
-        460,
-        460,
-        460,
-        460,
-        460,
-        /*   780 */
-        460,
-        460,
-        460,
-        460,
-        460,
-        460,
-        460,
-        460,
-        460,
-        460,
-        /*   790 */
-        460,
-        460,
-        460,
-        460,
-        460,
-        460,
-        460,
-        460,
-        460,
-        460,
-        /*   800 */
-        460,
-        460,
-        460,
-        460,
-        460,
-        460,
-        460,
-        460,
-        460,
-        460,
-        /*   810 */
-        460,
-        460,
-        460,
-        460,
-        460,
-        460,
-        460,
-        460,
-        460,
-        460,
-        /*   820 */
-        460,
-        460,
-        460,
-        460,
-        460,
-        460,
-        460,
-        460,
-        460,
-        460,
-        /*   830 */
-        460,
-        460,
-        460,
-        460,
-        460,
-        460,
-        460,
-        460,
-        460,
-        460,
-        /*   840 */
-        460,
-        460,
-        460,
-        460,
-        460,
-        460,
-        460,
-        460,
-        460,
-        460,
-        /*   850 */
-        460,
-        460,
-        460,
-        460,
-        460,
-        460,
-        460,
-        460,
-        460,
-        460,
-        /*   860 */
-        460,
-        460,
-        460,
-        460,
-        460,
-        460,
-        460,
-        460,
-        460,
-        460,
-        /*   870 */
-        460,
-        460,
-        460,
-        460,
-        460,
-        460,
-        460,
-        460,
-        460,
-        460,
-        /*   880 */
-        460,
-        460,
-        460,
-        460,
-        460,
-        460,
-        460,
-        460,
-        460,
-        460,
-        /*   890 */
-        460,
-        460,
-        460,
-        460,
-        170,
-        263,
-        161,
-        146,
-        460,
-        145,
-        /*   900 */
-        144,
-        460,
-        460,
-        460,
-        460,
-        460,
-        460,
-        460,
-        460,
-        460,
-        /*   910 */
-        460,
-        460,
-        460,
-        460,
-        460,
-        460,
-        460,
-        460,
-        460,
-        460,
-        /*   920 */
-        460,
-        460,
-        460,
-        460,
-        460,
-        460,
-        460,
-        460,
-        460,
-        460,
-        /*   930 */
-        460,
-        460,
-        460,
-        460,
-        460,
-        460,
-        460,
-        460,
-        460,
-        460,
-        /*   940 */
-        460,
-        460,
-        460,
-        460,
-        460,
-        460,
-        460,
-        460,
-        460,
-        460,
-        /*   950 */
-        460,
-        460,
-        460,
-        460,
-        460,
-        460,
-        460,
-        460,
-        460,
-        460,
-        /*   960 */
-        460,
-        460,
-        460,
-        460,
-        460,
-        460,
-        460,
-        460,
-        460,
-        460,
-        /*   970 */
-        460,
-        460,
-        460,
-        460,
-        460,
-        460,
-        460,
-        460,
-        460,
-        460,
-        /*   980 */
-        460,
-        460,
-        460,
-        460,
-        460,
-        460,
-        460,
-        460,
-        460,
-        460,
-        /*   990 */
-        460,
-        460,
-        460,
-        460,
-        460,
-        460,
-        460,
-        460,
-        460,
-        460,
-        /*  1000 */
-        460,
-        460,
-        460,
-        460,
-        460,
-        460,
-        460,
-        460,
-        460,
-        460,
-        /*  1010 */
-        460,
-        460,
-        460,
-        460,
-        460,
-        460,
-        460,
-        460,
-        460,
-        460,
-        /*  1020 */
-        460,
-        460,
-        460,
-        460,
-        460,
-        460,
-        460,
-        460,
-        460,
-        460,
-        /*  1030 */
-        460,
-        460,
-        460,
-        460,
-        460,
-        460,
-        460,
-        460,
-        460,
-        460,
-        /*  1040 */
-        460,
-        460,
-        460,
-        460,
-        460,
-        460,
-        460,
-        460,
-        460,
-        460,
-        /*  1050 */
-        460,
-        460,
-        460,
-        460,
-        460,
-        460,
-        460,
-        460,
-        460,
-        460,
-        /*  1060 */
-        460,
-        460,
-        460,
-        460,
-        460,
-        460,
-        460,
-        460,
-        460,
-        460,
-        /*  1070 */
-        460,
-        460,
-        460,
-        460,
-        460,
-        460,
-        460,
-        460,
-        460,
-        460,
-        /*  1080 */
-        460,
-        460,
-        460,
-        460,
-        460,
-        460,
-        460,
-        460,
-        460,
-        460,
-        /*  1090 */
-        460,
-        295,
-        460,
-        460,
-        460,
-        53,
-        264,
-        224,
-        60,
-        460,
-        /*  1100 */
-        460,
-        460,
-        460,
-        460,
-        460,
-        460,
-        460,
-        460,
-        460,
-        460,
-        /*  1110 */
-        460,
-        460,
-        460,
-        460,
-        460,
-        460,
-        460,
-        460,
-        460,
-        460,
-        /*  1120 */
-        460,
-        460,
-        460,
-        460,
-        460,
-        460,
-        460,
-        460,
-        460,
-        460,
-        /*  1130 */
-        460,
-        460,
-        460,
-        460,
-        460,
-        460,
-        460,
-        460,
-        460,
-        460,
-        /*  1140 */
-        460,
-        460,
-        460,
-        460,
-        460,
-        460,
-        460,
-        460,
-        460,
-        460,
-        /*  1150 */
-        460,
-        460,
-        460,
-        460,
-        460,
-        460,
-        460,
-        460,
-        460,
-        460,
-        /*  1160 */
-        460,
-        460,
-        460,
-        460,
-        460,
-        460,
-        460,
-        460,
-        460,
-        460,
-        /*  1170 */
-        460,
-        460,
-        460,
-        460,
-        460,
-        460,
-        57,
-        460,
-        460,
-        460,
-        /*  1180 */
-        460,
-        460,
-        460,
-        460,
-        460,
-        460,
-        460,
-        460,
-        460,
-        460,
-        /*  1190 */
-        460,
-        460,
-        460,
-        460,
-        460,
-        460,
-        460,
-        460,
-        460,
-        460,
-        /*  1200 */
-        460,
-        460,
-        460,
-        460,
-        460,
-        460,
-        460,
-        460,
-        460,
-        460,
-        /*  1210 */
-        460,
-        460,
-        460,
-        460,
-        460,
-        460,
-        460,
-        460,
-        460,
-        460,
-        /*  1220 */
-        460,
-        460,
-        460,
-        460,
-        460,
-        460,
-        460,
-        460,
-        460,
-        460,
-        /*  1230 */
-        460,
-        460,
-        460,
-        460,
-        460,
-        460,
-        460,
-        460,
-        460,
-        460,
-        /*  1240 */
-        460,
-        460,
-        460,
-        460,
-        460,
-        460,
-        460,
-        460,
-        460,
-        460,
-        /*  1250 */
-        460,
-        460,
-        460,
-        460,
-        460,
-        460,
-        460,
-        460,
-        460,
-        460,
-        /*  1260 */
-        460,
-        460,
-    ];
-    static $yy_default = [
-        /*     0 */
-        458,
-        458,
-        458,
-        433,
-        458,
-        458,
-        458,
-        458,
-        458,
-        458,
-        /*    10 */
-        316,
-        458,
-        458,
-        458,
-        458,
-        458,
-        458,
-        458,
-        458,
-        458,
-        /*    20 */
-        458,
-        458,
-        458,
-        458,
-        458,
-        458,
-        458,
-        458,
-        458,
-        458,
-        /*    30 */
-        458,
-        458,
-        458,
-        458,
-        458,
-        458,
-        458,
-        458,
-        458,
-        458,
-        /*    40 */
-        458,
-        458,
-        458,
-        458,
-        458,
-        458,
-        458,
-        458,
-        458,
-        458,
-        /*    50 */
-        458,
-        458,
-        458,
-        315,
-        458,
-        458,
-        458,
-        458,
-        458,
-        458,
-        /*    60 */
-        458,
-        458,
-        458,
-        458,
-        458,
-        458,
-        458,
-        458,
-        458,
-        458,
-        /*    70 */
-        458,
-        458,
+        178,
+        /*   630 */
+        306,
+        178,
+        179,
+        302,
+        303,
+        104,
+        194,
+        195,
+        201,
+        202,
+        /*   640 */
+        203,
+        153,
+        157,
+        163,
+        281,
+        169,
+        148,
+        290,
+        193,
         305,
-        458,
-        458,
-        323,
-        458,
-        458,
-        458,
-        374,
-        /*    80 */
-        387,
-        367,
-        365,
-        381,
-        365,
-        387,
-        365,
-        385,
-        334,
-        379,
-        /*    90 */
-        431,
-        312,
-        370,
-        458,
-        458,
-        458,
-        458,
-        420,
-        378,
-        377,
-        /*   100 */
-        364,
-        339,
-        348,
-        333,
-        426,
-        437,
-        427,
-        441,
-        440,
-        408,
-        /*   110 */
-        409,
-        407,
-        404,
+        /*   650 */
+        198,
+        196,
+        197,
+        199,
+        200,
+        313,
+        105,
+        106,
+        111,
+        115,
+        /*   660 */
+        102,
+        178,
+        194,
+        195,
+        201,
+        202,
+        203,
+        153,
+        157,
+        163,
+        /*   670 */
+        112,
+        169,
+        125,
+        119,
+        124,
+        127,
+        198,
+        196,
+        197,
+        199,
+        /*   680 */
+        200,
+        49,
+        51,
+        53,
+        41,
+        39,
+        43,
+        37,
+        34,
+        63,
+        /*   690 */
+        140,
+        92,
+        87,
+        134,
+        65,
+        67,
+        69,
+        71,
+        41,
+        39,
+        /*   700 */
+        43,
+        37,
+        34,
+        63,
+        140,
+        92,
+        87,
+        128,
+        65,
+        67,
+        /*   710 */
+        69,
+        71,
+        37,
+        34,
+        63,
+        140,
+        92,
+        87,
+        136,
+        65,
+        /*   720 */
+        67,
+        69,
+        71,
+        135,
+        278,
+        254,
+        278,
+        31,
         405,
-        406,
-        399,
-        400,
-        410,
-        412,
-        402,
-        /*   120 */
-        401,
-        403,
-        396,
-        398,
-        397,
-        393,
-        395,
-        394,
-        353,
-        458,
-        /*   130 */
-        458,
-        382,
-        458,
-        458,
-        458,
-        458,
-        458,
-        458,
-        458,
-        458,
-        /*   140 */
-        458,
-        458,
-        457,
-        457,
-        458,
-        458,
-        458,
-        458,
-        458,
-        458,
-        /*   150 */
-        458,
-        458,
-        413,
-        458,
-        458,
-        458,
-        458,
-        458,
-        458,
-        373,
-        /*   160 */
-        457,
-        458,
-        458,
-        458,
-        458,
-        458,
-        458,
-        432,
-        411,
-        458,
-        /*   170 */
-        458,
-        458,
-        442,
-        458,
-        443,
-        458,
-        458,
-        458,
-        458,
-        366,
-        /*   180 */
-        352,
-        316,
-        344,
-        458,
-        458,
-        351,
-        458,
-        458,
-        458,
-        458,
-        /*   190 */
-        458,
-        458,
-        458,
-        350,
-        297,
+        6,
+        /*   730 */
+        151,
+        143,
+        94,
+        274,
+        6,
+        285,
+        279,
+        154,
+        279,
+        152,
+        /*   740 */
+        156,
+        182,
+        193,
         298,
+        193,
+        193,
+        149,
+        129,
+        229,
+        131,
+        /*   750 */
+        132,
+        30,
+        256,
+        158,
+        161,
+        178,
+        186,
+        178,
+        178,
+        193,
+        /*   760 */
+        36,
+        278,
+        38,
+        40,
+        193,
+        162,
+        164,
+        173,
+        168,
+        252,
+        /*   770 */
+        193,
+        205,
+        178,
+        277,
+        167,
+        204,
+        245,
+        178,
+        193,
+        193,
+        /*   780 */
+        193,
+        193,
+        186,
+        178,
+        184,
+        181,
+        42,
+        44,
+        46,
+        48,
+        /*   790 */
+        50,
+        178,
+        178,
+        178,
+        178,
+        52,
+        294,
+        54,
+        56,
+        213,
+        /*   800 */
+        210,
+        342,
+        253,
+        343,
+        193,
+        193,
+        193,
+        193,
+        193,
+        58,
+        /*   810 */
+        215,
+        218,
+        60,
+        193,
+        62,
+        193,
+        193,
+        178,
+        178,
+        178,
+        /*   820 */
+        178,
+        178,
+        344,
+        64,
+        66,
+        345,
+        178,
+        193,
+        178,
+        178,
+        /*   830 */
+        193,
+        68,
+        193,
+        70,
+        72,
+        74,
+        222,
+        346,
+        76,
+        78,
+        /*   840 */
+        178,
+        193,
+        193,
+        178,
+        347,
+        178,
+        226,
+        348,
+        349,
+        193,
+        /*   850 */
+        80,
+        193,
+        193,
+        193,
+        178,
+        178,
+        193,
+        193,
+        82,
+        84,
+        /*   860 */
+        86,
+        89,
+        178,
+        276,
+        178,
+        178,
+        178,
+        91,
+        193,
+        178,
+        /*   870 */
+        178,
+        350,
+        239,
+        251,
+        287,
+        276,
+        193,
+        193,
+        193,
+        193,
+        /*   880 */
+        247,
+        178,
+        137,
+        275,
+        139,
+        193,
+        145,
+        147,
+        159,
+        178,
+        /*   890 */
+        178,
+        178,
+        178,
+        255,
+        282,
+        286,
+        165,
+        261,
+        178,
+        263,
+        /*   900 */
+        193,
+        270,
+        193,
+        170,
+        193,
+        193,
+        193,
+        175,
+        273,
+        353,
+        /*   910 */
+        289,
+        283,
+        354,
+        178,
+        193,
+        178,
+        284,
+        178,
+        178,
+        178,
+        /*   920 */
+        292,
+        193,
+        177,
+        190,
+        192,
+        193,
+        207,
+        178,
+        249,
+        259,
+        /*   930 */
+        268,
+        288,
+        293,
+        361,
+        178,
+        295,
+        404,
         299,
-        300,
+        178,
         301,
-        380,
-        /*   200 */
+        /*   940 */
+        193,
+        193,
+        193,
+        304,
+        193,
+        309,
+        193,
+        193,
+        193,
+        310,
+        /*   950 */
+        367,
+        312,
+        316,
+        178,
+        178,
+        178,
+        316,
+        178,
+        316,
+        178,
+        /*   960 */
+        178,
+        178,
+    ];
+        static $yy_default = [
+        /*     0 */
+        485,
+        485,
+        485,
+        485,
+        485,
+        485,
         383,
+        392,
+        397,
+        385,
+        /*    10 */
+        403,
+        399,
+        319,
+        485,
+        398,
+        485,
+        400,
+        485,
+        401,
+        406,
+        /*    20 */
+        407,
+        408,
+        409,
+        410,
+        485,
+        402,
+        485,
+        485,
+        384,
+        485,
+        /*    30 */
+        386,
         388,
         389,
         390,
-        391,
-        392,
-        384,
-        368,
-        371,
-        372,
-        /*   210 */
-        302,
-        313,
-        354,
-        355,
-        360,
-        362,
-        361,
-        356,
-        357,
-        358,
-        /*   220 */
-        359,
-        363,
-        456,
-        317,
-        319,
-        320,
-        438,
-        439,
-        444,
-        416,
-        /*   230 */
-        419,
-        421,
-        422,
-        423,
-        424,
-        428,
-        429,
-        434,
-        436,
-        445,
-        /*   240 */
-        446,
-        447,
-        448,
-        449,
-        450,
-        451,
-        452,
-        453,
-        454,
-        455,
-        /*   250 */
-        435,
-        430,
-        425,
-        321,
-        322,
-        324,
-        325,
-        326,
-        327,
-        328,
-        /*   260 */
-        329,
-        330,
-        331,
-        332,
-        318,
-        314,
-        306,
-        308,
-        309,
-        310,
-        /*   270 */
-        311,
-        307,
-        303,
-        304,
+        485,
+        485,
+        411,
+        485,
+        413,
+        485,
+        /*    40 */
         414,
-        417,
+        485,
         415,
+        485,
+        416,
+        485,
+        417,
+        485,
         418,
+        485,
+        /*    50 */
+        419,
+        485,
+        420,
+        485,
+        421,
+        485,
+        422,
+        485,
+        423,
+        485,
+        /*    60 */
+        424,
+        485,
+        425,
+        485,
+        426,
+        485,
+        427,
+        485,
+        428,
+        485,
+        /*    70 */
+        429,
+        485,
+        430,
+        485,
+        431,
+        485,
+        432,
+        485,
+        433,
+        485,
+        /*    80 */
+        434,
+        485,
+        435,
+        485,
+        436,
+        485,
+        437,
+        485,
+        485,
+        438,
+        /*    90 */
+        485,
+        439,
+        485,
+        485,
+        323,
+        485,
+        485,
+        485,
+        334,
+        320,
+        /*   100 */
+        485,
+        331,
+        371,
+        485,
         369,
+        485,
+        372,
+        485,
+        485,
+        373,
+        /*   110 */
+        485,
+        378,
+        380,
+        379,
+        370,
+        485,
+        485,
+        485,
+        374,
         375,
-        /*   280 */
+        /*   120 */
+        485,
+        485,
+        485,
         376,
+        377,
+        381,
+        484,
+        485,
+        483,
+        333,
+        /*   130 */
         335,
         337,
-        338,
-        336,
-        340,
-        342,
+        485,
         341,
-        343,
-        386,
-        /*   290 */
-        345,
-        347,
-        346,
-        349,
-        296,
+        352,
+        338,
+        485,
+        351,
+        485,
+        447,
+        /*   140 */
+        485,
+        465,
+        485,
+        466,
+        485,
+        467,
+        485,
+        468,
+        485,
+        485,
+        /*   150 */
+        471,
+        485,
+        443,
+        485,
+        485,
+        485,
+        446,
+        485,
+        485,
+        485,
+        /*   160 */
+        485,
+        485,
+        448,
+        485,
+        485,
+        485,
+        485,
+        485,
+        449,
+        485,
+        /*   170 */
+        485,
+        485,
+        450,
+        451,
+        485,
+        485,
+        485,
+        453,
+        455,
+        484,
+        /*   180 */
         458,
+        485,
+        464,
+        485,
+        456,
+        485,
+        485,
+        461,
+        463,
+        485,
+        /*   190 */
+        469,
+        485,
+        470,
+        472,
+        473,
+        474,
+        475,
+        476,
+        477,
+        478,
+        /*   200 */
+        479,
+        480,
+        481,
+        482,
+        462,
+        457,
+        485,
+        454,
+        452,
+        485,
+        /*   210 */
+        339,
+        340,
+        485,
+        485,
+        485,
+        485,
+        485,
+        485,
+        485,
+        485,
+        /*   220 */
+        485,
+        485,
+        485,
+        485,
+        485,
+        485,
+        485,
+        485,
+        485,
+        336,
+        /*   230 */
+        332,
+        485,
+        324,
+        326,
+        484,
+        485,
+        327,
+        330,
+        485,
+        328,
+        /*   240 */
+        329,
+        325,
+        321,
+        322,
+        485,
+        441,
+        485,
+        444,
+        485,
+        440,
+        /*   250 */
+        485,
+        485,
+        485,
+        442,
+        485,
+        445,
+        412,
+        387,
+        485,
+        396,
+        /*   260 */
+        485,
+        485,
+        391,
+        485,
+        393,
+        395,
+        394,
+        485,
+        382,
+        485,
+        /*   270 */
+        485,
+        485,
+        485,
+        485,
+        485,
+        485,
+        485,
+        355,
+        357,
+        356,
+        /*   280 */
+        485,
+        485,
+        485,
+        485,
+        485,
+        485,
+        485,
+        485,
+        358,
+        360,
+        /*   290 */
+        359,
+        383,
+        485,
+        485,
+        485,
+        485,
+        485,
+        485,
+        485,
+        485,
+        /*   300 */
+        362,
+        485,
+        363,
+        485,
+        485,
+        365,
+        366,
+        364,
+        383,
+        485,
+        /*   310 */
+        485,
+        485,
+        485,
+        368,
     ];
-    static $yy_lookahead = [
+        static $yy_lookahead = [
         /*     0 */
         1,
         2,
@@ -2777,1571 +2521,1386 @@ class phql_Parser
         22,
         23,
         24,
+        25,
         26,
-        1,
-        2,
-        3,
-        4,
-        5,
-        /*    30 */
-        6,
-        7,
-        8,
-        9,
-        10,
-        11,
-        12,
-        13,
-        14,
-        15,
-        /*    40 */
-        16,
-        17,
-        18,
-        19,
-        20,
-        21,
-        22,
-        23,
-        24,
-        115,
-        /*    50 */
-        116,
-        117,
-        83,
-        54,
-        55,
-        31,
-        87,
-        33,
-        60,
-        1,
-        /*    60 */
-        2,
-        3,
-        4,
-        5,
-        6,
-        7,
-        8,
-        9,
-        10,
-        11,
-        /*    70 */
-        12,
-        13,
-        14,
-        15,
-        16,
-        17,
-        18,
-        19,
-        20,
-        21,
-        /*    80 */
-        22,
-        23,
-        24,
-        1,
-        2,
-        3,
-        4,
-        5,
-        6,
-        7,
-        /*    90 */
-        8,
-        9,
-        10,
-        11,
-        12,
-        13,
-        14,
-        15,
-        16,
-        17,
-        /*   100 */
-        18,
-        19,
-        20,
-        21,
-        22,
-        23,
-        24,
-        4,
-        5,
-        6,
-        /*   110 */
-        7,
-        8,
-        9,
-        10,
-        11,
-        12,
-        13,
-        14,
-        15,
-        16,
-        /*   120 */
-        17,
-        18,
-        19,
-        20,
-        21,
-        22,
-        23,
-        24,
-        120,
-        121,
-        /*   130 */
-        72,
-        45,
-        74,
-        10,
-        11,
-        12,
-        13,
-        14,
-        15,
-        16,
-        /*   140 */
-        17,
-        18,
-        19,
-        20,
-        21,
-        22,
-        23,
-        24,
-        102,
-        103,
-        /*   150 */
-        104,
-        69,
-        31,
-        1,
-        2,
-        3,
-        4,
-        5,
-        6,
-        7,
-        /*   160 */
-        8,
-        9,
-        10,
-        11,
-        12,
-        13,
-        14,
-        15,
-        16,
-        17,
-        /*   170 */
-        18,
-        19,
-        20,
-        21,
-        22,
-        23,
-        24,
-        12,
-        13,
-        14,
-        /*   180 */
-        15,
-        16,
-        17,
-        18,
-        19,
-        20,
-        21,
-        22,
-        23,
-        24,
-        /*   190 */
-        17,
-        18,
-        19,
-        20,
-        21,
-        22,
-        23,
-        24,
-        46,
         27,
-        /*   200 */
-        1,
-        2,
-        3,
-        4,
-        5,
-        6,
-        7,
-        8,
-        9,
-        10,
-        /*   210 */
-        11,
-        12,
-        13,
-        14,
-        15,
-        16,
-        17,
-        18,
-        19,
-        20,
-        /*   220 */
-        21,
-        22,
-        23,
-        24,
-        34,
-        35,
-        36,
-        37,
-        109,
-        39,
-        /*   230 */
-        40,
-        112,
-        33,
+        28,
+        29,
+        0,
+        /*    30 */
         31,
-        1,
-        2,
-        3,
-        4,
-        5,
-        6,
-        /*   240 */
-        7,
-        8,
-        9,
-        10,
-        11,
-        12,
-        13,
-        14,
-        15,
-        16,
-        /*   250 */
-        17,
-        18,
-        19,
-        20,
-        21,
-        22,
-        23,
-        24,
-        1,
-        2,
-        /*   260 */
-        3,
-        4,
-        5,
-        6,
-        7,
-        8,
-        9,
-        10,
-        11,
-        12,
-        /*   270 */
-        13,
+        32,
+        33,
+        34,
         14,
         15,
         16,
         17,
         18,
         19,
+        /*    40 */
         20,
         21,
         22,
-        /*   280 */
         23,
-        24,
-        18,
-        71,
-        72,
-        21,
-        74,
-        99,
         24,
         25,
-        /*   290 */
-        31,
-        27,
-        99,
         26,
-        18,
-        31,
-        108,
         27,
-        129,
+        28,
+        29,
+        /*    50 */
+        0,
+        31,
+        32,
+        33,
+        34,
+        43,
+        44,
+        45,
+        46,
+        35,
+        /*    60 */
+        48,
+        49,
+        63,
+        64,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        /*    70 */
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        /*    80 */
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        /*    90 */
+        27,
+        28,
+        29,
+        69,
+        31,
+        32,
+        33,
+        34,
+        1,
+        2,
+        /*   100 */
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        /*   110 */
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        /*   120 */
+        23,
+        24,
+        25,
+        26,
+        27,
+        28,
+        29,
+        60,
+        31,
+        32,
+        /*   130 */
+        33,
+        34,
+        70,
+        71,
+        72,
+        73,
+        74,
+        40,
+        29,
+        42,
+        /*   140 */
+        31,
+        32,
+        33,
+        34,
+        81,
+        35,
+        83,
+        37,
+        1,
+        2,
+        /*   150 */
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        /*   160 */
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        /*   170 */
+        23,
+        24,
+        25,
+        26,
+        27,
+        28,
+        29,
+        0,
+        31,
+        32,
+        /*   180 */
+        33,
+        34,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        /*   190 */
+        24,
+        25,
+        26,
+        27,
+        28,
+        29,
+        0,
+        31,
+        32,
+        33,
+        /*   200 */
+        34,
+        0,
+        55,
+        97,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        /*   210 */
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        /*   220 */
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        /*   230 */
+        27,
+        28,
+        29,
+        41,
+        31,
+        32,
+        33,
+        34,
         111,
+        112,
+        /*   240 */
+        113,
+        80,
+        81,
+        65,
+        83,
+        42,
+        54,
+        1,
+        2,
+        3,
+        /*   250 */
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        /*   260 */
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        /*   270 */
+        24,
+        25,
+        26,
+        27,
+        28,
+        29,
+        66,
+        31,
+        32,
+        33,
+        /*   280 */
+        34,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        /*   290 */
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
         /*   300 */
         20,
         21,
         22,
         23,
         24,
-        117,
-        73,
-        31,
-        18,
-        45,
-        /*   310 */
-        117,
-        21,
-        42,
-        46,
-        24,
         25,
-        123,
-        47,
-        130,
-        49,
+        26,
+        27,
+        28,
+        29,
+        /*   310 */
+        98,
+        31,
+        32,
+        33,
+        34,
+        27,
+        28,
+        29,
+        99,
+        31,
         /*   320 */
         32,
-        31,
-        126,
-        130,
-        24,
-        61,
-        62,
-        63,
-        64,
-        65,
-        /*   330 */
-        66,
-        67,
-        68,
-        45,
-        70,
-        45,
-        26,
-        116,
-        117,
-        75,
-        /*   340 */
-        76,
-        77,
-        78,
-        79,
+        33,
         34,
-        35,
-        36,
-        37,
-        32,
-        39,
-        /*   350 */
         40,
-        61,
-        62,
-        63,
-        64,
-        65,
-        66,
-        67,
-        68,
-        105,
-        /*   360 */
-        70,
-        45,
-        126,
-        98,
-        99,
-        75,
-        76,
-        77,
         78,
-        79,
-        /*   370 */
+        42,
+        1,
+        2,
+        3,
+        4,
+        /*   330 */
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        /*   340 */
+        15,
+        16,
+        17,
         18,
-        117,
-        126,
+        19,
+        20,
         21,
-        97,
-        75,
+        22,
+        23,
         24,
+        /*   350 */
         25,
-        101,
-        102,
-        /*   380 */
-        103,
-        104,
-        117,
+        26,
+        27,
+        28,
+        29,
+        29,
         31,
+        32,
+        33,
+        34,
+        /*   360 */
+        38,
+        39,
+        82,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        /*   370 */
+        11,
+        12,
+        13,
         14,
         15,
         16,
         17,
         18,
         19,
+        20,
+        /*   380 */
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28,
+        29,
+        36,
         /*   390 */
+        31,
+        32,
+        33,
+        34,
+        22,
+        16,
+        17,
+        25,
+        40,
+        92,
+        /*   400 */
+        42,
+        29,
+        30,
+        96,
+        51,
+        35,
+        108,
+        28,
+        36,
+        56,
+        /*   410 */
+        84,
+        58,
+        40,
+        43,
+        44,
+        45,
+        46,
+        59,
+        48,
+        49,
+        /*   420 */
+        22,
+        35,
+        40,
+        25,
+        126,
+        40,
+        54,
+        29,
+        30,
+        90,
+        /*   430 */
+        91,
+        92,
+        93,
+        94,
+        95,
+        96,
+        54,
+        139,
+        40,
+        54,
+        /*   440 */
+        142,
+        55,
+        70,
+        71,
+        72,
+        73,
+        74,
+        75,
+        76,
+        77,
+        /*   450 */
+        61,
+        79,
+        54,
+        55,
+        137,
+        138,
+        84,
+        85,
+        86,
+        87,
+        /*   460 */
+        88,
+        122,
+        124,
+        125,
+        126,
+        129,
+        130,
+        128,
+        70,
+        71,
+        /*   470 */
+        72,
+        73,
+        74,
+        75,
+        76,
+        77,
+        100,
+        79,
+        68,
+        108,
+        /*   480 */
+        129,
+        130,
+        84,
+        85,
+        86,
+        87,
+        88,
+        43,
+        44,
+        45,
+        /*   490 */
+        46,
+        22,
+        48,
+        49,
+        25,
+        35,
+        105,
+        126,
+        29,
+        30,
+        /*   500 */
+        109,
+        57,
+        35,
+        108,
+        40,
+        114,
+        41,
+        136,
+        67,
+        40,
+        /*   510 */
+        139,
+        109,
+        141,
+        142,
+        101,
+        55,
+        114,
+        126,
+        54,
+        54,
+        /*   520 */
+        25,
+        126,
+        55,
+        54,
+        29,
+        30,
+        131,
+        132,
+        126,
+        102,
+        /*   530 */
+        44,
+        36,
+        108,
+        47,
+        139,
+        40,
+        129,
+        130,
+        56,
+        70,
+        /*   540 */
+        71,
+        72,
+        73,
+        74,
+        75,
+        76,
+        77,
+        114,
+        79,
+        54,
+        /*   550 */
+        126,
+        53,
+        54,
+        84,
+        85,
+        86,
+        87,
+        88,
+        134,
+        126,
+        /*   560 */
+        92,
+        114,
+        62,
+        139,
+        96,
+        70,
+        71,
+        72,
+        73,
+        74,
+        /*   570 */
+        75,
+        76,
+        77,
+        126,
+        79,
+        44,
+        108,
+        135,
+        47,
+        84,
+        /*   580 */
+        85,
+        86,
+        87,
+        88,
+        44,
+        109,
+        135,
+        47,
+        22,
+        104,
+        /*   590 */
+        114,
+        25,
+        107,
+        108,
+        126,
+        29,
+        30,
+        107,
+        108,
+        35,
+        /*   600 */
+        108,
+        135,
+        126,
+        35,
+        136,
+        22,
+        40,
+        139,
+        106,
+        54,
+        /*   610 */
+        142,
+        126,
+        110,
+        111,
+        112,
+        113,
+        126,
+        25,
+        126,
+        55,
+        /*   620 */
+        54,
+        29,
+        30,
+        40,
+        139,
+        133,
+        134,
+        103,
+        40,
+        139,
+        /*   630 */
+        108,
+        139,
+        40,
+        125,
+        126,
+        40,
+        70,
+        71,
+        72,
+        73,
+        /*   640 */
+        74,
+        75,
+        76,
+        77,
+        118,
+        79,
+        54,
+        121,
+        126,
+        127,
+        /*   650 */
+        84,
+        85,
+        86,
+        87,
+        88,
+        109,
+        59,
+        129,
+        129,
+        59,
+        /*   660 */
+        114,
+        139,
+        70,
+        71,
+        72,
+        73,
+        74,
+        75,
+        76,
+        77,
+        /*   670 */
+        40,
+        79,
+        126,
+        129,
+        129,
+        41,
+        84,
+        85,
+        86,
+        87,
+        /*   680 */
+        88,
+        18,
+        19,
         20,
         21,
         22,
         23,
         24,
-        130,
-        94,
-        45,
-        105,
-        21,
-        /*   400 */
-        12,
-        13,
-        24,
         25,
-        126,
-        27,
-        31,
-        100,
-        33,
-        31,
-        /*   410 */
-        117,
-        23,
-        105,
-        61,
-        62,
-        63,
-        64,
-        65,
-        66,
-        67,
-        /*   420 */
-        68,
-        120,
-        70,
-        45,
-        117,
-        50,
-        120,
-        75,
-        76,
-        77,
-        /*   430 */
-        78,
-        79,
         26,
-        83,
-        83,
-        120,
-        121,
-        87,
-        87,
-        61,
-        /*   440 */
-        62,
-        63,
-        64,
-        65,
-        66,
-        67,
-        68,
-        106,
-        70,
-        99,
-        /*   450 */
-        99,
-        120,
-        46,
-        75,
-        76,
-        77,
-        78,
-        79,
-        99,
-        35,
-        /*   460 */
-        35,
-        21,
-        38,
-        38,
-        24,
-        25,
-        120,
-        117,
-        117,
-        100,
-        /*   470 */
-        111,
-        31,
-        128,
-        129,
-        105,
-        112,
-        117,
-        127,
-        96,
-        56,
-        /*   480 */
-        130,
-        130,
-        100,
-        133,
-        31,
-        45,
-        117,
-        105,
-        31,
-        130,
-        /*   490 */
-        33,
-        81,
-        82,
-        83,
-        84,
-        85,
-        86,
-        87,
-        45,
-        117,
-        /*   500 */
-        89,
-        61,
-        62,
-        63,
-        64,
-        65,
-        66,
-        67,
-        68,
-        26,
-        /*   510 */
-        70,
-        28,
-        114,
-        99,
-        99,
-        75,
-        76,
-        77,
-        78,
-        79,
-        /*   520 */
-        22,
-        23,
-        24,
-        113,
-        83,
-        29,
-        30,
-        59,
-        87,
-        119,
-        /*   530 */
-        95,
-        117,
-        117,
-        98,
-        99,
-        91,
-        31,
-        122,
-        123,
-        35,
-        /*   540 */
-        99,
-        127,
-        38,
-        100,
-        130,
-        130,
-        132,
-        133,
-        105,
-        99,
-        /*   550 */
-        45,
-        52,
-        117,
-        61,
-        62,
-        63,
-        64,
-        65,
-        117,
-        51,
-        /*   560 */
-        117,
-        99,
-        44,
-        45,
-        99,
-        130,
-        88,
-        117,
-        127,
-        99,
-        /*   570 */
-        108,
-        130,
-        114,
-        111,
-        133,
-        58,
-        99,
-        93,
-        99,
-        117,
-        /*   580 */
-        130,
-        99,
-        117,
-        133,
-        59,
-        99,
-        99,
-        117,
-        41,
-        124,
-        /*   590 */
-        125,
-        88,
-        130,
-        99,
-        117,
-        130,
-        117,
-        118,
-        26,
-        117,
-        /*   600 */
-        130,
-        99,
-        125,
-        117,
-        117,
-        99,
-        57,
-        130,
-        99,
-        130,
-        /*   610 */
-        99,
-        117,
-        130,
-        99,
-        88,
-        99,
-        130,
-        130,
-        46,
-        117,
-        /*   620 */
-        120,
-        121,
-        26,
-        117,
-        130,
-        92,
-        117,
-        107,
-        117,
-        99,
-        /*   630 */
-        99,
-        117,
-        130,
-        117,
-        99,
-        90,
-        130,
-        99,
-        99,
-        130,
-        /*   640 */
-        99,
-        130,
-        46,
-        29,
-        130,
-        99,
-        130,
-        117,
-        117,
-        99,
-        /*   650 */
-        26,
-        46,
-        117,
-        131,
-        99,
-        117,
-        117,
-        99,
-        117,
-        53,
-        /*   660 */
-        130,
-        130,
-        35,
-        117,
-        99,
-        130,
-        26,
-        117,
-        130,
-        130,
-        /*   670 */
-        46,
-        130,
-        117,
-        99,
-        99,
-        117,
-        130,
-        45,
-        99,
-        99,
-        /*   680 */
-        130,
-        99,
-        117,
-        99,
-        31,
-        130,
-        46,
-        24,
-        130,
-        99,
         /*   690 */
-        99,
-        117,
-        117,
-        99,
-        46,
-        130,
-        117,
-        117,
-        45,
-        117,
-        /*   700 */
-        99,
-        117,
-        26,
-        26,
-        130,
-        130,
-        4,
-        117,
-        117,
-        130,
-        /*   710 */
-        130,
-        117,
-        130,
-        46,
-        130,
-        99,
-        99,
-        99,
-        117,
-        53,
-        /*   720 */
-        130,
-        130,
-        46,
-        46,
-        130,
-        31,
-        31,
-        26,
-        32,
-        45,
-        /*   730 */
-        43,
-        130,
-        35,
-        117,
-        117,
-        117,
-        31,
-        46,
-        45,
-        26,
-        /*   740 */
-        75,
-        35,
-        35,
+        27,
         28,
-        44,
-        35,
-        130,
-        130,
-        130,
-        45,
-        /*   750 */
-        47,
-        26,
-        26,
+        29,
+        115,
         31,
-        31,
-        31,
-        134,
-        48,
-        50,
-        134,
-        /*   760 */
-        46,
-        50,
-        46,
-        46,
-        45,
-        45,
-        134,
-        134,
-        134,
-        134,
-        /*   770 */
-        134,
-        134,
-        134,
-        134,
-        134,
-        134,
-        134,
-        134,
-        134,
-        134,
-        /*   780 */
-        134,
-        134,
-        134,
-        134,
-        134,
-        134,
-        134,
-        134,
-        134,
-        134,
-        /*   790 */
-        134,
-        134,
-        134,
-        134,
-        134,
-        134,
-        134,
-        134,
-        134,
-        134,
-        /*   800 */
-        134,
-        134,
-        134,
-        134,
-        134,
-        134,
-        134,
-        134,
-        134,
-        134,
-        /*   810 */
-        134,
-        134,
-        134,
-        134,
-        134,
-        134,
-        134,
-        134,
-        134,
-        134,
-        /*   820 */
-        134,
-        134,
-        134,
-        134,
-        134,
-        134,
-        134,
-        134,
-        134,
-        134,
-        /*   830 */
-        134,
-        134,
-        134,
-        134,
-        134,
-        134,
-        134,
-        134,
-        134,
-        134,
-        /*   840 */
-        134,
-        134,
-        134,
-        134,
-        134,
-        134,
-        134,
-        134,
-        134,
-        134,
-        /*   850 */
-        134,
-        134,
-        134,
-        134,
-        134,
-        134,
-        134,
-        134,
-        134,
-        134,
-        /*   860 */
-        134,
-        134,
-        134,
-        134,
-        134,
-        134,
-        134,
-        134,
-        134,
-        134,
-        /*   870 */
-        134,
-        134,
-        134,
-        134,
-        134,
-        134,
-        134,
-        134,
-        134,
-        134,
-        /*   880 */
-        134,
-        134,
-        134,
-        134,
-        134,
-        134,
-        134,
-        134,
-        134,
-        134,
-        /*   890 */
-        134,
-        134,
-        134,
-        134,
+        32,
+        33,
         34,
-        35,
-        36,
-        37,
-        134,
-        39,
-        /*   900 */
+        21,
+        22,
+        /*   700 */
+        23,
+        24,
+        25,
+        26,
+        27,
+        28,
+        29,
         40,
-        134,
-        134,
-        134,
-        134,
-        134,
-        134,
-        134,
-        134,
-        134,
+        31,
+        32,
+        /*   710 */
+        33,
+        34,
+        24,
+        25,
+        26,
+        27,
+        28,
+        29,
+        50,
+        31,
+        /*   720 */
+        32,
+        33,
+        34,
+        116,
+        108,
+        92,
+        108,
+        108,
+        0,
+        96,
+        /*   730 */
+        92,
+        84,
+        36,
+        117,
+        96,
+        117,
+        120,
+        54,
+        120,
+        55,
+        /*   740 */
+        55,
+        108,
+        126,
+        106,
+        126,
+        126,
+        108,
+        110,
+        111,
+        112,
+        /*   750 */
+        113,
+        132,
+        108,
+        54,
+        40,
+        139,
+        35,
+        139,
+        139,
+        126,
+        /*   760 */
+        108,
+        108,
+        108,
+        108,
+        126,
+        55,
+        54,
+        138,
+        55,
+        136,
+        /*   770 */
+        126,
+        38,
+        139,
+        120,
+        40,
+        142,
+        55,
+        139,
+        126,
+        126,
+        /*   780 */
+        126,
+        126,
+        35,
+        139,
+        55,
+        140,
+        108,
+        108,
+        108,
+        108,
+        /*   790 */
+        108,
+        139,
+        139,
+        139,
+        139,
+        108,
+        68,
+        108,
+        108,
+        44,
+        /*   800 */
+        40,
+        40,
+        55,
+        40,
+        126,
+        126,
+        126,
+        126,
+        126,
+        108,
+        /*   810 */
+        44,
+        44,
+        108,
+        126,
+        108,
+        126,
+        126,
+        139,
+        139,
+        139,
+        /*   820 */
+        139,
+        139,
+        40,
+        108,
+        108,
+        40,
+        139,
+        126,
+        139,
+        139,
+        /*   830 */
+        126,
+        108,
+        126,
+        108,
+        108,
+        108,
+        44,
+        40,
+        108,
+        108,
+        /*   840 */
+        139,
+        126,
+        126,
+        139,
+        40,
+        139,
+        44,
+        40,
+        40,
+        126,
+        /*   850 */
+        108,
+        126,
+        126,
+        126,
+        139,
+        139,
+        126,
+        126,
+        108,
+        108,
+        /*   860 */
+        108,
+        108,
+        139,
+        35,
+        139,
+        139,
+        139,
+        108,
+        126,
+        139,
+        /*   870 */
+        139,
+        40,
+        40,
+        54,
+        35,
+        35,
+        126,
+        126,
+        126,
+        126,
+        /*   880 */
+        55,
+        139,
+        108,
+        55,
+        108,
+        126,
+        108,
+        108,
+        108,
+        139,
+        /*   890 */
+        139,
+        139,
+        139,
+        55,
+        55,
+        55,
+        108,
+        62,
+        139,
+        35,
+        /*   900 */
+        126,
+        52,
+        126,
+        108,
+        126,
+        126,
+        126,
+        108,
+        54,
+        0,
         /*   910 */
-        134,
-        134,
-        134,
-        134,
-        134,
-        134,
-        134,
-        134,
-        134,
-        134,
+        40,
+        53,
+        0,
+        139,
+        126,
+        139,
+        54,
+        139,
+        139,
+        139,
         /*   920 */
-        134,
-        134,
-        134,
-        134,
-        134,
-        134,
-        134,
-        134,
-        134,
-        134,
-        /*   930 */
-        134,
-        134,
-        134,
-        134,
-        134,
-        134,
-        134,
-        134,
-        134,
-        134,
-        /*   940 */
-        134,
-        134,
-        134,
-        134,
-        134,
-        134,
-        134,
-        134,
-        134,
-        134,
-        /*   950 */
-        134,
-        134,
-        134,
-        134,
-        134,
-        134,
-        134,
-        134,
-        134,
-        134,
-        /*   960 */
-        134,
-        134,
-        134,
-        134,
-        134,
-        134,
-        134,
-        134,
-        134,
-        134,
-        /*   970 */
-        134,
-        134,
-        134,
-        134,
-        134,
-        134,
-        134,
-        134,
-        134,
-        134,
-        /*   980 */
-        134,
-        134,
-        134,
-        134,
-        134,
-        134,
-        134,
-        134,
-        134,
-        134,
-        /*   990 */
-        134,
-        134,
-        134,
-        134,
-        134,
-        134,
-        134,
-        134,
-        134,
-        134,
-        /*  1000 */
-        134,
-        134,
-        134,
-        134,
-        134,
-        134,
-        134,
-        134,
-        134,
-        134,
-        /*  1010 */
-        134,
-        134,
-        134,
-        134,
-        134,
-        134,
-        134,
-        134,
-        134,
-        134,
-        /*  1020 */
-        134,
-        134,
-        134,
-        134,
-        134,
-        134,
-        134,
-        134,
-        134,
-        134,
-        /*  1030 */
-        134,
-        134,
-        134,
-        134,
-        134,
-        134,
-        134,
-        134,
-        134,
-        134,
-        /*  1040 */
-        134,
-        134,
-        134,
-        134,
-        134,
-        134,
-        134,
-        134,
-        134,
-        134,
-        /*  1050 */
-        134,
-        134,
-        134,
-        134,
-        134,
-        134,
-        134,
-        134,
-        134,
-        134,
-        /*  1060 */
-        134,
-        134,
-        134,
-        134,
-        134,
-        134,
-        134,
-        134,
-        134,
-        134,
-        /*  1070 */
-        134,
-        134,
-        134,
-        134,
-        134,
-        134,
-        134,
-        134,
-        134,
-        134,
-        /*  1080 */
-        134,
-        134,
-        134,
-        134,
-        134,
-        134,
-        134,
-        134,
-        134,
-        134,
-        /*  1090 */
-        134,
         97,
-        134,
-        134,
-        134,
-        101,
-        102,
-        103,
-        104,
-        134,
-        /*  1100 */
-        134,
-        134,
-        134,
-        134,
-        134,
-        134,
-        134,
-        134,
-        134,
-        134,
-        /*  1110 */
-        134,
-        134,
-        134,
-        134,
-        134,
-        134,
-        134,
-        134,
-        134,
-        134,
-        /*  1120 */
-        134,
-        134,
-        134,
-        134,
-        134,
-        134,
-        134,
-        134,
-        134,
-        134,
-        /*  1130 */
-        134,
-        134,
-        134,
-        134,
-        134,
-        134,
-        134,
-        134,
-        134,
-        134,
-        /*  1140 */
-        134,
-        134,
-        134,
-        134,
-        134,
-        134,
-        134,
-        134,
-        134,
-        134,
-        /*  1150 */
-        134,
-        134,
-        134,
-        134,
-        134,
-        134,
-        134,
-        134,
-        134,
-        134,
-        /*  1160 */
-        134,
-        134,
-        134,
-        134,
-        134,
-        134,
-        134,
-        134,
-        134,
-        134,
-        /*  1170 */
-        134,
-        134,
-        134,
-        134,
-        134,
-        134,
-        48,
-        134,
-        134,
-        134,
-        /*  1180 */
-        134,
-        134,
-        134,
-        134,
-        134,
-        134,
-        134,
-        134,
-        134,
-        134,
-        /*  1190 */
-        134,
-        134,
-        134,
-        134,
-        134,
-        134,
-        134,
-        134,
-        134,
-        134,
-        /*  1200 */
-        134,
-        134,
-        134,
-        134,
-        134,
-        134,
-        134,
-        134,
-        134,
-        134,
-        /*  1210 */
-        134,
-        134,
-        134,
-        134,
-        134,
-        134,
-        134,
-        134,
-        134,
-        134,
-        /*  1220 */
-        134,
-        134,
-        134,
-        134,
-        134,
-        134,
-        134,
-        134,
-        134,
-        134,
-        /*  1230 */
-        134,
-        134,
-        134,
-        134,
-        134,
-        134,
-        134,
-        134,
-        134,
-        134,
-        /*  1240 */
-        134,
-        134,
-        134,
-        134,
-        134,
-        134,
-        134,
-        134,
-        134,
-        134,
-        /*  1250 */
-        134,
-        134,
-        134,
-        134,
-        134,
-        134,
-        134,
-        134,
-        134,
-        134,
-        /*  1260 */
-        134,
-        134,
+        126,
+        108,
+        108,
+        108,
+        126,
+        108,
+        139,
+        108,
+        108,
+        /*   930 */
+        108,
+        121,
+        123,
+        0,
+        139,
+        135,
+        0,
+        57,
+        139,
+        35,
+        /*   940 */
+        126,
+        126,
+        126,
+        4,
+        126,
+        97,
+        126,
+        126,
+        126,
+        123,
+        /*   950 */
+        0,
+        37,
+        143,
+        139,
+        139,
+        139,
+        143,
+        139,
+        143,
+        139,
+        /*   960 */
+        139,
+        139,
     ];
-    static $yy_reduce_ofst = [
+        static $yy_reduce_ofst = [
         /*     0 */
-        410,
-        441,
-        350,
-        414,
-        351,
-        435,
-        415,
-        462,
-        188,
-        465,
+        339,
+        -1,
+        -1,
+        -1,
+        -1,
+        -1,
+        106,
+        212,
+        219,
+        376,
         /*    10 */
-        277,
-        450,
-        265,
-        193,
-        479,
-        477,
-        359,
-        382,
-        555,
-        558,
+        413,
+        427,
+        -1,
+        -1,
+        -1,
+        442,
+        -1,
+        451,
+        -1,
+        -1,
         /*    20 */
-        565,
-        574,
-        575,
-        579,
-        511,
-        541,
-        550,
-        546,
-        514,
-        509,
+        -1,
+        -1,
+        -1,
+        -1,
+        466,
+        -1,
+        -1,
+        395,
+        -1,
+        619,
         /*    30 */
-        506,
-        502,
-        494,
-        487,
-        470,
-        486,
-        482,
-        539,
-        538,
-        531,
+        -1,
+        -1,
+        -1,
+        -1,
+        644,
+        652,
+        -1,
+        654,
+        -1,
+        655,
         /*    40 */
-        618,
-        617,
-        601,
-        591,
-        584,
-        580,
-        582,
-        590,
-        594,
-        616,
+        -1,
+        678,
+        -1,
+        679,
+        -1,
+        680,
+        -1,
+        681,
+        -1,
+        682,
         /*    50 */
-        516,
-        530,
-        535,
-        46,
-        443,
-        307,
-        369,
-        -66,
-        344,
-        221,
+        -1,
+        687,
+        -1,
+        689,
+        -1,
+        690,
+        -1,
+        701,
+        -1,
+        704,
         /*    60 */
-        293,
-        -31,
-        254,
-        500,
-        315,
-        8,
-        119,
-        196,
-        236,
-        246,
+        -1,
+        706,
+        -1,
+        715,
+        -1,
+        716,
+        -1,
+        723,
+        -1,
+        725,
         /*    70 */
-        278,
-        169,
-        302,
-        301,
-        306,
-        341,
-        331,
-        346,
-        363,
-        411,
+        -1,
+        726,
+        -1,
+        727,
+        -1,
+        730,
+        -1,
+        731,
+        -1,
+        742,
         /*    80 */
-        398,
-        444,
-        478,
-        484,
-        503,
-        458,
-        526,
-        533,
-        520,
-        545,
+        -1,
+        750,
+        -1,
+        751,
+        -1,
+        752,
+        -1,
+        -1,
+        753,
+        -1,
         /*    90 */
-        522,
-        -67,
-        -67,
-        -67,
-        -67,
-        -67,
-        -67,
-        -67,
-        -67,
-        -67,
+        759,
+        -1,
+        -1,
+        468,
+        524,
+        485,
+        -1,
+        391,
+        502,
+        -1,
         /*   100 */
-        -67,
-        -67,
-        -67,
-        -67,
-        -67,
-        -67,
-        -67,
-        -67,
-        -67,
-        -67,
+        402,
+        -1,
+        -1,
+        -1,
+        -1,
+        528,
+        -1,
+        336,
+        -1,
+        -1,
         /*   110 */
-        -67,
-        -67,
-        -67,
-        -67,
-        -67,
-        -67,
-        -67,
-        -67,
-        -67,
-        -67,
+        529,
+        -1,
+        -1,
+        -1,
+        -1,
+        544,
+        351,
+        -1,
+        -1,
+        -1,
         /*   120 */
-        -67,
-        -67,
-        -67,
-        -67,
-        -67,
-        -67,
-        -67,
-        -67,
-        -67,
-        -67,
+        545,
+        407,
+        -1,
+        -1,
+        -1,
+        -1,
+        -1,
+        -1,
+        -1,
+        127,
         /*   130 */
-        -67,
-        -67,
-        -67,
-        -67,
-        -67,
-        -67,
-        -67,
-        -67,
-        -67,
-        -67,
+        -1,
+        -1,
+        433,
+        578,
+        607,
+        -1,
+        774,
+        -1,
+        776,
+        -1,
         /*   140 */
-        -67,
-        -67,
-        -67,
-        -67,
-        -67,
-        -67,
-        -67,
-        -67,
-        -67,
-        -67,
+        -1,
+        -1,
+        -1,
+        -1,
+        778,
+        -1,
+        779,
+        -1,
+        638,
+        -1,
         /*   150 */
-        -67,
-        -67,
-        -67,
-        -67,
-        -67,
-        -67,
-        -67,
-        -67,
-        -67,
-        -67,
+        -1,
+        -1,
+        -1,
+        -1,
+        307,
+        -1,
+        -1,
+        -1,
+        780,
+        -1,
         /*   160 */
-        -67,
-        -67,
-        -67,
-        -67,
-        -67,
-        -67,
-        -67,
-        -67,
-        -67,
-        -67,
+        -1,
+        -1,
+        -1,
+        -1,
+        788,
+        -1,
+        -1,
+        -1,
+        -1,
+        795,
         /*   170 */
-        -67,
-        -67,
-        -67,
-        -67,
-        -67,
-        -67,
-        -67,
-        -67,
-        -67,
-        -67,
+        317,
+        629,
+        -1,
+        -1,
+        799,
+        -1,
+        814,
+        -1,
+        -1,
+        -1,
         /*   180 */
-        -67,
-        994,
+        645,
+        371,
+        -1,
+        -1,
+        -1,
+        -1,
+        298,
+        -1,
+        -1,
+        815,
+        /*   190 */
+        -1,
+        816,
+        -1,
+        -1,
+        -1,
+        -1,
+        -1,
+        -1,
+        -1,
+        -1,
+        /*   200 */
+        -1,
+        -1,
+        -1,
+        -1,
+        -1,
+        -1,
+        818,
+        -1,
+        -1,
+        -1,
+        /*   210 */
+        -1,
+        -1,
+        -1,
+        -1,
+        -1,
+        -1,
+        -1,
+        -1,
+        -1,
+        -1,
+        /*   220 */
+        -1,
+        -1,
+        -1,
+        -1,
+        -1,
+        -1,
+        -1,
+        -1,
+        -1,
+        -1,
+        /*   230 */
+        -1,
+        490,
+        -1,
+        -1,
+        -1,
+        -1,
+        -1,
+        -1,
+        -1,
+        -1,
+        /*   240 */
+        -1,
+        -1,
+        -1,
+        -1,
+        -1,
+        -1,
+        -1,
+        -1,
+        820,
+        -1,
+        /*   250 */
+        -1,
+        633,
+        -1,
+        -1,
+        -1,
+        -1,
+        -1,
+        -1,
+        821,
+        -1,
+        /*   260 */
+        -1,
+        492,
+        -1,
+        424,
+        -1,
+        -1,
+        -1,
+        822,
+        -1,
+        -1,
+        /*   270 */
+        447,
+        -1,
+        -1,
+        616,
+        -1,
+        -1,
+        653,
+        -1,
+        -1,
+        -1,
+        /*   280 */
+        526,
+        -1,
+        -1,
+        -1,
+        618,
+        -1,
+        -1,
+        810,
+        -1,
+        -1,
+        /*   290 */
+        -1,
+        823,
+        809,
+        -1,
+        800,
+        -1,
+        476,
+        637,
+        -1,
+        338,
+        /*   300 */
+        -1,
+        508,
+        -1,
+        -1,
+        522,
+        -1,
+        -1,
+        -1,
+        848,
+        826,
+        /*   310 */
+        -1,
+        -1,
+        546,
+        -1,
     ];
 
     /* The next table maps tokens into fallback tokens.  If a construct
@@ -4354,333 +3913,353 @@ class phql_Parser
 ** but it does not parse, the type of the token is changed to ID and
 ** the parse is retried before an error is thrown.
 */
-    static $yy_shift_ofst = [
+        static $yy_shift_ofst = [
         /*     0 */
-        270,
-        264,
-        264,
-        290,
-        378,
-        352,
-        440,
-        440,
-        440,
-        440,
+        353,
+        29,
+        50,
+        177,
+        196,
+        201,
+        67,
+        178,
+        210,
+        389,
         /*    10 */
-        310,
-        290,
-        352,
-        440,
-        440,
-        440,
-        440,
-        121,
-        440,
-        440,
-        /*    20 */
-        440,
-        440,
-        440,
-        440,
-        440,
-        440,
-        440,
-        440,
-        440,
-        440,
-        /*    30 */
-        440,
-        440,
-        440,
-        440,
-        440,
-        440,
-        440,
-        440,
-        440,
-        440,
-        /*    40 */
-        440,
-        440,
-        440,
-        440,
-        440,
-        440,
-        440,
-        440,
-        440,
-        440,
-        /*    50 */
-        440,
-        440,
-        440,
-        190,
-        121,
-        121,
-        121,
-        121,
-        58,
-        121,
-        /*    60 */
-        121,
-        172,
-        121,
-        202,
-        202,
-        202,
-        259,
-        492,
-        492,
-        492,
-        /*    70 */
-        492,
-        212,
-        496,
-        453,
-        505,
-        457,
-        653,
-        202,
-        259,
-        423,
-        /*    80 */
-        468,
-        499,
-        508,
-        517,
-        508,
-        468,
-        508,
-        525,
-        547,
-        549,
-        /*    90 */
-        614,
-        24,
-        -1,
-        233,
-        82,
-        152,
-        199,
-        257,
-        257,
-        257,
-        /*   100 */
-        257,
-        257,
-        257,
-        257,
-        257,
-        257,
-        257,
-        103,
-        103,
-        123,
-        /*   110 */
-        123,
-        123,
-        123,
-        123,
-        123,
-        165,
-        165,
-        370,
-        370,
-        173,
-        /*   120 */
-        173,
-        173,
-        280,
-        280,
-        280,
-        498,
-        498,
-        498,
-        375,
-        388,
-        /*   130 */
-        677,
+        410,
+        441,
         -2,
-        267,
-        406,
-        300,
-        596,
-        640,
-        518,
-        624,
-        676,
-        /*   140 */
-        483,
-        276,
+        482,
+        -2,
+        62,
+        24,
+        62,
+        -2,
+        -2,
+        /*    20 */
+        -2,
+        -2,
+        -2,
+        -2,
+        62,
+        -2,
+        500,
+        592,
+        568,
+        592,
+        /*    30 */
+        -2,
+        -1,
+        -2,
+        -2,
+        592,
+        592,
         288,
-        316,
-        424,
-        425,
-        504,
-        572,
-        627,
-        605,
-        /*   150 */
-        606,
-        632,
+        592,
+        288,
+        592,
+        /*    40 */
+        688,
+        592,
+        688,
+        592,
+        688,
+        592,
+        166,
+        592,
+        166,
+        592,
+        /*    50 */
+        677,
+        592,
+        677,
+        592,
+        677,
+        592,
+        20,
+        592,
+        20,
+        592,
+        /*    60 */
+        20,
+        592,
+        20,
+        592,
+        288,
+        592,
+        -2,
+        592,
+        -2,
+        592,
+        /*    70 */
+        -2,
+        592,
+        -2,
+        592,
+        20,
+        592,
+        20,
+        592,
+        20,
+        592,
+        /*    80 */
+        20,
+        592,
+        20,
+        592,
+        20,
+        592,
         663,
-        648,
-        702,
+        379,
+        592,
+        109,
+        /*    90 */
+        592,
+        663,
+        555,
+        372,
+        322,
+        469,
+        110,
+        588,
+        370,
+        -2,
+        /*   100 */
+        588,
+        -2,
+        358,
+        595,
+        597,
+        382,
+        -2,
+        630,
+        386,
+        -2,
+        /*   110 */
+        630,
+        -2,
+        -2,
+        -2,
+        600,
+        385,
+        630,
+        460,
+        -2,
+        -2,
+        /*   120 */
+        464,
+        630,
+        467,
+        -2,
+        -2,
+        -2,
+        634,
         667,
-        666,
-        694,
-        695,
-        701,
-        /*   160 */
-        696,
-        697,
+        -2,
+        12,
+        /*   130 */
+        -2,
+        -2,
+        588,
+        283,
+        668,
+        -2,
+        592,
+        325,
+        592,
+        325,
+        /*   140 */
+        326,
+        -2,
+        647,
+        -2,
+        592,
+        359,
+        592,
+        359,
+        495,
+        147,
+        /*   150 */
+        -2,
         684,
-        687,
-        705,
-        691,
-        693,
-        713,
-        663,
-        665,
-        /*   170 */
-        706,
-        707,
-        663,
-        715,
-        663,
-        700,
-        704,
-        710,
-        703,
-        725,
-        /*   180 */
-        708,
-        860,
-        726,
+        -2,
+        683,
+        696,
+        685,
+        -2,
+        699,
+        592,
+        203,
+        /*   160 */
         714,
-        86,
-        711,
-        722,
-        723,
-        716,
-        717,
+        710,
+        -2,
+        712,
+        592,
+        246,
+        734,
+        713,
+        -2,
+        592,
+        /*   170 */
+        63,
+        161,
+        -2,
+        -2,
+        592,
+        280,
+        592,
+        325,
+        -2,
+        192,
+        /*   180 */
+        733,
+        398,
+        325,
+        729,
+        -2,
+        564,
+        566,
+        -2,
+        -2,
+        592,
         /*   190 */
-        719,
-        720,
-        724,
-        -3,
-        -3,
-        -3,
-        -3,
-        -3,
-        -3,
-        -3,
+        109,
+        592,
+        109,
+        -2,
+        -2,
+        -2,
+        -2,
+        -2,
+        -2,
+        -2,
         /*   200 */
-        -3,
-        -3,
-        -3,
-        -3,
-        -3,
-        -3,
-        -3,
-        -3,
-        -3,
-        -3,
+        -2,
+        -2,
+        -2,
+        -2,
+        -2,
+        -2,
+        592,
+        325,
+        -2,
+        760,
         /*   210 */
-        -3,
-        -3,
-        -3,
-        -3,
-        -3,
-        -3,
-        -3,
-        -3,
-        -3,
-        -3,
+        -2,
+        -2,
+        755,
+        761,
+        766,
+        763,
+        486,
+        767,
+        782,
+        785,
         /*   220 */
-        -3,
-        -3,
-        -3,
-        -3,
-        -3,
-        -3,
-        -3,
-        -3,
-        -3,
-        -3,
+        531,
+        792,
+        797,
+        804,
+        540,
+        802,
+        807,
+        808,
+        831,
+        -2,
         /*   230 */
-        -3,
-        -3,
-        -3,
-        -3,
-        -3,
-        -3,
-        -3,
-        -3,
-        -3,
-        -3,
+        -2,
+        469,
+        -2,
+        -2,
+        465,
+        583,
+        -2,
+        97,
+        832,
+        -2,
         /*   240 */
-        -3,
-        -3,
-        -3,
-        -3,
-        -3,
-        -3,
-        -3,
-        -3,
-        -3,
-        -3,
+        -2,
+        -2,
+        -2,
+        -2,
+        721,
+        -2,
+        825,
+        -2,
+        592,
+        109,
         /*   250 */
-        -3,
-        -3,
-        -3,
-        -3,
-        -3,
-        -3,
-        -3,
-        -3,
-        -3,
-        -3,
+        819,
+        372,
+        747,
+        -2,
+        838,
+        -2,
+        288,
+        -2,
+        592,
+        325,
         /*   260 */
-        -3,
-        -3,
-        -3,
-        -3,
-        -3,
-        -3,
-        -3,
-        -3,
-        -3,
-        -3,
+        835,
+        592,
+        864,
+        592,
+        -2,
+        325,
+        -2,
+        592,
+        325,
+        849,
         /*   270 */
-        -3,
-        -3,
-        -3,
-        -3,
-        -3,
-        -3,
-        -3,
-        -3,
-        -3,
-        -3,
+        588,
+        498,
+        854,
+        592,
+        828,
+        909,
+        592,
+        -2,
+        325,
+        -2,
         /*   280 */
-        -3,
-        -3,
-        -3,
-        -3,
-        -3,
-        -3,
-        -3,
-        -3,
-        -3,
-        -3,
+        870,
+        839,
+        858,
+        862,
+        592,
+        840,
+        912,
+        870,
+        -2,
+        -2,
         /*   290 */
-        -3,
-        -3,
-        -3,
-        -3,
-        -3,
-        1128,
+        -2,
+        67,
+        728,
+        933,
+        62,
+        936,
+        588,
+        444,
+        880,
+        588,
+        /*   300 */
+        904,
+        588,
+        -2,
+        939,
+        592,
+        -2,
+        325,
+        -2,
+        67,
+        728,
+        /*   310 */
+        950,
+        914,
+        588,
+        -2,
     ];
 
     /*
@@ -5026,6 +4605,15 @@ class phql_Parser
             case 77:
             case 78:
             case 79:
+            case 80:
+            case 81:
+            case 82:
+            case 83:
+            case 84:
+            case 85:
+            case 86:
+            case 87:
+            case 88:
                 if (isset($yypminor->yy0)) {
                     if (($yypminor->yy0)->free_flag) {
                         unset(($yypminor->yy0)->token);
@@ -5033,53 +4621,53 @@ class phql_Parser
                     unset($yypminor->yy0);
                 }
                 break;
-            case 82:
-            case 83:
-            case 84:
-            case 85:
-            case 86:
-            case 87:
-            case 89:
+            case 91:
+            case 92:
+            case 93:
+            case 94:
             case 95:
             case 96:
             case 98:
+            case 104:
+            case 105:
+            case 107:
+            case 108:
+            case 109:
+            case 110:
+            case 111:
+            case 112:
+            case 113:
+            case 114:
+            case 118:
+            case 119:
+            case 121:
+            case 122:
+            case 124:
+            case 125:
+            case 126:
+            case 128:
+            case 129:
+            case 130:
+            case 131:
+            case 132:
+            case 133:
+            case 134:
+            case 136:
+            case 139:
+            case 142:
+                unset($yypminor->yy202);
+                break;
+            case 97:
             case 99:
             case 100:
             case 101:
             case 102:
             case 103:
-            case 104:
-            case 105:
-            case 109:
-            case 110:
-            case 112:
-            case 113:
             case 115:
             case 116:
-            case 117:
-            case 119:
-            case 120:
-            case 121:
-            case 122:
             case 123:
-            case 124:
-            case 125:
-            case 127:
-            case 130:
-            case 133:
-                unset($yypminor->yy202);
-                break;
-            case 88:
-            case 90:
-            case 91:
-            case 92:
-            case 93:
-            case 94:
-            case 106:
-            case 107:
-            case 114:
-            case 131:
-            case 132:
+            case 140:
+            case 141:
                 unset($yypminor->yy202);
                 break;
             default:
@@ -5237,10 +4825,10 @@ class phql_Parser
             case 73:
             case 80:
             case 81:
-            case 132:
-            case 136:
             case 141:
-            case 149:
+            case 145:
+            case 150:
+            case 158:
                 $yygotominor = $this->yystack[$this->yyidx + 0]->minor;
                 break;
             case 5:
@@ -5264,23 +4852,23 @@ class phql_Parser
                         $this->yystack[$this->yyidx + -1]->minor,
                         $this->yystack[$this->yyidx + 0]->minor
                     );
-                    $this->yy_destructor(27, $this->yystack[$this->yyidx + -5]->minor);
-                    $this->yy_destructor(28, $this->yystack[$this->yyidx + -2]->minor);
+                    $this->yy_destructor(36, $this->yystack[$this->yyidx + -5]->minor);
+                    $this->yy_destructor(37, $this->yystack[$this->yyidx + -2]->minor);
                 }
                 break;
             case 7:
                 $yygotominor = 1;
-                $this->yy_destructor(29, $this->yystack[$this->yyidx + 0]->minor);
+                $this->yy_destructor(38, $this->yystack[$this->yyidx + 0]->minor);
                 break;
             case 8:
                 $yygotominor = 0;
-                $this->yy_destructor(30, $this->yystack[$this->yyidx + 0]->minor);
+                $this->yy_destructor(39, $this->yystack[$this->yyidx + 0]->minor);
                 break;
             case 9:
                 // distinct_all ::= (no DISTINCT or ALL keyword) - no distinct
                 $yygotominor = null;
                 break;
-            case 135:
+            case 144:
                 // distinct_or_null ::= (no DISTINCT keyword in function call)
                 $yygotominor = null;
                 break;
@@ -5291,7 +4879,7 @@ class phql_Parser
             case 85:
             case 89:
             case 91:
-            case 137:
+            case 146:
                 // Empty optional clause (where, limit, order, group, having, for_update, etc.)
                 // Matches cphalcon ZVAL_UNDEF — must be null so phql_ret_*_statement skips adding the key
                 $yygotominor = null;
@@ -5315,25 +4903,25 @@ class phql_Parser
             case 64:
             case 72:
             case 79:
-            case 138:
+            case 147:
                 phql_ret_zval_list(
                     $yygotominor,
                     $this->yystack[$this->yyidx + -2]->minor,
                     $this->yystack[$this->yyidx + 0]->minor
                 );
-                $this->yy_destructor(26, $this->yystack[$this->yyidx + -1]->minor);
+                $this->yy_destructor(35, $this->yystack[$this->yyidx + -1]->minor);
                 break;
             case 11:
             case 42:
             case 45:
-            case 129:
-            case 139:
+            case 138:
+            case 148:
                 phql_ret_zval_list($yygotominor, $this->yystack[$this->yyidx + 0]->minor);
                 break;
             case 12:
-            case 140:
+            case 149:
                 phql_ret_column_item($yygotominor, Opcode::STARALL->value);
-                $this->yy_destructor(18, $this->yystack[$this->yyidx + 0]->minor);
+                $this->yy_destructor(22, $this->yystack[$this->yyidx + 0]->minor);
                 break;
             case 13:
                 phql_ret_column_item(
@@ -5342,8 +4930,8 @@ class phql_Parser
                     null,
                     $this->yystack[$this->yyidx + -2]->minor,
                 );
-                $this->yy_destructor(32, $this->yystack[$this->yyidx + -1]->minor);
-                $this->yy_destructor(18, $this->yystack[$this->yyidx + 0]->minor);
+                $this->yy_destructor(41, $this->yystack[$this->yyidx + -1]->minor);
+                $this->yy_destructor(22, $this->yystack[$this->yyidx + 0]->minor);
                 break;
             case 14:
                 phql_ret_column_item(
@@ -5353,7 +4941,7 @@ class phql_Parser
                     null,
                     $this->yystack[$this->yyidx + 0]->minor
                 );
-                $this->yy_destructor(33, $this->yystack[$this->yyidx + -1]->minor);
+                $this->yy_destructor(42, $this->yystack[$this->yyidx + -1]->minor);
                 break;
             case 15:
                 phql_ret_column_item(
@@ -5372,7 +4960,7 @@ class phql_Parser
                 );
                 break;
             case 21:
-            case 128:
+            case 137:
                 phql_ret_zval_list(
                     $yygotominor,
                     $this->yystack[$this->yyidx + -1]->minor,
@@ -5390,64 +4978,64 @@ class phql_Parser
                 break;
             case 25:
                 phql_ret_qualified_name($yygotominor, null, null, $this->yystack[$this->yyidx + 0]->minor);
-                $this->yy_destructor(33, $this->yystack[$this->yyidx + -1]->minor);
+                $this->yy_destructor(42, $this->yystack[$this->yyidx + -1]->minor);
                 break;
             case 26:
             case 46:
             case 66:
-            case 161:
+            case 170:
                 phql_ret_qualified_name($yygotominor, null, null, $this->yystack[$this->yyidx + 0]->minor);
                 break;
             case 28:
                 $yygotominor = Opcode::INNERJOIN->value;
-                $this->yy_destructor(34, $this->yystack[$this->yyidx + -1]->minor);
-                $this->yy_destructor(35, $this->yystack[$this->yyidx + 0]->minor);
+                $this->yy_destructor(43, $this->yystack[$this->yyidx + -1]->minor);
+                $this->yy_destructor(44, $this->yystack[$this->yyidx + 0]->minor);
                 break;
             case 29:
                 $yygotominor = Opcode::CROSSJOIN->value;
-                $this->yy_destructor(36, $this->yystack[$this->yyidx + -1]->minor);
-                $this->yy_destructor(35, $this->yystack[$this->yyidx + 0]->minor);
+                $this->yy_destructor(45, $this->yystack[$this->yyidx + -1]->minor);
+                $this->yy_destructor(44, $this->yystack[$this->yyidx + 0]->minor);
                 break;
             case 30:
                 $yygotominor = Opcode::LEFTJOIN->value;
-                $this->yy_destructor(37, $this->yystack[$this->yyidx + -2]->minor);
-                $this->yy_destructor(38, $this->yystack[$this->yyidx + -1]->minor);
-                $this->yy_destructor(35, $this->yystack[$this->yyidx + 0]->minor);
+                $this->yy_destructor(46, $this->yystack[$this->yyidx + -2]->minor);
+                $this->yy_destructor(47, $this->yystack[$this->yyidx + -1]->minor);
+                $this->yy_destructor(44, $this->yystack[$this->yyidx + 0]->minor);
                 break;
             case 31:
                 $yygotominor = Opcode::LEFTJOIN->value;
-                $this->yy_destructor(37, $this->yystack[$this->yyidx + -1]->minor);
-                $this->yy_destructor(35, $this->yystack[$this->yyidx + 0]->minor);
+                $this->yy_destructor(46, $this->yystack[$this->yyidx + -1]->minor);
+                $this->yy_destructor(44, $this->yystack[$this->yyidx + 0]->minor);
                 break;
             case 32:
                 $yygotominor = Opcode::RIGHTJOIN->value;
-                $this->yy_destructor(39, $this->yystack[$this->yyidx + -2]->minor);
-                $this->yy_destructor(38, $this->yystack[$this->yyidx + -1]->minor);
-                $this->yy_destructor(35, $this->yystack[$this->yyidx + 0]->minor);
+                $this->yy_destructor(48, $this->yystack[$this->yyidx + -2]->minor);
+                $this->yy_destructor(47, $this->yystack[$this->yyidx + -1]->minor);
+                $this->yy_destructor(44, $this->yystack[$this->yyidx + 0]->minor);
                 break;
             case 33:
                 $yygotominor = Opcode::RIGHTJOIN->value;
-                $this->yy_destructor(39, $this->yystack[$this->yyidx + -1]->minor);
-                $this->yy_destructor(35, $this->yystack[$this->yyidx + 0]->minor);
+                $this->yy_destructor(48, $this->yystack[$this->yyidx + -1]->minor);
+                $this->yy_destructor(44, $this->yystack[$this->yyidx + 0]->minor);
                 break;
             case 34:
                 $yygotominor = Opcode::FULLJOIN->value;
-                $this->yy_destructor(40, $this->yystack[$this->yyidx + -2]->minor);
-                $this->yy_destructor(38, $this->yystack[$this->yyidx + -1]->minor);
-                $this->yy_destructor(35, $this->yystack[$this->yyidx + 0]->minor);
+                $this->yy_destructor(49, $this->yystack[$this->yyidx + -2]->minor);
+                $this->yy_destructor(47, $this->yystack[$this->yyidx + -1]->minor);
+                $this->yy_destructor(44, $this->yystack[$this->yyidx + 0]->minor);
                 break;
             case 35:
                 $yygotominor = Opcode::FULLJOIN->value;
-                $this->yy_destructor(40, $this->yystack[$this->yyidx + -1]->minor);
-                $this->yy_destructor(35, $this->yystack[$this->yyidx + 0]->minor);
+                $this->yy_destructor(49, $this->yystack[$this->yyidx + -1]->minor);
+                $this->yy_destructor(44, $this->yystack[$this->yyidx + 0]->minor);
                 break;
             case 36:
                 $yygotominor = Opcode::INNERJOIN->value;
-                $this->yy_destructor(35, $this->yystack[$this->yyidx + 0]->minor);
+                $this->yy_destructor(44, $this->yystack[$this->yyidx + 0]->minor);
                 break;
             case 37:
                 $yygotominor = $this->yystack[$this->yyidx + 0]->minor;
-                $this->yy_destructor(41, $this->yystack[$this->yyidx + -1]->minor);
+                $this->yy_destructor(50, $this->yystack[$this->yyidx + -1]->minor);
                 break;
             case 39:
                 phql_ret_insert_statement(
@@ -5456,11 +5044,11 @@ class phql_Parser
                     null,
                     $this->yystack[$this->yyidx + -1]->minor
                 );
-                $this->yy_destructor(42, $this->yystack[$this->yyidx + -6]->minor);
-                $this->yy_destructor(43, $this->yystack[$this->yyidx + -5]->minor);
-                $this->yy_destructor(44, $this->yystack[$this->yyidx + -3]->minor);
-                $this->yy_destructor(45, $this->yystack[$this->yyidx + -2]->minor);
-                $this->yy_destructor(46, $this->yystack[$this->yyidx + 0]->minor);
+                $this->yy_destructor(51, $this->yystack[$this->yyidx + -6]->minor);
+                $this->yy_destructor(52, $this->yystack[$this->yyidx + -5]->minor);
+                $this->yy_destructor(53, $this->yystack[$this->yyidx + -3]->minor);
+                $this->yy_destructor(54, $this->yystack[$this->yyidx + -2]->minor);
+                $this->yy_destructor(55, $this->yystack[$this->yyidx + 0]->minor);
                 break;
             case 40:
                 phql_ret_insert_statement(
@@ -5469,13 +5057,13 @@ class phql_Parser
                     $this->yystack[$this->yyidx + -5]->minor,
                     $this->yystack[$this->yyidx + -1]->minor
                 );
-                $this->yy_destructor(42, $this->yystack[$this->yyidx + -9]->minor);
-                $this->yy_destructor(43, $this->yystack[$this->yyidx + -8]->minor);
-                $this->yy_destructor(45, $this->yystack[$this->yyidx + -6]->minor);
-                $this->yy_destructor(46, $this->yystack[$this->yyidx + -4]->minor);
-                $this->yy_destructor(44, $this->yystack[$this->yyidx + -3]->minor);
-                $this->yy_destructor(45, $this->yystack[$this->yyidx + -2]->minor);
-                $this->yy_destructor(46, $this->yystack[$this->yyidx + 0]->minor);
+                $this->yy_destructor(51, $this->yystack[$this->yyidx + -9]->minor);
+                $this->yy_destructor(52, $this->yystack[$this->yyidx + -8]->minor);
+                $this->yy_destructor(54, $this->yystack[$this->yyidx + -6]->minor);
+                $this->yy_destructor(55, $this->yystack[$this->yyidx + -4]->minor);
+                $this->yy_destructor(53, $this->yystack[$this->yyidx + -3]->minor);
+                $this->yy_destructor(54, $this->yystack[$this->yyidx + -2]->minor);
+                $this->yy_destructor(55, $this->yystack[$this->yyidx + 0]->minor);
                 break;
             case 47:
                 phql_ret_update_statement(
@@ -5492,8 +5080,8 @@ class phql_Parser
                     $this->yystack[$this->yyidx + -2]->minor,
                     $this->yystack[$this->yyidx + 0]->minor
                 );
-                $this->yy_destructor(47, $this->yystack[$this->yyidx + -4]->minor);
-                $this->yy_destructor(48, $this->yystack[$this->yyidx + -1]->minor);
+                $this->yy_destructor(56, $this->yystack[$this->yyidx + -4]->minor);
+                $this->yy_destructor(57, $this->yystack[$this->yyidx + -1]->minor);
                 break;
             case 51:
                 phql_ret_update_item(
@@ -5513,8 +5101,8 @@ class phql_Parser
                 break;
             case 54:
                 phql_ret_delete_clause($yygotominor, $this->yystack[$this->yyidx + 0]->minor);
-                $this->yy_destructor(49, $this->yystack[$this->yyidx + -2]->minor);
-                $this->yy_destructor(28, $this->yystack[$this->yyidx + -1]->minor);
+                $this->yy_destructor(58, $this->yystack[$this->yyidx + -2]->minor);
+                $this->yy_destructor(37, $this->yystack[$this->yyidx + -1]->minor);
                 break;
             case 55:
                 phql_ret_assoc_name(
@@ -5522,7 +5110,7 @@ class phql_Parser
                     $this->yystack[$this->yyidx + -2]->minor,
                     $this->yystack[$this->yyidx + 0]->minor,
                 );
-                $this->yy_destructor(33, $this->yystack[$this->yyidx + -1]->minor);
+                $this->yy_destructor(42, $this->yystack[$this->yyidx + -1]->minor);
                 break;
             case 56:
                 phql_ret_assoc_name(
@@ -5541,8 +5129,8 @@ class phql_Parser
                     $this->yystack[$this->yyidx + -2]->minor,
                     $this->yystack[$this->yyidx + 0]->minor
                 );
-                $this->yy_destructor(33, $this->yystack[$this->yyidx + -3]->minor);
-                $this->yy_destructor(50, $this->yystack[$this->yyidx + -1]->minor);
+                $this->yy_destructor(42, $this->yystack[$this->yyidx + -3]->minor);
+                $this->yy_destructor(59, $this->yystack[$this->yyidx + -1]->minor);
                 break;
             case 59:
                 phql_ret_assoc_name(
@@ -5551,10 +5139,10 @@ class phql_Parser
                     $this->yystack[$this->yyidx + -4]->minor,
                     $this->yystack[$this->yyidx + -1]->minor
                 );
-                $this->yy_destructor(33, $this->yystack[$this->yyidx + -5]->minor);
-                $this->yy_destructor(50, $this->yystack[$this->yyidx + -3]->minor);
-                $this->yy_destructor(45, $this->yystack[$this->yyidx + -2]->minor);
-                $this->yy_destructor(46, $this->yystack[$this->yyidx + 0]->minor);
+                $this->yy_destructor(42, $this->yystack[$this->yyidx + -5]->minor);
+                $this->yy_destructor(59, $this->yystack[$this->yyidx + -3]->minor);
+                $this->yy_destructor(54, $this->yystack[$this->yyidx + -2]->minor);
+                $this->yy_destructor(55, $this->yystack[$this->yyidx + 0]->minor);
                 break;
             case 60:
                 phql_ret_assoc_name(
@@ -5563,9 +5151,9 @@ class phql_Parser
                     $this->yystack[$this->yyidx + -4]->minor,
                     $this->yystack[$this->yyidx + -1]->minor
                 );
-                $this->yy_destructor(50, $this->yystack[$this->yyidx + -3]->minor);
-                $this->yy_destructor(45, $this->yystack[$this->yyidx + -2]->minor);
-                $this->yy_destructor(46, $this->yystack[$this->yyidx + 0]->minor);
+                $this->yy_destructor(59, $this->yystack[$this->yyidx + -3]->minor);
+                $this->yy_destructor(54, $this->yystack[$this->yyidx + -2]->minor);
+                $this->yy_destructor(55, $this->yystack[$this->yyidx + 0]->minor);
                 break;
             case 61:
                 phql_ret_assoc_name(
@@ -5574,7 +5162,7 @@ class phql_Parser
                     $this->yystack[$this->yyidx + -2]->minor,
                     $this->yystack[$this->yyidx + 0]->minor
                 );
-                $this->yy_destructor(50, $this->yystack[$this->yyidx + -1]->minor);
+                $this->yy_destructor(59, $this->yystack[$this->yyidx + -1]->minor);
                 break;
             case 62:
                 phql_ret_assoc_name(
@@ -5583,9 +5171,9 @@ class phql_Parser
                     null,
                     $this->yystack[$this->yyidx + -1]->minor
                 );
-                $this->yy_destructor(50, $this->yystack[$this->yyidx + -3]->minor);
-                $this->yy_destructor(45, $this->yystack[$this->yyidx + -2]->minor);
-                $this->yy_destructor(46, $this->yystack[$this->yyidx + 0]->minor);
+                $this->yy_destructor(59, $this->yystack[$this->yyidx + -3]->minor);
+                $this->yy_destructor(54, $this->yystack[$this->yyidx + -2]->minor);
+                $this->yy_destructor(55, $this->yystack[$this->yyidx + 0]->minor);
                 break;
             case 63:
                 phql_ret_assoc_name(
@@ -5594,46 +5182,46 @@ class phql_Parser
                     null,
                     $this->yystack[$this->yyidx + 0]->minor
                 );
-                $this->yy_destructor(50, $this->yystack[$this->yyidx + -1]->minor);
+                $this->yy_destructor(59, $this->yystack[$this->yyidx + -1]->minor);
                 break;
             case 68:
                 $yygotominor = $this->yystack[$this->yyidx + 0]->minor;
-                $this->yy_destructor(51, $this->yystack[$this->yyidx + -1]->minor);
+                $this->yy_destructor(60, $this->yystack[$this->yyidx + -1]->minor);
                 break;
             case 70:
                 $yygotominor = $this->yystack[$this->yyidx + 0]->minor;
-                $this->yy_destructor(52, $this->yystack[$this->yyidx + -2]->minor);
-                $this->yy_destructor(53, $this->yystack[$this->yyidx + -1]->minor);
+                $this->yy_destructor(61, $this->yystack[$this->yyidx + -2]->minor);
+                $this->yy_destructor(62, $this->yystack[$this->yyidx + -1]->minor);
                 break;
             case 74:
                 phql_ret_order_item($yygotominor, $this->yystack[$this->yyidx + 0]->minor);
                 break;
             case 75:
                 phql_ret_order_item($yygotominor, $this->yystack[$this->yyidx + -1]->minor, Opcode::ASC->value);
-                $this->yy_destructor(54, $this->yystack[$this->yyidx + 0]->minor);
+                $this->yy_destructor(63, $this->yystack[$this->yyidx + 0]->minor);
                 break;
             case 76:
                 phql_ret_order_item($yygotominor, $this->yystack[$this->yyidx + -1]->minor, Opcode::DESC->value);
-                $this->yy_destructor(55, $this->yystack[$this->yyidx + 0]->minor);
+                $this->yy_destructor(64, $this->yystack[$this->yyidx + 0]->minor);
                 break;
             case 77:
                 $yygotominor = $this->yystack[$this->yyidx + 0]->minor;
-                $this->yy_destructor(56, $this->yystack[$this->yyidx + -2]->minor);
-                $this->yy_destructor(53, $this->yystack[$this->yyidx + -1]->minor);
+                $this->yy_destructor(65, $this->yystack[$this->yyidx + -2]->minor);
+                $this->yy_destructor(62, $this->yystack[$this->yyidx + -1]->minor);
                 break;
             case 82:
                 $yygotominor = $this->yystack[$this->yyidx + 0]->minor;
-                $this->yy_destructor(57, $this->yystack[$this->yyidx + -1]->minor);
+                $this->yy_destructor(66, $this->yystack[$this->yyidx + -1]->minor);
                 break;
             case 84:
                 $yygotominor = true;
-                $this->yy_destructor(58, $this->yystack[$this->yyidx + -1]->minor);
-                $this->yy_destructor(47, $this->yystack[$this->yyidx + 0]->minor);
+                $this->yy_destructor(67, $this->yystack[$this->yyidx + -1]->minor);
+                $this->yy_destructor(56, $this->yystack[$this->yyidx + 0]->minor);
                 break;
             case 86:
             case 90:
                 phql_ret_limit_clause($yygotominor, $this->yystack[$this->yyidx + 0]->minor, null);
-                $this->yy_destructor(59, $this->yystack[$this->yyidx + -1]->minor);
+                $this->yy_destructor(68, $this->yystack[$this->yyidx + -1]->minor);
                 break;
             case 87:
                 phql_ret_limit_clause(
@@ -5641,8 +5229,8 @@ class phql_Parser
                     $this->yystack[$this->yyidx + 0]->minor,
                     $this->yystack[$this->yyidx + -2]->minor
                 );
-                $this->yy_destructor(59, $this->yystack[$this->yyidx + -3]->minor);
-                $this->yy_destructor(26, $this->yystack[$this->yyidx + -1]->minor);
+                $this->yy_destructor(68, $this->yystack[$this->yyidx + -3]->minor);
+                $this->yy_destructor(35, $this->yystack[$this->yyidx + -1]->minor);
                 break;
             case 88:
                 phql_ret_limit_clause(
@@ -5650,11 +5238,11 @@ class phql_Parser
                     $this->yystack[$this->yyidx + -2]->minor,
                     $this->yystack[$this->yyidx + 0]->minor
                 );
-                $this->yy_destructor(59, $this->yystack[$this->yyidx + -3]->minor);
-                $this->yy_destructor(60, $this->yystack[$this->yyidx + -1]->minor);
+                $this->yy_destructor(68, $this->yystack[$this->yyidx + -3]->minor);
+                $this->yy_destructor(69, $this->yystack[$this->yyidx + -1]->minor);
                 break;
             case 92:
-            case 150:
+            case 159:
                 phql_ret_literal_zval(
                     $yygotominor,
                     Opcode::INTEGER->value,
@@ -5662,7 +5250,7 @@ class phql_Parser
                 );
                 break;
             case 93:
-            case 151:
+            case 160:
                 phql_ret_literal_zval(
                     $yygotominor,
                     Opcode::HINTEGER->value,
@@ -5670,7 +5258,7 @@ class phql_Parser
                 );
                 break;
             case 94:
-            case 157:
+            case 166:
                 phql_ret_placeholder_zval(
                     $yygotominor,
                     Opcode::NPLACEHOLDER->value,
@@ -5678,7 +5266,7 @@ class phql_Parser
                 );
                 break;
             case 95:
-            case 158:
+            case 167:
                 phql_ret_placeholder_zval(
                     $yygotominor,
                     Opcode::SPLACEHOLDER->value,
@@ -5686,7 +5274,7 @@ class phql_Parser
                 );
                 break;
             case 96:
-            case 159:
+            case 168:
                 phql_ret_placeholder_zval(
                     $yygotominor,
                     Opcode::BPLACEHOLDER->value,
@@ -5695,7 +5283,7 @@ class phql_Parser
                 break;
             case 97:
                 phql_ret_expr($yygotominor, Opcode::MINUS->value, null, $this->yystack[$this->yyidx + 0]->minor);
-                $this->yy_destructor(21, $this->yystack[$this->yyidx + -1]->minor);
+                $this->yy_destructor(25, $this->yystack[$this->yyidx + -1]->minor);
                 break;
             case 98:
                 phql_ret_expr(
@@ -5704,7 +5292,7 @@ class phql_Parser
                     $this->yystack[$this->yyidx + -2]->minor,
                     $this->yystack[$this->yyidx + 0]->minor
                 );
-                $this->yy_destructor(21, $this->yystack[$this->yyidx + -1]->minor);
+                $this->yy_destructor(25, $this->yystack[$this->yyidx + -1]->minor);
                 break;
             case 99:
                 phql_ret_expr(
@@ -5713,7 +5301,7 @@ class phql_Parser
                     $this->yystack[$this->yyidx + -2]->minor,
                     $this->yystack[$this->yyidx + 0]->minor
                 );
-                $this->yy_destructor(20, $this->yystack[$this->yyidx + -1]->minor);
+                $this->yy_destructor(24, $this->yystack[$this->yyidx + -1]->minor);
                 break;
             case 100:
                 phql_ret_expr(
@@ -5722,7 +5310,7 @@ class phql_Parser
                     $this->yystack[$this->yyidx + -2]->minor,
                     $this->yystack[$this->yyidx + 0]->minor
                 );
-                $this->yy_destructor(18, $this->yystack[$this->yyidx + -1]->minor);
+                $this->yy_destructor(22, $this->yystack[$this->yyidx + -1]->minor);
                 break;
             case 101:
                 phql_ret_expr(
@@ -5731,7 +5319,7 @@ class phql_Parser
                     $this->yystack[$this->yyidx + -2]->minor,
                     $this->yystack[$this->yyidx + 0]->minor
                 );
-                $this->yy_destructor(17, $this->yystack[$this->yyidx + -1]->minor);
+                $this->yy_destructor(21, $this->yystack[$this->yyidx + -1]->minor);
                 break;
             case 102:
                 phql_ret_expr(
@@ -5740,7 +5328,7 @@ class phql_Parser
                     $this->yystack[$this->yyidx + -2]->minor,
                     $this->yystack[$this->yyidx + 0]->minor
                 );
-                $this->yy_destructor(19, $this->yystack[$this->yyidx + -1]->minor);
+                $this->yy_destructor(23, $this->yystack[$this->yyidx + -1]->minor);
                 break;
             case 103:
                 phql_ret_expr(
@@ -5749,7 +5337,7 @@ class phql_Parser
                     $this->yystack[$this->yyidx + -2]->minor,
                     $this->yystack[$this->yyidx + 0]->minor
                 );
-                $this->yy_destructor(10, $this->yystack[$this->yyidx + -1]->minor);
+                $this->yy_destructor(14, $this->yystack[$this->yyidx + -1]->minor);
                 break;
             case 104:
                 phql_ret_expr(
@@ -5758,7 +5346,7 @@ class phql_Parser
                     $this->yystack[$this->yyidx + -2]->minor,
                     $this->yystack[$this->yyidx + 0]->minor
                 );
-                $this->yy_destructor(11, $this->yystack[$this->yyidx + -1]->minor);
+                $this->yy_destructor(15, $this->yystack[$this->yyidx + -1]->minor);
                 break;
             case 105:
                 phql_ret_expr(
@@ -5767,7 +5355,7 @@ class phql_Parser
                     $this->yystack[$this->yyidx + -2]->minor,
                     $this->yystack[$this->yyidx + 0]->minor
                 );
-                $this->yy_destructor(14, $this->yystack[$this->yyidx + -1]->minor);
+                $this->yy_destructor(18, $this->yystack[$this->yyidx + -1]->minor);
                 break;
             case 106:
                 phql_ret_expr(
@@ -5776,7 +5364,7 @@ class phql_Parser
                     $this->yystack[$this->yyidx + -2]->minor,
                     $this->yystack[$this->yyidx + 0]->minor
                 );
-                $this->yy_destructor(15, $this->yystack[$this->yyidx + -1]->minor);
+                $this->yy_destructor(19, $this->yystack[$this->yyidx + -1]->minor);
                 break;
             case 107:
                 phql_ret_expr(
@@ -5785,9 +5373,90 @@ class phql_Parser
                     $this->yystack[$this->yyidx + -2]->minor,
                     $this->yystack[$this->yyidx + 0]->minor
                 );
-                $this->yy_destructor(16, $this->yystack[$this->yyidx + -1]->minor);
+                $this->yy_destructor(20, $this->yystack[$this->yyidx + -1]->minor);
                 break;
             case 108:
+                phql_ret_expr(
+                    $yygotominor,
+                    Opcode::OP_MATCHES->value,
+                    $this->yystack[$this->yyidx + -2]->minor,
+                    $this->yystack[$this->yyidx + 0]->minor
+                );
+                $this->yy_destructor(10, $this->yystack[$this->yyidx + -1]->minor);
+                break;
+            case 109:
+                phql_ret_expr(
+                    $yygotominor,
+                    Opcode::OP_CONTAINS->value,
+                    $this->yystack[$this->yyidx + -2]->minor,
+                    $this->yystack[$this->yyidx + 0]->minor
+                );
+                $this->yy_destructor(11, $this->yystack[$this->yyidx + -1]->minor);
+                break;
+            case 110:
+                phql_ret_expr(
+                    $yygotominor,
+                    Opcode::OP_CONTAINED->value,
+                    $this->yystack[$this->yyidx + -2]->minor,
+                    $this->yystack[$this->yyidx + 0]->minor
+                );
+                $this->yy_destructor(12, $this->yystack[$this->yyidx + -1]->minor);
+                break;
+            case 111:
+                phql_ret_expr(
+                    $yygotominor,
+                    Opcode::OP_OVERLAPS->value,
+                    $this->yystack[$this->yyidx + -2]->minor,
+                    $this->yystack[$this->yyidx + 0]->minor
+                );
+                $this->yy_destructor(13, $this->yystack[$this->yyidx + -1]->minor);
+                break;
+            case 112:
+                phql_ret_expr(
+                    $yygotominor,
+                    Opcode::OP_CONCAT->value,
+                    $this->yystack[$this->yyidx + -2]->minor,
+                    $this->yystack[$this->yyidx + 0]->minor
+                );
+                $this->yy_destructor(26, $this->yystack[$this->yyidx + -1]->minor);
+                break;
+            case 113:
+                phql_ret_expr(
+                    $yygotominor,
+                    Opcode::OP_JSON_GET->value,
+                    $this->yystack[$this->yyidx + -2]->minor,
+                    $this->yystack[$this->yyidx + 0]->minor
+                );
+                $this->yy_destructor(31, $this->yystack[$this->yyidx + -1]->minor);
+                break;
+            case 114:
+                phql_ret_expr(
+                    $yygotominor,
+                    Opcode::OP_JSON_GET_TEXT->value,
+                    $this->yystack[$this->yyidx + -2]->minor,
+                    $this->yystack[$this->yyidx + 0]->minor
+                );
+                $this->yy_destructor(32, $this->yystack[$this->yyidx + -1]->minor);
+                break;
+            case 115:
+                phql_ret_expr(
+                    $yygotominor,
+                    Opcode::OP_JSON_PATH->value,
+                    $this->yystack[$this->yyidx + -2]->minor,
+                    $this->yystack[$this->yyidx + 0]->minor
+                );
+                $this->yy_destructor(33, $this->yystack[$this->yyidx + -1]->minor);
+                break;
+            case 116:
+                phql_ret_expr(
+                    $yygotominor,
+                    Opcode::OP_JSON_PATH_TEXT->value,
+                    $this->yystack[$this->yyidx + -2]->minor,
+                    $this->yystack[$this->yyidx + 0]->minor
+                );
+                $this->yy_destructor(34, $this->yystack[$this->yyidx + -1]->minor);
+                break;
+            case 117:
                 phql_ret_expr(
                     $yygotominor,
                     Opcode::EQUALS->value,
@@ -5796,7 +5465,7 @@ class phql_Parser
                 );
                 $this->yy_destructor(4, $this->yystack[$this->yyidx + -1]->minor);
                 break;
-            case 109:
+            case 118:
                 phql_ret_expr(
                     $yygotominor,
                     Opcode::NOTEQUALS->value,
@@ -5805,7 +5474,7 @@ class phql_Parser
                 );
                 $this->yy_destructor(5, $this->yystack[$this->yyidx + -1]->minor);
                 break;
-            case 110:
+            case 119:
                 phql_ret_expr(
                     $yygotominor,
                     Opcode::LESS->value,
@@ -5814,7 +5483,7 @@ class phql_Parser
                 );
                 $this->yy_destructor(6, $this->yystack[$this->yyidx + -1]->minor);
                 break;
-            case 111:
+            case 120:
                 phql_ret_expr(
                     $yygotominor,
                     Opcode::GREATER->value,
@@ -5823,7 +5492,7 @@ class phql_Parser
                 );
                 $this->yy_destructor(7, $this->yystack[$this->yyidx + -1]->minor);
                 break;
-            case 112:
+            case 121:
                 phql_ret_expr(
                     $yygotominor,
                     Opcode::GREATEREQUAL->value,
@@ -5832,7 +5501,7 @@ class phql_Parser
                 );
                 $this->yy_destructor(8, $this->yystack[$this->yyidx + -1]->minor);
                 break;
-            case 113:
+            case 122:
                 phql_ret_expr(
                     $yygotominor,
                     Opcode::LESSEQUAL->value,
@@ -5841,86 +5510,86 @@ class phql_Parser
                 );
                 $this->yy_destructor(9, $this->yystack[$this->yyidx + -1]->minor);
                 break;
-            case 114:
+            case 123:
                 phql_ret_expr(
                     $yygotominor,
                     Opcode::LIKE->value,
                     $this->yystack[$this->yyidx + -2]->minor,
                     $this->yystack[$this->yyidx + 0]->minor
                 );
-                $this->yy_destructor(12, $this->yystack[$this->yyidx + -1]->minor);
+                $this->yy_destructor(16, $this->yystack[$this->yyidx + -1]->minor);
                 break;
-            case 115:
+            case 124:
                 phql_ret_expr(
                     $yygotominor,
                     Opcode::NLIKE->value,
                     $this->yystack[$this->yyidx + -3]->minor,
                     $this->yystack[$this->yyidx + 0]->minor
                 );
-                $this->yy_destructor(24, $this->yystack[$this->yyidx + -2]->minor);
-                $this->yy_destructor(12, $this->yystack[$this->yyidx + -1]->minor);
+                $this->yy_destructor(29, $this->yystack[$this->yyidx + -2]->minor);
+                $this->yy_destructor(16, $this->yystack[$this->yyidx + -1]->minor);
                 break;
-            case 116:
+            case 125:
                 phql_ret_expr(
                     $yygotominor,
                     Opcode::ILIKE->value,
                     $this->yystack[$this->yyidx + -2]->minor,
                     $this->yystack[$this->yyidx + 0]->minor
                 );
-                $this->yy_destructor(13, $this->yystack[$this->yyidx + -1]->minor);
+                $this->yy_destructor(17, $this->yystack[$this->yyidx + -1]->minor);
                 break;
-            case 117:
+            case 126:
                 phql_ret_expr(
                     $yygotominor,
                     Opcode::NILIKE->value,
                     $this->yystack[$this->yyidx + -3]->minor,
                     $this->yystack[$this->yyidx + 0]->minor
                 );
-                $this->yy_destructor(24, $this->yystack[$this->yyidx + -2]->minor);
-                $this->yy_destructor(13, $this->yystack[$this->yyidx + -1]->minor);
+                $this->yy_destructor(29, $this->yystack[$this->yyidx + -2]->minor);
+                $this->yy_destructor(17, $this->yystack[$this->yyidx + -1]->minor);
                 break;
-            case 118:
-            case 121:
+            case 127:
+            case 130:
                 phql_ret_expr(
                     $yygotominor,
                     Opcode::IN->value,
                     $this->yystack[$this->yyidx + -4]->minor,
                     $this->yystack[$this->yyidx + -1]->minor
                 );
-                $this->yy_destructor(23, $this->yystack[$this->yyidx + -3]->minor);
-                $this->yy_destructor(45, $this->yystack[$this->yyidx + -2]->minor);
-                $this->yy_destructor(46, $this->yystack[$this->yyidx + 0]->minor);
+                $this->yy_destructor(28, $this->yystack[$this->yyidx + -3]->minor);
+                $this->yy_destructor(54, $this->yystack[$this->yyidx + -2]->minor);
+                $this->yy_destructor(55, $this->yystack[$this->yyidx + 0]->minor);
                 break;
-            case 119:
-            case 122:
+            case 128:
+            case 131:
                 phql_ret_expr(
                     $yygotominor,
                     Opcode::NOTIN->value,
                     $this->yystack[$this->yyidx + -5]->minor,
                     $this->yystack[$this->yyidx + -1]->minor
                 );
-                $this->yy_destructor(24, $this->yystack[$this->yyidx + -4]->minor);
-                $this->yy_destructor(23, $this->yystack[$this->yyidx + -3]->minor);
-                $this->yy_destructor(45, $this->yystack[$this->yyidx + -2]->minor);
-                $this->yy_destructor(46, $this->yystack[$this->yyidx + 0]->minor);
+                $this->yy_destructor(29, $this->yystack[$this->yyidx + -4]->minor);
+                $this->yy_destructor(28, $this->yystack[$this->yyidx + -3]->minor);
+                $this->yy_destructor(54, $this->yystack[$this->yyidx + -2]->minor);
+                $this->yy_destructor(55, $this->yystack[$this->yyidx + 0]->minor);
                 break;
-            case 120:
+            case 129:
                 phql_ret_expr(
                     $yygotominor,
                     Opcode::SUBQUERY->value,
                     $this->yystack[$this->yyidx + -1]->minor,
                     null
                 );
-                $this->yy_destructor(45, $this->yystack[$this->yyidx + -2]->minor);
-                $this->yy_destructor(46, $this->yystack[$this->yyidx + 0]->minor);
+                $this->yy_destructor(54, $this->yystack[$this->yyidx + -2]->minor);
+                $this->yy_destructor(55, $this->yystack[$this->yyidx + 0]->minor);
                 break;
-            case 123:
+            case 132:
                 phql_ret_expr($yygotominor, Opcode::EXISTS->value, null, $this->yystack[$this->yyidx + -1]->minor);
-                $this->yy_destructor(66, $this->yystack[$this->yyidx + -3]->minor);
-                $this->yy_destructor(45, $this->yystack[$this->yyidx + -2]->minor);
-                $this->yy_destructor(46, $this->yystack[$this->yyidx + 0]->minor);
+                $this->yy_destructor(75, $this->yystack[$this->yyidx + -3]->minor);
+                $this->yy_destructor(54, $this->yystack[$this->yyidx + -2]->minor);
+                $this->yy_destructor(55, $this->yystack[$this->yyidx + 0]->minor);
                 break;
-            case 124:
+            case 133:
                 phql_ret_expr(
                     $yygotominor,
                     Opcode::AGAINST->value,
@@ -5929,7 +5598,7 @@ class phql_Parser
                 );
                 $this->yy_destructor(1, $this->yystack[$this->yyidx + -1]->minor);
                 break;
-            case 125:
+            case 134:
                 $qualified = [];
                 phql_ret_raw_qualified_name($qualified, $this->yystack[$this->yyidx + -1]->minor);
                 phql_ret_expr(
@@ -5938,12 +5607,12 @@ class phql_Parser
                     $this->yystack[$this->yyidx + -3]->minor,
                     $qualified
                 );
-                $this->yy_destructor(67, $this->yystack[$this->yyidx + -5]->minor);
-                $this->yy_destructor(45, $this->yystack[$this->yyidx + -4]->minor);
-                $this->yy_destructor(33, $this->yystack[$this->yyidx + -2]->minor);
-                $this->yy_destructor(46, $this->yystack[$this->yyidx + 0]->minor);
+                $this->yy_destructor(76, $this->yystack[$this->yyidx + -5]->minor);
+                $this->yy_destructor(54, $this->yystack[$this->yyidx + -4]->minor);
+                $this->yy_destructor(42, $this->yystack[$this->yyidx + -2]->minor);
+                $this->yy_destructor(55, $this->yystack[$this->yyidx + 0]->minor);
                 break;
-            case 126:
+            case 135:
                 $qualified = [];
                 phql_ret_raw_qualified_name($qualified, $this->yystack[$this->yyidx + -1]->minor, null);
                 phql_ret_expr(
@@ -5952,67 +5621,67 @@ class phql_Parser
                     $this->yystack[$this->yyidx + -3]->minor,
                     $qualified
                 );
-                $this->yy_destructor(68, $this->yystack[$this->yyidx + -5]->minor);
-                $this->yy_destructor(45, $this->yystack[$this->yyidx + -4]->minor);
-                $this->yy_destructor(69, $this->yystack[$this->yyidx + -2]->minor);
-                $this->yy_destructor(46, $this->yystack[$this->yyidx + 0]->minor);
+                $this->yy_destructor(77, $this->yystack[$this->yyidx + -5]->minor);
+                $this->yy_destructor(54, $this->yystack[$this->yyidx + -4]->minor);
+                $this->yy_destructor(78, $this->yystack[$this->yyidx + -2]->minor);
+                $this->yy_destructor(55, $this->yystack[$this->yyidx + 0]->minor);
                 break;
-            case 127:
+            case 136:
                 phql_ret_expr(
                     $yygotominor,
                     Opcode::CASE->value,
                     $this->yystack[$this->yyidx + -2]->minor,
                     $this->yystack[$this->yyidx + -1]->minor
                 );
-                $this->yy_destructor(70, $this->yystack[$this->yyidx + -3]->minor);
-                $this->yy_destructor(71, $this->yystack[$this->yyidx + 0]->minor);
+                $this->yy_destructor(79, $this->yystack[$this->yyidx + -3]->minor);
+                $this->yy_destructor(80, $this->yystack[$this->yyidx + 0]->minor);
                 break;
-            case 130:
+            case 139:
                 phql_ret_expr(
                     $yygotominor,
                     Opcode::WHEN->value,
                     $this->yystack[$this->yyidx + -2]->minor,
                     $this->yystack[$this->yyidx + 0]->minor
                 );
-                $this->yy_destructor(72, $this->yystack[$this->yyidx + -3]->minor);
-                $this->yy_destructor(73, $this->yystack[$this->yyidx + -1]->minor);
+                $this->yy_destructor(81, $this->yystack[$this->yyidx + -3]->minor);
+                $this->yy_destructor(82, $this->yystack[$this->yyidx + -1]->minor);
                 break;
-            case 131:
+            case 140:
                 phql_ret_expr($yygotominor, Opcode::ELSE->value, $this->yystack[$this->yyidx + 0]->minor, null);
-                $this->yy_destructor(74, $this->yystack[$this->yyidx + -1]->minor);
+                $this->yy_destructor(83, $this->yystack[$this->yyidx + -1]->minor);
                 break;
-            case 133:
+            case 142:
                 phql_ret_func_call(
                     $yygotominor,
                     $this->yystack[$this->yyidx + -4]->minor,
                     $this->yystack[$this->yyidx + -1]->minor,
                     $this->yystack[$this->yyidx + -2]->minor
                 );
-                $this->yy_destructor(45, $this->yystack[$this->yyidx + -3]->minor);
-                $this->yy_destructor(46, $this->yystack[$this->yyidx + 0]->minor);
-                break;
-            case 134:
-                // distinct_or_null ::= DISTINCT (DISTINCT keyword present in function call)
-                $yygotominor = true;
-                $this->yy_destructor(29, $this->yystack[$this->yyidx + 0]->minor);
-                break;
-            case 142:
-                phql_ret_expr($yygotominor, Opcode::ISNULL->value, $this->yystack[$this->yyidx + -2]->minor, null);
-                $this->yy_destructor(22, $this->yystack[$this->yyidx + -1]->minor);
-                $this->yy_destructor(75, $this->yystack[$this->yyidx + 0]->minor);
+                $this->yy_destructor(54, $this->yystack[$this->yyidx + -3]->minor);
+                $this->yy_destructor(55, $this->yystack[$this->yyidx + 0]->minor);
                 break;
             case 143:
+                // distinct_or_null ::= DISTINCT (DISTINCT keyword present in function call)
+                $yygotominor = true;
+                $this->yy_destructor(38, $this->yystack[$this->yyidx + 0]->minor);
+                break;
+            case 151:
+                phql_ret_expr($yygotominor, Opcode::ISNULL->value, $this->yystack[$this->yyidx + -2]->minor, null);
+                $this->yy_destructor(27, $this->yystack[$this->yyidx + -1]->minor);
+                $this->yy_destructor(84, $this->yystack[$this->yyidx + 0]->minor);
+                break;
+            case 152:
                 phql_ret_expr(
                     $yygotominor,
                     Opcode::ISNOTNULL->value,
                     $this->yystack[$this->yyidx + -3]->minor,
                     null
                 );
-                $this->yy_destructor(22, $this->yystack[$this->yyidx + -2]->minor);
-                $this->yy_destructor(24, $this->yystack[$this->yyidx + -1]->minor);
-                $this->yy_destructor(75, $this->yystack[$this->yyidx + 0]->minor);
+                $this->yy_destructor(27, $this->yystack[$this->yyidx + -2]->minor);
+                $this->yy_destructor(29, $this->yystack[$this->yyidx + -1]->minor);
+                $this->yy_destructor(84, $this->yystack[$this->yyidx + 0]->minor);
                 break;
-            case 144:
+            case 153:
                 phql_ret_expr(
                     $yygotominor,
                     Opcode::BETWEEN->value,
@@ -6021,7 +5690,7 @@ class phql_Parser
                 );
                 $this->yy_destructor(2, $this->yystack[$this->yyidx + -1]->minor);
                 break;
-            case 145:
+            case 154:
                 phql_ret_expr(
                     $yygotominor,
                     Opcode::BETWEEN_NOT->value,
@@ -6030,56 +5699,56 @@ class phql_Parser
                 );
                 $this->yy_destructor(3, $this->yystack[$this->yyidx + -1]->minor);
                 break;
-            case 146:
+            case 155:
                 phql_ret_expr($yygotominor, Opcode::NOT->value, null, $this->yystack[$this->yyidx + 0]->minor);
-                $this->yy_destructor(24, $this->yystack[$this->yyidx + -1]->minor);
+                $this->yy_destructor(29, $this->yystack[$this->yyidx + -1]->minor);
                 break;
-            case 147:
+            case 156:
                 phql_ret_expr(
                     $yygotominor,
                     Opcode::BITWISE_NOT->value,
                     null,
                     $this->yystack[$this->yyidx + 0]->minor
                 );
-                $this->yy_destructor(25, $this->yystack[$this->yyidx + -1]->minor);
+                $this->yy_destructor(30, $this->yystack[$this->yyidx + -1]->minor);
                 break;
-            case 148:
+            case 157:
                 phql_ret_expr(
                     $yygotominor,
                     Opcode::ENCLOSED->value,
                     $this->yystack[$this->yyidx + -1]->minor,
                     null
                 );
-                $this->yy_destructor(45, $this->yystack[$this->yyidx + -2]->minor);
-                $this->yy_destructor(46, $this->yystack[$this->yyidx + 0]->minor);
+                $this->yy_destructor(54, $this->yystack[$this->yyidx + -2]->minor);
+                $this->yy_destructor(55, $this->yystack[$this->yyidx + 0]->minor);
                 break;
-            case 152:
+            case 161:
                 phql_ret_literal_zval($yygotominor, Opcode::STRING->value, $this->yystack[$this->yyidx + 0]->minor);
                 break;
-            case 153:
+            case 162:
                 phql_ret_literal_zval($yygotominor, Opcode::DOUBLE->value, $this->yystack[$this->yyidx + 0]->minor);
                 break;
-            case 154:
+            case 163:
                 phql_ret_literal_zval($yygotominor, Opcode::NULL->value);
-                $this->yy_destructor(75, $this->yystack[$this->yyidx + 0]->minor);
+                $this->yy_destructor(84, $this->yystack[$this->yyidx + 0]->minor);
                 break;
-            case 155:
+            case 164:
 #line 920 "c/parser.php.lemon"
                 {
                     phql_ret_literal_zval($yygotominor, Opcode::TRUE->value, null);
-                    $this->yy_destructor(78, $this->yystack[$this->yyidx + 0]->minor);
+                    $this->yy_destructor(87, $this->yystack[$this->yyidx + 0]->minor);
                 }
 #line 2086 "c/parser.php.php"
                 break;
-            case 156:
+            case 165:
 #line 924 "c/parser.php.lemon"
                 {
                     phql_ret_literal_zval($yygotominor, Opcode::FALSE->value, null);
-                    $this->yy_destructor(79, $this->yystack[$this->yyidx + 0]->minor);
+                    $this->yy_destructor(88, $this->yystack[$this->yyidx + 0]->minor);
                 }
 #line 2094 "c/parser.php.php"
                 break;
-            case 160:
+            case 169:
 #line 947 "c/parser.php.lemon"
                 {
                     phql_ret_qualified_name(
@@ -6088,7 +5757,7 @@ class phql_Parser
                         $this->yystack[$this->yyidx + -2]->minor,
                         $this->yystack[$this->yyidx + 0]->minor
                     );
-                    $this->yy_destructor(32, $this->yystack[$this->yyidx + -1]->minor);
+                    $this->yy_destructor(41, $this->yystack[$this->yyidx + -1]->minor);
                 }
 #line 2102 "c/parser.php.php"
                 break;

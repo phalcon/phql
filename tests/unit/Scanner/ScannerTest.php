@@ -14,17 +14,41 @@ final class ScannerTest extends AbstractUnitTestCase
 {
     public function testBitwiseOperators(): void
     {
-        $opcodes = $this->scanAll('& && | || ~ ^ !! @@ @>');
+        $opcodes = $this->scanAll('& | ~ ^');
         $this->assertSame([
             Opcode::BITWISE_AND,
-            Opcode::TS_AND,
             Opcode::BITWISE_OR,
-            Opcode::TS_OR,
             Opcode::BITWISE_NOT,
             Opcode::BITWISE_XOR,
-            Opcode::TS_NEGATE,
-            Opcode::TS_MATCHES,
-            Opcode::TS_CONTAINS_ANOTHER,
+        ], $opcodes);
+    }
+
+    public function testDialectSpecificOperators(): void
+    {
+        $opcodes = $this->scanAll('@@ @> <@ && || -> ->> #> #>>');
+        $this->assertSame([
+            Opcode::OP_MATCHES,
+            Opcode::OP_CONTAINS,
+            Opcode::OP_CONTAINED,
+            Opcode::OP_OVERLAPS,
+            Opcode::OP_CONCAT,
+            Opcode::OP_JSON_GET,
+            Opcode::OP_JSON_GET_TEXT,
+            Opcode::OP_JSON_PATH,
+            Opcode::OP_JSON_PATH_TEXT,
+        ], $opcodes);
+    }
+
+    public function testDialectSpecificOperatorsDoNotBreakNeighbours(): void
+    {
+        $opcodes = $this->scanAll('- < > !! ->');
+        $this->assertSame([
+            Opcode::SUB,
+            Opcode::LESS,
+            Opcode::GREATER,
+            Opcode::NOT,
+            Opcode::NOT,
+            Opcode::OP_JSON_GET,
         ], $opcodes);
     }
 
