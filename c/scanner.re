@@ -55,6 +55,9 @@ int phql_get_token(phql_scanner_state *s, phql_scanner_token *token) {
                         case '"':
                             $yystate = 8;
                             break 2;
+                        case '#':
+                            $yystate = 319;
+                            break 2;
                         case '%':
                             $yystate = 9;
                             break 2;
@@ -270,10 +273,6 @@ int phql_get_token(phql_scanner_state *s, phql_scanner_token *token) {
                 case 6:
                     $yych = $yyinput[$yycursor];
                     switch ($yych) {
-                        case '!':
-                            $yycursor += 1;
-                            $yystate = 65;
-                            break 2;
                         case '=':
                             $yycursor += 1;
                             $yystate = 66;
@@ -354,10 +353,16 @@ int phql_get_token(phql_scanner_state *s, phql_scanner_token *token) {
 			return 0;
 
                 case 18:
-                    
-			token->opcode = PHQL_T_SUB;
-			return 0;
-
+                    $yych = $yyinput[$yycursor];
+                    switch ($yych) {
+                        case '>':
+                            $yycursor += 1;
+                            $yystate = 323;
+                            break 2;
+                        default:
+                            $yystate = 324;
+                            break 2;
+                    }
                 case 19:
                     $yych = $yyinput[$yycursor];
                     switch ($yych) {
@@ -527,6 +532,10 @@ int phql_get_token(phql_scanner_state *s, phql_scanner_token *token) {
                         case '>':
                             $yycursor += 1;
                             $yystate = 81;
+                            break 2;
+                        case '@':
+                            $yycursor += 1;
+                            $yystate = 327;
                             break 2;
                         default:
                             $yystate = 27;
@@ -1346,11 +1355,6 @@ int phql_get_token(phql_scanner_state *s, phql_scanner_token *token) {
 			token->opcode = PHQL_T_BITWISE_NOT;
 			return 0;
 
-                case 65:
-                    
-			token->opcode = PHQL_T_TS_NEGATE;
-			return 0;
-
                 case 66:
                     
 			token->opcode = PHQL_T_NOTEQUALS;
@@ -1415,7 +1419,7 @@ int phql_get_token(phql_scanner_state *s, phql_scanner_token *token) {
                     }
                 case 72:
                     
-			token->opcode = PHQL_T_TS_AND;
+			token->opcode = PHQL_T_OP_OVERLAPS;
 			return 0;
 
                 case 73:
@@ -1635,12 +1639,12 @@ int phql_get_token(phql_scanner_state *s, phql_scanner_token *token) {
 
                 case 85:
                     
-			token->opcode = PHQL_T_TS_CONTAINS_ANOTHER;
+			token->opcode = PHQL_T_OP_CONTAINS;
 			return 0;
 
                 case 86:
                     
-			token->opcode = PHQL_T_TS_MATCHES;
+			token->opcode = PHQL_T_OP_MATCHES;
 			return 0;
 
                 case 87:
@@ -2783,7 +2787,7 @@ int phql_get_token(phql_scanner_state *s, phql_scanner_token *token) {
                     }
                 case 141:
                     
-			token->opcode = PHQL_T_TS_OR;
+			token->opcode = PHQL_T_OP_CONCAT;
 			return 0;
 
                 case 142:
@@ -7471,6 +7475,69 @@ int phql_get_token(phql_scanner_state *s, phql_scanner_token *token) {
                 case 318:
                     
 			token->opcode = PHQL_T_BETWEEN_NOT;
+			return 0;
+
+                case 319:
+                    $yych = $yyinput[$yycursor];
+                    switch ($yych) {
+                        case '>':
+                            $yycursor += 1;
+                            $yystate = 320;
+                            break 2;
+                        default:
+                            $yystate = 3;
+                            break 2;
+                    }
+                case 320:
+                    $yych = $yyinput[$yycursor];
+                    switch ($yych) {
+                        case '>':
+                            $yycursor += 1;
+                            $yystate = 321;
+                            break 2;
+                        default:
+                            $yystate = 322;
+                            break 2;
+                    }
+                case 321:
+                    
+			token->opcode = PHQL_T_OP_JSON_PATH_TEXT;
+			return 0;
+
+                case 322:
+                    
+			token->opcode = PHQL_T_OP_JSON_PATH;
+			return 0;
+
+                case 323:
+                    $yych = $yyinput[$yycursor];
+                    switch ($yych) {
+                        case '>':
+                            $yycursor += 1;
+                            $yystate = 325;
+                            break 2;
+                        default:
+                            $yystate = 326;
+                            break 2;
+                    }
+                case 324:
+                    
+			token->opcode = PHQL_T_SUB;
+			return 0;
+
+                case 325:
+                    
+			token->opcode = PHQL_T_OP_JSON_GET_TEXT;
+			return 0;
+
+                case 326:
+                    
+			token->opcode = PHQL_T_OP_JSON_GET;
+			return 0;
+
+                case 327:
+                    
+			token->opcode = PHQL_T_OP_CONTAINED;
 			return 0;
 
                 default:
