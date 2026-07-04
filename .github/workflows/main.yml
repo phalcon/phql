@@ -98,7 +98,7 @@ jobs:
           composer-options: "--prefer-dist"
 
       - name: Run tests
-        run: composer test
+        run: composer test-unit
 
   coverage:
     name: Code Coverage
@@ -127,10 +127,4 @@ jobs:
           composer-options: "--prefer-dist"
 
       - name: Run tests with coverage
-        run: vendor/bin/phpunit -c resources/phpunit.xml --coverage-clover coverage.xml
-
-      - name: Upload coverage to Codecov
-        uses: codecov/codecov-action@v5
-        with:
-          file: ./coverage.xml
-          fail_ci_if_error: false
+        run: composer test-unit-coverage

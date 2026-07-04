@@ -8,5 +8,3 @@ phql.log
 # PHPUnit
 .phpunit.result.cache/
 tests/_output/
-coverage/
-coverage.xml
