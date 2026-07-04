@@ -19,7 +19,6 @@ use Phalcon\Phql\Tests\AbstractUnitTestCase;
 
 final class KeywordPrefixNameTest extends AbstractUnitTestCase
 {
-
     /**
      * @return void
      *
