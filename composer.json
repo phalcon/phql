@@ -27,7 +27,7 @@
         "phalcon/phalcon": "The Phalcon framework this module integrates with"
     },
     "require-dev": {
-        "phalcon/talon": "^0.6.0 || ^0.7.0 || ^0.8.0",
+        "phalcon/talon": "^1.0.0",
         "phpstan/phpstan": "^2.0",
         "phpunit/phpunit": "^10.5",
         "pds/skeleton": "^1.0",
