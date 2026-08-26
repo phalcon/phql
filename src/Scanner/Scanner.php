@@ -1423,6 +1423,8 @@ class Scanner
                     case 71:
                         $yych = $yyinput[$yycursor];
                         switch ($yych) {
+                            // An escape cannot consume the end-of-input sentinel.
+                            case "\x00":
                             case "\n":
                                 $yystate = 69;
                                 break 2;
@@ -1460,6 +1462,8 @@ class Scanner
                     case 75:
                         $yych = $yyinput[$yycursor];
                         switch ($yych) {
+                            // An escape cannot consume the end-of-input sentinel.
+                            case "\x00":
                             case "\n":
                                 $yystate = 69;
                                 break 2;

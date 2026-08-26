@@ -8,6 +8,7 @@ use Phalcon\Phql\Exception;
 use Phalcon\Phql\Parser;
 use Phalcon\Phql\Scanner\Opcode;
 use Phalcon\Phql\Tests\AbstractUnitTestCase;
+use Phalcon\Phql\Tokens;
 
 final class ParserTest extends AbstractUnitTestCase
 {
@@ -100,6 +101,24 @@ final class ParserTest extends AbstractUnitTestCase
         (new Parser())->parse('#');
     }
 
+    public function testScannerErrorTrailingBackslash(): void
+    {
+        $parser = new Parser();
+
+        foreach (['"abc\\', "'abc\\"] as $literal) {
+            $caught = null;
+
+            try {
+                $parser->parse('SELECT * FROM Robots WHERE name = ' . $literal);
+            } catch (Exception $ex) {
+                $caught = $ex;
+            }
+
+            $this->assertNotNull($caught, $literal);
+            $this->assertStringContainsString('Scanning error', $caught->getMessage());
+        }
+    }
+
     public function testSetEnableLiteralsChaining(): void
     {
         // Should not throw — fluent chaining works
@@ -115,6 +134,27 @@ final class ParserTest extends AbstractUnitTestCase
         $this->assertSame($parser, $result);
     }
 
+    public function testSyntaxErrorReportsTokenName(): void
+    {
+        $parser = new Parser();
+
+        // Unexpected token: the name comes from Tokens::$names.
+        $caught = null;
+        try {
+            $parser->parse('SELECT FROM Robots');
+        } catch (Exception $ex) {
+            $caught = $ex;
+        }
+        $this->assertNotNull($caught);
+        $this->assertMatchesRegularExpression('/^Syntax error, unexpected token FROM/', $caught->getMessage());
+
+        // Unexpected end of input.
+        $this->expectException(Exception::class);
+        $this->expectExceptionMessageMatches('/^Syntax error, unexpected EOF/');
+
+        $parser->parse('SELECT * FROM Robots WHERE (((');
+    }
+
     public function testThrowsPhqlException(): void
     {
         try {
@@ -122,6 +162,15 @@ final class ParserTest extends AbstractUnitTestCase
         } catch (\Throwable $e) {
             $this->assertInstanceOf(Exception::class, $e);
             $this->assertNotInstanceOf(\RuntimeException::class, $e);
+        }
+    }
+
+    public function testTokensNamesMatchOpcodes(): void
+    {
+        $this->assertNotEmpty(Tokens::$names);
+
+        foreach (Tokens::$names as $name => $code) {
+            $this->assertNotNull(Opcode::tryFrom($code), $name);
         }
     }
 
