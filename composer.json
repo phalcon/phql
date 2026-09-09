@@ -28,6 +28,7 @@
     },
     "require-dev": {
         "phalcon/talon": "^1.0.0",
+        "phalcon/code-quality": "^1.0",
         "phpstan/phpstan": "^2.0",
         "phpunit/phpunit": "^10.5",
         "pds/skeleton": "^1.0",
@@ -35,6 +36,14 @@
         "squizlabs/php_codesniffer": "^4.0",
         "friendsofphp/php-cs-fixer": "^3.95"
     },
+    "config": {
+        "optimize-autoloader": true,
+        "preferred-install": "dist",
+        "sort-packages": true,
+        "allow-plugins": {
+            "dealerdirect/phpcodesniffer-composer-installer": true
+      }
+  },
     "autoload": {
         "psr-4": {
             "Phalcon\\Phql\\": "src/"
