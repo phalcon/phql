@@ -20,8 +20,6 @@ use Phalcon\Phql\Tests\AbstractUnitTestCase;
 final class CombinationTest extends AbstractUnitTestCase
 {
     /**
-     * @return void
-     *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2026-04-09
      */
@@ -29,7 +27,7 @@ final class CombinationTest extends AbstractUnitTestCase
     {
         $source   = "DELETE FROM Invoices";
         $expected = [
-            'type' => Opcode::DELETE->value,
+            'type'   => Opcode::DELETE->value,
             'delete' => [
                 'tables' => [
                     'qualifiedName' => [
@@ -44,8 +42,6 @@ final class CombinationTest extends AbstractUnitTestCase
     }
 
     /**
-     * @return void
-     *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2026-04-09
      */
@@ -53,7 +49,7 @@ final class CombinationTest extends AbstractUnitTestCase
     {
         $source   = "DELETE FROM Invoices AS i WHERE i.inv_status_flag = 0";
         $expected = [
-            'type' => Opcode::DELETE->value,
+            'type'   => Opcode::DELETE->value,
             'delete' => [
                 'tables' => [
                     'qualifiedName' => [
@@ -64,14 +60,14 @@ final class CombinationTest extends AbstractUnitTestCase
                 ],
             ],
             'where'  => [
-                'type' => Opcode::EQUALS->value,
+                'type'  => Opcode::EQUALS->value,
                 'left'  => [
-                    'type' => Opcode::QUALIFIED->value,
+                    'type'   => Opcode::QUALIFIED->value,
                     'domain' => 'i',
                     'name'   => 'inv_status_flag',
                 ],
                 'right' => [
-                    'type' => Opcode::INTEGER->value,
+                    'type'  => Opcode::INTEGER->value,
                     'value' => '0',
                 ],
             ],
@@ -81,8 +77,6 @@ final class CombinationTest extends AbstractUnitTestCase
     }
 
     /**
-     * @return void
-     *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2026-04-09
      */
@@ -90,7 +84,7 @@ final class CombinationTest extends AbstractUnitTestCase
     {
         $source   = "DELETE FROM Invoices LIMIT 10";
         $expected = [
-            'type' => Opcode::DELETE->value,
+            'type'   => Opcode::DELETE->value,
             'delete' => [
                 'tables' => [
                     'qualifiedName' => [
@@ -101,7 +95,7 @@ final class CombinationTest extends AbstractUnitTestCase
             ],
             'limit'  => [
                 'number' => [
-                    'type' => Opcode::INTEGER->value,
+                    'type'  => Opcode::INTEGER->value,
                     'value' => '10',
                 ],
             ],
@@ -111,8 +105,6 @@ final class CombinationTest extends AbstractUnitTestCase
     }
 
     /**
-     * @return void
-     *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2026-04-09
      */
@@ -120,7 +112,7 @@ final class CombinationTest extends AbstractUnitTestCase
     {
         $source   = "DELETE FROM Invoices WHERE inv_id = 1";
         $expected = [
-            'type' => Opcode::DELETE->value,
+            'type'   => Opcode::DELETE->value,
             'delete' => [
                 'tables' => [
                     'qualifiedName' => [
@@ -130,13 +122,13 @@ final class CombinationTest extends AbstractUnitTestCase
                 ],
             ],
             'where'  => [
-                'type' => Opcode::EQUALS->value,
+                'type'  => Opcode::EQUALS->value,
                 'left'  => [
                     'type' => Opcode::QUALIFIED->value,
                     'name' => 'inv_id',
                 ],
                 'right' => [
-                    'type' => Opcode::INTEGER->value,
+                    'type'  => Opcode::INTEGER->value,
                     'value' => '1',
                 ],
             ],
@@ -146,8 +138,6 @@ final class CombinationTest extends AbstractUnitTestCase
     }
 
     /**
-     * @return void
-     *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2026-04-09
      */
@@ -155,7 +145,7 @@ final class CombinationTest extends AbstractUnitTestCase
     {
         $source   = "DELETE FROM Invoices WHERE inv_id = :id:";
         $expected = [
-            'type' => Opcode::DELETE->value,
+            'type'   => Opcode::DELETE->value,
             'delete' => [
                 'tables' => [
                     'qualifiedName' => [
@@ -165,13 +155,13 @@ final class CombinationTest extends AbstractUnitTestCase
                 ],
             ],
             'where'  => [
-                'type' => Opcode::EQUALS->value,
+                'type'  => Opcode::EQUALS->value,
                 'left'  => [
                     'type' => Opcode::QUALIFIED->value,
                     'name' => 'inv_id',
                 ],
                 'right' => [
-                    'type' => Opcode::SPLACEHOLDER->value,
+                    'type'  => Opcode::SPLACEHOLDER->value,
                     'value' => 'id',
                 ],
             ],
@@ -181,8 +171,6 @@ final class CombinationTest extends AbstractUnitTestCase
     }
 
     /**
-     * @return void
-     *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2026-04-09
      */
@@ -190,7 +178,7 @@ final class CombinationTest extends AbstractUnitTestCase
     {
         $source   = "DELETE FROM Invoices WHERE inv_id = ?0";
         $expected = [
-            'type' => Opcode::DELETE->value,
+            'type'   => Opcode::DELETE->value,
             'delete' => [
                 'tables' => [
                     'qualifiedName' => [
@@ -200,13 +188,13 @@ final class CombinationTest extends AbstractUnitTestCase
                 ],
             ],
             'where'  => [
-                'type' => Opcode::EQUALS->value,
+                'type'  => Opcode::EQUALS->value,
                 'left'  => [
                     'type' => Opcode::QUALIFIED->value,
                     'name' => 'inv_id',
                 ],
                 'right' => [
-                    'type' => Opcode::NPLACEHOLDER->value,
+                    'type'  => Opcode::NPLACEHOLDER->value,
                     'value' => '?0',
                 ],
             ],
@@ -216,8 +204,6 @@ final class CombinationTest extends AbstractUnitTestCase
     }
 
     /**
-     * @return void
-     *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2026-04-09
      */
@@ -225,7 +211,7 @@ final class CombinationTest extends AbstractUnitTestCase
     {
         $source   = "DELETE FROM Invoices WHERE inv_status_flag = 0";
         $expected = [
-            'type' => Opcode::DELETE->value,
+            'type'   => Opcode::DELETE->value,
             'delete' => [
                 'tables' => [
                     'qualifiedName' => [
@@ -235,13 +221,13 @@ final class CombinationTest extends AbstractUnitTestCase
                 ],
             ],
             'where'  => [
-                'type' => Opcode::EQUALS->value,
+                'type'  => Opcode::EQUALS->value,
                 'left'  => [
                     'type' => Opcode::QUALIFIED->value,
                     'name' => 'inv_status_flag',
                 ],
                 'right' => [
-                    'type' => Opcode::INTEGER->value,
+                    'type'  => Opcode::INTEGER->value,
                     'value' => '0',
                 ],
             ],
@@ -251,8 +237,6 @@ final class CombinationTest extends AbstractUnitTestCase
     }
 
     /**
-     * @return void
-     *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2026-04-09
      */
@@ -260,7 +244,7 @@ final class CombinationTest extends AbstractUnitTestCase
     {
         $source   = "DELETE FROM Invoices WHERE inv_cst_id IN (1, 2, 3)";
         $expected = [
-            'type' => Opcode::DELETE->value,
+            'type'   => Opcode::DELETE->value,
             'delete' => [
                 'tables' => [
                     'qualifiedName' => [
@@ -270,22 +254,22 @@ final class CombinationTest extends AbstractUnitTestCase
                 ],
             ],
             'where'  => [
-                'type' => Opcode::IN->value,
+                'type'  => Opcode::IN->value,
                 'left'  => [
                     'type' => Opcode::QUALIFIED->value,
                     'name' => 'inv_cst_id',
                 ],
                 'right' => [
                     0 => [
-                        'type' => Opcode::INTEGER->value,
+                        'type'  => Opcode::INTEGER->value,
                         'value' => '1',
                     ],
                     1 => [
-                        'type' => Opcode::INTEGER->value,
+                        'type'  => Opcode::INTEGER->value,
                         'value' => '2',
                     ],
                     2 => [
-                        'type' => Opcode::INTEGER->value,
+                        'type'  => Opcode::INTEGER->value,
                         'value' => '3',
                     ],
                 ],
@@ -296,8 +280,6 @@ final class CombinationTest extends AbstractUnitTestCase
     }
 
     /**
-     * @return void
-     *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2026-04-09
      */
@@ -305,7 +287,7 @@ final class CombinationTest extends AbstractUnitTestCase
     {
         $source   = "DELETE FROM Invoices WHERE inv_created_at IS NULL";
         $expected = [
-            'type' => Opcode::DELETE->value,
+            'type'   => Opcode::DELETE->value,
             'delete' => [
                 'tables' => [
                     'qualifiedName' => [
@@ -327,8 +309,6 @@ final class CombinationTest extends AbstractUnitTestCase
     }
 
     /**
-     * @return void
-     *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2026-04-09
      */
@@ -336,7 +316,7 @@ final class CombinationTest extends AbstractUnitTestCase
     {
         $source   = "DELETE FROM Invoices WHERE inv_total < 0 LIMIT 3";
         $expected = [
-            'type' => Opcode::DELETE->value,
+            'type'   => Opcode::DELETE->value,
             'delete' => [
                 'tables' => [
                     'qualifiedName' => [
@@ -346,19 +326,19 @@ final class CombinationTest extends AbstractUnitTestCase
                 ],
             ],
             'where'  => [
-                'type' => Opcode::LESS->value,
+                'type'  => Opcode::LESS->value,
                 'left'  => [
                     'type' => Opcode::QUALIFIED->value,
                     'name' => 'inv_total',
                 ],
                 'right' => [
-                    'type' => Opcode::INTEGER->value,
+                    'type'  => Opcode::INTEGER->value,
                     'value' => '0',
                 ],
             ],
             'limit'  => [
                 'number' => [
-                    'type' => Opcode::INTEGER->value,
+                    'type'  => Opcode::INTEGER->value,
                     'value' => '3',
                 ],
             ],

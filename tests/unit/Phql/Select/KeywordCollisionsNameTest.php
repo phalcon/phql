@@ -20,8 +20,6 @@ use Phalcon\Phql\Tests\AbstractUnitTestCase;
 final class KeywordCollisionsNameTest extends AbstractUnitTestCase
 {
     /**
-     * @return void
-     *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2026-04-09
      */
@@ -29,18 +27,18 @@ final class KeywordCollisionsNameTest extends AbstractUnitTestCase
     {
         $source   = "SELECT [Order], [Group] FROM Items";
         $expected = [
-            'type' => Opcode::SELECT->value,
+            'type'   => Opcode::SELECT->value,
             'select' => [
                 'columns' => [
                     0 => [
-                        'type' => Opcode::EXPR->value,
+                        'type'   => Opcode::EXPR->value,
                         'column' => [
                             'type' => Opcode::QUALIFIED->value,
                             'name' => 'Order',
                         ],
                     ],
                     1 => [
-                        'type' => Opcode::EXPR->value,
+                        'type'   => Opcode::EXPR->value,
                         'column' => [
                             'type' => Opcode::QUALIFIED->value,
                             'name' => 'Group',
@@ -60,8 +58,6 @@ final class KeywordCollisionsNameTest extends AbstractUnitTestCase
     }
 
     /**
-     * @return void
-     *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2026-04-09
      */
@@ -69,18 +65,18 @@ final class KeywordCollisionsNameTest extends AbstractUnitTestCase
     {
         $source   = "SELECT [Delete], [Update] FROM AuditLog";
         $expected = [
-            'type' => Opcode::SELECT->value,
+            'type'   => Opcode::SELECT->value,
             'select' => [
                 'columns' => [
                     0 => [
-                        'type' => Opcode::EXPR->value,
+                        'type'   => Opcode::EXPR->value,
                         'column' => [
                             'type' => Opcode::QUALIFIED->value,
                             'name' => 'Delete',
                         ],
                     ],
                     1 => [
-                        'type' => Opcode::EXPR->value,
+                        'type'   => Opcode::EXPR->value,
                         'column' => [
                             'type' => Opcode::QUALIFIED->value,
                             'name' => 'Update',
@@ -100,8 +96,6 @@ final class KeywordCollisionsNameTest extends AbstractUnitTestCase
     }
 
     /**
-     * @return void
-     *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2026-04-09
      */
@@ -109,18 +103,18 @@ final class KeywordCollisionsNameTest extends AbstractUnitTestCase
     {
         $source   = "SELECT [Order], [Desc] FROM Items ORDER BY [Order] ASC";
         $expected = [
-            'type' => Opcode::SELECT->value,
+            'type'    => Opcode::SELECT->value,
             'select'  => [
                 'columns' => [
                     0 => [
-                        'type' => Opcode::EXPR->value,
+                        'type'   => Opcode::EXPR->value,
                         'column' => [
                             'type' => Opcode::QUALIFIED->value,
                             'name' => 'Order',
                         ],
                     ],
                     1 => [
-                        'type' => Opcode::EXPR->value,
+                        'type'   => Opcode::EXPR->value,
                         'column' => [
                             'type' => Opcode::QUALIFIED->value,
                             'name' => 'Desc',
@@ -147,8 +141,6 @@ final class KeywordCollisionsNameTest extends AbstractUnitTestCase
     }
 
     /**
-     * @return void
-     *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2026-04-09
      */
@@ -156,18 +148,18 @@ final class KeywordCollisionsNameTest extends AbstractUnitTestCase
     {
         $source   = "SELECT [Values], [Set] FROM Config";
         $expected = [
-            'type' => Opcode::SELECT->value,
+            'type'   => Opcode::SELECT->value,
             'select' => [
                 'columns' => [
                     0 => [
-                        'type' => Opcode::EXPR->value,
+                        'type'   => Opcode::EXPR->value,
                         'column' => [
                             'type' => Opcode::QUALIFIED->value,
                             'name' => 'Values',
                         ],
                     ],
                     1 => [
-                        'type' => Opcode::EXPR->value,
+                        'type'   => Opcode::EXPR->value,
                         'column' => [
                             'type' => Opcode::QUALIFIED->value,
                             'name' => 'Set',
@@ -187,8 +179,6 @@ final class KeywordCollisionsNameTest extends AbstractUnitTestCase
     }
 
     /**
-     * @return void
-     *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2026-04-09
      */
@@ -196,7 +186,7 @@ final class KeywordCollisionsNameTest extends AbstractUnitTestCase
     {
         $source   = "SELECT * FROM Items WHERE [Select] = 1";
         $expected = [
-            'type' => Opcode::SELECT->value,
+            'type'   => Opcode::SELECT->value,
             'select' => [
                 'columns' => [
                     0 => [
@@ -211,13 +201,13 @@ final class KeywordCollisionsNameTest extends AbstractUnitTestCase
                 ],
             ],
             'where'  => [
-                'type' => Opcode::EQUALS->value,
+                'type'  => Opcode::EQUALS->value,
                 'left'  => [
                     'type' => Opcode::QUALIFIED->value,
                     'name' => 'Select',
                 ],
                 'right' => [
-                    'type' => Opcode::INTEGER->value,
+                    'type'  => Opcode::INTEGER->value,
                     'value' => '1',
                 ],
             ],
@@ -227,8 +217,6 @@ final class KeywordCollisionsNameTest extends AbstractUnitTestCase
     }
 
     /**
-     * @return void
-     *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2026-04-09
      */
@@ -236,7 +224,7 @@ final class KeywordCollisionsNameTest extends AbstractUnitTestCase
     {
         $source   = "SELECT * FROM Items WHERE [In] = 1";
         $expected = [
-            'type' => Opcode::SELECT->value,
+            'type'   => Opcode::SELECT->value,
             'select' => [
                 'columns' => [
                     0 => [
@@ -251,13 +239,13 @@ final class KeywordCollisionsNameTest extends AbstractUnitTestCase
                 ],
             ],
             'where'  => [
-                'type' => Opcode::EQUALS->value,
+                'type'  => Opcode::EQUALS->value,
                 'left'  => [
                     'type' => Opcode::QUALIFIED->value,
                     'name' => 'In',
                 ],
                 'right' => [
-                    'type' => Opcode::INTEGER->value,
+                    'type'  => Opcode::INTEGER->value,
                     'value' => '1',
                 ],
             ],
@@ -267,8 +255,6 @@ final class KeywordCollisionsNameTest extends AbstractUnitTestCase
     }
 
     /**
-     * @return void
-     *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2026-04-09
      */
@@ -276,7 +262,7 @@ final class KeywordCollisionsNameTest extends AbstractUnitTestCase
     {
         $source   = "SELECT * FROM Items WHERE [From] IS NOT NULL";
         $expected = [
-            'type' => Opcode::SELECT->value,
+            'type'   => Opcode::SELECT->value,
             'select' => [
                 'columns' => [
                     0 => [
@@ -303,8 +289,6 @@ final class KeywordCollisionsNameTest extends AbstractUnitTestCase
     }
 
     /**
-     * @return void
-     *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2026-04-09
      */
@@ -312,7 +296,7 @@ final class KeywordCollisionsNameTest extends AbstractUnitTestCase
     {
         $source   = "SELECT * FROM Items WHERE [Null] IS NULL";
         $expected = [
-            'type' => Opcode::SELECT->value,
+            'type'   => Opcode::SELECT->value,
             'select' => [
                 'columns' => [
                     0 => [
@@ -339,8 +323,6 @@ final class KeywordCollisionsNameTest extends AbstractUnitTestCase
     }
 
     /**
-     * @return void
-     *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2026-04-09
      */
@@ -348,7 +330,7 @@ final class KeywordCollisionsNameTest extends AbstractUnitTestCase
     {
         $source   = "SELECT * FROM Items WHERE [Where] = 'test'";
         $expected = [
-            'type' => Opcode::SELECT->value,
+            'type'   => Opcode::SELECT->value,
             'select' => [
                 'columns' => [
                     0 => [
@@ -363,13 +345,13 @@ final class KeywordCollisionsNameTest extends AbstractUnitTestCase
                 ],
             ],
             'where'  => [
-                'type' => Opcode::EQUALS->value,
+                'type'  => Opcode::EQUALS->value,
                 'left'  => [
                     'type' => Opcode::QUALIFIED->value,
                     'name' => 'Where',
                 ],
                 'right' => [
-                    'type' => Opcode::STRING->value,
+                    'type'  => Opcode::STRING->value,
                     'value' => 'test',
                 ],
             ],
@@ -379,8 +361,6 @@ final class KeywordCollisionsNameTest extends AbstractUnitTestCase
     }
 
     /**
-     * @return void
-     *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2026-04-09
      */
@@ -388,7 +368,7 @@ final class KeywordCollisionsNameTest extends AbstractUnitTestCase
     {
         $source   = "SELECT * FROM Items WHERE [Not] = 0";
         $expected = [
-            'type' => Opcode::SELECT->value,
+            'type'   => Opcode::SELECT->value,
             'select' => [
                 'columns' => [
                     0 => [
@@ -403,13 +383,13 @@ final class KeywordCollisionsNameTest extends AbstractUnitTestCase
                 ],
             ],
             'where'  => [
-                'type' => Opcode::EQUALS->value,
+                'type'  => Opcode::EQUALS->value,
                 'left'  => [
                     'type' => Opcode::QUALIFIED->value,
                     'name' => 'Not',
                 ],
                 'right' => [
-                    'type' => Opcode::INTEGER->value,
+                    'type'  => Opcode::INTEGER->value,
                     'value' => '0',
                 ],
             ],

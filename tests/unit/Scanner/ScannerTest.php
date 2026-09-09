@@ -23,6 +23,32 @@ final class ScannerTest extends AbstractUnitTestCase
         ], $opcodes);
     }
 
+    public function testBracketPlaceholder(): void
+    {
+        $state   = new State('{id}');
+        $scanner = new Scanner($state);
+
+        $scanner->scanForToken();
+        $token = $scanner->getToken();
+
+        $this->assertSame(Opcode::BPLACEHOLDER, $token->opcode);
+        $this->assertSame('id', $token->value);
+    }
+
+    public function testComparisonOperators(): void
+    {
+        $opcodes = $this->scanAll('= != ! < <= > >=');
+        $this->assertSame([
+            Opcode::EQUALS,
+            Opcode::NOTEQUALS,
+            Opcode::NOT,
+            Opcode::LESS,
+            Opcode::LESSEQUAL,
+            Opcode::GREATER,
+            Opcode::GREATEREQUAL,
+        ], $opcodes);
+    }
+
     public function testDialectSpecificOperators(): void
     {
         $opcodes = $this->scanAll('@@ @> <@ && || -> ->> #> #>>');
@@ -49,32 +75,6 @@ final class ScannerTest extends AbstractUnitTestCase
             Opcode::NOT,
             Opcode::NOT,
             Opcode::OP_JSON_GET,
-        ], $opcodes);
-    }
-
-    public function testBracketPlaceholder(): void
-    {
-        $state   = new State('{id}');
-        $scanner = new Scanner($state);
-
-        $scanner->scanForToken();
-        $token = $scanner->getToken();
-
-        $this->assertSame(Opcode::BPLACEHOLDER, $token->opcode);
-        $this->assertSame('id', $token->value);
-    }
-
-    public function testComparisonOperators(): void
-    {
-        $opcodes = $this->scanAll('= != ! < <= > >=');
-        $this->assertSame([
-            Opcode::EQUALS,
-            Opcode::NOTEQUALS,
-            Opcode::NOT,
-            Opcode::LESS,
-            Opcode::LESSEQUAL,
-            Opcode::GREATER,
-            Opcode::GREATEREQUAL,
         ], $opcodes);
     }
 

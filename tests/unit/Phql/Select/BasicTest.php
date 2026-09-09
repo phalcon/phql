@@ -20,8 +20,6 @@ use Phalcon\Phql\Tests\AbstractUnitTestCase;
 final class BasicTest extends AbstractUnitTestCase
 {
     /**
-     * @return void
-     *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2026-04-09
      */
@@ -29,7 +27,7 @@ final class BasicTest extends AbstractUnitTestCase
     {
         $source   = "SELECT * FROM Invoices";
         $expected = [
-            'type' => Opcode::SELECT->value,
+            'type'   => Opcode::SELECT->value,
             'select' => [
                 'columns' => [
                     0 => [
@@ -49,8 +47,6 @@ final class BasicTest extends AbstractUnitTestCase
     }
 
     /**
-     * @return void
-     *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2026-04-09
      */
@@ -58,11 +54,11 @@ final class BasicTest extends AbstractUnitTestCase
     {
         $source   = "SELECT i.* FROM Invoices i";
         $expected = [
-            'type' => Opcode::SELECT->value,
+            'type'   => Opcode::SELECT->value,
             'select' => [
                 'columns' => [
                     0 => [
-                        'type' => Opcode::DOMAINALL->value,
+                        'type'   => Opcode::DOMAINALL->value,
                         'column' => 'i',
                     ],
                 ],
@@ -80,8 +76,6 @@ final class BasicTest extends AbstractUnitTestCase
     }
 
     /**
-     * @return void
-     *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2026-04-09
      */
@@ -89,11 +83,11 @@ final class BasicTest extends AbstractUnitTestCase
     {
         $source   = "SELECT Invoices.* FROM Invoices";
         $expected = [
-            'type' => Opcode::SELECT->value,
+            'type'   => Opcode::SELECT->value,
             'select' => [
                 'columns' => [
                     0 => [
-                        'type' => Opcode::DOMAINALL->value,
+                        'type'   => Opcode::DOMAINALL->value,
                         'column' => 'Invoices',
                     ],
                 ],
@@ -110,8 +104,6 @@ final class BasicTest extends AbstractUnitTestCase
     }
 
     /**
-     * @return void
-     *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2026-04-09
      */
@@ -119,25 +111,25 @@ final class BasicTest extends AbstractUnitTestCase
     {
         $source   = "SELECT inv_id, inv_title, inv_total FROM Invoices";
         $expected = [
-            'type' => Opcode::SELECT->value,
+            'type'   => Opcode::SELECT->value,
             'select' => [
                 'columns' => [
                     0 => [
-                        'type' => Opcode::EXPR->value,
+                        'type'   => Opcode::EXPR->value,
                         'column' => [
                             'type' => Opcode::QUALIFIED->value,
                             'name' => 'inv_id',
                         ],
                     ],
                     1 => [
-                        'type' => Opcode::EXPR->value,
+                        'type'   => Opcode::EXPR->value,
                         'column' => [
                             'type' => Opcode::QUALIFIED->value,
                             'name' => 'inv_title',
                         ],
                     ],
                     2 => [
-                        'type' => Opcode::EXPR->value,
+                        'type'   => Opcode::EXPR->value,
                         'column' => [
                             'type' => Opcode::QUALIFIED->value,
                             'name' => 'inv_total',
@@ -157,8 +149,6 @@ final class BasicTest extends AbstractUnitTestCase
     }
 
     /**
-     * @return void
-     *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2026-04-09
      */
@@ -166,11 +156,11 @@ final class BasicTest extends AbstractUnitTestCase
     {
         $source   = "SELECT inv_id FROM Invoices";
         $expected = [
-            'type' => Opcode::SELECT->value,
+            'type'   => Opcode::SELECT->value,
             'select' => [
                 'columns' => [
                     0 => [
-                        'type' => Opcode::EXPR->value,
+                        'type'   => Opcode::EXPR->value,
                         'column' => [
                             'type' => Opcode::QUALIFIED->value,
                             'name' => 'inv_id',
@@ -190,8 +180,6 @@ final class BasicTest extends AbstractUnitTestCase
     }
 
     /**
-     * @return void
-     *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2026-04-09
      */
@@ -199,13 +187,13 @@ final class BasicTest extends AbstractUnitTestCase
     {
         $source   = "SELECT i.inv_id FROM Invoices i";
         $expected = [
-            'type' => Opcode::SELECT->value,
+            'type'   => Opcode::SELECT->value,
             'select' => [
                 'columns' => [
                     0 => [
-                        'type' => Opcode::EXPR->value,
+                        'type'   => Opcode::EXPR->value,
                         'column' => [
-                            'type' => Opcode::QUALIFIED->value,
+                            'type'   => Opcode::QUALIFIED->value,
                             'domain' => 'i',
                             'name'   => 'inv_id',
                         ],
@@ -225,8 +213,6 @@ final class BasicTest extends AbstractUnitTestCase
     }
 
     /**
-     * @return void
-     *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2026-04-09
      */
@@ -234,13 +220,13 @@ final class BasicTest extends AbstractUnitTestCase
     {
         $source   = "SELECT i.inv_id FROM Invoices AS i";
         $expected = [
-            'type' => Opcode::SELECT->value,
+            'type'   => Opcode::SELECT->value,
             'select' => [
                 'columns' => [
                     0 => [
-                        'type' => Opcode::EXPR->value,
+                        'type'   => Opcode::EXPR->value,
                         'column' => [
-                            'type' => Opcode::QUALIFIED->value,
+                            'type'   => Opcode::QUALIFIED->value,
                             'domain' => 'i',
                             'name'   => 'inv_id',
                         ],
@@ -260,8 +246,6 @@ final class BasicTest extends AbstractUnitTestCase
     }
 
     /**
-     * @return void
-     *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2026-04-09
      */
@@ -269,13 +253,13 @@ final class BasicTest extends AbstractUnitTestCase
     {
         $source   = "SELECT Invoices.inv_id FROM Invoices";
         $expected = [
-            'type' => Opcode::SELECT->value,
+            'type'   => Opcode::SELECT->value,
             'select' => [
                 'columns' => [
                     0 => [
-                        'type' => Opcode::EXPR->value,
+                        'type'   => Opcode::EXPR->value,
                         'column' => [
-                            'type' => Opcode::QUALIFIED->value,
+                            'type'   => Opcode::QUALIFIED->value,
                             'domain' => 'Invoices',
                             'name'   => 'inv_id',
                         ],
@@ -294,8 +278,6 @@ final class BasicTest extends AbstractUnitTestCase
     }
 
     /**
-     * @return void
-     *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2026-04-09
      */
@@ -303,18 +285,18 @@ final class BasicTest extends AbstractUnitTestCase
     {
         $source   = "SELECT inv_id, inv_title FROM Invoices";
         $expected = [
-            'type' => Opcode::SELECT->value,
+            'type'   => Opcode::SELECT->value,
             'select' => [
                 'columns' => [
                     0 => [
-                        'type' => Opcode::EXPR->value,
+                        'type'   => Opcode::EXPR->value,
                         'column' => [
                             'type' => Opcode::QUALIFIED->value,
                             'name' => 'inv_id',
                         ],
                     ],
                     1 => [
-                        'type' => Opcode::EXPR->value,
+                        'type'   => Opcode::EXPR->value,
                         'column' => [
                             'type' => Opcode::QUALIFIED->value,
                             'name' => 'inv_title',

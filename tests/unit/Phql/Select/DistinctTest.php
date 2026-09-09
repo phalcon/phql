@@ -20,8 +20,6 @@ use Phalcon\Phql\Tests\AbstractUnitTestCase;
 final class DistinctTest extends AbstractUnitTestCase
 {
     /**
-     * @return void
-     *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2026-04-09
      */
@@ -30,12 +28,12 @@ final class DistinctTest extends AbstractUnitTestCase
         $source   = "SELECT ALL inv_status_flag "
             . "FROM Invoices";
         $expected = [
-            'type' => Opcode::SELECT->value,
+            'type'   => Opcode::SELECT->value,
             'select' => [
                 'distinct' => 0,
                 'columns'  => [
                     0 => [
-                        'type' => Opcode::EXPR->value,
+                        'type'   => Opcode::EXPR->value,
                         'column' => [
                             'type' => Opcode::QUALIFIED->value,
                             'name' => 'inv_status_flag',
@@ -55,8 +53,6 @@ final class DistinctTest extends AbstractUnitTestCase
     }
 
     /**
-     * @return void
-     *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2026-04-09
      */
@@ -65,12 +61,12 @@ final class DistinctTest extends AbstractUnitTestCase
         $source   = "SELECT DISTINCT inv_status_flag "
             . "FROM Invoices";
         $expected = [
-            'type' => Opcode::SELECT->value,
+            'type'   => Opcode::SELECT->value,
             'select' => [
                 'distinct' => 1,
                 'columns'  => [
                     0 => [
-                        'type' => Opcode::EXPR->value,
+                        'type'   => Opcode::EXPR->value,
                         'column' => [
                             'type' => Opcode::QUALIFIED->value,
                             'name' => 'inv_status_flag',
@@ -90,8 +86,6 @@ final class DistinctTest extends AbstractUnitTestCase
     }
 
     /**
-     * @return void
-     *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2026-04-09
      */
@@ -100,19 +94,19 @@ final class DistinctTest extends AbstractUnitTestCase
         $source   = "SELECT DISTINCT inv_cst_id, inv_status_flag "
             . "FROM Invoices";
         $expected = [
-            'type' => Opcode::SELECT->value,
+            'type'   => Opcode::SELECT->value,
             'select' => [
                 'distinct' => 1,
                 'columns'  => [
                     0 => [
-                        'type' => Opcode::EXPR->value,
+                        'type'   => Opcode::EXPR->value,
                         'column' => [
                             'type' => Opcode::QUALIFIED->value,
                             'name' => 'inv_cst_id',
                         ],
                     ],
                     1 => [
-                        'type' => Opcode::EXPR->value,
+                        'type'   => Opcode::EXPR->value,
                         'column' => [
                             'type' => Opcode::QUALIFIED->value,
                             'name' => 'inv_status_flag',

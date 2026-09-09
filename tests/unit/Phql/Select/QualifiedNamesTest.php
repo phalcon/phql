@@ -20,8 +20,6 @@ use Phalcon\Phql\Tests\AbstractUnitTestCase;
 final class QualifiedNamesTest extends AbstractUnitTestCase
 {
     /**
-     * @return void
-     *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2026-04-09
      */
@@ -29,7 +27,7 @@ final class QualifiedNamesTest extends AbstractUnitTestCase
     {
         $source   = "SELECT * FROM App\Models\Invoices";
         $expected = [
-            'type' => Opcode::SELECT->value,
+            'type'   => Opcode::SELECT->value,
             'select' => [
                 'columns' => [
                     0 => [
@@ -49,8 +47,6 @@ final class QualifiedNamesTest extends AbstractUnitTestCase
     }
 
     /**
-     * @return void
-     *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2026-04-09
      */
@@ -58,13 +54,13 @@ final class QualifiedNamesTest extends AbstractUnitTestCase
     {
         $source   = "SELECT i.inv_id FROM App\Models\Invoices AS i";
         $expected = [
-            'type' => Opcode::SELECT->value,
+            'type'   => Opcode::SELECT->value,
             'select' => [
                 'columns' => [
                     0 => [
-                        'type' => Opcode::EXPR->value,
+                        'type'   => Opcode::EXPR->value,
                         'column' => [
-                            'type' => Opcode::QUALIFIED->value,
+                            'type'   => Opcode::QUALIFIED->value,
                             'domain' => 'i',
                             'name'   => 'inv_id',
                         ],
@@ -84,8 +80,6 @@ final class QualifiedNamesTest extends AbstractUnitTestCase
     }
 
     /**
-     * @return void
-     *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2026-04-09
      */
@@ -93,7 +87,7 @@ final class QualifiedNamesTest extends AbstractUnitTestCase
     {
         $source   = "SELECT * FROM App\Models\Invoices WHERE inv_id = 1";
         $expected = [
-            'type' => Opcode::SELECT->value,
+            'type'   => Opcode::SELECT->value,
             'select' => [
                 'columns' => [
                     0 => [
@@ -108,13 +102,13 @@ final class QualifiedNamesTest extends AbstractUnitTestCase
                 ],
             ],
             'where'  => [
-                'type' => Opcode::EQUALS->value,
+                'type'  => Opcode::EQUALS->value,
                 'left'  => [
                     'type' => Opcode::QUALIFIED->value,
                     'name' => 'inv_id',
                 ],
                 'right' => [
-                    'type' => Opcode::INTEGER->value,
+                    'type'  => Opcode::INTEGER->value,
                     'value' => '1',
                 ],
             ],

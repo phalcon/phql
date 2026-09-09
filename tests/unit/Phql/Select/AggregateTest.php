@@ -20,8 +20,6 @@ use Phalcon\Phql\Tests\AbstractUnitTestCase;
 final class AggregateTest extends AbstractUnitTestCase
 {
     /**
-     * @return void
-     *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2026-04-09
      */
@@ -29,13 +27,13 @@ final class AggregateTest extends AbstractUnitTestCase
     {
         $source   = "SELECT AVG(inv_total) FROM Invoices";
         $expected = [
-            'type' => Opcode::SELECT->value,
+            'type'   => Opcode::SELECT->value,
             'select' => [
                 'columns' => [
                     0 => [
-                        'type' => Opcode::EXPR->value,
+                        'type'   => Opcode::EXPR->value,
                         'column' => [
-                            'type' => Opcode::FCALL->value,
+                            'type'      => Opcode::FCALL->value,
                             'name'      => 'AVG',
                             'arguments' => [
                                 0 => [
@@ -59,8 +57,6 @@ final class AggregateTest extends AbstractUnitTestCase
     }
 
     /**
-     * @return void
-     *
      * @author Phalcon Team <team@phalcon.io>
      * @issue  3
      * @since  2026-04-11
@@ -70,11 +66,11 @@ final class AggregateTest extends AbstractUnitTestCase
         $source   = "SELECT AVG(inv_total) AS average "
             . "FROM [Phalcon\\Tests\\Models\\Invoices]";
         $expected = [
-            'type' => Opcode::SELECT->value,
+            'type'   => Opcode::SELECT->value,
             'select' => [
                 'columns' => [
                     0 => [
-                        'type' => Opcode::EXPR->value,
+                        'type'   => Opcode::EXPR->value,
                         'column' => [
                             'type'      => Opcode::FCALL->value,
                             'name'      => 'AVG',
@@ -101,8 +97,6 @@ final class AggregateTest extends AbstractUnitTestCase
     }
 
     /**
-     * @return void
-     *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2026-04-09
      */
@@ -110,13 +104,13 @@ final class AggregateTest extends AbstractUnitTestCase
     {
         $source   = "SELECT COUNT(*) FROM Invoices";
         $expected = [
-            'type' => Opcode::SELECT->value,
+            'type'   => Opcode::SELECT->value,
             'select' => [
                 'columns' => [
                     0 => [
-                        'type' => Opcode::EXPR->value,
+                        'type'   => Opcode::EXPR->value,
                         'column' => [
-                            'type' => Opcode::FCALL->value,
+                            'type'      => Opcode::FCALL->value,
                             'name'      => 'COUNT',
                             'arguments' => [
                                 0 => [
@@ -139,8 +133,6 @@ final class AggregateTest extends AbstractUnitTestCase
     }
 
     /**
-     * @return void
-     *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2026-04-09
      */
@@ -148,13 +140,13 @@ final class AggregateTest extends AbstractUnitTestCase
     {
         $source   = "SELECT COUNT(DISTINCT inv_cst_id) FROM Invoices";
         $expected = [
-            'type' => Opcode::SELECT->value,
+            'type'   => Opcode::SELECT->value,
             'select' => [
                 'columns' => [
                     0 => [
-                        'type' => Opcode::EXPR->value,
+                        'type'   => Opcode::EXPR->value,
                         'column' => [
-                            'type' => Opcode::FCALL->value,
+                            'type'      => Opcode::FCALL->value,
                             'name'      => 'COUNT',
                             'arguments' => [
                                 0 => [
@@ -179,8 +171,6 @@ final class AggregateTest extends AbstractUnitTestCase
     }
 
     /**
-     * @return void
-     *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2026-04-09
      */
@@ -188,13 +178,13 @@ final class AggregateTest extends AbstractUnitTestCase
     {
         $source   = "SELECT COUNT(inv_id) FROM Invoices";
         $expected = [
-            'type' => Opcode::SELECT->value,
+            'type'   => Opcode::SELECT->value,
             'select' => [
                 'columns' => [
                     0 => [
-                        'type' => Opcode::EXPR->value,
+                        'type'   => Opcode::EXPR->value,
                         'column' => [
-                            'type' => Opcode::FCALL->value,
+                            'type'      => Opcode::FCALL->value,
                             'name'      => 'COUNT',
                             'arguments' => [
                                 0 => [
@@ -218,8 +208,6 @@ final class AggregateTest extends AbstractUnitTestCase
     }
 
     /**
-     * @return void
-     *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2026-04-09
      */
@@ -227,13 +215,13 @@ final class AggregateTest extends AbstractUnitTestCase
     {
         $source   = "SELECT COUNT(*), SUM(inv_total), AVG(inv_total), MIN(inv_total), MAX(inv_total) FROM Invoices";
         $expected = [
-            'type' => Opcode::SELECT->value,
+            'type'   => Opcode::SELECT->value,
             'select' => [
                 'columns' => [
                     0 => [
-                        'type' => Opcode::EXPR->value,
+                        'type'   => Opcode::EXPR->value,
                         'column' => [
-                            'type' => Opcode::FCALL->value,
+                            'type'      => Opcode::FCALL->value,
                             'name'      => 'COUNT',
                             'arguments' => [
                                 0 => [
@@ -243,9 +231,9 @@ final class AggregateTest extends AbstractUnitTestCase
                         ],
                     ],
                     1 => [
-                        'type' => Opcode::EXPR->value,
+                        'type'   => Opcode::EXPR->value,
                         'column' => [
-                            'type' => Opcode::FCALL->value,
+                            'type'      => Opcode::FCALL->value,
                             'name'      => 'SUM',
                             'arguments' => [
                                 0 => [
@@ -256,9 +244,9 @@ final class AggregateTest extends AbstractUnitTestCase
                         ],
                     ],
                     2 => [
-                        'type' => Opcode::EXPR->value,
+                        'type'   => Opcode::EXPR->value,
                         'column' => [
-                            'type' => Opcode::FCALL->value,
+                            'type'      => Opcode::FCALL->value,
                             'name'      => 'AVG',
                             'arguments' => [
                                 0 => [
@@ -269,9 +257,9 @@ final class AggregateTest extends AbstractUnitTestCase
                         ],
                     ],
                     3 => [
-                        'type' => Opcode::EXPR->value,
+                        'type'   => Opcode::EXPR->value,
                         'column' => [
-                            'type' => Opcode::FCALL->value,
+                            'type'      => Opcode::FCALL->value,
                             'name'      => 'MIN',
                             'arguments' => [
                                 0 => [
@@ -282,9 +270,9 @@ final class AggregateTest extends AbstractUnitTestCase
                         ],
                     ],
                     4 => [
-                        'type' => Opcode::EXPR->value,
+                        'type'   => Opcode::EXPR->value,
                         'column' => [
-                            'type' => Opcode::FCALL->value,
+                            'type'      => Opcode::FCALL->value,
                             'name'      => 'MAX',
                             'arguments' => [
                                 0 => [
@@ -308,8 +296,6 @@ final class AggregateTest extends AbstractUnitTestCase
     }
 
     /**
-     * @return void
-     *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2026-04-09
      */
@@ -317,13 +303,13 @@ final class AggregateTest extends AbstractUnitTestCase
     {
         $source   = "SELECT MAX(inv_created_at) FROM Invoices";
         $expected = [
-            'type' => Opcode::SELECT->value,
+            'type'   => Opcode::SELECT->value,
             'select' => [
                 'columns' => [
                     0 => [
-                        'type' => Opcode::EXPR->value,
+                        'type'   => Opcode::EXPR->value,
                         'column' => [
-                            'type' => Opcode::FCALL->value,
+                            'type'      => Opcode::FCALL->value,
                             'name'      => 'MAX',
                             'arguments' => [
                                 0 => [
@@ -347,8 +333,6 @@ final class AggregateTest extends AbstractUnitTestCase
     }
 
     /**
-     * @return void
-     *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2026-04-09
      */
@@ -356,13 +340,13 @@ final class AggregateTest extends AbstractUnitTestCase
     {
         $source   = "SELECT MAX(inv_total) FROM Invoices";
         $expected = [
-            'type' => Opcode::SELECT->value,
+            'type'   => Opcode::SELECT->value,
             'select' => [
                 'columns' => [
                     0 => [
-                        'type' => Opcode::EXPR->value,
+                        'type'   => Opcode::EXPR->value,
                         'column' => [
-                            'type' => Opcode::FCALL->value,
+                            'type'      => Opcode::FCALL->value,
                             'name'      => 'MAX',
                             'arguments' => [
                                 0 => [
@@ -386,8 +370,6 @@ final class AggregateTest extends AbstractUnitTestCase
     }
 
     /**
-     * @return void
-     *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2026-04-09
      */
@@ -395,13 +377,13 @@ final class AggregateTest extends AbstractUnitTestCase
     {
         $source   = "SELECT MIN(inv_created_at) FROM Invoices";
         $expected = [
-            'type' => Opcode::SELECT->value,
+            'type'   => Opcode::SELECT->value,
             'select' => [
                 'columns' => [
                     0 => [
-                        'type' => Opcode::EXPR->value,
+                        'type'   => Opcode::EXPR->value,
                         'column' => [
-                            'type' => Opcode::FCALL->value,
+                            'type'      => Opcode::FCALL->value,
                             'name'      => 'MIN',
                             'arguments' => [
                                 0 => [
@@ -425,8 +407,6 @@ final class AggregateTest extends AbstractUnitTestCase
     }
 
     /**
-     * @return void
-     *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2026-04-09
      */
@@ -434,13 +414,13 @@ final class AggregateTest extends AbstractUnitTestCase
     {
         $source   = "SELECT MIN(inv_total) FROM Invoices";
         $expected = [
-            'type' => Opcode::SELECT->value,
+            'type'   => Opcode::SELECT->value,
             'select' => [
                 'columns' => [
                     0 => [
-                        'type' => Opcode::EXPR->value,
+                        'type'   => Opcode::EXPR->value,
                         'column' => [
-                            'type' => Opcode::FCALL->value,
+                            'type'      => Opcode::FCALL->value,
                             'name'      => 'MIN',
                             'arguments' => [
                                 0 => [
@@ -464,8 +444,6 @@ final class AggregateTest extends AbstractUnitTestCase
     }
 
     /**
-     * @return void
-     *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2026-04-09
      */
@@ -473,13 +451,13 @@ final class AggregateTest extends AbstractUnitTestCase
     {
         $source   = "SELECT SUM(inv_total) FROM Invoices";
         $expected = [
-            'type' => Opcode::SELECT->value,
+            'type'   => Opcode::SELECT->value,
             'select' => [
                 'columns' => [
                     0 => [
-                        'type' => Opcode::EXPR->value,
+                        'type'   => Opcode::EXPR->value,
                         'column' => [
-                            'type' => Opcode::FCALL->value,
+                            'type'      => Opcode::FCALL->value,
                             'name'      => 'SUM',
                             'arguments' => [
                                 0 => [

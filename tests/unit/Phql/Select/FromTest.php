@@ -20,8 +20,6 @@ use Phalcon\Phql\Tests\AbstractUnitTestCase;
 final class FromTest extends AbstractUnitTestCase
 {
     /**
-     * @return void
-     *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2026-04-09
      */
@@ -31,21 +29,21 @@ final class FromTest extends AbstractUnitTestCase
             . "FROM Invoices AS i, Customers AS c "
             . "WHERE i.inv_cst_id = c.id";
         $expected = [
-            'type' => Opcode::SELECT->value,
+            'type'   => Opcode::SELECT->value,
             'select' => [
                 'columns' => [
                     0 => [
-                        'type' => Opcode::EXPR->value,
+                        'type'   => Opcode::EXPR->value,
                         'column' => [
-                            'type' => Opcode::QUALIFIED->value,
+                            'type'   => Opcode::QUALIFIED->value,
                             'domain' => 'i',
                             'name'   => 'inv_id',
                         ],
                     ],
                     1 => [
-                        'type' => Opcode::EXPR->value,
+                        'type'   => Opcode::EXPR->value,
                         'column' => [
-                            'type' => Opcode::QUALIFIED->value,
+                            'type'   => Opcode::QUALIFIED->value,
                             'domain' => 'c',
                             'name'   => 'name',
                         ],
@@ -69,14 +67,14 @@ final class FromTest extends AbstractUnitTestCase
                 ],
             ],
             'where'  => [
-                'type' => Opcode::EQUALS->value,
+                'type'  => Opcode::EQUALS->value,
                 'left'  => [
-                    'type' => Opcode::QUALIFIED->value,
+                    'type'   => Opcode::QUALIFIED->value,
                     'domain' => 'i',
                     'name'   => 'inv_cst_id',
                 ],
                 'right' => [
-                    'type' => Opcode::QUALIFIED->value,
+                    'type'   => Opcode::QUALIFIED->value,
                     'domain' => 'c',
                     'name'   => 'id',
                 ],
@@ -87,8 +85,6 @@ final class FromTest extends AbstractUnitTestCase
     }
 
     /**
-     * @return void
-     *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2026-04-10
      */
@@ -96,7 +92,7 @@ final class FromTest extends AbstractUnitTestCase
     {
         $source   = "SELECT * FROM Invoices, Customers";
         $expected = [
-            'type' => Opcode::SELECT->value,
+            'type'   => Opcode::SELECT->value,
             'select' => [
                 'columns' => [
                     0 => [
@@ -124,8 +120,6 @@ final class FromTest extends AbstractUnitTestCase
     }
 
     /**
-     * @return void
-     *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2026-04-10
      */
@@ -134,7 +128,7 @@ final class FromTest extends AbstractUnitTestCase
         $source   = "SELECT * FROM Invoices, Customers "
             . "WHERE Invoices.inv_cst_id = Customers.id";
         $expected = [
-            'type' => Opcode::SELECT->value,
+            'type'   => Opcode::SELECT->value,
             'select' => [
                 'columns' => [
                     0 => [
@@ -157,14 +151,14 @@ final class FromTest extends AbstractUnitTestCase
                 ],
             ],
             'where'  => [
-                'type' => Opcode::EQUALS->value,
+                'type'  => Opcode::EQUALS->value,
                 'left'  => [
-                    'type' => Opcode::QUALIFIED->value,
+                    'type'   => Opcode::QUALIFIED->value,
                     'domain' => 'Invoices',
                     'name'   => 'inv_cst_id',
                 ],
                 'right' => [
-                    'type' => Opcode::QUALIFIED->value,
+                    'type'   => Opcode::QUALIFIED->value,
                     'domain' => 'Customers',
                     'name'   => 'id',
                 ],

@@ -20,8 +20,6 @@ use Phalcon\Phql\Tests\AbstractUnitTestCase;
 final class LiteralsTest extends AbstractUnitTestCase
 {
     /**
-     * @return void
-     *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2026-04-09
      */
@@ -29,7 +27,7 @@ final class LiteralsTest extends AbstractUnitTestCase
     {
         $source   = "SELECT * FROM Invoices WHERE inv_status_flag = FALSE";
         $expected = [
-            'type' => Opcode::SELECT->value,
+            'type'   => Opcode::SELECT->value,
             'select' => [
                 'columns' => [
                     0 => [
@@ -44,7 +42,7 @@ final class LiteralsTest extends AbstractUnitTestCase
                 ],
             ],
             'where'  => [
-                'type' => Opcode::EQUALS->value,
+                'type'  => Opcode::EQUALS->value,
                 'left'  => [
                     'type' => Opcode::QUALIFIED->value,
                     'name' => 'inv_status_flag',
@@ -59,8 +57,6 @@ final class LiteralsTest extends AbstractUnitTestCase
     }
 
     /**
-     * @return void
-     *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2026-04-09
      */
@@ -68,7 +64,7 @@ final class LiteralsTest extends AbstractUnitTestCase
     {
         $source   = "SELECT * FROM Invoices WHERE inv_total = 100.5";
         $expected = [
-            'type' => Opcode::SELECT->value,
+            'type'   => Opcode::SELECT->value,
             'select' => [
                 'columns' => [
                     0 => [
@@ -83,13 +79,13 @@ final class LiteralsTest extends AbstractUnitTestCase
                 ],
             ],
             'where'  => [
-                'type' => Opcode::EQUALS->value,
+                'type'  => Opcode::EQUALS->value,
                 'left'  => [
                     'type' => Opcode::QUALIFIED->value,
                     'name' => 'inv_total',
                 ],
                 'right' => [
-                    'type' => Opcode::DOUBLE->value,
+                    'type'  => Opcode::DOUBLE->value,
                     'value' => '100.5',
                 ],
             ],
@@ -99,8 +95,6 @@ final class LiteralsTest extends AbstractUnitTestCase
     }
 
     /**
-     * @return void
-     *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2026-04-09
      */
@@ -108,7 +102,7 @@ final class LiteralsTest extends AbstractUnitTestCase
     {
         $source   = "SELECT * FROM Invoices WHERE inv_total = .5";
         $expected = [
-            'type' => Opcode::SELECT->value,
+            'type'   => Opcode::SELECT->value,
             'select' => [
                 'columns' => [
                     0 => [
@@ -123,13 +117,13 @@ final class LiteralsTest extends AbstractUnitTestCase
                 ],
             ],
             'where'  => [
-                'type' => Opcode::EQUALS->value,
+                'type'  => Opcode::EQUALS->value,
                 'left'  => [
                     'type' => Opcode::QUALIFIED->value,
                     'name' => 'inv_total',
                 ],
                 'right' => [
-                    'type' => Opcode::DOUBLE->value,
+                    'type'  => Opcode::DOUBLE->value,
                     'value' => '.5',
                 ],
             ],
@@ -139,8 +133,6 @@ final class LiteralsTest extends AbstractUnitTestCase
     }
 
     /**
-     * @return void
-     *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2026-04-09
      */
@@ -148,7 +140,7 @@ final class LiteralsTest extends AbstractUnitTestCase
     {
         $source   = "SELECT * FROM Invoices WHERE inv_total = 100.";
         $expected = [
-            'type' => Opcode::SELECT->value,
+            'type'   => Opcode::SELECT->value,
             'select' => [
                 'columns' => [
                     0 => [
@@ -163,13 +155,13 @@ final class LiteralsTest extends AbstractUnitTestCase
                 ],
             ],
             'where'  => [
-                'type' => Opcode::EQUALS->value,
+                'type'  => Opcode::EQUALS->value,
                 'left'  => [
                     'type' => Opcode::QUALIFIED->value,
                     'name' => 'inv_total',
                 ],
                 'right' => [
-                    'type' => Opcode::DOUBLE->value,
+                    'type'  => Opcode::DOUBLE->value,
                     'value' => '100.',
                 ],
             ],
@@ -179,8 +171,6 @@ final class LiteralsTest extends AbstractUnitTestCase
     }
 
     /**
-     * @return void
-     *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2026-04-09
      */
@@ -188,11 +178,11 @@ final class LiteralsTest extends AbstractUnitTestCase
     {
         $source   = "SELECT NULL FROM Invoices";
         $expected = [
-            'type' => Opcode::SELECT->value,
+            'type'   => Opcode::SELECT->value,
             'select' => [
                 'columns' => [
                     0 => [
-                        'type' => Opcode::EXPR->value,
+                        'type'   => Opcode::EXPR->value,
                         'column' => [
                             'type' => Opcode::NULL->value,
                         ],
@@ -211,8 +201,6 @@ final class LiteralsTest extends AbstractUnitTestCase
     }
 
     /**
-     * @return void
-     *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2026-04-09
      */
@@ -220,7 +208,7 @@ final class LiteralsTest extends AbstractUnitTestCase
     {
         $source   = "SELECT * FROM Invoices WHERE inv_status_flag = TRUE";
         $expected = [
-            'type' => Opcode::SELECT->value,
+            'type'   => Opcode::SELECT->value,
             'select' => [
                 'columns' => [
                     0 => [
@@ -235,7 +223,7 @@ final class LiteralsTest extends AbstractUnitTestCase
                 ],
             ],
             'where'  => [
-                'type' => Opcode::EQUALS->value,
+                'type'  => Opcode::EQUALS->value,
                 'left'  => [
                     'type' => Opcode::QUALIFIED->value,
                     'name' => 'inv_status_flag',
@@ -250,8 +238,6 @@ final class LiteralsTest extends AbstractUnitTestCase
     }
 
     /**
-     * @return void
-     *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2026-04-09
      */
@@ -259,7 +245,7 @@ final class LiteralsTest extends AbstractUnitTestCase
     {
         $source   = "SELECT * FROM Invoices WHERE inv_id = 0xFF";
         $expected = [
-            'type' => Opcode::SELECT->value,
+            'type'   => Opcode::SELECT->value,
             'select' => [
                 'columns' => [
                     0 => [
@@ -274,13 +260,13 @@ final class LiteralsTest extends AbstractUnitTestCase
                 ],
             ],
             'where'  => [
-                'type' => Opcode::EQUALS->value,
+                'type'  => Opcode::EQUALS->value,
                 'left'  => [
                     'type' => Opcode::QUALIFIED->value,
                     'name' => 'inv_id',
                 ],
                 'right' => [
-                    'type' => Opcode::HINTEGER->value,
+                    'type'  => Opcode::HINTEGER->value,
                     'value' => '0xFF',
                 ],
             ],

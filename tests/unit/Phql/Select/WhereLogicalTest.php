@@ -20,8 +20,6 @@ use Phalcon\Phql\Tests\AbstractUnitTestCase;
 final class WhereLogicalTest extends AbstractUnitTestCase
 {
     /**
-     * @return void
-     *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2026-04-09
      */
@@ -29,7 +27,7 @@ final class WhereLogicalTest extends AbstractUnitTestCase
     {
         $source   = "SELECT * FROM Invoices WHERE inv_status_flag = 1 AND inv_total > 0";
         $expected = [
-            'type' => Opcode::SELECT->value,
+            'type'   => Opcode::SELECT->value,
             'select' => [
                 'columns' => [
                     0 => [
@@ -44,17 +42,17 @@ final class WhereLogicalTest extends AbstractUnitTestCase
                 ],
             ],
             'where'  => [
-                'type' => Opcode::GREATER->value,
+                'type'  => Opcode::GREATER->value,
                 'left'  => [
-                    'type' => Opcode::EQUALS->value,
+                    'type'  => Opcode::EQUALS->value,
                     'left'  => [
                         'type' => Opcode::QUALIFIED->value,
                         'name' => 'inv_status_flag',
                     ],
                     'right' => [
-                        'type' => Opcode::AND->value,
+                        'type'  => Opcode::AND->value,
                         'left'  => [
-                            'type' => Opcode::INTEGER->value,
+                            'type'  => Opcode::INTEGER->value,
                             'value' => '1',
                         ],
                         'right' => [
@@ -64,7 +62,7 @@ final class WhereLogicalTest extends AbstractUnitTestCase
                     ],
                 ],
                 'right' => [
-                    'type' => Opcode::INTEGER->value,
+                    'type'  => Opcode::INTEGER->value,
                     'value' => '0',
                 ],
             ],
@@ -74,8 +72,6 @@ final class WhereLogicalTest extends AbstractUnitTestCase
     }
 
     /**
-     * @return void
-     *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2026-04-09
      */
@@ -83,7 +79,7 @@ final class WhereLogicalTest extends AbstractUnitTestCase
     {
         $source   = "SELECT * FROM Invoices WHERE inv_cst_id = 1 AND inv_status_flag = 1 AND inv_total > 0";
         $expected = [
-            'type' => Opcode::SELECT->value,
+            'type'   => Opcode::SELECT->value,
             'select' => [
                 'columns' => [
                     0 => [
@@ -98,19 +94,19 @@ final class WhereLogicalTest extends AbstractUnitTestCase
                 ],
             ],
             'where'  => [
-                'type' => Opcode::GREATER->value,
+                'type'  => Opcode::GREATER->value,
                 'left'  => [
-                    'type' => Opcode::EQUALS->value,
+                    'type'  => Opcode::EQUALS->value,
                     'left'  => [
-                        'type' => Opcode::EQUALS->value,
+                        'type'  => Opcode::EQUALS->value,
                         'left'  => [
                             'type' => Opcode::QUALIFIED->value,
                             'name' => 'inv_cst_id',
                         ],
                         'right' => [
-                            'type' => Opcode::AND->value,
+                            'type'  => Opcode::AND->value,
                             'left'  => [
-                                'type' => Opcode::INTEGER->value,
+                                'type'  => Opcode::INTEGER->value,
                                 'value' => '1',
                             ],
                             'right' => [
@@ -120,9 +116,9 @@ final class WhereLogicalTest extends AbstractUnitTestCase
                         ],
                     ],
                     'right' => [
-                        'type' => Opcode::AND->value,
+                        'type'  => Opcode::AND->value,
                         'left'  => [
-                            'type' => Opcode::INTEGER->value,
+                            'type'  => Opcode::INTEGER->value,
                             'value' => '1',
                         ],
                         'right' => [
@@ -132,7 +128,7 @@ final class WhereLogicalTest extends AbstractUnitTestCase
                     ],
                 ],
                 'right' => [
-                    'type' => Opcode::INTEGER->value,
+                    'type'  => Opcode::INTEGER->value,
                     'value' => '0',
                 ],
             ],
@@ -142,8 +138,6 @@ final class WhereLogicalTest extends AbstractUnitTestCase
     }
 
     /**
-     * @return void
-     *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2026-04-09
      */
@@ -151,7 +145,7 @@ final class WhereLogicalTest extends AbstractUnitTestCase
     {
         $source   = "SELECT * FROM Invoices WHERE NOT inv_status_flag = 0";
         $expected = [
-            'type' => Opcode::SELECT->value,
+            'type'   => Opcode::SELECT->value,
             'select' => [
                 'columns' => [
                     0 => [
@@ -166,16 +160,16 @@ final class WhereLogicalTest extends AbstractUnitTestCase
                 ],
             ],
             'where'  => [
-                'type' => Opcode::EQUALS->value,
+                'type'  => Opcode::EQUALS->value,
                 'left'  => [
-                    'type' => Opcode::NOT->value,
+                    'type'  => Opcode::NOT->value,
                     'right' => [
                         'type' => Opcode::QUALIFIED->value,
                         'name' => 'inv_status_flag',
                     ],
                 ],
                 'right' => [
-                    'type' => Opcode::INTEGER->value,
+                    'type'  => Opcode::INTEGER->value,
                     'value' => '0',
                 ],
             ],
@@ -185,8 +179,6 @@ final class WhereLogicalTest extends AbstractUnitTestCase
     }
 
     /**
-     * @return void
-     *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2026-04-09
      */
@@ -194,7 +186,7 @@ final class WhereLogicalTest extends AbstractUnitTestCase
     {
         $source   = "SELECT * FROM Invoices WHERE inv_status_flag = 0 OR inv_status_flag = 1";
         $expected = [
-            'type' => Opcode::SELECT->value,
+            'type'   => Opcode::SELECT->value,
             'select' => [
                 'columns' => [
                     0 => [
@@ -209,17 +201,17 @@ final class WhereLogicalTest extends AbstractUnitTestCase
                 ],
             ],
             'where'  => [
-                'type' => Opcode::EQUALS->value,
+                'type'  => Opcode::EQUALS->value,
                 'left'  => [
-                    'type' => Opcode::EQUALS->value,
+                    'type'  => Opcode::EQUALS->value,
                     'left'  => [
                         'type' => Opcode::QUALIFIED->value,
                         'name' => 'inv_status_flag',
                     ],
                     'right' => [
-                        'type' => Opcode::OR->value,
+                        'type'  => Opcode::OR->value,
                         'left'  => [
-                            'type' => Opcode::INTEGER->value,
+                            'type'  => Opcode::INTEGER->value,
                             'value' => '0',
                         ],
                         'right' => [
@@ -229,7 +221,7 @@ final class WhereLogicalTest extends AbstractUnitTestCase
                     ],
                 ],
                 'right' => [
-                    'type' => Opcode::INTEGER->value,
+                    'type'  => Opcode::INTEGER->value,
                     'value' => '1',
                 ],
             ],
@@ -239,8 +231,6 @@ final class WhereLogicalTest extends AbstractUnitTestCase
     }
 
     /**
-     * @return void
-     *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2026-04-09
      */
@@ -248,7 +238,7 @@ final class WhereLogicalTest extends AbstractUnitTestCase
     {
         $source   = "SELECT * FROM Invoices WHERE (inv_status_flag = 1 OR inv_status_flag = 2) AND inv_total > 0";
         $expected = [
-            'type' => Opcode::SELECT->value,
+            'type'   => Opcode::SELECT->value,
             'select' => [
                 'columns' => [
                     0 => [
@@ -263,23 +253,23 @@ final class WhereLogicalTest extends AbstractUnitTestCase
                 ],
             ],
             'where'  => [
-                'type' => Opcode::GREATER->value,
+                'type'  => Opcode::GREATER->value,
                 'left'  => [
-                    'type' => Opcode::AND->value,
+                    'type'  => Opcode::AND->value,
                     'left'  => [
                         'type' => Opcode::ENCLOSED->value,
                         'left' => [
-                            'type' => Opcode::EQUALS->value,
+                            'type'  => Opcode::EQUALS->value,
                             'left'  => [
-                                'type' => Opcode::EQUALS->value,
+                                'type'  => Opcode::EQUALS->value,
                                 'left'  => [
                                     'type' => Opcode::QUALIFIED->value,
                                     'name' => 'inv_status_flag',
                                 ],
                                 'right' => [
-                                    'type' => Opcode::OR->value,
+                                    'type'  => Opcode::OR->value,
                                     'left'  => [
-                                        'type' => Opcode::INTEGER->value,
+                                        'type'  => Opcode::INTEGER->value,
                                         'value' => '1',
                                     ],
                                     'right' => [
@@ -289,7 +279,7 @@ final class WhereLogicalTest extends AbstractUnitTestCase
                                 ],
                             ],
                             'right' => [
-                                'type' => Opcode::INTEGER->value,
+                                'type'  => Opcode::INTEGER->value,
                                 'value' => '2',
                             ],
                         ],
@@ -300,7 +290,7 @@ final class WhereLogicalTest extends AbstractUnitTestCase
                     ],
                 ],
                 'right' => [
-                    'type' => Opcode::INTEGER->value,
+                    'type'  => Opcode::INTEGER->value,
                     'value' => '0',
                 ],
             ],

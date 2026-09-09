@@ -20,8 +20,6 @@ use Phalcon\Phql\Tests\AbstractUnitTestCase;
 final class BitwiseTest extends AbstractUnitTestCase
 {
     /**
-     * @return void
-     *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2026-04-09
      */
@@ -31,7 +29,7 @@ final class BitwiseTest extends AbstractUnitTestCase
             . "FROM Invoices "
             . "WHERE inv_status_flag & 1 = 1";
         $expected = [
-            'type' => Opcode::SELECT->value,
+            'type'   => Opcode::SELECT->value,
             'select' => [
                 'columns' => [
                     0 => [
@@ -46,20 +44,20 @@ final class BitwiseTest extends AbstractUnitTestCase
                 ],
             ],
             'where'  => [
-                'type' => Opcode::EQUALS->value,
+                'type'  => Opcode::EQUALS->value,
                 'left'  => [
-                    'type' => Opcode::BITWISE_AND->value,
+                    'type'  => Opcode::BITWISE_AND->value,
                     'left'  => [
                         'type' => Opcode::QUALIFIED->value,
                         'name' => 'inv_status_flag',
                     ],
                     'right' => [
-                        'type' => Opcode::INTEGER->value,
+                        'type'  => Opcode::INTEGER->value,
                         'value' => '1',
                     ],
                 ],
                 'right' => [
-                    'type' => Opcode::INTEGER->value,
+                    'type'  => Opcode::INTEGER->value,
                     'value' => '1',
                 ],
             ],
@@ -69,8 +67,6 @@ final class BitwiseTest extends AbstractUnitTestCase
     }
 
     /**
-     * @return void
-     *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2026-04-09
      */
@@ -79,19 +75,19 @@ final class BitwiseTest extends AbstractUnitTestCase
         $source   = "SELECT inv_status_flag & 3 AS masked "
             . "FROM Invoices";
         $expected = [
-            'type' => Opcode::SELECT->value,
+            'type'   => Opcode::SELECT->value,
             'select' => [
                 'columns' => [
                     0 => [
-                        'type' => Opcode::EXPR->value,
+                        'type'   => Opcode::EXPR->value,
                         'column' => [
-                            'type' => Opcode::BITWISE_AND->value,
+                            'type'  => Opcode::BITWISE_AND->value,
                             'left'  => [
                                 'type' => Opcode::QUALIFIED->value,
                                 'name' => 'inv_status_flag',
                             ],
                             'right' => [
-                                'type' => Opcode::INTEGER->value,
+                                'type'  => Opcode::INTEGER->value,
                                 'value' => '3',
                             ],
                         ],
@@ -111,8 +107,6 @@ final class BitwiseTest extends AbstractUnitTestCase
     }
 
     /**
-     * @return void
-     *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2026-04-09
      */
@@ -121,13 +115,13 @@ final class BitwiseTest extends AbstractUnitTestCase
         $source   = "SELECT ~inv_status_flag "
             . "FROM Invoices";
         $expected = [
-            'type' => Opcode::SELECT->value,
+            'type'   => Opcode::SELECT->value,
             'select' => [
                 'columns' => [
                     0 => [
-                        'type' => Opcode::EXPR->value,
+                        'type'   => Opcode::EXPR->value,
                         'column' => [
-                            'type' => Opcode::BITWISE_NOT->value,
+                            'type'  => Opcode::BITWISE_NOT->value,
                             'right' => [
                                 'type' => Opcode::QUALIFIED->value,
                                 'name' => 'inv_status_flag',
@@ -148,8 +142,6 @@ final class BitwiseTest extends AbstractUnitTestCase
     }
 
     /**
-     * @return void
-     *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2026-04-09
      */
@@ -159,7 +151,7 @@ final class BitwiseTest extends AbstractUnitTestCase
             . "FROM Invoices "
             . "WHERE inv_status_flag | 2 = 3";
         $expected = [
-            'type' => Opcode::SELECT->value,
+            'type'   => Opcode::SELECT->value,
             'select' => [
                 'columns' => [
                     0 => [
@@ -174,20 +166,20 @@ final class BitwiseTest extends AbstractUnitTestCase
                 ],
             ],
             'where'  => [
-                'type' => Opcode::EQUALS->value,
+                'type'  => Opcode::EQUALS->value,
                 'left'  => [
-                    'type' => Opcode::BITWISE_OR->value,
+                    'type'  => Opcode::BITWISE_OR->value,
                     'left'  => [
                         'type' => Opcode::QUALIFIED->value,
                         'name' => 'inv_status_flag',
                     ],
                     'right' => [
-                        'type' => Opcode::INTEGER->value,
+                        'type'  => Opcode::INTEGER->value,
                         'value' => '2',
                     ],
                 ],
                 'right' => [
-                    'type' => Opcode::INTEGER->value,
+                    'type'  => Opcode::INTEGER->value,
                     'value' => '3',
                 ],
             ],
@@ -197,8 +189,6 @@ final class BitwiseTest extends AbstractUnitTestCase
     }
 
     /**
-     * @return void
-     *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2026-04-09
      */
@@ -208,7 +198,7 @@ final class BitwiseTest extends AbstractUnitTestCase
             . "FROM Invoices "
             . "WHERE inv_status_flag ^ 1 = 0";
         $expected = [
-            'type' => Opcode::SELECT->value,
+            'type'   => Opcode::SELECT->value,
             'select' => [
                 'columns' => [
                     0 => [
@@ -223,20 +213,20 @@ final class BitwiseTest extends AbstractUnitTestCase
                 ],
             ],
             'where'  => [
-                'type' => Opcode::EQUALS->value,
+                'type'  => Opcode::EQUALS->value,
                 'left'  => [
-                    'type' => Opcode::BITWISE_XOR->value,
+                    'type'  => Opcode::BITWISE_XOR->value,
                     'left'  => [
                         'type' => Opcode::QUALIFIED->value,
                         'name' => 'inv_status_flag',
                     ],
                     'right' => [
-                        'type' => Opcode::INTEGER->value,
+                        'type'  => Opcode::INTEGER->value,
                         'value' => '1',
                     ],
                 ],
                 'right' => [
-                    'type' => Opcode::INTEGER->value,
+                    'type'  => Opcode::INTEGER->value,
                     'value' => '0',
                 ],
             ],

@@ -20,8 +20,6 @@ use Phalcon\Phql\Tests\AbstractUnitTestCase;
 final class CombinationTest extends AbstractUnitTestCase
 {
     /**
-     * @return void
-     *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2026-04-09
      */
@@ -29,7 +27,7 @@ final class CombinationTest extends AbstractUnitTestCase
     {
         $source   = "UPDATE Invoices " . "SET inv_status_flag = 1";
         $expected = [
-            'type' => Opcode::UPDATE->value,
+            'type'   => Opcode::UPDATE->value,
             'update' => [
                 'tables' => [
                     'qualifiedName' => [
@@ -43,7 +41,7 @@ final class CombinationTest extends AbstractUnitTestCase
                         'name' => 'inv_status_flag',
                     ],
                     'expr'   => [
-                        'type' => Opcode::INTEGER->value,
+                        'type'  => Opcode::INTEGER->value,
                         'value' => '1',
                     ],
                 ],
@@ -54,8 +52,6 @@ final class CombinationTest extends AbstractUnitTestCase
     }
 
     /**
-     * @return void
-     *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2026-04-09
      */
@@ -63,7 +59,7 @@ final class CombinationTest extends AbstractUnitTestCase
     {
         $source   = "UPDATE Invoices AS i " . "SET i.inv_status_flag = 1 " . "WHERE i.inv_cst_id = 1";
         $expected = [
-            'type' => Opcode::UPDATE->value,
+            'type'   => Opcode::UPDATE->value,
             'update' => [
                 'tables' => [
                     'qualifiedName' => [
@@ -74,25 +70,25 @@ final class CombinationTest extends AbstractUnitTestCase
                 ],
                 'values' => [
                     'column' => [
-                        'type' => Opcode::QUALIFIED->value,
+                        'type'   => Opcode::QUALIFIED->value,
                         'domain' => 'i',
                         'name'   => 'inv_status_flag',
                     ],
                     'expr'   => [
-                        'type' => Opcode::INTEGER->value,
+                        'type'  => Opcode::INTEGER->value,
                         'value' => '1',
                     ],
                 ],
             ],
             'where'  => [
-                'type' => Opcode::EQUALS->value,
+                'type'  => Opcode::EQUALS->value,
                 'left'  => [
-                    'type' => Opcode::QUALIFIED->value,
+                    'type'   => Opcode::QUALIFIED->value,
                     'domain' => 'i',
                     'name'   => 'inv_cst_id',
                 ],
                 'right' => [
-                    'type' => Opcode::INTEGER->value,
+                    'type'  => Opcode::INTEGER->value,
                     'value' => '1',
                 ],
             ],
@@ -102,8 +98,6 @@ final class CombinationTest extends AbstractUnitTestCase
     }
 
     /**
-     * @return void
-     *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2026-04-09
      */
@@ -111,7 +105,7 @@ final class CombinationTest extends AbstractUnitTestCase
     {
         $source   = "UPDATE Invoices " . "SET inv_total = inv_total * 1.1 " . "WHERE inv_status_flag = 0";
         $expected = [
-            'type' => Opcode::UPDATE->value,
+            'type'   => Opcode::UPDATE->value,
             'update' => [
                 'tables' => [
                     'qualifiedName' => [
@@ -125,26 +119,26 @@ final class CombinationTest extends AbstractUnitTestCase
                         'name' => 'inv_total',
                     ],
                     'expr'   => [
-                        'type' => Opcode::MUL->value,
+                        'type'  => Opcode::MUL->value,
                         'left'  => [
                             'type' => Opcode::QUALIFIED->value,
                             'name' => 'inv_total',
                         ],
                         'right' => [
-                            'type' => Opcode::DOUBLE->value,
+                            'type'  => Opcode::DOUBLE->value,
                             'value' => '1.1',
                         ],
                     ],
                 ],
             ],
             'where'  => [
-                'type' => Opcode::EQUALS->value,
+                'type'  => Opcode::EQUALS->value,
                 'left'  => [
                     'type' => Opcode::QUALIFIED->value,
                     'name' => 'inv_status_flag',
                 ],
                 'right' => [
-                    'type' => Opcode::INTEGER->value,
+                    'type'  => Opcode::INTEGER->value,
                     'value' => '0',
                 ],
             ],
@@ -155,8 +149,6 @@ final class CombinationTest extends AbstractUnitTestCase
 
     /**
      * Tests UPDATE with an INNER JOIN and no WHERE clause.
-     *
-     * @return void
      *
      * @issue  https://github.com/phalcon/cphalcon/issues/16984
      * @author Phalcon Team <team@phalcon.io>
@@ -214,8 +206,6 @@ final class CombinationTest extends AbstractUnitTestCase
 
     /**
      * Tests UPDATE with an INNER JOIN using aliased tables.
-     *
-     * @return void
      *
      * @issue  https://github.com/phalcon/cphalcon/issues/16984
      * @author Phalcon Team <team@phalcon.io>
@@ -293,8 +283,6 @@ final class CombinationTest extends AbstractUnitTestCase
     /**
      * Tests UPDATE with an INNER JOIN used to filter the rows to update.
      *
-     * @return void
-     *
      * @issue  https://github.com/phalcon/cphalcon/issues/16984
      * @author Phalcon Team <team@phalcon.io>
      * @since  2026-06-06
@@ -364,8 +352,6 @@ final class CombinationTest extends AbstractUnitTestCase
 
     /**
      * Tests UPDATE with an INNER JOIN, a WHERE clause and a LIMIT clause.
-     *
-     * @return void
      *
      * @issue  https://github.com/phalcon/cphalcon/issues/16984
      * @author Phalcon Team <team@phalcon.io>
@@ -444,8 +430,6 @@ final class CombinationTest extends AbstractUnitTestCase
     /**
      * Tests UPDATE with an INNER JOIN and named placeholders.
      *
-     * @return void
-     *
      * @issue  https://github.com/phalcon/cphalcon/issues/16984
      * @author Phalcon Team <team@phalcon.io>
      * @since  2026-06-06
@@ -516,8 +500,6 @@ final class CombinationTest extends AbstractUnitTestCase
     /**
      * Tests UPDATE with a LEFT JOIN.
      *
-     * @return void
-     *
      * @issue  https://github.com/phalcon/cphalcon/issues/16984
      * @author Phalcon Team <team@phalcon.io>
      * @since  2026-06-06
@@ -587,8 +569,6 @@ final class CombinationTest extends AbstractUnitTestCase
 
     /**
      * Tests UPDATE with multiple JOINs.
-     *
-     * @return void
      *
      * @issue  https://github.com/phalcon/cphalcon/issues/16984
      * @author Phalcon Team <team@phalcon.io>
@@ -681,8 +661,6 @@ final class CombinationTest extends AbstractUnitTestCase
     }
 
     /**
-     * @return void
-     *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2026-04-09
      */
@@ -690,7 +668,7 @@ final class CombinationTest extends AbstractUnitTestCase
     {
         $source   = "UPDATE Invoices " . "SET inv_total = NULL " . "WHERE inv_status_flag = 0";
         $expected = [
-            'type' => Opcode::UPDATE->value,
+            'type'   => Opcode::UPDATE->value,
             'update' => [
                 'tables' => [
                     'qualifiedName' => [
@@ -709,13 +687,13 @@ final class CombinationTest extends AbstractUnitTestCase
                 ],
             ],
             'where'  => [
-                'type' => Opcode::EQUALS->value,
+                'type'  => Opcode::EQUALS->value,
                 'left'  => [
                     'type' => Opcode::QUALIFIED->value,
                     'name' => 'inv_status_flag',
                 ],
                 'right' => [
-                    'type' => Opcode::INTEGER->value,
+                    'type'  => Opcode::INTEGER->value,
                     'value' => '0',
                 ],
             ],
@@ -725,8 +703,6 @@ final class CombinationTest extends AbstractUnitTestCase
     }
 
     /**
-     * @return void
-     *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2026-04-09
      */
@@ -734,7 +710,7 @@ final class CombinationTest extends AbstractUnitTestCase
     {
         $source   = "UPDATE Invoices " . "SET inv_status_flag = 0 " . "LIMIT 10";
         $expected = [
-            'type' => Opcode::UPDATE->value,
+            'type'   => Opcode::UPDATE->value,
             'update' => [
                 'tables' => [
                     'qualifiedName' => [
@@ -748,14 +724,14 @@ final class CombinationTest extends AbstractUnitTestCase
                         'name' => 'inv_status_flag',
                     ],
                     'expr'   => [
-                        'type' => Opcode::INTEGER->value,
+                        'type'  => Opcode::INTEGER->value,
                         'value' => '0',
                     ],
                 ],
             ],
             'limit'  => [
                 'number' => [
-                    'type' => Opcode::INTEGER->value,
+                    'type'  => Opcode::INTEGER->value,
                     'value' => '10',
                 ],
             ],
@@ -765,8 +741,6 @@ final class CombinationTest extends AbstractUnitTestCase
     }
 
     /**
-     * @return void
-     *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2026-04-09
      */
@@ -774,7 +748,7 @@ final class CombinationTest extends AbstractUnitTestCase
     {
         $source   = "UPDATE Invoices " . "SET inv_status_flag = ?0, inv_total = ?1 " . "WHERE inv_id = ?2";
         $expected = [
-            'type' => Opcode::UPDATE->value,
+            'type'   => Opcode::UPDATE->value,
             'update' => [
                 'tables' => [
                     'qualifiedName' => [
@@ -789,7 +763,7 @@ final class CombinationTest extends AbstractUnitTestCase
                             'name' => 'inv_status_flag',
                         ],
                         'expr'   => [
-                            'type' => Opcode::NPLACEHOLDER->value,
+                            'type'  => Opcode::NPLACEHOLDER->value,
                             'value' => '?0',
                         ],
                     ],
@@ -799,20 +773,20 @@ final class CombinationTest extends AbstractUnitTestCase
                             'name' => 'inv_total',
                         ],
                         'expr'   => [
-                            'type' => Opcode::NPLACEHOLDER->value,
+                            'type'  => Opcode::NPLACEHOLDER->value,
                             'value' => '?1',
                         ],
                     ],
                 ],
             ],
             'where'  => [
-                'type' => Opcode::EQUALS->value,
+                'type'  => Opcode::EQUALS->value,
                 'left'  => [
                     'type' => Opcode::QUALIFIED->value,
                     'name' => 'inv_id',
                 ],
                 'right' => [
-                    'type' => Opcode::NPLACEHOLDER->value,
+                    'type'  => Opcode::NPLACEHOLDER->value,
                     'value' => '?2',
                 ],
             ],
@@ -822,8 +796,6 @@ final class CombinationTest extends AbstractUnitTestCase
     }
 
     /**
-     * @return void
-     *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2026-04-09
      */
@@ -831,7 +803,7 @@ final class CombinationTest extends AbstractUnitTestCase
     {
         $source   = "UPDATE Invoices " . "SET inv_status_flag = 1, inv_title = 'Updated' " . "WHERE inv_id = 1";
         $expected = [
-            'type' => Opcode::UPDATE->value,
+            'type'   => Opcode::UPDATE->value,
             'update' => [
                 'tables' => [
                     'qualifiedName' => [
@@ -846,7 +818,7 @@ final class CombinationTest extends AbstractUnitTestCase
                             'name' => 'inv_status_flag',
                         ],
                         'expr'   => [
-                            'type' => Opcode::INTEGER->value,
+                            'type'  => Opcode::INTEGER->value,
                             'value' => '1',
                         ],
                     ],
@@ -856,20 +828,20 @@ final class CombinationTest extends AbstractUnitTestCase
                             'name' => 'inv_title',
                         ],
                         'expr'   => [
-                            'type' => Opcode::STRING->value,
+                            'type'  => Opcode::STRING->value,
                             'value' => 'Updated',
                         ],
                     ],
                 ],
             ],
             'where'  => [
-                'type' => Opcode::EQUALS->value,
+                'type'  => Opcode::EQUALS->value,
                 'left'  => [
                     'type' => Opcode::QUALIFIED->value,
                     'name' => 'inv_id',
                 ],
                 'right' => [
-                    'type' => Opcode::INTEGER->value,
+                    'type'  => Opcode::INTEGER->value,
                     'value' => '1',
                 ],
             ],
@@ -879,8 +851,6 @@ final class CombinationTest extends AbstractUnitTestCase
     }
 
     /**
-     * @return void
-     *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2026-04-09
      */
@@ -888,7 +858,7 @@ final class CombinationTest extends AbstractUnitTestCase
     {
         $source   = "UPDATE Invoices SET inv_status_flag = 1 WHERE inv_id = 1";
         $expected = [
-            'type' => Opcode::UPDATE->value,
+            'type'   => Opcode::UPDATE->value,
             'update' => [
                 'tables' => [
                     'qualifiedName' => [
@@ -902,19 +872,19 @@ final class CombinationTest extends AbstractUnitTestCase
                         'name' => 'inv_status_flag',
                     ],
                     'expr'   => [
-                        'type' => Opcode::INTEGER->value,
+                        'type'  => Opcode::INTEGER->value,
                         'value' => '1',
                     ],
                 ],
             ],
             'where'  => [
-                'type' => Opcode::EQUALS->value,
+                'type'  => Opcode::EQUALS->value,
                 'left'  => [
                     'type' => Opcode::QUALIFIED->value,
                     'name' => 'inv_id',
                 ],
                 'right' => [
-                    'type' => Opcode::INTEGER->value,
+                    'type'  => Opcode::INTEGER->value,
                     'value' => '1',
                 ],
             ],
@@ -924,8 +894,6 @@ final class CombinationTest extends AbstractUnitTestCase
     }
 
     /**
-     * @return void
-     *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2026-04-09
      */
@@ -933,7 +901,7 @@ final class CombinationTest extends AbstractUnitTestCase
     {
         $source   = "UPDATE Invoices " . "SET inv_status_flag = 1 " . "WHERE inv_id IN (1, 2, 3)";
         $expected = [
-            'type' => Opcode::UPDATE->value,
+            'type'   => Opcode::UPDATE->value,
             'update' => [
                 'tables' => [
                     'qualifiedName' => [
@@ -947,28 +915,28 @@ final class CombinationTest extends AbstractUnitTestCase
                         'name' => 'inv_status_flag',
                     ],
                     'expr'   => [
-                        'type' => Opcode::INTEGER->value,
+                        'type'  => Opcode::INTEGER->value,
                         'value' => '1',
                     ],
                 ],
             ],
             'where'  => [
-                'type' => Opcode::IN->value,
+                'type'  => Opcode::IN->value,
                 'left'  => [
                     'type' => Opcode::QUALIFIED->value,
                     'name' => 'inv_id',
                 ],
                 'right' => [
                     0 => [
-                        'type' => Opcode::INTEGER->value,
+                        'type'  => Opcode::INTEGER->value,
                         'value' => '1',
                     ],
                     1 => [
-                        'type' => Opcode::INTEGER->value,
+                        'type'  => Opcode::INTEGER->value,
                         'value' => '2',
                     ],
                     2 => [
-                        'type' => Opcode::INTEGER->value,
+                        'type'  => Opcode::INTEGER->value,
                         'value' => '3',
                     ],
                 ],
@@ -979,8 +947,6 @@ final class CombinationTest extends AbstractUnitTestCase
     }
 
     /**
-     * @return void
-     *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2026-04-09
      */
@@ -988,7 +954,7 @@ final class CombinationTest extends AbstractUnitTestCase
     {
         $source   = "UPDATE Invoices " . "SET inv_title = :title: " . "WHERE inv_id = :id:";
         $expected = [
-            'type' => Opcode::UPDATE->value,
+            'type'   => Opcode::UPDATE->value,
             'update' => [
                 'tables' => [
                     'qualifiedName' => [
@@ -1002,19 +968,19 @@ final class CombinationTest extends AbstractUnitTestCase
                         'name' => 'inv_title',
                     ],
                     'expr'   => [
-                        'type' => Opcode::SPLACEHOLDER->value,
+                        'type'  => Opcode::SPLACEHOLDER->value,
                         'value' => 'title',
                     ],
                 ],
             ],
             'where'  => [
-                'type' => Opcode::EQUALS->value,
+                'type'  => Opcode::EQUALS->value,
                 'left'  => [
                     'type' => Opcode::QUALIFIED->value,
                     'name' => 'inv_id',
                 ],
                 'right' => [
-                    'type' => Opcode::SPLACEHOLDER->value,
+                    'type'  => Opcode::SPLACEHOLDER->value,
                     'value' => 'id',
                 ],
             ],
@@ -1024,8 +990,6 @@ final class CombinationTest extends AbstractUnitTestCase
     }
 
     /**
-     * @return void
-     *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2026-04-09
      */
@@ -1033,7 +997,7 @@ final class CombinationTest extends AbstractUnitTestCase
     {
         $source   = "UPDATE Invoices " . "SET inv_status_flag = TRUE " . "WHERE inv_id = 1";
         $expected = [
-            'type' => Opcode::UPDATE->value,
+            'type'   => Opcode::UPDATE->value,
             'update' => [
                 'tables' => [
                     'qualifiedName' => [
@@ -1052,13 +1016,13 @@ final class CombinationTest extends AbstractUnitTestCase
                 ],
             ],
             'where'  => [
-                'type' => Opcode::EQUALS->value,
+                'type'  => Opcode::EQUALS->value,
                 'left'  => [
                     'type' => Opcode::QUALIFIED->value,
                     'name' => 'inv_id',
                 ],
                 'right' => [
-                    'type' => Opcode::INTEGER->value,
+                    'type'  => Opcode::INTEGER->value,
                     'value' => '1',
                 ],
             ],
@@ -1068,8 +1032,6 @@ final class CombinationTest extends AbstractUnitTestCase
     }
 
     /**
-     * @return void
-     *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2026-04-09
      */
@@ -1077,7 +1039,7 @@ final class CombinationTest extends AbstractUnitTestCase
     {
         $source   = "UPDATE Invoices " . "SET inv_title = UPPER(inv_title) " . "WHERE inv_status_flag = 1";
         $expected = [
-            'type' => Opcode::UPDATE->value,
+            'type'   => Opcode::UPDATE->value,
             'update' => [
                 'tables' => [
                     'qualifiedName' => [
@@ -1091,7 +1053,7 @@ final class CombinationTest extends AbstractUnitTestCase
                         'name' => 'inv_title',
                     ],
                     'expr'   => [
-                        'type' => Opcode::FCALL->value,
+                        'type'      => Opcode::FCALL->value,
                         'name'      => 'UPPER',
                         'arguments' => [
                             0 => [
@@ -1103,13 +1065,13 @@ final class CombinationTest extends AbstractUnitTestCase
                 ],
             ],
             'where'  => [
-                'type' => Opcode::EQUALS->value,
+                'type'  => Opcode::EQUALS->value,
                 'left'  => [
                     'type' => Opcode::QUALIFIED->value,
                     'name' => 'inv_status_flag',
                 ],
                 'right' => [
-                    'type' => Opcode::INTEGER->value,
+                    'type'  => Opcode::INTEGER->value,
                     'value' => '1',
                 ],
             ],
@@ -1119,8 +1081,6 @@ final class CombinationTest extends AbstractUnitTestCase
     }
 
     /**
-     * @return void
-     *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2026-04-10
      */
@@ -1129,7 +1089,7 @@ final class CombinationTest extends AbstractUnitTestCase
         $source   = "UPDATE Invoices SET inv_status_flag = 1 "
             . "WHERE inv_cst_id = 1 AND inv_total > 100 AND inv_status_flag = 0";
         $expected = [
-            'type' => Opcode::UPDATE->value,
+            'type'   => Opcode::UPDATE->value,
             'update' => [
                 'tables' => [
                     'qualifiedName' => [
@@ -1143,25 +1103,25 @@ final class CombinationTest extends AbstractUnitTestCase
                         'name' => 'inv_status_flag',
                     ],
                     'expr'   => [
-                        'type' => Opcode::INTEGER->value,
+                        'type'  => Opcode::INTEGER->value,
                         'value' => '1',
                     ],
                 ],
             ],
             'where'  => [
-                'type' => Opcode::EQUALS->value,
+                'type'  => Opcode::EQUALS->value,
                 'left'  => [
-                    'type' => Opcode::GREATER->value,
+                    'type'  => Opcode::GREATER->value,
                     'left'  => [
-                        'type' => Opcode::EQUALS->value,
+                        'type'  => Opcode::EQUALS->value,
                         'left'  => [
                             'type' => Opcode::QUALIFIED->value,
                             'name' => 'inv_cst_id',
                         ],
                         'right' => [
-                            'type' => Opcode::AND->value,
+                            'type'  => Opcode::AND->value,
                             'left'  => [
-                                'type' => Opcode::INTEGER->value,
+                                'type'  => Opcode::INTEGER->value,
                                 'value' => '1',
                             ],
                             'right' => [
@@ -1171,9 +1131,9 @@ final class CombinationTest extends AbstractUnitTestCase
                         ],
                     ],
                     'right' => [
-                        'type' => Opcode::AND->value,
+                        'type'  => Opcode::AND->value,
                         'left'  => [
-                            'type' => Opcode::INTEGER->value,
+                            'type'  => Opcode::INTEGER->value,
                             'value' => '100',
                         ],
                         'right' => [
@@ -1183,7 +1143,7 @@ final class CombinationTest extends AbstractUnitTestCase
                     ],
                 ],
                 'right' => [
-                    'type' => Opcode::INTEGER->value,
+                    'type'  => Opcode::INTEGER->value,
                     'value' => '0',
                 ],
             ],

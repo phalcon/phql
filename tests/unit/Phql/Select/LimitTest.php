@@ -20,8 +20,6 @@ use Phalcon\Phql\Tests\AbstractUnitTestCase;
 final class LimitTest extends AbstractUnitTestCase
 {
     /**
-     * @return void
-     *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2026-04-09
      */
@@ -29,7 +27,7 @@ final class LimitTest extends AbstractUnitTestCase
     {
         $source   = "SELECT * FROM Invoices LIMIT 10";
         $expected = [
-            'type' => Opcode::SELECT->value,
+            'type'   => Opcode::SELECT->value,
             'select' => [
                 'columns' => [
                     0 => [
@@ -45,7 +43,7 @@ final class LimitTest extends AbstractUnitTestCase
             ],
             'limit'  => [
                 'number' => [
-                    'type' => Opcode::INTEGER->value,
+                    'type'  => Opcode::INTEGER->value,
                     'value' => '10',
                 ],
             ],
@@ -55,8 +53,6 @@ final class LimitTest extends AbstractUnitTestCase
     }
 
     /**
-     * @return void
-     *
      * @author Phalcon Team <team@phalcon.io>
      * @issue  1
      * @since  2026-04-11
@@ -65,11 +61,11 @@ final class LimitTest extends AbstractUnitTestCase
     {
         $source   = "SELECT r.* FROM Robots r LIMIT 10";
         $expected = [
-            'type' => Opcode::SELECT->value,
+            'type'   => Opcode::SELECT->value,
             'select' => [
                 'columns' => [
                     0 => [
-                        'type' => Opcode::DOMAINALL->value,
+                        'type'   => Opcode::DOMAINALL->value,
                         'column' => 'r',
                     ],
                 ],
@@ -83,7 +79,7 @@ final class LimitTest extends AbstractUnitTestCase
             ],
             'limit'  => [
                 'number' => [
-                    'type' => Opcode::INTEGER->value,
+                    'type'  => Opcode::INTEGER->value,
                     'value' => '10',
                 ],
             ],
@@ -93,8 +89,6 @@ final class LimitTest extends AbstractUnitTestCase
     }
 
     /**
-     * @return void
-     *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2026-04-09
      */
@@ -102,7 +96,7 @@ final class LimitTest extends AbstractUnitTestCase
     {
         $source   = "SELECT * FROM Invoices LIMIT 20, 10";
         $expected = [
-            'type' => Opcode::SELECT->value,
+            'type'   => Opcode::SELECT->value,
             'select' => [
                 'columns' => [
                     0 => [
@@ -118,11 +112,11 @@ final class LimitTest extends AbstractUnitTestCase
             ],
             'limit'  => [
                 'number' => [
-                    'type' => Opcode::INTEGER->value,
+                    'type'  => Opcode::INTEGER->value,
                     'value' => '10',
                 ],
                 'offset' => [
-                    'type' => Opcode::INTEGER->value,
+                    'type'  => Opcode::INTEGER->value,
                     'value' => '20',
                 ],
             ],
@@ -132,8 +126,6 @@ final class LimitTest extends AbstractUnitTestCase
     }
 
     /**
-     * @return void
-     *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2026-04-10
      */
@@ -141,7 +133,7 @@ final class LimitTest extends AbstractUnitTestCase
     {
         $source   = "SELECT * FROM Invoices LIMIT {limit}";
         $expected = [
-            'type' => Opcode::SELECT->value,
+            'type'   => Opcode::SELECT->value,
             'select' => [
                 'columns' => [
                     0 => [
@@ -157,7 +149,7 @@ final class LimitTest extends AbstractUnitTestCase
             ],
             'limit'  => [
                 'number' => [
-                    'type' => Opcode::BPLACEHOLDER->value,
+                    'type'  => Opcode::BPLACEHOLDER->value,
                     'value' => 'limit',
                 ],
             ],
@@ -167,8 +159,6 @@ final class LimitTest extends AbstractUnitTestCase
     }
 
     /**
-     * @return void
-     *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2026-04-10
      */
@@ -176,7 +166,7 @@ final class LimitTest extends AbstractUnitTestCase
     {
         $source   = "SELECT * FROM Invoices LIMIT {limit} OFFSET {offset}";
         $expected = [
-            'type' => Opcode::SELECT->value,
+            'type'   => Opcode::SELECT->value,
             'select' => [
                 'columns' => [
                     0 => [
@@ -192,11 +182,11 @@ final class LimitTest extends AbstractUnitTestCase
             ],
             'limit'  => [
                 'number' => [
-                    'type' => Opcode::BPLACEHOLDER->value,
+                    'type'  => Opcode::BPLACEHOLDER->value,
                     'value' => 'limit',
                 ],
                 'offset' => [
-                    'type' => Opcode::BPLACEHOLDER->value,
+                    'type'  => Opcode::BPLACEHOLDER->value,
                     'value' => 'offset',
                 ],
             ],
@@ -206,8 +196,6 @@ final class LimitTest extends AbstractUnitTestCase
     }
 
     /**
-     * @return void
-     *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2026-04-09
      */
@@ -215,7 +203,7 @@ final class LimitTest extends AbstractUnitTestCase
     {
         $source   = "SELECT * FROM Invoices LIMIT 10 OFFSET 20";
         $expected = [
-            'type' => Opcode::SELECT->value,
+            'type'   => Opcode::SELECT->value,
             'select' => [
                 'columns' => [
                     0 => [
@@ -231,11 +219,11 @@ final class LimitTest extends AbstractUnitTestCase
             ],
             'limit'  => [
                 'number' => [
-                    'type' => Opcode::INTEGER->value,
+                    'type'  => Opcode::INTEGER->value,
                     'value' => '10',
                 ],
                 'offset' => [
-                    'type' => Opcode::INTEGER->value,
+                    'type'  => Opcode::INTEGER->value,
                     'value' => '20',
                 ],
             ],
@@ -245,8 +233,6 @@ final class LimitTest extends AbstractUnitTestCase
     }
 
     /**
-     * @return void
-     *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2026-04-09
      */
@@ -254,7 +240,7 @@ final class LimitTest extends AbstractUnitTestCase
     {
         $source   = "SELECT * FROM Invoices LIMIT :limit: OFFSET :offset:";
         $expected = [
-            'type' => Opcode::SELECT->value,
+            'type'   => Opcode::SELECT->value,
             'select' => [
                 'columns' => [
                     0 => [
@@ -270,11 +256,11 @@ final class LimitTest extends AbstractUnitTestCase
             ],
             'limit'  => [
                 'number' => [
-                    'type' => Opcode::SPLACEHOLDER->value,
+                    'type'  => Opcode::SPLACEHOLDER->value,
                     'value' => 'limit',
                 ],
                 'offset' => [
-                    'type' => Opcode::SPLACEHOLDER->value,
+                    'type'  => Opcode::SPLACEHOLDER->value,
                     'value' => 'offset',
                 ],
             ],
@@ -284,8 +270,6 @@ final class LimitTest extends AbstractUnitTestCase
     }
 
     /**
-     * @return void
-     *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2026-04-09
      */
@@ -293,7 +277,7 @@ final class LimitTest extends AbstractUnitTestCase
     {
         $source   = "SELECT * FROM Invoices LIMIT ?0";
         $expected = [
-            'type' => Opcode::SELECT->value,
+            'type'   => Opcode::SELECT->value,
             'select' => [
                 'columns' => [
                     0 => [
@@ -309,7 +293,7 @@ final class LimitTest extends AbstractUnitTestCase
             ],
             'limit'  => [
                 'number' => [
-                    'type' => Opcode::NPLACEHOLDER->value,
+                    'type'  => Opcode::NPLACEHOLDER->value,
                     'value' => '?0',
                 ],
             ],
@@ -319,8 +303,6 @@ final class LimitTest extends AbstractUnitTestCase
     }
 
     /**
-     * @return void
-     *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2026-04-09
      */
@@ -332,7 +314,7 @@ final class LimitTest extends AbstractUnitTestCase
             . "ORDER BY inv_id DESC "
             . "LIMIT 5";
         $expected = [
-            'type' => Opcode::SELECT->value,
+            'type'    => Opcode::SELECT->value,
             'select'  => [
                 'columns' => [
                     0 => [
@@ -347,13 +329,13 @@ final class LimitTest extends AbstractUnitTestCase
                 ],
             ],
             'where'   => [
-                'type' => Opcode::EQUALS->value,
+                'type'  => Opcode::EQUALS->value,
                 'left'  => [
                     'type' => Opcode::QUALIFIED->value,
                     'name' => 'inv_status_flag',
                 ],
                 'right' => [
-                    'type' => Opcode::INTEGER->value,
+                    'type'  => Opcode::INTEGER->value,
                     'value' => '1',
                 ],
             ],
@@ -366,7 +348,7 @@ final class LimitTest extends AbstractUnitTestCase
             ],
             'limit'   => [
                 'number' => [
-                    'type' => Opcode::INTEGER->value,
+                    'type'  => Opcode::INTEGER->value,
                     'value' => '5',
                 ],
             ],

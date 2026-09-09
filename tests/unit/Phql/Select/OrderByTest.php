@@ -20,8 +20,6 @@ use Phalcon\Phql\Tests\AbstractUnitTestCase;
 final class OrderByTest extends AbstractUnitTestCase
 {
     /**
-     * @return void
-     *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2026-04-10
      */
@@ -30,20 +28,20 @@ final class OrderByTest extends AbstractUnitTestCase
         $source   = "SELECT inv_cst_id, COUNT(*) FROM Invoices "
             . "GROUP BY inv_cst_id ORDER BY COUNT(*) DESC";
         $expected = [
-            'type' => Opcode::SELECT->value,
+            'type'    => Opcode::SELECT->value,
             'select'  => [
                 'columns' => [
                     0 => [
-                        'type' => Opcode::EXPR->value,
+                        'type'   => Opcode::EXPR->value,
                         'column' => [
                             'type' => Opcode::QUALIFIED->value,
                             'name' => 'inv_cst_id',
                         ],
                     ],
                     1 => [
-                        'type' => Opcode::EXPR->value,
+                        'type'   => Opcode::EXPR->value,
                         'column' => [
-                            'type' => Opcode::FCALL->value,
+                            'type'      => Opcode::FCALL->value,
                             'name'      => 'COUNT',
                             'arguments' => [
                                 0 => [
@@ -62,7 +60,7 @@ final class OrderByTest extends AbstractUnitTestCase
             ],
             'orderBy' => [
                 'column' => [
-                    'type' => Opcode::FCALL->value,
+                    'type'      => Opcode::FCALL->value,
                     'name'      => 'COUNT',
                     'arguments' => [
                         0 => [
@@ -82,8 +80,6 @@ final class OrderByTest extends AbstractUnitTestCase
     }
 
     /**
-     * @return void
-     *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2026-04-09
      */
@@ -91,7 +87,7 @@ final class OrderByTest extends AbstractUnitTestCase
     {
         $source   = "SELECT * FROM Invoices ORDER BY inv_created_at DESC, inv_id ASC";
         $expected = [
-            'type' => Opcode::SELECT->value,
+            'type'    => Opcode::SELECT->value,
             'select'  => [
                 'columns' => [
                     0 => [
@@ -127,8 +123,6 @@ final class OrderByTest extends AbstractUnitTestCase
     }
 
     /**
-     * @return void
-     *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2026-04-09
      */
@@ -137,7 +131,7 @@ final class OrderByTest extends AbstractUnitTestCase
         $source   = "SELECT * FROM Invoices "
             . "ORDER BY inv_total DESC, inv_title ASC, inv_id ASC";
         $expected = [
-            'type' => Opcode::SELECT->value,
+            'type'    => Opcode::SELECT->value,
             'select'  => [
                 'columns' => [
                     0 => [
@@ -180,8 +174,6 @@ final class OrderByTest extends AbstractUnitTestCase
     }
 
     /**
-     * @return void
-     *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2026-04-09
      */
@@ -189,7 +181,7 @@ final class OrderByTest extends AbstractUnitTestCase
     {
         $source   = "SELECT * FROM Invoices ORDER BY inv_id";
         $expected = [
-            'type' => Opcode::SELECT->value,
+            'type'    => Opcode::SELECT->value,
             'select'  => [
                 'columns' => [
                     0 => [
@@ -215,8 +207,6 @@ final class OrderByTest extends AbstractUnitTestCase
     }
 
     /**
-     * @return void
-     *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2026-04-09
      */
@@ -224,7 +214,7 @@ final class OrderByTest extends AbstractUnitTestCase
     {
         $source   = "SELECT * FROM Invoices ORDER BY inv_id ASC";
         $expected = [
-            'type' => Opcode::SELECT->value,
+            'type'    => Opcode::SELECT->value,
             'select'  => [
                 'columns' => [
                     0 => [
@@ -251,8 +241,6 @@ final class OrderByTest extends AbstractUnitTestCase
     }
 
     /**
-     * @return void
-     *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2026-04-09
      */
@@ -260,7 +248,7 @@ final class OrderByTest extends AbstractUnitTestCase
     {
         $source   = "SELECT * FROM Invoices ORDER BY inv_id DESC";
         $expected = [
-            'type' => Opcode::SELECT->value,
+            'type'    => Opcode::SELECT->value,
             'select'  => [
                 'columns' => [
                     0 => [

@@ -20,8 +20,6 @@ use Phalcon\Phql\Tests\AbstractUnitTestCase;
 final class WherePlaceholdersTest extends AbstractUnitTestCase
 {
     /**
-     * @return void
-     *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2026-04-09
      */
@@ -29,7 +27,7 @@ final class WherePlaceholdersTest extends AbstractUnitTestCase
     {
         $source   = "SELECT * FROM Invoices WHERE inv_id = {id}";
         $expected = [
-            'type' => Opcode::SELECT->value,
+            'type'   => Opcode::SELECT->value,
             'select' => [
                 'columns' => [
                     0 => [
@@ -44,13 +42,13 @@ final class WherePlaceholdersTest extends AbstractUnitTestCase
                 ],
             ],
             'where'  => [
-                'type' => Opcode::EQUALS->value,
+                'type'  => Opcode::EQUALS->value,
                 'left'  => [
                     'type' => Opcode::QUALIFIED->value,
                     'name' => 'inv_id',
                 ],
                 'right' => [
-                    'type' => Opcode::BPLACEHOLDER->value,
+                    'type'  => Opcode::BPLACEHOLDER->value,
                     'value' => 'id',
                 ],
             ],
@@ -60,8 +58,6 @@ final class WherePlaceholdersTest extends AbstractUnitTestCase
     }
 
     /**
-     * @return void
-     *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2026-04-09
      */
@@ -69,7 +65,7 @@ final class WherePlaceholdersTest extends AbstractUnitTestCase
     {
         $source   = "SELECT * FROM Invoices WHERE inv_cst_id = {custId} AND inv_total > {minTotal}";
         $expected = [
-            'type' => Opcode::SELECT->value,
+            'type'   => Opcode::SELECT->value,
             'select' => [
                 'columns' => [
                     0 => [
@@ -84,17 +80,17 @@ final class WherePlaceholdersTest extends AbstractUnitTestCase
                 ],
             ],
             'where'  => [
-                'type' => Opcode::GREATER->value,
+                'type'  => Opcode::GREATER->value,
                 'left'  => [
-                    'type' => Opcode::EQUALS->value,
+                    'type'  => Opcode::EQUALS->value,
                     'left'  => [
                         'type' => Opcode::QUALIFIED->value,
                         'name' => 'inv_cst_id',
                     ],
                     'right' => [
-                        'type' => Opcode::AND->value,
+                        'type'  => Opcode::AND->value,
                         'left'  => [
-                            'type' => Opcode::BPLACEHOLDER->value,
+                            'type'  => Opcode::BPLACEHOLDER->value,
                             'value' => 'custId',
                         ],
                         'right' => [
@@ -104,7 +100,7 @@ final class WherePlaceholdersTest extends AbstractUnitTestCase
                     ],
                 ],
                 'right' => [
-                    'type' => Opcode::BPLACEHOLDER->value,
+                    'type'  => Opcode::BPLACEHOLDER->value,
                     'value' => 'minTotal',
                 ],
             ],
@@ -114,8 +110,6 @@ final class WherePlaceholdersTest extends AbstractUnitTestCase
     }
 
     /**
-     * @return void
-     *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2026-04-09
      */
@@ -123,7 +117,7 @@ final class WherePlaceholdersTest extends AbstractUnitTestCase
     {
         $source   = "SELECT * FROM Invoices WHERE inv_id = ?0";
         $expected = [
-            'type' => Opcode::SELECT->value,
+            'type'   => Opcode::SELECT->value,
             'select' => [
                 'columns' => [
                     0 => [
@@ -138,13 +132,13 @@ final class WherePlaceholdersTest extends AbstractUnitTestCase
                 ],
             ],
             'where'  => [
-                'type' => Opcode::EQUALS->value,
+                'type'  => Opcode::EQUALS->value,
                 'left'  => [
                     'type' => Opcode::QUALIFIED->value,
                     'name' => 'inv_id',
                 ],
                 'right' => [
-                    'type' => Opcode::NPLACEHOLDER->value,
+                    'type'  => Opcode::NPLACEHOLDER->value,
                     'value' => '?0',
                 ],
             ],
@@ -154,8 +148,6 @@ final class WherePlaceholdersTest extends AbstractUnitTestCase
     }
 
     /**
-     * @return void
-     *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2026-04-09
      */
@@ -163,7 +155,7 @@ final class WherePlaceholdersTest extends AbstractUnitTestCase
     {
         $source   = "SELECT * FROM Invoices WHERE inv_id = ?1 AND inv_status_flag = ?2";
         $expected = [
-            'type' => Opcode::SELECT->value,
+            'type'   => Opcode::SELECT->value,
             'select' => [
                 'columns' => [
                     0 => [
@@ -178,17 +170,17 @@ final class WherePlaceholdersTest extends AbstractUnitTestCase
                 ],
             ],
             'where'  => [
-                'type' => Opcode::EQUALS->value,
+                'type'  => Opcode::EQUALS->value,
                 'left'  => [
-                    'type' => Opcode::EQUALS->value,
+                    'type'  => Opcode::EQUALS->value,
                     'left'  => [
                         'type' => Opcode::QUALIFIED->value,
                         'name' => 'inv_id',
                     ],
                     'right' => [
-                        'type' => Opcode::AND->value,
+                        'type'  => Opcode::AND->value,
                         'left'  => [
-                            'type' => Opcode::NPLACEHOLDER->value,
+                            'type'  => Opcode::NPLACEHOLDER->value,
                             'value' => '?1',
                         ],
                         'right' => [
@@ -198,7 +190,7 @@ final class WherePlaceholdersTest extends AbstractUnitTestCase
                     ],
                 ],
                 'right' => [
-                    'type' => Opcode::NPLACEHOLDER->value,
+                    'type'  => Opcode::NPLACEHOLDER->value,
                     'value' => '?2',
                 ],
             ],
@@ -208,8 +200,6 @@ final class WherePlaceholdersTest extends AbstractUnitTestCase
     }
 
     /**
-     * @return void
-     *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2026-04-09
      */
@@ -217,7 +207,7 @@ final class WherePlaceholdersTest extends AbstractUnitTestCase
     {
         $source   = "SELECT * FROM Invoices WHERE inv_title = :title:";
         $expected = [
-            'type' => Opcode::SELECT->value,
+            'type'   => Opcode::SELECT->value,
             'select' => [
                 'columns' => [
                     0 => [
@@ -232,13 +222,13 @@ final class WherePlaceholdersTest extends AbstractUnitTestCase
                 ],
             ],
             'where'  => [
-                'type' => Opcode::EQUALS->value,
+                'type'  => Opcode::EQUALS->value,
                 'left'  => [
                     'type' => Opcode::QUALIFIED->value,
                     'name' => 'inv_title',
                 ],
                 'right' => [
-                    'type' => Opcode::SPLACEHOLDER->value,
+                    'type'  => Opcode::SPLACEHOLDER->value,
                     'value' => 'title',
                 ],
             ],
@@ -248,8 +238,6 @@ final class WherePlaceholdersTest extends AbstractUnitTestCase
     }
 
     /**
-     * @return void
-     *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2026-04-09
      */
@@ -257,7 +245,7 @@ final class WherePlaceholdersTest extends AbstractUnitTestCase
     {
         $source   = "SELECT * FROM Invoices WHERE inv_cst_id = :custId: AND inv_status_flag = :status:";
         $expected = [
-            'type' => Opcode::SELECT->value,
+            'type'   => Opcode::SELECT->value,
             'select' => [
                 'columns' => [
                     0 => [
@@ -272,17 +260,17 @@ final class WherePlaceholdersTest extends AbstractUnitTestCase
                 ],
             ],
             'where'  => [
-                'type' => Opcode::EQUALS->value,
+                'type'  => Opcode::EQUALS->value,
                 'left'  => [
-                    'type' => Opcode::EQUALS->value,
+                    'type'  => Opcode::EQUALS->value,
                     'left'  => [
                         'type' => Opcode::QUALIFIED->value,
                         'name' => 'inv_cst_id',
                     ],
                     'right' => [
-                        'type' => Opcode::AND->value,
+                        'type'  => Opcode::AND->value,
                         'left'  => [
-                            'type' => Opcode::SPLACEHOLDER->value,
+                            'type'  => Opcode::SPLACEHOLDER->value,
                             'value' => 'custId',
                         ],
                         'right' => [
@@ -292,7 +280,7 @@ final class WherePlaceholdersTest extends AbstractUnitTestCase
                     ],
                 ],
                 'right' => [
-                    'type' => Opcode::SPLACEHOLDER->value,
+                    'type'  => Opcode::SPLACEHOLDER->value,
                     'value' => 'status',
                 ],
             ],

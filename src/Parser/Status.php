@@ -10,12 +10,16 @@ use Phalcon\Phql\Scanner\Token;
 class Status
 {
     public const PHQL_PARSING_FAILED = 0;
+
     public const PHQL_PARSING_OK     = 1;
 
     /** @var array<mixed>|null $ast */
-    private array|null $ast = null;
+    private array | null $ast = null;
+
     private bool $enableLiterals = false;
+
     private ?string $syntaxError = null;
+
     private ?Token $token = null;
 
     public function __construct(
@@ -25,7 +29,7 @@ class Status
     }
 
     /** @return array<mixed>|null */
-    public function getAst(): array|null
+    public function getAst(): array | null
     {
         return $this->ast;
     }

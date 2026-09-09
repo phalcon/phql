@@ -20,8 +20,6 @@ use Phalcon\Phql\Tests\AbstractUnitTestCase;
 final class SubqueriesTest extends AbstractUnitTestCase
 {
     /**
-     * @return void
-     *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2026-04-09
      */
@@ -33,29 +31,29 @@ final class SubqueriesTest extends AbstractUnitTestCase
             . "WHERE inv_cst_id = i.inv_cst_id) AS cst_count "
             . "FROM Invoices i";
         $expected = [
-            'type' => Opcode::SELECT->value,
+            'type'   => Opcode::SELECT->value,
             'select' => [
                 'columns' => [
                     0 => [
-                        'type' => Opcode::EXPR->value,
+                        'type'   => Opcode::EXPR->value,
                         'column' => [
-                            'type' => Opcode::QUALIFIED->value,
+                            'type'   => Opcode::QUALIFIED->value,
                             'domain' => 'i',
                             'name'   => 'inv_id',
                         ],
                     ],
                     1 => [
-                        'type' => Opcode::EXPR->value,
+                        'type'   => Opcode::EXPR->value,
                         'column' => [
                             'type' => Opcode::SUBQUERY->value,
                             'left' => [
-                                'type' => Opcode::SELECT->value,
+                                'type'   => Opcode::SELECT->value,
                                 'select' => [
                                     'columns' => [
                                         0 => [
-                                            'type' => Opcode::EXPR->value,
+                                            'type'   => Opcode::EXPR->value,
                                             'column' => [
-                                                'type' => Opcode::FCALL->value,
+                                                'type'      => Opcode::FCALL->value,
                                                 'name'      => 'COUNT',
                                                 'arguments' => [
                                                     0 => [
@@ -73,13 +71,13 @@ final class SubqueriesTest extends AbstractUnitTestCase
                                     ],
                                 ],
                                 'where'  => [
-                                    'type' => Opcode::EQUALS->value,
+                                    'type'  => Opcode::EQUALS->value,
                                     'left'  => [
                                         'type' => Opcode::QUALIFIED->value,
                                         'name' => 'inv_cst_id',
                                     ],
                                     'right' => [
-                                        'type' => Opcode::QUALIFIED->value,
+                                        'type'   => Opcode::QUALIFIED->value,
                                         'domain' => 'i',
                                         'name'   => 'inv_cst_id',
                                     ],
@@ -103,8 +101,6 @@ final class SubqueriesTest extends AbstractUnitTestCase
     }
 
     /**
-     * @return void
-     *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2026-04-09
      */
@@ -114,7 +110,7 @@ final class SubqueriesTest extends AbstractUnitTestCase
             . "FROM Invoices "
             . "WHERE inv_total = (SELECT MAX(inv_total) FROM Invoices)";
         $expected = [
-            'type' => Opcode::SELECT->value,
+            'type'   => Opcode::SELECT->value,
             'select' => [
                 'columns' => [
                     0 => [
@@ -129,7 +125,7 @@ final class SubqueriesTest extends AbstractUnitTestCase
                 ],
             ],
             'where'  => [
-                'type' => Opcode::EQUALS->value,
+                'type'  => Opcode::EQUALS->value,
                 'left'  => [
                     'type' => Opcode::QUALIFIED->value,
                     'name' => 'inv_total',
@@ -137,13 +133,13 @@ final class SubqueriesTest extends AbstractUnitTestCase
                 'right' => [
                     'type' => Opcode::SUBQUERY->value,
                     'left' => [
-                        'type' => Opcode::SELECT->value,
+                        'type'   => Opcode::SELECT->value,
                         'select' => [
                             'columns' => [
                                 0 => [
-                                    'type' => Opcode::EXPR->value,
+                                    'type'   => Opcode::EXPR->value,
                                     'column' => [
-                                        'type' => Opcode::FCALL->value,
+                                        'type'      => Opcode::FCALL->value,
                                         'name'      => 'MAX',
                                         'arguments' => [
                                             0 => [
@@ -170,8 +166,6 @@ final class SubqueriesTest extends AbstractUnitTestCase
     }
 
     /**
-     * @return void
-     *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2026-04-09
      */
@@ -182,7 +176,7 @@ final class SubqueriesTest extends AbstractUnitTestCase
             . "WHERE EXISTS "
             . "(SELECT id FROM Customers WHERE id = Invoices.inv_cst_id)";
         $expected = [
-            'type' => Opcode::SELECT->value,
+            'type'   => Opcode::SELECT->value,
             'select' => [
                 'columns' => [
                     0 => [
@@ -197,13 +191,13 @@ final class SubqueriesTest extends AbstractUnitTestCase
                 ],
             ],
             'where'  => [
-                'type' => Opcode::EXISTS->value,
+                'type'  => Opcode::EXISTS->value,
                 'right' => [
-                    'type' => Opcode::SELECT->value,
+                    'type'   => Opcode::SELECT->value,
                     'select' => [
                         'columns' => [
                             0 => [
-                                'type' => Opcode::EXPR->value,
+                                'type'   => Opcode::EXPR->value,
                                 'column' => [
                                     'type' => Opcode::QUALIFIED->value,
                                     'name' => 'id',
@@ -218,13 +212,13 @@ final class SubqueriesTest extends AbstractUnitTestCase
                         ],
                     ],
                     'where'  => [
-                        'type' => Opcode::EQUALS->value,
+                        'type'  => Opcode::EQUALS->value,
                         'left'  => [
                             'type' => Opcode::QUALIFIED->value,
                             'name' => 'id',
                         ],
                         'right' => [
-                            'type' => Opcode::QUALIFIED->value,
+                            'type'   => Opcode::QUALIFIED->value,
                             'domain' => 'Invoices',
                             'name'   => 'inv_cst_id',
                         ],
@@ -237,8 +231,6 @@ final class SubqueriesTest extends AbstractUnitTestCase
     }
 
     /**
-     * @return void
-     *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2026-04-10
      */
@@ -249,7 +241,7 @@ final class SubqueriesTest extends AbstractUnitTestCase
             . "(SELECT id FROM Customers "
             . "WHERE id IN (SELECT cst_id FROM Orders WHERE status = 1))";
         $expected = [
-            'type' => Opcode::SELECT->value,
+            'type'   => Opcode::SELECT->value,
             'select' => [
                 'columns' => [
                     0 => [
@@ -264,17 +256,17 @@ final class SubqueriesTest extends AbstractUnitTestCase
                 ],
             ],
             'where'  => [
-                'type' => Opcode::IN->value,
+                'type'  => Opcode::IN->value,
                 'left'  => [
                     'type' => Opcode::QUALIFIED->value,
                     'name' => 'inv_cst_id',
                 ],
                 'right' => [
-                    'type' => Opcode::SELECT->value,
+                    'type'   => Opcode::SELECT->value,
                     'select' => [
                         'columns' => [
                             0 => [
-                                'type' => Opcode::EXPR->value,
+                                'type'   => Opcode::EXPR->value,
                                 'column' => [
                                     'type' => Opcode::QUALIFIED->value,
                                     'name' => 'id',
@@ -289,17 +281,17 @@ final class SubqueriesTest extends AbstractUnitTestCase
                         ],
                     ],
                     'where'  => [
-                        'type' => Opcode::IN->value,
+                        'type'  => Opcode::IN->value,
                         'left'  => [
                             'type' => Opcode::QUALIFIED->value,
                             'name' => 'id',
                         ],
                         'right' => [
-                            'type' => Opcode::SELECT->value,
+                            'type'   => Opcode::SELECT->value,
                             'select' => [
                                 'columns' => [
                                     0 => [
-                                        'type' => Opcode::EXPR->value,
+                                        'type'   => Opcode::EXPR->value,
                                         'column' => [
                                             'type' => Opcode::QUALIFIED->value,
                                             'name' => 'cst_id',
@@ -314,13 +306,13 @@ final class SubqueriesTest extends AbstractUnitTestCase
                                 ],
                             ],
                             'where'  => [
-                                'type' => Opcode::EQUALS->value,
+                                'type'  => Opcode::EQUALS->value,
                                 'left'  => [
                                     'type' => Opcode::QUALIFIED->value,
                                     'name' => 'status',
                                 ],
                                 'right' => [
-                                    'type' => Opcode::INTEGER->value,
+                                    'type'  => Opcode::INTEGER->value,
                                     'value' => '1',
                                 ],
                             ],
@@ -334,8 +326,6 @@ final class SubqueriesTest extends AbstractUnitTestCase
     }
 
     /**
-     * @return void
-     *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2026-04-09
      */
@@ -346,7 +336,7 @@ final class SubqueriesTest extends AbstractUnitTestCase
             . "WHERE inv_cst_id IN "
             . "(SELECT id FROM Customers WHERE status = 1)";
         $expected = [
-            'type' => Opcode::SELECT->value,
+            'type'   => Opcode::SELECT->value,
             'select' => [
                 'columns' => [
                     0 => [
@@ -361,17 +351,17 @@ final class SubqueriesTest extends AbstractUnitTestCase
                 ],
             ],
             'where'  => [
-                'type' => Opcode::IN->value,
+                'type'  => Opcode::IN->value,
                 'left'  => [
                     'type' => Opcode::QUALIFIED->value,
                     'name' => 'inv_cst_id',
                 ],
                 'right' => [
-                    'type' => Opcode::SELECT->value,
+                    'type'   => Opcode::SELECT->value,
                     'select' => [
                         'columns' => [
                             0 => [
-                                'type' => Opcode::EXPR->value,
+                                'type'   => Opcode::EXPR->value,
                                 'column' => [
                                     'type' => Opcode::QUALIFIED->value,
                                     'name' => 'id',
@@ -386,13 +376,13 @@ final class SubqueriesTest extends AbstractUnitTestCase
                         ],
                     ],
                     'where'  => [
-                        'type' => Opcode::EQUALS->value,
+                        'type'  => Opcode::EQUALS->value,
                         'left'  => [
                             'type' => Opcode::QUALIFIED->value,
                             'name' => 'status',
                         ],
                         'right' => [
-                            'type' => Opcode::INTEGER->value,
+                            'type'  => Opcode::INTEGER->value,
                             'value' => '1',
                         ],
                     ],
@@ -404,8 +394,6 @@ final class SubqueriesTest extends AbstractUnitTestCase
     }
 
     /**
-     * @return void
-     *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2026-04-09
      */
@@ -416,7 +404,7 @@ final class SubqueriesTest extends AbstractUnitTestCase
             . "WHERE inv_cst_id NOT IN "
             . "(SELECT id FROM Customers WHERE status = 0)";
         $expected = [
-            'type' => Opcode::SELECT->value,
+            'type'   => Opcode::SELECT->value,
             'select' => [
                 'columns' => [
                     0 => [
@@ -431,17 +419,17 @@ final class SubqueriesTest extends AbstractUnitTestCase
                 ],
             ],
             'where'  => [
-                'type' => Opcode::NOTIN->value,
+                'type'  => Opcode::NOTIN->value,
                 'left'  => [
                     'type' => Opcode::QUALIFIED->value,
                     'name' => 'inv_cst_id',
                 ],
                 'right' => [
-                    'type' => Opcode::SELECT->value,
+                    'type'   => Opcode::SELECT->value,
                     'select' => [
                         'columns' => [
                             0 => [
-                                'type' => Opcode::EXPR->value,
+                                'type'   => Opcode::EXPR->value,
                                 'column' => [
                                     'type' => Opcode::QUALIFIED->value,
                                     'name' => 'id',
@@ -456,13 +444,13 @@ final class SubqueriesTest extends AbstractUnitTestCase
                         ],
                     ],
                     'where'  => [
-                        'type' => Opcode::EQUALS->value,
+                        'type'  => Opcode::EQUALS->value,
                         'left'  => [
                             'type' => Opcode::QUALIFIED->value,
                             'name' => 'status',
                         ],
                         'right' => [
-                            'type' => Opcode::INTEGER->value,
+                            'type'  => Opcode::INTEGER->value,
                             'value' => '0',
                         ],
                     ],

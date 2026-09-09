@@ -20,8 +20,6 @@ use Phalcon\Phql\Tests\AbstractUnitTestCase;
 final class CastConvertTest extends AbstractUnitTestCase
 {
     /**
-     * @return void
-     *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2026-04-09
      */
@@ -29,13 +27,13 @@ final class CastConvertTest extends AbstractUnitTestCase
     {
         $source   = "SELECT CAST(inv_total AS INTEGER) FROM Invoices";
         $expected = [
-            'type' => Opcode::SELECT->value,
+            'type'   => Opcode::SELECT->value,
             'select' => [
                 'columns' => [
                     0 => [
-                        'type' => Opcode::EXPR->value,
+                        'type'   => Opcode::EXPR->value,
                         'column' => [
-                            'type' => Opcode::CAST->value,
+                            'type'  => Opcode::CAST->value,
                             'left'  => [
                                 'type' => Opcode::QUALIFIED->value,
                                 'name' => 'inv_total',
@@ -60,8 +58,6 @@ final class CastConvertTest extends AbstractUnitTestCase
     }
 
     /**
-     * @return void
-     *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2026-04-09
      */
@@ -69,13 +65,13 @@ final class CastConvertTest extends AbstractUnitTestCase
     {
         $source   = "SELECT CAST(inv_id AS VARCHAR) FROM Invoices";
         $expected = [
-            'type' => Opcode::SELECT->value,
+            'type'   => Opcode::SELECT->value,
             'select' => [
                 'columns' => [
                     0 => [
-                        'type' => Opcode::EXPR->value,
+                        'type'   => Opcode::EXPR->value,
                         'column' => [
-                            'type' => Opcode::CAST->value,
+                            'type'  => Opcode::CAST->value,
                             'left'  => [
                                 'type' => Opcode::QUALIFIED->value,
                                 'name' => 'inv_id',
@@ -100,8 +96,6 @@ final class CastConvertTest extends AbstractUnitTestCase
     }
 
     /**
-     * @return void
-     *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2026-04-09
      */
@@ -109,13 +103,13 @@ final class CastConvertTest extends AbstractUnitTestCase
     {
         $source   = "SELECT CONVERT(inv_title USING utf8) FROM Invoices";
         $expected = [
-            'type' => Opcode::SELECT->value,
+            'type'   => Opcode::SELECT->value,
             'select' => [
                 'columns' => [
                     0 => [
-                        'type' => Opcode::EXPR->value,
+                        'type'   => Opcode::EXPR->value,
                         'column' => [
-                            'type' => Opcode::CONVERT->value,
+                            'type'  => Opcode::CONVERT->value,
                             'left'  => [
                                 'type' => Opcode::QUALIFIED->value,
                                 'name' => 'inv_title',

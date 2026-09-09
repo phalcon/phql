@@ -5,9 +5,6 @@ declare(strict_types=1);
 namespace Phalcon\Phql\Scanner;
 
 use Exception;
-use Phalcon\Phql\Scanner\ScannerStatus;
-use Phalcon\Phql\Scanner\State;
-use Phalcon\Phql\Scanner\Token;
 
 class Scanner
 {
@@ -34,7 +31,7 @@ class Scanner
 
         $q         = $yycursor;
         $yymarker  = $yycursor;
-        $status = ScannerStatus::IMPOSSIBLE;
+        $status    = ScannerStatus::IMPOSSIBLE;
 
 
         while (ScannerStatus::IMPOSSIBLE === $status) {
@@ -248,6 +245,7 @@ class Scanner
                                 $yystate = 2;
                                 break 2;
                         }
+                        // no break
                     case 1:
                         $status = ScannerStatus::EOF;
                         break 2;
@@ -273,6 +271,7 @@ class Scanner
                                 $yystate = 5;
                                 break 2;
                         }
+                        // no break
                     case 5:
                         $this->token = new Token(Opcode::IGNORE);
                         $this->state->setCursor($yycursor);
@@ -289,6 +288,7 @@ class Scanner
                                 $yystate = 7;
                                 break 2;
                         }
+                        // no break
                     case 7:
                         $this->token = new Token(Opcode::NOT);
                         $this->state->setCursor($yycursor);
@@ -320,6 +320,7 @@ class Scanner
                                 $yystate = 11;
                                 break 2;
                         }
+                        // no break
                     case 11:
                         $this->token = new Token(Opcode::BITWISE_AND);
                         $this->state->setCursor($yycursor);
@@ -371,6 +372,7 @@ class Scanner
                                 $yystate = 324;
                                 break 2;
                         }
+                        // no break
                     case 19:
                         $yych = $yyinput[$yycursor];
                         switch ($yych) {
@@ -391,6 +393,7 @@ class Scanner
                                 $yystate = 20;
                                 break 2;
                         }
+                        // no break
                     case 20:
                         $this->token = new Token(Opcode::DOT);
                         $this->state->setCursor($yycursor);
@@ -441,9 +444,10 @@ class Scanner
                                 $yystate = 23;
                                 break 2;
                         }
+                        // no break
                     case 23:
                         $this->token = new Token(Opcode::INTEGER, substr($yyinput, $q, $yycursor - $q), $yycursor - $q);
-                        $q = $yycursor;
+                        $q           = $yycursor;
                         $this->state->setCursor($yycursor);
                         return ScannerStatus::OK;
 
@@ -523,6 +527,7 @@ class Scanner
                                 $yystate = 25;
                                 break 2;
                         }
+                        // no break
                     case 25:
                         $this->token = new Token(Opcode::COLON);
                         $this->state->setCursor($yycursor);
@@ -547,6 +552,7 @@ class Scanner
                                 $yystate = 27;
                                 break 2;
                         }
+                        // no break
                     case 27:
                         $this->token = new Token(Opcode::LESS);
                         $this->state->setCursor($yycursor);
@@ -568,6 +574,7 @@ class Scanner
                                 $yystate = 30;
                                 break 2;
                         }
+                        // no break
                     case 30:
                         $this->token = new Token(Opcode::GREATER);
                         $this->state->setCursor($yycursor);
@@ -593,6 +600,7 @@ class Scanner
                                 $yystate = 3;
                                 break 2;
                         }
+                        // no break
                     case 32:
                         $yych = $yyinput[$yycursor];
                         switch ($yych) {
@@ -608,6 +616,7 @@ class Scanner
                                 $yystate = 3;
                                 break 2;
                         }
+                        // no break
                     case 33:
                         $yych = $yyinput[$yycursor];
                         switch ($yych) {
@@ -635,6 +644,7 @@ class Scanner
                                 $yystate = 60;
                                 break 2;
                         }
+                        // no break
                     case 34:
                         $tokenValue = substr($yyinput, $q, $yycursor - $q);
                         $tokenLen   = $yycursor - $q;
@@ -678,6 +688,7 @@ class Scanner
                                 $yystate = 60;
                                 break 2;
                         }
+                        // no break
                     case 36:
                         $yych = $yyinput[$yycursor];
                         switch ($yych) {
@@ -700,6 +711,7 @@ class Scanner
                                 $yystate = 60;
                                 break 2;
                         }
+                        // no break
                     case 37:
                         $yych = $yyinput[$yycursor];
                         switch ($yych) {
@@ -717,6 +729,7 @@ class Scanner
                                 $yystate = 60;
                                 break 2;
                         }
+                        // no break
                     case 38:
                         $yych = $yyinput[$yycursor];
                         switch ($yych) {
@@ -742,6 +755,7 @@ class Scanner
                                 $yystate = 60;
                                 break 2;
                         }
+                        // no break
                     case 39:
                         $yych = $yyinput[$yycursor];
                         switch ($yych) {
@@ -769,6 +783,7 @@ class Scanner
                                 $yystate = 60;
                                 break 2;
                         }
+                        // no break
                     case 40:
                         $yych = $yyinput[$yycursor];
                         switch ($yych) {
@@ -781,6 +796,7 @@ class Scanner
                                 $yystate = 46;
                                 break 2;
                         }
+                        // no break
                     case 41:
                         // Use $q (the token start), not the re2c save-point $yymarker.
                         // Keyword save-point states (e.g. NOT at state 176) overwrite
@@ -817,6 +833,7 @@ class Scanner
                                 $yystate = 46;
                                 break 2;
                         }
+                        // no break
                     case 43:
                         $yych = $yyinput[$yycursor];
                         switch ($yych) {
@@ -839,6 +856,7 @@ class Scanner
                                 $yystate = 46;
                                 break 2;
                         }
+                        // no break
                     case 44:
                         $yych = $yyinput[$yycursor];
                         switch ($yych) {
@@ -851,9 +869,11 @@ class Scanner
                                 $yystate = 46;
                                 break 2;
                         }
+                        // no break
                     case 45:
                         $yych = $yyinput[$yycursor];
                         // fall through
+                        // no break
                     case 46:
                         switch ($yych) {
                             case '0':
@@ -928,6 +948,7 @@ class Scanner
                                 $yystate = 41;
                                 break 2;
                         }
+                        // no break
                     case 47:
                         $yych = $yyinput[$yycursor];
                         switch ($yych) {
@@ -945,6 +966,7 @@ class Scanner
                                 $yystate = 46;
                                 break 2;
                         }
+                        // no break
                     case 48:
                         $yych = $yyinput[$yycursor];
                         switch ($yych) {
@@ -962,6 +984,7 @@ class Scanner
                                 $yystate = 46;
                                 break 2;
                         }
+                        // no break
                     case 49:
                         $yych = $yyinput[$yycursor];
                         switch ($yych) {
@@ -989,6 +1012,7 @@ class Scanner
                                 $yystate = 46;
                                 break 2;
                         }
+                        // no break
                     case 50:
                         $yych = $yyinput[$yycursor];
                         switch ($yych) {
@@ -1001,6 +1025,7 @@ class Scanner
                                 $yystate = 46;
                                 break 2;
                         }
+                        // no break
                     case 51:
                         $yych = $yyinput[$yycursor];
                         switch ($yych) {
@@ -1013,6 +1038,7 @@ class Scanner
                                 $yystate = 46;
                                 break 2;
                         }
+                        // no break
                     case 52:
                         $yych = $yyinput[$yycursor];
                         switch ($yych) {
@@ -1030,6 +1056,7 @@ class Scanner
                                 $yystate = 46;
                                 break 2;
                         }
+                        // no break
                     case 53:
                         $yych = $yyinput[$yycursor];
                         switch ($yych) {
@@ -1047,6 +1074,7 @@ class Scanner
                                 $yystate = 46;
                                 break 2;
                         }
+                        // no break
                     case 54:
                         $yych = $yyinput[$yycursor];
                         switch ($yych) {
@@ -1059,6 +1087,7 @@ class Scanner
                                 $yystate = 46;
                                 break 2;
                         }
+                        // no break
                     case 55:
                         $yych = $yyinput[$yycursor];
                         switch ($yych) {
@@ -1076,6 +1105,7 @@ class Scanner
                                 $yystate = 46;
                                 break 2;
                         }
+                        // no break
                     case 56:
                         $yyaccept = 0;
                         $yymarker = $yycursor;
@@ -1121,6 +1151,7 @@ class Scanner
                                 $yystate = 136;
                                 break 2;
                         }
+                        // no break
                     case 57:
                         $yych = $yyinput[$yycursor];
                         switch ($yych) {
@@ -1184,6 +1215,7 @@ class Scanner
                                 $yystate = 3;
                                 break 2;
                         }
+                        // no break
                     case 58:
                         $this->token = new Token(Opcode::BITWISE_XOR);
                         $this->state->setCursor($yycursor);
@@ -1192,6 +1224,7 @@ class Scanner
                     case 59:
                         $yych = $yyinput[$yycursor];
                         // fall through
+                        // no break
                     case 60:
                         switch ($yych) {
                             case '0':
@@ -1269,6 +1302,7 @@ class Scanner
                                 $yystate = 34;
                                 break 2;
                         }
+                        // no break
                     case 61:
                         $yyaccept = 0;
                         $yymarker = $yycursor;
@@ -1346,6 +1380,7 @@ class Scanner
                                 $yystate = 3;
                                 break 2;
                         }
+                        // no break
                     case 62:
                         $yych = $yyinput[$yycursor];
                         switch ($yych) {
@@ -1357,6 +1392,7 @@ class Scanner
                                 $yystate = 63;
                                 break 2;
                         }
+                        // no break
                     case 63:
                         $this->token = new Token(Opcode::BITWISE_OR);
                         $this->state->setCursor($yycursor);
@@ -1375,6 +1411,7 @@ class Scanner
                     case 67:
                         $yych = $yyinput[$yycursor];
                         // fall through
+                        // no break
                     case 68:
                         switch ($yych) {
                             case "\x00":
@@ -1393,6 +1430,7 @@ class Scanner
                                 $yystate  = 67;
                                 break 2;
                         }
+                        // no break
                     case 69:
                         $yycursor = $yymarker;
                         switch ($yyaccept) {
@@ -1409,6 +1447,7 @@ class Scanner
                                 $yystate = 139;
                                 break 2;
                         }
+                        // no break
                     case 70:
                         // $q is the opening quote; skip it and drop the closing quote.
                         $this->token = new Token(
@@ -1433,6 +1472,7 @@ class Scanner
                                 $yystate  = 67;
                                 break 2;
                         }
+                        // no break
                     case 72:
                         $this->token = new Token(Opcode::OP_OVERLAPS);
                         $this->state->setCursor($yycursor);
@@ -1441,6 +1481,7 @@ class Scanner
                     case 73:
                         $yych = $yyinput[$yycursor];
                         // fall through
+                        // no break
                     case 74:
                         switch ($yych) {
                             case "\x00":
@@ -1459,6 +1500,7 @@ class Scanner
                                 $yystate  = 73;
                                 break 2;
                         }
+                        // no break
                     case 75:
                         $yych = $yyinput[$yycursor];
                         switch ($yych) {
@@ -1472,6 +1514,7 @@ class Scanner
                                 $yystate  = 73;
                                 break 2;
                         }
+                        // no break
                     case 76:
                         $yych = $yyinput[$yycursor];
                         switch ($yych) {
@@ -1492,9 +1535,10 @@ class Scanner
                                 $yystate = 77;
                                 break 2;
                         }
+                        // no break
                     case 77:
                         $this->token = new Token(Opcode::DOUBLE, substr($yyinput, $q, $yycursor - $q), $yycursor - $q);
-                        $q = $yycursor;
+                        $q           = $yycursor;
                         $this->state->setCursor($yycursor);
                         return ScannerStatus::OK;
 
@@ -1531,6 +1575,7 @@ class Scanner
                                 $yystate = 34;
                                 break 2;
                         }
+                        // no break
                     case 79:
                         $yych = $yyinput[$yycursor];
                         switch ($yych) {
@@ -1609,6 +1654,7 @@ class Scanner
                                 $yystate = 69;
                                 break 2;
                         }
+                        // no break
                     case 80:
                         $this->token = new Token(Opcode::LESSEQUAL);
                         $this->state->setCursor($yycursor);
@@ -1641,6 +1687,7 @@ class Scanner
                                 $yystate = 84;
                                 break 2;
                         }
+                        // no break
                     case 84:
                         $this->token = new Token(
                             Opcode::NPLACEHOLDER,
@@ -1670,6 +1717,7 @@ class Scanner
                                 $yystate = 46;
                                 break 2;
                         }
+                        // no break
                     case 88:
                         $yych = $yyinput[$yycursor];
                         switch ($yych) {
@@ -1682,6 +1730,7 @@ class Scanner
                                 $yystate = 46;
                                 break 2;
                         }
+                        // no break
                     case 89:
                         $yych = $yyinput[$yycursor];
                         switch ($yych) {
@@ -1694,6 +1743,7 @@ class Scanner
                                 $yystate = 46;
                                 break 2;
                         }
+                        // no break
                     case 90:
                         $yych = $yyinput[$yycursor];
                         switch ($yych) {
@@ -1772,6 +1822,7 @@ class Scanner
                                 $yystate = 91;
                                 break 2;
                         }
+                        // no break
                     case 91:
                         $this->token = new Token(Opcode::AS);
                         $this->state->setCursor($yycursor);
@@ -1788,6 +1839,7 @@ class Scanner
                                 $yystate = 60;
                                 break 2;
                         }
+                        // no break
                     case 93:
                         $yych = $yyinput[$yycursor];
                         switch ($yych) {
@@ -1863,6 +1915,7 @@ class Scanner
                                 $yystate = 94;
                                 break 2;
                         }
+                        // no break
                     case 94:
                         $this->token = new Token(Opcode::BY);
                         $this->state->setCursor($yycursor);
@@ -1879,6 +1932,7 @@ class Scanner
                                 $yystate = 60;
                                 break 2;
                         }
+                        // no break
                     case 96:
                         $yych = $yyinput[$yycursor];
                         switch ($yych) {
@@ -1891,6 +1945,7 @@ class Scanner
                                 $yystate = 46;
                                 break 2;
                         }
+                        // no break
                     case 97:
                         $yych = $yyinput[$yycursor];
                         switch ($yych) {
@@ -1903,6 +1958,7 @@ class Scanner
                                 $yystate = 46;
                                 break 2;
                         }
+                        // no break
                     case 98:
                         $yych = $yyinput[$yycursor];
                         switch ($yych) {
@@ -1920,6 +1976,7 @@ class Scanner
                                 $yystate = 60;
                                 break 2;
                         }
+                        // no break
                     case 99:
                         $yych = $yyinput[$yycursor];
                         switch ($yych) {
@@ -1932,6 +1989,7 @@ class Scanner
                                 $yystate = 46;
                                 break 2;
                         }
+                        // no break
                     case 100:
                         $yych = $yyinput[$yycursor];
                         switch ($yych) {
@@ -1944,6 +2002,7 @@ class Scanner
                                 $yystate = 46;
                                 break 2;
                         }
+                        // no break
                     case 101:
                         $yych = $yyinput[$yycursor];
                         switch ($yych) {
@@ -1956,6 +2015,7 @@ class Scanner
                                 $yystate = 46;
                                 break 2;
                         }
+                        // no break
                     case 102:
                         $yych = $yyinput[$yycursor];
                         switch ($yych) {
@@ -1968,6 +2028,7 @@ class Scanner
                                 $yystate = 46;
                                 break 2;
                         }
+                        // no break
                     case 103:
                         $yych = $yyinput[$yycursor];
                         switch ($yych) {
@@ -1980,6 +2041,7 @@ class Scanner
                                 $yystate = 60;
                                 break 2;
                         }
+                        // no break
                     case 104:
                         $yych = $yyinput[$yycursor];
                         switch ($yych) {
@@ -1992,6 +2054,7 @@ class Scanner
                                 $yystate = 60;
                                 break 2;
                         }
+                        // no break
                     case 105:
                         $yych = $yyinput[$yycursor];
                         switch ($yych) {
@@ -2004,6 +2067,7 @@ class Scanner
                                 $yystate = 46;
                                 break 2;
                         }
+                        // no break
                     case 106:
                         $yych = $yyinput[$yycursor];
                         switch ($yych) {
@@ -2016,6 +2080,7 @@ class Scanner
                                 $yystate = 46;
                                 break 2;
                         }
+                        // no break
                     case 107:
                         $yych = $yyinput[$yycursor];
                         switch ($yych) {
@@ -2028,6 +2093,7 @@ class Scanner
                                 $yystate = 46;
                                 break 2;
                         }
+                        // no break
                     case 108:
                         $yych = $yyinput[$yycursor];
                         switch ($yych) {
@@ -2040,6 +2106,7 @@ class Scanner
                                 $yystate = 46;
                                 break 2;
                         }
+                        // no break
                     case 109:
                         $yych = $yyinput[$yycursor];
                         switch ($yych) {
@@ -2052,6 +2119,7 @@ class Scanner
                                 $yystate = 46;
                                 break 2;
                         }
+                        // no break
                     case 110:
                         $yych = $yyinput[$yycursor];
                         switch ($yych) {
@@ -2064,6 +2132,7 @@ class Scanner
                                 $yystate = 46;
                                 break 2;
                         }
+                        // no break
                     case 111:
                         $yych = $yyinput[$yycursor];
                         switch ($yych) {
@@ -2148,6 +2217,7 @@ class Scanner
                                 $yystate = 112;
                                 break 2;
                         }
+                        // no break
                     case 112:
                         $this->token = new Token(Opcode::IN);
                         $this->state->setCursor($yycursor);
@@ -2228,6 +2298,7 @@ class Scanner
                                 $yystate = 114;
                                 break 2;
                         }
+                        // no break
                     case 114:
                         $this->token = new Token(Opcode::IS);
                         $this->state->setCursor($yycursor);
@@ -2245,6 +2316,7 @@ class Scanner
                                 $yystate = 46;
                                 break 2;
                         }
+                        // no break
                     case 116:
                         $yych = $yyinput[$yycursor];
                         switch ($yych) {
@@ -2257,6 +2329,7 @@ class Scanner
                                 $yystate = 46;
                                 break 2;
                         }
+                        // no break
                     case 117:
                         $yych = $yyinput[$yycursor];
                         switch ($yych) {
@@ -2274,6 +2347,7 @@ class Scanner
                                 $yystate = 46;
                                 break 2;
                         }
+                        // no break
                     case 118:
                         $yych = $yyinput[$yycursor];
                         switch ($yych) {
@@ -2286,6 +2360,7 @@ class Scanner
                                 $yystate = 46;
                                 break 2;
                         }
+                        // no break
                     case 119:
                         $yych = $yyinput[$yycursor];
                         switch ($yych) {
@@ -2298,6 +2373,7 @@ class Scanner
                                 $yystate = 46;
                                 break 2;
                         }
+                        // no break
                     case 120:
                         $yych = $yyinput[$yycursor];
                         switch ($yych) {
@@ -2310,6 +2386,7 @@ class Scanner
                                 $yystate = 46;
                                 break 2;
                         }
+                        // no break
                     case 121:
                         $yych = $yyinput[$yycursor];
                         switch ($yych) {
@@ -2385,6 +2462,7 @@ class Scanner
                                 $yystate = 122;
                                 break 2;
                         }
+                        // no break
                     case 122:
                         $this->token = new Token(Opcode::ON);
                         $this->state->setCursor($yycursor);
@@ -2468,6 +2546,7 @@ class Scanner
                                 $yystate = 124;
                                 break 2;
                         }
+                        // no break
                     case 124:
                         $this->token = new Token(Opcode::OR);
                         $this->state->setCursor($yycursor);
@@ -2485,6 +2564,7 @@ class Scanner
                                 $yystate = 46;
                                 break 2;
                         }
+                        // no break
                     case 126:
                         $yych = $yyinput[$yycursor];
                         switch ($yych) {
@@ -2497,6 +2577,7 @@ class Scanner
                                 $yystate = 46;
                                 break 2;
                         }
+                        // no break
                     case 127:
                         $yych = $yyinput[$yycursor];
                         switch ($yych) {
@@ -2514,6 +2595,7 @@ class Scanner
                                 $yystate = 46;
                                 break 2;
                         }
+                        // no break
                     case 128:
                         $yych = $yyinput[$yycursor];
                         switch ($yych) {
@@ -2526,6 +2608,7 @@ class Scanner
                                 $yystate = 46;
                                 break 2;
                         }
+                        // no break
                     case 129:
                         $yych = $yyinput[$yycursor];
                         switch ($yych) {
@@ -2538,6 +2621,7 @@ class Scanner
                                 $yystate = 46;
                                 break 2;
                         }
+                        // no break
                     case 130:
                         $yych = $yyinput[$yycursor];
                         switch ($yych) {
@@ -2550,6 +2634,7 @@ class Scanner
                                 $yystate = 46;
                                 break 2;
                         }
+                        // no break
                     case 131:
                         $yych = $yyinput[$yycursor];
                         switch ($yych) {
@@ -2562,6 +2647,7 @@ class Scanner
                                 $yystate = 46;
                                 break 2;
                         }
+                        // no break
                     case 132:
                         $yych = $yyinput[$yycursor];
                         switch ($yych) {
@@ -2574,6 +2660,7 @@ class Scanner
                                 $yystate = 46;
                                 break 2;
                         }
+                        // no break
                     case 133:
                         $yych = $yyinput[$yycursor];
                         switch ($yych) {
@@ -2586,6 +2673,7 @@ class Scanner
                                 $yystate = 46;
                                 break 2;
                         }
+                        // no break
                     case 134:
                         $yych = $yyinput[$yycursor];
                         switch ($yych) {
@@ -2598,9 +2686,11 @@ class Scanner
                                 $yystate = 46;
                                 break 2;
                         }
+                        // no break
                     case 135:
                         $yych = $yyinput[$yycursor];
                         // fall through
+                        // no break
                     case 136:
                         switch ($yych) {
                             case "\x00":
@@ -2652,6 +2742,7 @@ class Scanner
                                 $yystate  = 135;
                                 break 2;
                         }
+                        // no break
                     case 137:
                         $yych = $yyinput[$yycursor];
                         switch ($yych) {
@@ -2703,6 +2794,7 @@ class Scanner
                                 $yystate  = 135;
                                 break 2;
                         }
+                        // no break
                     case 138:
                         // Bracket-enclosed identifier: [name] or [First Name].
                         // Use $q (the opening '['); $yymarker is moved by escaped-bracket
@@ -2804,6 +2896,7 @@ class Scanner
                                 $yystate = 69;
                                 break 2;
                         }
+                        // no break
                     case 141:
                         $this->token = new Token(Opcode::OP_CONCAT);
                         $this->state->setCursor($yycursor);
@@ -2832,6 +2925,7 @@ class Scanner
                                 $yystate = 46;
                                 break 2;
                         }
+                        // no break
                     case 144:
                         $yych = $yyinput[$yycursor];
                         switch ($yych) {
@@ -2907,6 +3001,7 @@ class Scanner
                                 $yystate = 145;
                                 break 2;
                         }
+                        // no break
                     case 145:
                         $this->token = new Token(Opcode::ALL);
                         $this->state->setCursor($yycursor);
@@ -2987,6 +3082,7 @@ class Scanner
                                 $yystate = 147;
                                 break 2;
                         }
+                        // no break
                     case 147:
                         $this->token = new Token(Opcode::AND);
                         $this->state->setCursor($yycursor);
@@ -3067,6 +3163,7 @@ class Scanner
                                 $yystate = 149;
                                 break 2;
                         }
+                        // no break
                     case 149:
                         $this->token = new Token(Opcode::ASC);
                         $this->state->setCursor($yycursor);
@@ -3084,6 +3181,7 @@ class Scanner
                                 $yystate = 46;
                                 break 2;
                         }
+                        // no break
                     case 151:
                         $yych = $yyinput[$yycursor];
                         switch ($yych) {
@@ -3101,6 +3199,7 @@ class Scanner
                                 $yystate = 46;
                                 break 2;
                         }
+                        // no break
                     case 152:
                         $yych = $yyinput[$yycursor];
                         switch ($yych) {
@@ -3113,6 +3212,7 @@ class Scanner
                                 $yystate = 46;
                                 break 2;
                         }
+                        // no break
                     case 153:
                         $yych = $yyinput[$yycursor];
                         switch ($yych) {
@@ -3125,6 +3225,7 @@ class Scanner
                                 $yystate = 46;
                                 break 2;
                         }
+                        // no break
                     case 154:
                         $yych = $yyinput[$yycursor];
                         switch ($yych) {
@@ -3137,6 +3238,7 @@ class Scanner
                                 $yystate = 46;
                                 break 2;
                         }
+                        // no break
                     case 155:
                         $yych = $yyinput[$yycursor];
                         switch ($yych) {
@@ -3149,6 +3251,7 @@ class Scanner
                                 $yystate = 46;
                                 break 2;
                         }
+                        // no break
                     case 156:
                         $yych = $yyinput[$yycursor];
                         switch ($yych) {
@@ -3161,6 +3264,7 @@ class Scanner
                                 $yystate = 46;
                                 break 2;
                         }
+                        // no break
                     case 157:
                         $yych = $yyinput[$yycursor];
                         switch ($yych) {
@@ -3173,6 +3277,7 @@ class Scanner
                                 $yystate = 46;
                                 break 2;
                         }
+                        // no break
                     case 158:
                         $yych = $yyinput[$yycursor];
                         switch ($yych) {
@@ -3248,6 +3353,7 @@ class Scanner
                                 $yystate = 159;
                                 break 2;
                         }
+                        // no break
                     case 159:
                         $this->token = new Token(Opcode::END);
                         $this->state->setCursor($yycursor);
@@ -3265,6 +3371,7 @@ class Scanner
                                 $yystate = 46;
                                 break 2;
                         }
+                        // no break
                     case 161:
                         $yych = $yyinput[$yycursor];
                         switch ($yych) {
@@ -3277,6 +3384,7 @@ class Scanner
                                 $yystate = 46;
                                 break 2;
                         }
+                        // no break
                     case 162:
                         $yych = $yyinput[$yycursor];
                         switch ($yych) {
@@ -3352,6 +3460,7 @@ class Scanner
                                 $yystate = 163;
                                 break 2;
                         }
+                        // no break
                     case 163:
                         $this->token = new Token(Opcode::FOR);
                         $this->state->setCursor($yycursor);
@@ -3369,6 +3478,7 @@ class Scanner
                                 $yystate = 46;
                                 break 2;
                         }
+                        // no break
                     case 165:
                         $yych = $yyinput[$yycursor];
                         switch ($yych) {
@@ -3381,6 +3491,7 @@ class Scanner
                                 $yystate = 46;
                                 break 2;
                         }
+                        // no break
                     case 166:
                         $yych = $yyinput[$yycursor];
                         switch ($yych) {
@@ -3393,6 +3504,7 @@ class Scanner
                                 $yystate = 46;
                                 break 2;
                         }
+                        // no break
                     case 167:
                         $yych = $yyinput[$yycursor];
                         switch ($yych) {
@@ -3405,6 +3517,7 @@ class Scanner
                                 $yystate = 46;
                                 break 2;
                         }
+                        // no break
                     case 168:
                         $yych = $yyinput[$yycursor];
                         switch ($yych) {
@@ -3417,6 +3530,7 @@ class Scanner
                                 $yystate = 46;
                                 break 2;
                         }
+                        // no break
                     case 169:
                         $yych = $yyinput[$yycursor];
                         switch ($yych) {
@@ -3429,6 +3543,7 @@ class Scanner
                                 $yystate = 46;
                                 break 2;
                         }
+                        // no break
                     case 170:
                         $yych = $yyinput[$yycursor];
                         switch ($yych) {
@@ -3441,6 +3556,7 @@ class Scanner
                                 $yystate = 46;
                                 break 2;
                         }
+                        // no break
                     case 171:
                         $yych = $yyinput[$yycursor];
                         switch ($yych) {
@@ -3453,6 +3569,7 @@ class Scanner
                                 $yystate = 46;
                                 break 2;
                         }
+                        // no break
                     case 172:
                         $yych = $yyinput[$yycursor];
                         switch ($yych) {
@@ -3465,6 +3582,7 @@ class Scanner
                                 $yystate = 46;
                                 break 2;
                         }
+                        // no break
                     case 173:
                         $yych = $yyinput[$yycursor];
                         switch ($yych) {
@@ -3477,6 +3595,7 @@ class Scanner
                                 $yystate = 46;
                                 break 2;
                         }
+                        // no break
                     case 174:
                         $yych = $yyinput[$yycursor];
                         switch ($yych) {
@@ -3489,6 +3608,7 @@ class Scanner
                                 $yystate = 46;
                                 break 2;
                         }
+                        // no break
                     case 175:
                         $yych = $yyinput[$yycursor];
                         switch ($yych) {
@@ -3501,6 +3621,7 @@ class Scanner
                                 $yystate = 46;
                                 break 2;
                         }
+                        // no break
                     case 176:
                         $yyaccept = 2;
                         $yymarker = $yycursor;
@@ -3582,6 +3703,7 @@ class Scanner
                                 $yystate = 177;
                                 break 2;
                         }
+                        // no break
                     case 177:
                         $this->token = new Token(Opcode::NOT);
                         $this->state->setCursor($yycursor);
@@ -3599,6 +3721,7 @@ class Scanner
                                 $yystate = 46;
                                 break 2;
                         }
+                        // no break
                     case 179:
                         $yych = $yyinput[$yycursor];
                         switch ($yych) {
@@ -3611,6 +3734,7 @@ class Scanner
                                 $yystate = 46;
                                 break 2;
                         }
+                        // no break
                     case 180:
                         $yych = $yyinput[$yycursor];
                         switch ($yych) {
@@ -3623,6 +3747,7 @@ class Scanner
                                 $yystate = 46;
                                 break 2;
                         }
+                        // no break
                     case 181:
                         $yych = $yyinput[$yycursor];
                         switch ($yych) {
@@ -3635,6 +3760,7 @@ class Scanner
                                 $yystate = 46;
                                 break 2;
                         }
+                        // no break
                     case 182:
                         $yych = $yyinput[$yycursor];
                         switch ($yych) {
@@ -3647,6 +3773,7 @@ class Scanner
                                 $yystate = 46;
                                 break 2;
                         }
+                        // no break
                     case 183:
                         $yych = $yyinput[$yycursor];
                         switch ($yych) {
@@ -3659,6 +3786,7 @@ class Scanner
                                 $yystate = 46;
                                 break 2;
                         }
+                        // no break
                     case 184:
                         $yych = $yyinput[$yycursor];
                         switch ($yych) {
@@ -3734,6 +3862,7 @@ class Scanner
                                 $yystate = 185;
                                 break 2;
                         }
+                        // no break
                     case 185:
                         $this->token = new Token(Opcode::SET);
                         $this->state->setCursor($yycursor);
@@ -3751,6 +3880,7 @@ class Scanner
                                 $yystate = 46;
                                 break 2;
                         }
+                        // no break
                     case 187:
                         $yych = $yyinput[$yycursor];
                         switch ($yych) {
@@ -3763,6 +3893,7 @@ class Scanner
                                 $yystate = 46;
                                 break 2;
                         }
+                        // no break
                     case 188:
                         $yych = $yyinput[$yycursor];
                         switch ($yych) {
@@ -3775,6 +3906,7 @@ class Scanner
                                 $yystate = 46;
                                 break 2;
                         }
+                        // no break
                     case 189:
                         $yych = $yyinput[$yycursor];
                         switch ($yych) {
@@ -3787,6 +3919,7 @@ class Scanner
                                 $yystate = 46;
                                 break 2;
                         }
+                        // no break
                     case 190:
                         $yych = $yyinput[$yycursor];
                         switch ($yych) {
@@ -3799,6 +3932,7 @@ class Scanner
                                 $yystate = 46;
                                 break 2;
                         }
+                        // no break
                     case 191:
                         $yych = $yyinput[$yycursor];
                         switch ($yych) {
@@ -3816,6 +3950,7 @@ class Scanner
                                 $yystate = 46;
                                 break 2;
                         }
+                        // no break
                     case 192:
                         $yych = $yyinput[$yycursor];
                         switch ($yych) {
@@ -3828,6 +3963,7 @@ class Scanner
                                 $yystate = 46;
                                 break 2;
                         }
+                        // no break
                     case 193:
                         $yyaccept = 3;
                         $yymarker = $yycursor;
@@ -3882,6 +4018,7 @@ class Scanner
                                 $yystate  = 135;
                                 break 2;
                         }
+                        // no break
                     case 194:
                         // Strip leading ':' — Query.php handles the ':' prefix separately
                         $this->token = new Token(
@@ -3905,6 +4042,7 @@ class Scanner
                                 $yystate = 46;
                                 break 2;
                         }
+                        // no break
                     case 196:
                         $yych = $yyinput[$yycursor];
                         switch ($yych) {
@@ -3917,6 +4055,7 @@ class Scanner
                                 $yystate = 46;
                                 break 2;
                         }
+                        // no break
                     case 197:
                         $yych = $yyinput[$yycursor];
                         switch ($yych) {
@@ -3992,6 +4131,7 @@ class Scanner
                                 $yystate = 198;
                                 break 2;
                         }
+                        // no break
                     case 198:
                         $this->token = new Token(Opcode::CASE);
                         $this->state->setCursor($yycursor);
@@ -4072,6 +4212,7 @@ class Scanner
                                 $yystate = 200;
                                 break 2;
                         }
+                        // no break
                     case 200:
                         $this->token = new Token(Opcode::CAST);
                         $this->state->setCursor($yycursor);
@@ -4089,6 +4230,7 @@ class Scanner
                                 $yystate = 46;
                                 break 2;
                         }
+                        // no break
                     case 202:
                         $yych = $yyinput[$yycursor];
                         switch ($yych) {
@@ -4101,6 +4243,7 @@ class Scanner
                                 $yystate = 46;
                                 break 2;
                         }
+                        // no break
                     case 203:
                         $yych = $yyinput[$yycursor];
                         switch ($yych) {
@@ -4113,6 +4256,7 @@ class Scanner
                                 $yystate = 46;
                                 break 2;
                         }
+                        // no break
                     case 204:
                         $yych = $yyinput[$yycursor];
                         switch ($yych) {
@@ -4188,6 +4332,7 @@ class Scanner
                                 $yystate = 205;
                                 break 2;
                         }
+                        // no break
                     case 205:
                         $this->token = new Token(Opcode::DESC);
                         $this->state->setCursor($yycursor);
@@ -4205,6 +4350,7 @@ class Scanner
                                 $yystate = 46;
                                 break 2;
                         }
+                        // no break
                     case 207:
                         $yych = $yyinput[$yycursor];
                         switch ($yych) {
@@ -4280,6 +4426,7 @@ class Scanner
                                 $yystate = 208;
                                 break 2;
                         }
+                        // no break
                     case 208:
                         $this->token = new Token(Opcode::ELSE);
                         $this->state->setCursor($yycursor);
@@ -4297,6 +4444,7 @@ class Scanner
                                 $yystate = 46;
                                 break 2;
                         }
+                        // no break
                     case 210:
                         $yych = $yyinput[$yycursor];
                         switch ($yych) {
@@ -4309,6 +4457,7 @@ class Scanner
                                 $yystate = 46;
                                 break 2;
                         }
+                        // no break
                     case 211:
                         $yych = $yyinput[$yycursor];
                         switch ($yych) {
@@ -4384,6 +4533,7 @@ class Scanner
                                 $yystate = 212;
                                 break 2;
                         }
+                        // no break
                     case 212:
                         $this->token = new Token(Opcode::FROM);
                         $this->state->setCursor($yycursor);
@@ -4464,6 +4614,7 @@ class Scanner
                                 $yystate = 214;
                                 break 2;
                         }
+                        // no break
                     case 214:
                         $this->token = new Token(Opcode::FULL);
                         $this->state->setCursor($yycursor);
@@ -4481,6 +4632,7 @@ class Scanner
                                 $yystate = 46;
                                 break 2;
                         }
+                        // no break
                     case 216:
                         $yych = $yyinput[$yycursor];
                         switch ($yych) {
@@ -4493,6 +4645,7 @@ class Scanner
                                 $yystate = 46;
                                 break 2;
                         }
+                        // no break
                     case 217:
                         $yych = $yyinput[$yycursor];
                         switch ($yych) {
@@ -4505,6 +4658,7 @@ class Scanner
                                 $yystate = 46;
                                 break 2;
                         }
+                        // no break
                     case 218:
                         $yych = $yyinput[$yycursor];
                         switch ($yych) {
@@ -4517,6 +4671,7 @@ class Scanner
                                 $yystate = 46;
                                 break 2;
                         }
+                        // no break
                     case 219:
                         $yych = $yyinput[$yycursor];
                         switch ($yych) {
@@ -4529,6 +4684,7 @@ class Scanner
                                 $yystate = 46;
                                 break 2;
                         }
+                        // no break
                     case 220:
                         $yych = $yyinput[$yycursor];
                         switch ($yych) {
@@ -4604,6 +4760,7 @@ class Scanner
                                 $yystate = 221;
                                 break 2;
                         }
+                        // no break
                     case 221:
                         $this->token = new Token(Opcode::INTO);
                         $this->state->setCursor($yycursor);
@@ -4684,6 +4841,7 @@ class Scanner
                                 $yystate = 223;
                                 break 2;
                         }
+                        // no break
                     case 223:
                         $this->token = new Token(Opcode::JOIN);
                         $this->state->setCursor($yycursor);
@@ -4764,6 +4922,7 @@ class Scanner
                                 $yystate = 225;
                                 break 2;
                         }
+                        // no break
                     case 225:
                         $this->token = new Token(Opcode::LEFT);
                         $this->state->setCursor($yycursor);
@@ -4844,6 +5003,7 @@ class Scanner
                                 $yystate = 227;
                                 break 2;
                         }
+                        // no break
                     case 227:
                         $this->token = new Token(Opcode::LIKE);
                         $this->state->setCursor($yycursor);
@@ -4861,6 +5021,7 @@ class Scanner
                                 $yystate = 46;
                                 break 2;
                         }
+                        // no break
                     case 229:
                         $yych = $yyinput[$yycursor];
                         switch ($yych) {
@@ -4873,6 +5034,7 @@ class Scanner
                                 $yystate = 69;
                                 break 2;
                         }
+                        // no break
                     case 230:
                         $yych = $yyinput[$yycursor];
                         switch ($yych) {
@@ -4948,6 +5110,7 @@ class Scanner
                                 $yystate = 231;
                                 break 2;
                         }
+                        // no break
                     case 231:
                         $this->token = new Token(Opcode::NULL);
                         $this->state->setCursor($yycursor);
@@ -4965,6 +5128,7 @@ class Scanner
                                 $yystate = 46;
                                 break 2;
                         }
+                        // no break
                     case 233:
                         $yych = $yyinput[$yycursor];
                         switch ($yych) {
@@ -4977,6 +5141,7 @@ class Scanner
                                 $yystate = 46;
                                 break 2;
                         }
+                        // no break
                     case 234:
                         $yych = $yyinput[$yycursor];
                         switch ($yych) {
@@ -4989,6 +5154,7 @@ class Scanner
                                 $yystate = 46;
                                 break 2;
                         }
+                        // no break
                     case 235:
                         $yych = $yyinput[$yycursor];
                         switch ($yych) {
@@ -5001,6 +5167,7 @@ class Scanner
                                 $yystate = 46;
                                 break 2;
                         }
+                        // no break
                     case 236:
                         $yych = $yyinput[$yycursor];
                         switch ($yych) {
@@ -5013,6 +5180,7 @@ class Scanner
                                 $yystate = 46;
                                 break 2;
                         }
+                        // no break
                     case 237:
                         $yych = $yyinput[$yycursor];
                         switch ($yych) {
@@ -5088,6 +5256,7 @@ class Scanner
                                 $yystate = 238;
                                 break 2;
                         }
+                        // no break
                     case 238:
                         $this->token = new Token(Opcode::THEN);
                         $this->state->setCursor($yycursor);
@@ -5168,6 +5337,7 @@ class Scanner
                                 $yystate = 240;
                                 break 2;
                         }
+                        // no break
                     case 240:
                         $this->token = new Token(Opcode::TRUE);
                         $this->state->setCursor($yycursor);
@@ -5185,6 +5355,7 @@ class Scanner
                                 $yystate = 46;
                                 break 2;
                         }
+                        // no break
                     case 242:
                         $yych = $yyinput[$yycursor];
                         switch ($yych) {
@@ -5197,6 +5368,7 @@ class Scanner
                                 $yystate = 46;
                                 break 2;
                         }
+                        // no break
                     case 243:
                         $yych = $yyinput[$yycursor];
                         switch ($yych) {
@@ -5209,6 +5381,7 @@ class Scanner
                                 $yystate = 46;
                                 break 2;
                         }
+                        // no break
                     case 244:
                         $yych = $yyinput[$yycursor];
                         switch ($yych) {
@@ -5284,6 +5457,7 @@ class Scanner
                                 $yystate = 245;
                                 break 2;
                         }
+                        // no break
                     case 245:
                         $this->token = new Token(Opcode::WHEN);
                         $this->state->setCursor($yycursor);
@@ -5301,6 +5475,7 @@ class Scanner
                                 $yystate = 46;
                                 break 2;
                         }
+                        // no break
                     case 247:
                         $yych = $yyinput[$yycursor];
                         switch ($yych) {
@@ -5376,6 +5551,7 @@ class Scanner
                                 $yystate = 248;
                                 break 2;
                         }
+                        // no break
                     case 248:
                         $this->token = new Token(Opcode::WITH);
                         $this->state->setCursor($yycursor);
@@ -5393,6 +5569,7 @@ class Scanner
                                 $yystate = 46;
                                 break 2;
                         }
+                        // no break
                     case 250:
                         $yych = $yyinput[$yycursor];
                         switch ($yych) {
@@ -5405,6 +5582,7 @@ class Scanner
                                 $yystate = 46;
                                 break 2;
                         }
+                        // no break
                     case 251:
                         $yych = $yyinput[$yycursor];
                         switch ($yych) {
@@ -5417,6 +5595,7 @@ class Scanner
                                 $yystate = 46;
                                 break 2;
                         }
+                        // no break
                     case 252:
                         $yych = $yyinput[$yycursor];
                         switch ($yych) {
@@ -5492,6 +5671,7 @@ class Scanner
                                 $yystate = 253;
                                 break 2;
                         }
+                        // no break
                     case 253:
                         $this->token = new Token(Opcode::CROSS);
                         $this->state->setCursor($yycursor);
@@ -5509,6 +5689,7 @@ class Scanner
                                 $yystate = 46;
                                 break 2;
                         }
+                        // no break
                     case 255:
                         $yych = $yyinput[$yycursor];
                         switch ($yych) {
@@ -5521,6 +5702,7 @@ class Scanner
                                 $yystate = 46;
                                 break 2;
                         }
+                        // no break
                     case 256:
                         $yych = $yyinput[$yycursor];
                         switch ($yych) {
@@ -5533,6 +5715,7 @@ class Scanner
                                 $yystate = 46;
                                 break 2;
                         }
+                        // no break
                     case 257:
                         $yych = $yyinput[$yycursor];
                         switch ($yych) {
@@ -5608,6 +5791,7 @@ class Scanner
                                 $yystate = 258;
                                 break 2;
                         }
+                        // no break
                     case 258:
                         $this->token = new Token(Opcode::FALSE);
                         $this->state->setCursor($yycursor);
@@ -5688,6 +5872,7 @@ class Scanner
                                 $yystate = 260;
                                 break 2;
                         }
+                        // no break
                     case 260:
                         $this->token = new Token(Opcode::GROUP);
                         $this->state->setCursor($yycursor);
@@ -5705,6 +5890,7 @@ class Scanner
                                 $yystate = 46;
                                 break 2;
                         }
+                        // no break
                     case 262:
                         $yych = $yyinput[$yycursor];
                         switch ($yych) {
@@ -5780,6 +5966,7 @@ class Scanner
                                 $yystate = 263;
                                 break 2;
                         }
+                        // no break
                     case 263:
                         $this->token = new Token(Opcode::ILIKE);
                         $this->state->setCursor($yycursor);
@@ -5860,6 +6047,7 @@ class Scanner
                                 $yystate = 265;
                                 break 2;
                         }
+                        // no break
                     case 265:
                         $this->token = new Token(Opcode::INNER);
                         $this->state->setCursor($yycursor);
@@ -5877,6 +6065,7 @@ class Scanner
                                 $yystate = 46;
                                 break 2;
                         }
+                        // no break
                     case 267:
                         $yych = $yyinput[$yycursor];
                         switch ($yych) {
@@ -5952,6 +6141,7 @@ class Scanner
                                 $yystate = 268;
                                 break 2;
                         }
+                        // no break
                     case 268:
                         $this->token = new Token(Opcode::LIMIT);
                         $this->state->setCursor($yycursor);
@@ -5969,6 +6159,7 @@ class Scanner
                                 $yystate = 69;
                                 break 2;
                         }
+                        // no break
                     case 270:
                         $yych = $yyinput[$yycursor];
                         switch ($yych) {
@@ -5981,6 +6172,7 @@ class Scanner
                                 $yystate = 46;
                                 break 2;
                         }
+                        // no break
                     case 271:
                         $yych = $yyinput[$yycursor];
                         switch ($yych) {
@@ -6056,6 +6248,7 @@ class Scanner
                                 $yystate = 272;
                                 break 2;
                         }
+                        // no break
                     case 272:
                         $this->token = new Token(Opcode::ORDER);
                         $this->state->setCursor($yycursor);
@@ -6136,6 +6329,7 @@ class Scanner
                                 $yystate = 274;
                                 break 2;
                         }
+                        // no break
                     case 274:
                         $this->token = new Token(Opcode::OUTER);
                         $this->state->setCursor($yycursor);
@@ -6216,6 +6410,7 @@ class Scanner
                                 $yystate = 276;
                                 break 2;
                         }
+                        // no break
                     case 276:
                         $this->token = new Token(Opcode::RIGHT);
                         $this->state->setCursor($yycursor);
@@ -6233,6 +6428,7 @@ class Scanner
                                 $yystate = 46;
                                 break 2;
                         }
+                        // no break
                     case 278:
                         $yych = $yyinput[$yycursor];
                         switch ($yych) {
@@ -6245,6 +6441,7 @@ class Scanner
                                 $yystate = 46;
                                 break 2;
                         }
+                        // no break
                     case 279:
                         $yych = $yyinput[$yycursor];
                         switch ($yych) {
@@ -6320,6 +6517,7 @@ class Scanner
                                 $yystate = 280;
                                 break 2;
                         }
+                        // no break
                     case 280:
                         $this->token = new Token(Opcode::USING);
                         $this->state->setCursor($yycursor);
@@ -6337,6 +6535,7 @@ class Scanner
                                 $yystate = 46;
                                 break 2;
                         }
+                        // no break
                     case 282:
                         $yych = $yyinput[$yycursor];
                         switch ($yych) {
@@ -6412,6 +6611,7 @@ class Scanner
                                 $yystate = 283;
                                 break 2;
                         }
+                        // no break
                     case 283:
                         $this->token = new Token(Opcode::WHERE);
                         $this->state->setCursor($yycursor);
@@ -6429,6 +6629,7 @@ class Scanner
                                 $yystate = 46;
                                 break 2;
                         }
+                        // no break
                     case 285:
                         $yych = $yyinput[$yycursor];
                         switch ($yych) {
@@ -6441,6 +6642,7 @@ class Scanner
                                 $yystate = 46;
                                 break 2;
                         }
+                        // no break
                     case 286:
                         $yych = $yyinput[$yycursor];
                         switch ($yych) {
@@ -6453,6 +6655,7 @@ class Scanner
                                 $yystate = 46;
                                 break 2;
                         }
+                        // no break
                     case 287:
                         $yych = $yyinput[$yycursor];
                         switch ($yych) {
@@ -6528,6 +6731,7 @@ class Scanner
                                 $yystate = 288;
                                 break 2;
                         }
+                        // no break
                     case 288:
                         $this->token = new Token(Opcode::DELETE);
                         $this->state->setCursor($yycursor);
@@ -6545,6 +6749,7 @@ class Scanner
                                 $yystate = 46;
                                 break 2;
                         }
+                        // no break
                     case 290:
                         $yych = $yyinput[$yycursor];
                         switch ($yych) {
@@ -6620,6 +6825,7 @@ class Scanner
                                 $yystate = 291;
                                 break 2;
                         }
+                        // no break
                     case 291:
                         $this->token = new Token(Opcode::EXISTS);
                         $this->state->setCursor($yycursor);
@@ -6700,6 +6906,7 @@ class Scanner
                                 $yystate = 293;
                                 break 2;
                         }
+                        // no break
                     case 293:
                         $this->token = new Token(Opcode::HAVING);
                         $this->state->setCursor($yycursor);
@@ -6780,6 +6987,7 @@ class Scanner
                                 $yystate = 295;
                                 break 2;
                         }
+                        // no break
                     case 295:
                         $this->token = new Token(Opcode::INSERT);
                         $this->state->setCursor($yycursor);
@@ -6797,6 +7005,7 @@ class Scanner
                                 $yystate = 69;
                                 break 2;
                         }
+                        // no break
                     case 297:
                         $yych = $yyinput[$yycursor];
                         switch ($yych) {
@@ -6872,6 +7081,7 @@ class Scanner
                                 $yystate = 298;
                                 break 2;
                         }
+                        // no break
                     case 298:
                         $this->token = new Token(Opcode::OFFSET);
                         $this->state->setCursor($yycursor);
@@ -6952,6 +7162,7 @@ class Scanner
                                 $yystate = 300;
                                 break 2;
                         }
+                        // no break
                     case 300:
                         $this->token = new Token(Opcode::SELECT);
                         $this->state->setCursor($yycursor);
@@ -7032,6 +7243,7 @@ class Scanner
                                 $yystate = 302;
                                 break 2;
                         }
+                        // no break
                     case 302:
                         $this->token = new Token(Opcode::UPDATE);
                         $this->state->setCursor($yycursor);
@@ -7112,6 +7324,7 @@ class Scanner
                                 $yystate = 304;
                                 break 2;
                         }
+                        // no break
                     case 304:
                         $this->token = new Token(Opcode::VALUES);
                         $this->state->setCursor($yycursor);
@@ -7192,6 +7405,7 @@ class Scanner
                                 $yystate = 306;
                                 break 2;
                         }
+                        // no break
                     case 306:
                         $this->token = new Token(Opcode::AGAINST);
                         $this->state->setCursor($yycursor);
@@ -7272,6 +7486,7 @@ class Scanner
                                 $yystate = 308;
                                 break 2;
                         }
+                        // no break
                     case 308:
                         $this->token = new Token(Opcode::BETWEEN);
                         $this->state->setCursor($yycursor);
@@ -7352,6 +7567,7 @@ class Scanner
                                 $yystate = 310;
                                 break 2;
                         }
+                        // no break
                     case 310:
                         $this->token = new Token(Opcode::CONVERT);
                         $this->state->setCursor($yycursor);
@@ -7369,6 +7585,7 @@ class Scanner
                                 $yystate = 46;
                                 break 2;
                         }
+                        // no break
                     case 312:
                         $yych = $yyinput[$yycursor];
                         switch ($yych) {
@@ -7381,6 +7598,7 @@ class Scanner
                                 $yystate = 69;
                                 break 2;
                         }
+                        // no break
                     case 313:
                         $yych = $yyinput[$yycursor];
                         switch ($yych) {
@@ -7456,6 +7674,7 @@ class Scanner
                                 $yystate = 314;
                                 break 2;
                         }
+                        // no break
                     case 314:
                         $this->token = new Token(Opcode::DISTINCT);
                         $this->state->setCursor($yycursor);
@@ -7473,6 +7692,7 @@ class Scanner
                                 $yystate = 69;
                                 break 2;
                         }
+                        // no break
                     case 316:
                         $yych = $yyinput[$yycursor];
                         switch ($yych) {
@@ -7485,6 +7705,7 @@ class Scanner
                                 $yystate = 69;
                                 break 2;
                         }
+                        // no break
                     case 317:
                         $yych = $yyinput[$yycursor];
                         switch ($yych) {
@@ -7497,6 +7718,7 @@ class Scanner
                                 $yystate = 69;
                                 break 2;
                         }
+                        // no break
                     case 318:
                         $this->token = new Token(Opcode::BETWEEN_NOT);
                         $this->state->setCursor($yycursor);
@@ -7513,6 +7735,7 @@ class Scanner
                                 $yystate = 3;
                                 break 2;
                         }
+                        // no break
                     case 320:
                         $yych = $yyinput[$yycursor];
                         switch ($yych) {
@@ -7524,6 +7747,7 @@ class Scanner
                                 $yystate = 322;
                                 break 2;
                         }
+                        // no break
                     case 321:
                         $this->token = new Token(Opcode::OP_JSON_PATH_TEXT);
                         $this->state->setCursor($yycursor);
@@ -7545,6 +7769,7 @@ class Scanner
                                 $yystate = 326;
                                 break 2;
                         }
+                        // no break
                     case 324:
                         $this->token = new Token(Opcode::SUB);
                         $this->state->setCursor($yycursor);

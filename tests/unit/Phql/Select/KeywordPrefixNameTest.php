@@ -20,8 +20,6 @@ use Phalcon\Phql\Tests\AbstractUnitTestCase;
 final class KeywordPrefixNameTest extends AbstractUnitTestCase
 {
     /**
-     * @return void
-     *
      * @issue  https://github.com/phalcon/cphalcon/issues/16831
      * @author Phalcon Team <team@phalcon.io>
      * @since  2026-06-05
@@ -74,9 +72,8 @@ final class KeywordPrefixNameTest extends AbstractUnitTestCase
         $actual   = (new Parser())->parse($source);
         $this->assertSame($expected, $actual);
     }
+
     /**
-     * @return void
-     *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2026-04-09
      */
@@ -84,11 +81,11 @@ final class KeywordPrefixNameTest extends AbstractUnitTestCase
     {
         $source   = "SELECT Groups FROM Settings";
         $expected = [
-            'type' => Opcode::SELECT->value,
+            'type'   => Opcode::SELECT->value,
             'select' => [
                 'columns' => [
                     0 => [
-                        'type' => Opcode::EXPR->value,
+                        'type'   => Opcode::EXPR->value,
                         'column' => [
                             'type' => Opcode::QUALIFIED->value,
                             'name' => 'Groups',
@@ -108,8 +105,6 @@ final class KeywordPrefixNameTest extends AbstractUnitTestCase
     }
 
     /**
-     * @return void
-     *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2026-04-09
      */
@@ -117,11 +112,11 @@ final class KeywordPrefixNameTest extends AbstractUnitTestCase
     {
         $source   = "SELECT [Groups] FROM Settings";
         $expected = [
-            'type' => Opcode::SELECT->value,
+            'type'   => Opcode::SELECT->value,
             'select' => [
                 'columns' => [
                     0 => [
-                        'type' => Opcode::EXPR->value,
+                        'type'   => Opcode::EXPR->value,
                         'column' => [
                             'type' => Opcode::QUALIFIED->value,
                             'name' => 'Groups',
@@ -141,8 +136,6 @@ final class KeywordPrefixNameTest extends AbstractUnitTestCase
     }
 
     /**
-     * @return void
-     *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2026-04-09
      */
@@ -150,11 +143,11 @@ final class KeywordPrefixNameTest extends AbstractUnitTestCase
     {
         $source   = "SELECT Notes FROM Contacts";
         $expected = [
-            'type' => Opcode::SELECT->value,
+            'type'   => Opcode::SELECT->value,
             'select' => [
                 'columns' => [
                     0 => [
-                        'type' => Opcode::EXPR->value,
+                        'type'   => Opcode::EXPR->value,
                         'column' => [
                             'type' => Opcode::QUALIFIED->value,
                             'name' => 'Notes',
@@ -174,8 +167,6 @@ final class KeywordPrefixNameTest extends AbstractUnitTestCase
     }
 
     /**
-     * @return void
-     *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2026-04-09
      */
@@ -183,11 +174,11 @@ final class KeywordPrefixNameTest extends AbstractUnitTestCase
     {
         $source   = "SELECT [Notes] FROM Contacts";
         $expected = [
-            'type' => Opcode::SELECT->value,
+            'type'   => Opcode::SELECT->value,
             'select' => [
                 'columns' => [
                     0 => [
-                        'type' => Opcode::EXPR->value,
+                        'type'   => Opcode::EXPR->value,
                         'column' => [
                             'type' => Opcode::QUALIFIED->value,
                             'name' => 'Notes',
@@ -207,8 +198,6 @@ final class KeywordPrefixNameTest extends AbstractUnitTestCase
     }
 
     /**
-     * @return void
-     *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2026-04-09
      */
@@ -216,11 +205,11 @@ final class KeywordPrefixNameTest extends AbstractUnitTestCase
     {
         $source   = "SELECT Orders FROM Customers";
         $expected = [
-            'type' => Opcode::SELECT->value,
+            'type'   => Opcode::SELECT->value,
             'select' => [
                 'columns' => [
                     0 => [
-                        'type' => Opcode::EXPR->value,
+                        'type'   => Opcode::EXPR->value,
                         'column' => [
                             'type' => Opcode::QUALIFIED->value,
                             'name' => 'Orders',
@@ -240,8 +229,6 @@ final class KeywordPrefixNameTest extends AbstractUnitTestCase
     }
 
     /**
-     * @return void
-     *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2026-04-09
      */
@@ -249,11 +236,11 @@ final class KeywordPrefixNameTest extends AbstractUnitTestCase
     {
         $source   = "SELECT [Orders] FROM Customers";
         $expected = [
-            'type' => Opcode::SELECT->value,
+            'type'   => Opcode::SELECT->value,
             'select' => [
                 'columns' => [
                     0 => [
-                        'type' => Opcode::EXPR->value,
+                        'type'   => Opcode::EXPR->value,
                         'column' => [
                             'type' => Opcode::QUALIFIED->value,
                             'name' => 'Orders',
@@ -273,8 +260,6 @@ final class KeywordPrefixNameTest extends AbstractUnitTestCase
     }
 
     /**
-     * @return void
-     *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2026-04-09
      */
@@ -282,7 +267,7 @@ final class KeywordPrefixNameTest extends AbstractUnitTestCase
     {
         $source   = "SELECT * FROM Contacts WHERE [Notes] IS NOT NULL";
         $expected = [
-            'type' => Opcode::SELECT->value,
+            'type'   => Opcode::SELECT->value,
             'select' => [
                 'columns' => [
                     0 => [
@@ -309,8 +294,6 @@ final class KeywordPrefixNameTest extends AbstractUnitTestCase
     }
 
     /**
-     * @return void
-     *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2026-04-09
      */
@@ -318,7 +301,7 @@ final class KeywordPrefixNameTest extends AbstractUnitTestCase
     {
         $source   = "SELECT * FROM Contacts WHERE [Notes] LIKE '%important%'";
         $expected = [
-            'type' => Opcode::SELECT->value,
+            'type'   => Opcode::SELECT->value,
             'select' => [
                 'columns' => [
                     0 => [
@@ -333,13 +316,13 @@ final class KeywordPrefixNameTest extends AbstractUnitTestCase
                 ],
             ],
             'where'  => [
-                'type' => Opcode::LIKE->value,
+                'type'  => Opcode::LIKE->value,
                 'left'  => [
                     'type' => Opcode::QUALIFIED->value,
                     'name' => 'Notes',
                 ],
                 'right' => [
-                    'type' => Opcode::STRING->value,
+                    'type'  => Opcode::STRING->value,
                     'value' => '%important%',
                 ],
             ],

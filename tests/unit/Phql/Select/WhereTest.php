@@ -20,8 +20,6 @@ use Phalcon\Phql\Tests\AbstractUnitTestCase;
 final class WhereTest extends AbstractUnitTestCase
 {
     /**
-     * @return void
-     *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2026-04-09
      */
@@ -29,7 +27,7 @@ final class WhereTest extends AbstractUnitTestCase
     {
         $source   = "SELECT * FROM Invoices WHERE inv_id = 1";
         $expected = [
-            'type' => Opcode::SELECT->value,
+            'type'   => Opcode::SELECT->value,
             'select' => [
                 'columns' => [
                     0 => [
@@ -44,13 +42,13 @@ final class WhereTest extends AbstractUnitTestCase
                 ],
             ],
             'where'  => [
-                'type' => Opcode::EQUALS->value,
+                'type'  => Opcode::EQUALS->value,
                 'left'  => [
                     'type' => Opcode::QUALIFIED->value,
                     'name' => 'inv_id',
                 ],
                 'right' => [
-                    'type' => Opcode::INTEGER->value,
+                    'type'  => Opcode::INTEGER->value,
                     'value' => '1',
                 ],
             ],
@@ -60,8 +58,6 @@ final class WhereTest extends AbstractUnitTestCase
     }
 
     /**
-     * @return void
-     *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2026-04-09
      */
@@ -69,7 +65,7 @@ final class WhereTest extends AbstractUnitTestCase
     {
         $source   = "SELECT * FROM Invoices WHERE inv_title = 'test invoice'";
         $expected = [
-            'type' => Opcode::SELECT->value,
+            'type'   => Opcode::SELECT->value,
             'select' => [
                 'columns' => [
                     0 => [
@@ -84,13 +80,13 @@ final class WhereTest extends AbstractUnitTestCase
                 ],
             ],
             'where'  => [
-                'type' => Opcode::EQUALS->value,
+                'type'  => Opcode::EQUALS->value,
                 'left'  => [
                     'type' => Opcode::QUALIFIED->value,
                     'name' => 'inv_title',
                 ],
                 'right' => [
-                    'type' => Opcode::STRING->value,
+                    'type'  => Opcode::STRING->value,
                     'value' => 'test invoice',
                 ],
             ],
@@ -100,8 +96,6 @@ final class WhereTest extends AbstractUnitTestCase
     }
 
     /**
-     * @return void
-     *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2026-04-10
      */
@@ -109,7 +103,7 @@ final class WhereTest extends AbstractUnitTestCase
     {
         $source   = "SELECT * FROM Invoices WHERE UPPER(inv_title) = 'TEST INVOICE'";
         $expected = [
-            'type' => Opcode::SELECT->value,
+            'type'   => Opcode::SELECT->value,
             'select' => [
                 'columns' => [
                     0 => [
@@ -124,9 +118,9 @@ final class WhereTest extends AbstractUnitTestCase
                 ],
             ],
             'where'  => [
-                'type' => Opcode::EQUALS->value,
+                'type'  => Opcode::EQUALS->value,
                 'left'  => [
-                    'type' => Opcode::FCALL->value,
+                    'type'      => Opcode::FCALL->value,
                     'name'      => 'UPPER',
                     'arguments' => [
                         0 => [
@@ -136,7 +130,7 @@ final class WhereTest extends AbstractUnitTestCase
                     ],
                 ],
                 'right' => [
-                    'type' => Opcode::STRING->value,
+                    'type'  => Opcode::STRING->value,
                     'value' => 'TEST INVOICE',
                 ],
             ],
@@ -146,8 +140,6 @@ final class WhereTest extends AbstractUnitTestCase
     }
 
     /**
-     * @return void
-     *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2026-04-10
      */
@@ -155,7 +147,7 @@ final class WhereTest extends AbstractUnitTestCase
     {
         $source   = "SELECT * FROM Invoices WHERE UPPER(inv_title) = :title:";
         $expected = [
-            'type' => Opcode::SELECT->value,
+            'type'   => Opcode::SELECT->value,
             'select' => [
                 'columns' => [
                     0 => [
@@ -170,9 +162,9 @@ final class WhereTest extends AbstractUnitTestCase
                 ],
             ],
             'where'  => [
-                'type' => Opcode::EQUALS->value,
+                'type'  => Opcode::EQUALS->value,
                 'left'  => [
-                    'type' => Opcode::FCALL->value,
+                    'type'      => Opcode::FCALL->value,
                     'name'      => 'UPPER',
                     'arguments' => [
                         0 => [
@@ -182,7 +174,7 @@ final class WhereTest extends AbstractUnitTestCase
                     ],
                 ],
                 'right' => [
-                    'type' => Opcode::SPLACEHOLDER->value,
+                    'type'  => Opcode::SPLACEHOLDER->value,
                     'value' => 'title',
                 ],
             ],
@@ -192,8 +184,6 @@ final class WhereTest extends AbstractUnitTestCase
     }
 
     /**
-     * @return void
-     *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2026-04-09
      */
@@ -201,7 +191,7 @@ final class WhereTest extends AbstractUnitTestCase
     {
         $source   = "SELECT * FROM Invoices WHERE inv_total >= 100.00";
         $expected = [
-            'type' => Opcode::SELECT->value,
+            'type'   => Opcode::SELECT->value,
             'select' => [
                 'columns' => [
                     0 => [
@@ -216,13 +206,13 @@ final class WhereTest extends AbstractUnitTestCase
                 ],
             ],
             'where'  => [
-                'type' => Opcode::GREATEREQUAL->value,
+                'type'  => Opcode::GREATEREQUAL->value,
                 'left'  => [
                     'type' => Opcode::QUALIFIED->value,
                     'name' => 'inv_total',
                 ],
                 'right' => [
-                    'type' => Opcode::DOUBLE->value,
+                    'type'  => Opcode::DOUBLE->value,
                     'value' => '100.00',
                 ],
             ],
@@ -232,8 +222,6 @@ final class WhereTest extends AbstractUnitTestCase
     }
 
     /**
-     * @return void
-     *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2026-04-09
      */
@@ -241,7 +229,7 @@ final class WhereTest extends AbstractUnitTestCase
     {
         $source   = "SELECT * FROM Invoices WHERE inv_total > 100.00";
         $expected = [
-            'type' => Opcode::SELECT->value,
+            'type'   => Opcode::SELECT->value,
             'select' => [
                 'columns' => [
                     0 => [
@@ -256,13 +244,13 @@ final class WhereTest extends AbstractUnitTestCase
                 ],
             ],
             'where'  => [
-                'type' => Opcode::GREATER->value,
+                'type'  => Opcode::GREATER->value,
                 'left'  => [
                     'type' => Opcode::QUALIFIED->value,
                     'name' => 'inv_total',
                 ],
                 'right' => [
-                    'type' => Opcode::DOUBLE->value,
+                    'type'  => Opcode::DOUBLE->value,
                     'value' => '100.00',
                 ],
             ],
@@ -272,8 +260,6 @@ final class WhereTest extends AbstractUnitTestCase
     }
 
     /**
-     * @return void
-     *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2026-04-09
      */
@@ -281,7 +267,7 @@ final class WhereTest extends AbstractUnitTestCase
     {
         $source   = "SELECT * FROM Invoices WHERE inv_total <= 100.00";
         $expected = [
-            'type' => Opcode::SELECT->value,
+            'type'   => Opcode::SELECT->value,
             'select' => [
                 'columns' => [
                     0 => [
@@ -296,13 +282,13 @@ final class WhereTest extends AbstractUnitTestCase
                 ],
             ],
             'where'  => [
-                'type' => Opcode::LESSEQUAL->value,
+                'type'  => Opcode::LESSEQUAL->value,
                 'left'  => [
                     'type' => Opcode::QUALIFIED->value,
                     'name' => 'inv_total',
                 ],
                 'right' => [
-                    'type' => Opcode::DOUBLE->value,
+                    'type'  => Opcode::DOUBLE->value,
                     'value' => '100.00',
                 ],
             ],
@@ -312,8 +298,6 @@ final class WhereTest extends AbstractUnitTestCase
     }
 
     /**
-     * @return void
-     *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2026-04-09
      */
@@ -321,7 +305,7 @@ final class WhereTest extends AbstractUnitTestCase
     {
         $source   = "SELECT * FROM Invoices WHERE inv_total < 100.00";
         $expected = [
-            'type' => Opcode::SELECT->value,
+            'type'   => Opcode::SELECT->value,
             'select' => [
                 'columns' => [
                     0 => [
@@ -336,13 +320,13 @@ final class WhereTest extends AbstractUnitTestCase
                 ],
             ],
             'where'  => [
-                'type' => Opcode::LESS->value,
+                'type'  => Opcode::LESS->value,
                 'left'  => [
                     'type' => Opcode::QUALIFIED->value,
                     'name' => 'inv_total',
                 ],
                 'right' => [
-                    'type' => Opcode::DOUBLE->value,
+                    'type'  => Opcode::DOUBLE->value,
                     'value' => '100.00',
                 ],
             ],
@@ -352,8 +336,6 @@ final class WhereTest extends AbstractUnitTestCase
     }
 
     /**
-     * @return void
-     *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2026-04-09
      */
@@ -361,7 +343,7 @@ final class WhereTest extends AbstractUnitTestCase
     {
         $source   = "SELECT * FROM Invoices WHERE inv_id != 1";
         $expected = [
-            'type' => Opcode::SELECT->value,
+            'type'   => Opcode::SELECT->value,
             'select' => [
                 'columns' => [
                     0 => [
@@ -376,13 +358,13 @@ final class WhereTest extends AbstractUnitTestCase
                 ],
             ],
             'where'  => [
-                'type' => Opcode::NOTEQUALS->value,
+                'type'  => Opcode::NOTEQUALS->value,
                 'left'  => [
                     'type' => Opcode::QUALIFIED->value,
                     'name' => 'inv_id',
                 ],
                 'right' => [
-                    'type' => Opcode::INTEGER->value,
+                    'type'  => Opcode::INTEGER->value,
                     'value' => '1',
                 ],
             ],
@@ -392,8 +374,6 @@ final class WhereTest extends AbstractUnitTestCase
     }
 
     /**
-     * @return void
-     *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2026-04-09
      */
@@ -401,7 +381,7 @@ final class WhereTest extends AbstractUnitTestCase
     {
         $source   = "SELECT * FROM Invoices WHERE inv_id <> 1";
         $expected = [
-            'type' => Opcode::SELECT->value,
+            'type'   => Opcode::SELECT->value,
             'select' => [
                 'columns' => [
                     0 => [
@@ -416,13 +396,13 @@ final class WhereTest extends AbstractUnitTestCase
                 ],
             ],
             'where'  => [
-                'type' => Opcode::NOTEQUALS->value,
+                'type'  => Opcode::NOTEQUALS->value,
                 'left'  => [
                     'type' => Opcode::QUALIFIED->value,
                     'name' => 'inv_id',
                 ],
                 'right' => [
-                    'type' => Opcode::INTEGER->value,
+                    'type'  => Opcode::INTEGER->value,
                     'value' => '1',
                 ],
             ],

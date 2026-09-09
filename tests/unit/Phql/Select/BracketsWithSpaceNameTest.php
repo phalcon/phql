@@ -20,8 +20,6 @@ use Phalcon\Phql\Tests\AbstractUnitTestCase;
 final class BracketsWithSpaceNameTest extends AbstractUnitTestCase
 {
     /**
-     * @return void
-     *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2026-04-11
      */
@@ -31,11 +29,11 @@ final class BracketsWithSpaceNameTest extends AbstractUnitTestCase
             . "People.lastName AS [Last Name] "
             . "FROM People";
         $expected = [
-            'type' => Opcode::SELECT->value,
+            'type'   => Opcode::SELECT->value,
             'select' => [
                 'columns' => [
                     0 => [
-                        'type' => Opcode::EXPR->value,
+                        'type'   => Opcode::EXPR->value,
                         'column' => [
                             'type'   => Opcode::QUALIFIED->value,
                             'domain' => 'People',
@@ -44,7 +42,7 @@ final class BracketsWithSpaceNameTest extends AbstractUnitTestCase
                         'alias'  => 'First Name',
                     ],
                     1 => [
-                        'type' => Opcode::EXPR->value,
+                        'type'   => Opcode::EXPR->value,
                         'column' => [
                             'type'   => Opcode::QUALIFIED->value,
                             'domain' => 'People',
@@ -66,8 +64,6 @@ final class BracketsWithSpaceNameTest extends AbstractUnitTestCase
     }
 
     /**
-     * @return void
-     *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2026-04-09
      */
@@ -75,18 +71,18 @@ final class BracketsWithSpaceNameTest extends AbstractUnitTestCase
     {
         $source   = "SELECT [First Name], [Last Name] FROM Contacts";
         $expected = [
-            'type' => Opcode::SELECT->value,
+            'type'   => Opcode::SELECT->value,
             'select' => [
                 'columns' => [
                     0 => [
-                        'type' => Opcode::EXPR->value,
+                        'type'   => Opcode::EXPR->value,
                         'column' => [
                             'type' => Opcode::QUALIFIED->value,
                             'name' => 'First Name',
                         ],
                     ],
                     1 => [
-                        'type' => Opcode::EXPR->value,
+                        'type'   => Opcode::EXPR->value,
                         'column' => [
                             'type' => Opcode::QUALIFIED->value,
                             'name' => 'Last Name',
@@ -106,8 +102,6 @@ final class BracketsWithSpaceNameTest extends AbstractUnitTestCase
     }
 
     /**
-     * @return void
-     *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2026-04-09
      */
@@ -115,21 +109,21 @@ final class BracketsWithSpaceNameTest extends AbstractUnitTestCase
     {
         $source   = "SELECT c.[First Name], c.[Last Name] " . "FROM Contacts AS c";
         $expected = [
-            'type' => Opcode::SELECT->value,
+            'type'   => Opcode::SELECT->value,
             'select' => [
                 'columns' => [
                     0 => [
-                        'type' => Opcode::EXPR->value,
+                        'type'   => Opcode::EXPR->value,
                         'column' => [
-                            'type' => Opcode::QUALIFIED->value,
+                            'type'   => Opcode::QUALIFIED->value,
                             'domain' => 'c',
                             'name'   => 'First Name',
                         ],
                     ],
                     1 => [
-                        'type' => Opcode::EXPR->value,
+                        'type'   => Opcode::EXPR->value,
                         'column' => [
-                            'type' => Opcode::QUALIFIED->value,
+                            'type'   => Opcode::QUALIFIED->value,
                             'domain' => 'c',
                             'name'   => 'Last Name',
                         ],
@@ -149,8 +143,6 @@ final class BracketsWithSpaceNameTest extends AbstractUnitTestCase
     }
 
     /**
-     * @return void
-     *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2026-04-09
      */
@@ -158,13 +150,13 @@ final class BracketsWithSpaceNameTest extends AbstractUnitTestCase
     {
         $source   = "SELECT c.[First Name] " . "FROM Contacts AS c " . "WHERE c.[Last Name] = 'Smith'";
         $expected = [
-            'type' => Opcode::SELECT->value,
+            'type'   => Opcode::SELECT->value,
             'select' => [
                 'columns' => [
                     0 => [
-                        'type' => Opcode::EXPR->value,
+                        'type'   => Opcode::EXPR->value,
                         'column' => [
-                            'type' => Opcode::QUALIFIED->value,
+                            'type'   => Opcode::QUALIFIED->value,
                             'domain' => 'c',
                             'name'   => 'First Name',
                         ],
@@ -179,14 +171,14 @@ final class BracketsWithSpaceNameTest extends AbstractUnitTestCase
                 ],
             ],
             'where'  => [
-                'type' => Opcode::EQUALS->value,
+                'type'  => Opcode::EQUALS->value,
                 'left'  => [
-                    'type' => Opcode::QUALIFIED->value,
+                    'type'   => Opcode::QUALIFIED->value,
                     'domain' => 'c',
                     'name'   => 'Last Name',
                 ],
                 'right' => [
-                    'type' => Opcode::STRING->value,
+                    'type'  => Opcode::STRING->value,
                     'value' => 'Smith',
                 ],
             ],
@@ -196,8 +188,6 @@ final class BracketsWithSpaceNameTest extends AbstractUnitTestCase
     }
 
     /**
-     * @return void
-     *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2026-04-09
      */
@@ -207,11 +197,11 @@ final class BracketsWithSpaceNameTest extends AbstractUnitTestCase
                     . "FROM Contacts "
                     . "ORDER BY [Last Name] ASC";
         $expected = [
-            'type' => Opcode::SELECT->value,
+            'type'    => Opcode::SELECT->value,
             'select'  => [
                 'columns' => [
                     0 => [
-                        'type' => Opcode::EXPR->value,
+                        'type'   => Opcode::EXPR->value,
                         'column' => [
                             'type' => Opcode::QUALIFIED->value,
                             'name' => 'First Name',
@@ -219,7 +209,7 @@ final class BracketsWithSpaceNameTest extends AbstractUnitTestCase
                         'alias'  => 'firstName',
                     ],
                     1 => [
-                        'type' => Opcode::EXPR->value,
+                        'type'   => Opcode::EXPR->value,
                         'column' => [
                             'type' => Opcode::QUALIFIED->value,
                             'name' => 'Last Name',
@@ -247,8 +237,6 @@ final class BracketsWithSpaceNameTest extends AbstractUnitTestCase
     }
 
     /**
-     * @return void
-     *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2026-04-09
      */
@@ -256,7 +244,7 @@ final class BracketsWithSpaceNameTest extends AbstractUnitTestCase
     {
         $source   = "SELECT * FROM [My Table]";
         $expected = [
-            'type' => Opcode::SELECT->value,
+            'type'   => Opcode::SELECT->value,
             'select' => [
                 'columns' => [
                     0 => [

@@ -20,8 +20,6 @@ use Phalcon\Phql\Tests\AbstractUnitTestCase;
 final class UnaryMinusTest extends AbstractUnitTestCase
 {
     /**
-     * @return void
-     *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2026-04-09
      */
@@ -29,13 +27,13 @@ final class UnaryMinusTest extends AbstractUnitTestCase
     {
         $source   = "SELECT -inv_total FROM Invoices";
         $expected = [
-            'type' => Opcode::SELECT->value,
+            'type'   => Opcode::SELECT->value,
             'select' => [
                 'columns' => [
                     0 => [
-                        'type' => Opcode::EXPR->value,
+                        'type'   => Opcode::EXPR->value,
                         'column' => [
-                            'type' => Opcode::MINUS->value,
+                            'type'  => Opcode::MINUS->value,
                             'right' => [
                                 'type' => Opcode::QUALIFIED->value,
                                 'name' => 'inv_total',
@@ -56,8 +54,6 @@ final class UnaryMinusTest extends AbstractUnitTestCase
     }
 
     /**
-     * @return void
-     *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2026-04-09
      */
@@ -65,7 +61,7 @@ final class UnaryMinusTest extends AbstractUnitTestCase
     {
         $source   = "SELECT * FROM Invoices WHERE inv_total > -1";
         $expected = [
-            'type' => Opcode::SELECT->value,
+            'type'   => Opcode::SELECT->value,
             'select' => [
                 'columns' => [
                     0 => [
@@ -80,15 +76,15 @@ final class UnaryMinusTest extends AbstractUnitTestCase
                 ],
             ],
             'where'  => [
-                'type' => Opcode::GREATER->value,
+                'type'  => Opcode::GREATER->value,
                 'left'  => [
                     'type' => Opcode::QUALIFIED->value,
                     'name' => 'inv_total',
                 ],
                 'right' => [
-                    'type' => Opcode::MINUS->value,
+                    'type'  => Opcode::MINUS->value,
                     'right' => [
-                        'type' => Opcode::INTEGER->value,
+                        'type'  => Opcode::INTEGER->value,
                         'value' => '1',
                     ],
                 ],

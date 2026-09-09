@@ -20,8 +20,6 @@ use Phalcon\Phql\Tests\AbstractUnitTestCase;
 final class LikeTest extends AbstractUnitTestCase
 {
     /**
-     * @return void
-     *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2026-04-09
      */
@@ -29,7 +27,7 @@ final class LikeTest extends AbstractUnitTestCase
     {
         $source   = "SELECT * FROM Invoices WHERE inv_title ILIKE '%invoice%'";
         $expected = [
-            'type' => Opcode::SELECT->value,
+            'type'   => Opcode::SELECT->value,
             'select' => [
                 'columns' => [
                     0 => [
@@ -44,13 +42,13 @@ final class LikeTest extends AbstractUnitTestCase
                 ],
             ],
             'where'  => [
-                'type' => Opcode::ILIKE->value,
+                'type'  => Opcode::ILIKE->value,
                 'left'  => [
                     'type' => Opcode::QUALIFIED->value,
                     'name' => 'inv_title',
                 ],
                 'right' => [
-                    'type' => Opcode::STRING->value,
+                    'type'  => Opcode::STRING->value,
                     'value' => '%invoice%',
                 ],
             ],
@@ -60,8 +58,6 @@ final class LikeTest extends AbstractUnitTestCase
     }
 
     /**
-     * @return void
-     *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2026-04-09
      */
@@ -69,7 +65,7 @@ final class LikeTest extends AbstractUnitTestCase
     {
         $source   = "SELECT * FROM Invoices WHERE inv_title LIKE '%test%'";
         $expected = [
-            'type' => Opcode::SELECT->value,
+            'type'   => Opcode::SELECT->value,
             'select' => [
                 'columns' => [
                     0 => [
@@ -84,13 +80,13 @@ final class LikeTest extends AbstractUnitTestCase
                 ],
             ],
             'where'  => [
-                'type' => Opcode::LIKE->value,
+                'type'  => Opcode::LIKE->value,
                 'left'  => [
                     'type' => Opcode::QUALIFIED->value,
                     'name' => 'inv_title',
                 ],
                 'right' => [
-                    'type' => Opcode::STRING->value,
+                    'type'  => Opcode::STRING->value,
                     'value' => '%test%',
                 ],
             ],
@@ -100,8 +96,6 @@ final class LikeTest extends AbstractUnitTestCase
     }
 
     /**
-     * @return void
-     *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2026-04-09
      */
@@ -109,7 +103,7 @@ final class LikeTest extends AbstractUnitTestCase
     {
         $source   = "SELECT * FROM Invoices WHERE inv_title NOT ILIKE '%draft%'";
         $expected = [
-            'type' => Opcode::SELECT->value,
+            'type'   => Opcode::SELECT->value,
             'select' => [
                 'columns' => [
                     0 => [
@@ -124,13 +118,13 @@ final class LikeTest extends AbstractUnitTestCase
                 ],
             ],
             'where'  => [
-                'type' => Opcode::NILIKE->value,
+                'type'  => Opcode::NILIKE->value,
                 'left'  => [
                     'type' => Opcode::QUALIFIED->value,
                     'name' => 'inv_title',
                 ],
                 'right' => [
-                    'type' => Opcode::STRING->value,
+                    'type'  => Opcode::STRING->value,
                     'value' => '%draft%',
                 ],
             ],
@@ -140,8 +134,6 @@ final class LikeTest extends AbstractUnitTestCase
     }
 
     /**
-     * @return void
-     *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2026-04-09
      */
@@ -149,7 +141,7 @@ final class LikeTest extends AbstractUnitTestCase
     {
         $source   = "SELECT * FROM Invoices WHERE inv_title NOT LIKE '%draft%'";
         $expected = [
-            'type' => Opcode::SELECT->value,
+            'type'   => Opcode::SELECT->value,
             'select' => [
                 'columns' => [
                     0 => [
@@ -164,13 +156,13 @@ final class LikeTest extends AbstractUnitTestCase
                 ],
             ],
             'where'  => [
-                'type' => Opcode::NLIKE->value,
+                'type'  => Opcode::NLIKE->value,
                 'left'  => [
                     'type' => Opcode::QUALIFIED->value,
                     'name' => 'inv_title',
                 ],
                 'right' => [
-                    'type' => Opcode::STRING->value,
+                    'type'  => Opcode::STRING->value,
                     'value' => '%draft%',
                 ],
             ],

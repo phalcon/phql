@@ -20,8 +20,6 @@ use Phalcon\Phql\Tests\AbstractUnitTestCase;
 final class WhereInTest extends AbstractUnitTestCase
 {
     /**
-     * @return void
-     *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2026-04-09
      */
@@ -29,7 +27,7 @@ final class WhereInTest extends AbstractUnitTestCase
     {
         $source   = "SELECT * FROM Invoices WHERE inv_status_flag IN (0, 1, 2)";
         $expected = [
-            'type' => Opcode::SELECT->value,
+            'type'   => Opcode::SELECT->value,
             'select' => [
                 'columns' => [
                     0 => [
@@ -44,22 +42,22 @@ final class WhereInTest extends AbstractUnitTestCase
                 ],
             ],
             'where'  => [
-                'type' => Opcode::IN->value,
+                'type'  => Opcode::IN->value,
                 'left'  => [
                     'type' => Opcode::QUALIFIED->value,
                     'name' => 'inv_status_flag',
                 ],
                 'right' => [
                     0 => [
-                        'type' => Opcode::INTEGER->value,
+                        'type'  => Opcode::INTEGER->value,
                         'value' => '0',
                     ],
                     1 => [
-                        'type' => Opcode::INTEGER->value,
+                        'type'  => Opcode::INTEGER->value,
                         'value' => '1',
                     ],
                     2 => [
-                        'type' => Opcode::INTEGER->value,
+                        'type'  => Opcode::INTEGER->value,
                         'value' => '2',
                     ],
                 ],
@@ -70,8 +68,6 @@ final class WhereInTest extends AbstractUnitTestCase
     }
 
     /**
-     * @return void
-     *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2026-04-09
      */
@@ -79,7 +75,7 @@ final class WhereInTest extends AbstractUnitTestCase
     {
         $source   = "SELECT * FROM Invoices WHERE inv_status_flag NOT IN (0, 1)";
         $expected = [
-            'type' => Opcode::SELECT->value,
+            'type'   => Opcode::SELECT->value,
             'select' => [
                 'columns' => [
                     0 => [
@@ -94,18 +90,18 @@ final class WhereInTest extends AbstractUnitTestCase
                 ],
             ],
             'where'  => [
-                'type' => Opcode::NOTIN->value,
+                'type'  => Opcode::NOTIN->value,
                 'left'  => [
                     'type' => Opcode::QUALIFIED->value,
                     'name' => 'inv_status_flag',
                 ],
                 'right' => [
                     0 => [
-                        'type' => Opcode::INTEGER->value,
+                        'type'  => Opcode::INTEGER->value,
                         'value' => '0',
                     ],
                     1 => [
-                        'type' => Opcode::INTEGER->value,
+                        'type'  => Opcode::INTEGER->value,
                         'value' => '1',
                     ],
                 ],

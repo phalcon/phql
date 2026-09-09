@@ -20,8 +20,6 @@ use Phalcon\Phql\Tests\AbstractUnitTestCase;
 final class BetweenTest extends AbstractUnitTestCase
 {
     /**
-     * @return void
-     *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2026-04-09
      */
@@ -31,7 +29,7 @@ final class BetweenTest extends AbstractUnitTestCase
             . "FROM Invoices "
             . "WHERE inv_total BETWEEN 10.00 AND 500.00";
         $expected = [
-            'type' => Opcode::SELECT->value,
+            'type'   => Opcode::SELECT->value,
             'select' => [
                 'columns' => [
                     0 => [
@@ -46,19 +44,19 @@ final class BetweenTest extends AbstractUnitTestCase
                 ],
             ],
             'where'  => [
-                'type' => Opcode::BETWEEN->value,
+                'type'  => Opcode::BETWEEN->value,
                 'left'  => [
                     'type' => Opcode::QUALIFIED->value,
                     'name' => 'inv_total',
                 ],
                 'right' => [
-                    'type' => Opcode::AND->value,
+                    'type'  => Opcode::AND->value,
                     'left'  => [
-                        'type' => Opcode::DOUBLE->value,
+                        'type'  => Opcode::DOUBLE->value,
                         'value' => '10.00',
                     ],
                     'right' => [
-                        'type' => Opcode::DOUBLE->value,
+                        'type'  => Opcode::DOUBLE->value,
                         'value' => '500.00',
                     ],
                 ],
@@ -69,8 +67,6 @@ final class BetweenTest extends AbstractUnitTestCase
     }
 
     /**
-     * @return void
-     *
      * @author Phalcon Team <team@phalcon.io>
      * @issue  2
      * @since  2026-04-11
@@ -81,11 +77,11 @@ final class BetweenTest extends AbstractUnitTestCase
             . "FROM table_name "
             . "WHERE column_name BETWEEN value1 AND value2";
         $expected = [
-            'type' => Opcode::SELECT->value,
+            'type'   => Opcode::SELECT->value,
             'select' => [
                 'columns' => [
                     0 => [
-                        'type' => Opcode::EXPR->value,
+                        'type'   => Opcode::EXPR->value,
                         'column' => [
                             'type' => Opcode::QUALIFIED->value,
                             'name' => 'column_name',
@@ -100,13 +96,13 @@ final class BetweenTest extends AbstractUnitTestCase
                 ],
             ],
             'where'  => [
-                'type' => Opcode::BETWEEN->value,
+                'type'  => Opcode::BETWEEN->value,
                 'left'  => [
                     'type' => Opcode::QUALIFIED->value,
                     'name' => 'column_name',
                 ],
                 'right' => [
-                    'type' => Opcode::AND->value,
+                    'type'  => Opcode::AND->value,
                     'left'  => [
                         'type' => Opcode::QUALIFIED->value,
                         'name' => 'value1',
@@ -123,8 +119,6 @@ final class BetweenTest extends AbstractUnitTestCase
     }
 
     /**
-     * @return void
-     *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2026-04-09
      */
@@ -134,7 +128,7 @@ final class BetweenTest extends AbstractUnitTestCase
             . "FROM Invoices "
             . "WHERE inv_id BETWEEN 1 AND 100";
         $expected = [
-            'type' => Opcode::SELECT->value,
+            'type'   => Opcode::SELECT->value,
             'select' => [
                 'columns' => [
                     0 => [
@@ -149,19 +143,19 @@ final class BetweenTest extends AbstractUnitTestCase
                 ],
             ],
             'where'  => [
-                'type' => Opcode::BETWEEN->value,
+                'type'  => Opcode::BETWEEN->value,
                 'left'  => [
                     'type' => Opcode::QUALIFIED->value,
                     'name' => 'inv_id',
                 ],
                 'right' => [
-                    'type' => Opcode::AND->value,
+                    'type'  => Opcode::AND->value,
                     'left'  => [
-                        'type' => Opcode::INTEGER->value,
+                        'type'  => Opcode::INTEGER->value,
                         'value' => '1',
                     ],
                     'right' => [
-                        'type' => Opcode::INTEGER->value,
+                        'type'  => Opcode::INTEGER->value,
                         'value' => '100',
                     ],
                 ],
@@ -172,8 +166,6 @@ final class BetweenTest extends AbstractUnitTestCase
     }
 
     /**
-     * @return void
-     *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2026-04-09
      */
@@ -183,7 +175,7 @@ final class BetweenTest extends AbstractUnitTestCase
             . "FROM Invoices "
             . "WHERE inv_total NOT BETWEEN 10.00 AND 500.00";
         $expected = [
-            'type' => Opcode::SELECT->value,
+            'type'   => Opcode::SELECT->value,
             'select' => [
                 'columns' => [
                     0 => [
@@ -198,19 +190,19 @@ final class BetweenTest extends AbstractUnitTestCase
                 ],
             ],
             'where'  => [
-                'type' => Opcode::BETWEEN_NOT->value,
+                'type'  => Opcode::BETWEEN_NOT->value,
                 'left'  => [
                     'type' => Opcode::QUALIFIED->value,
                     'name' => 'inv_total',
                 ],
                 'right' => [
-                    'type' => Opcode::AND->value,
+                    'type'  => Opcode::AND->value,
                     'left'  => [
-                        'type' => Opcode::DOUBLE->value,
+                        'type'  => Opcode::DOUBLE->value,
                         'value' => '10.00',
                     ],
                     'right' => [
-                        'type' => Opcode::DOUBLE->value,
+                        'type'  => Opcode::DOUBLE->value,
                         'value' => '500.00',
                     ],
                 ],
@@ -221,8 +213,6 @@ final class BetweenTest extends AbstractUnitTestCase
     }
 
     /**
-     * @return void
-     *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2026-04-09
      */
@@ -232,7 +222,7 @@ final class BetweenTest extends AbstractUnitTestCase
             . "FROM Invoices "
             . "WHERE inv_id NOT BETWEEN 1 AND 100";
         $expected = [
-            'type' => Opcode::SELECT->value,
+            'type'   => Opcode::SELECT->value,
             'select' => [
                 'columns' => [
                     0 => [
@@ -247,19 +237,19 @@ final class BetweenTest extends AbstractUnitTestCase
                 ],
             ],
             'where'  => [
-                'type' => Opcode::BETWEEN_NOT->value,
+                'type'  => Opcode::BETWEEN_NOT->value,
                 'left'  => [
                     'type' => Opcode::QUALIFIED->value,
                     'name' => 'inv_id',
                 ],
                 'right' => [
-                    'type' => Opcode::AND->value,
+                    'type'  => Opcode::AND->value,
                     'left'  => [
-                        'type' => Opcode::INTEGER->value,
+                        'type'  => Opcode::INTEGER->value,
                         'value' => '1',
                     ],
                     'right' => [
-                        'type' => Opcode::INTEGER->value,
+                        'type'  => Opcode::INTEGER->value,
                         'value' => '100',
                     ],
                 ],
@@ -270,8 +260,6 @@ final class BetweenTest extends AbstractUnitTestCase
     }
 
     /**
-     * @return void
-     *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2026-04-11
      */
@@ -281,25 +269,25 @@ final class BetweenTest extends AbstractUnitTestCase
             . "FROM Product "
             . "WHERE UnitPrice NOT BETWEEN 5 AND 100";
         $expected = [
-            'type' => Opcode::SELECT->value,
+            'type'   => Opcode::SELECT->value,
             'select' => [
                 'columns' => [
                     0 => [
-                        'type' => Opcode::EXPR->value,
+                        'type'   => Opcode::EXPR->value,
                         'column' => [
                             'type' => Opcode::QUALIFIED->value,
                             'name' => 'Id',
                         ],
                     ],
                     1 => [
-                        'type' => Opcode::EXPR->value,
+                        'type'   => Opcode::EXPR->value,
                         'column' => [
                             'type' => Opcode::QUALIFIED->value,
                             'name' => 'ProductName',
                         ],
                     ],
                     2 => [
-                        'type' => Opcode::EXPR->value,
+                        'type'   => Opcode::EXPR->value,
                         'column' => [
                             'type' => Opcode::QUALIFIED->value,
                             'name' => 'UnitPrice',
@@ -314,19 +302,19 @@ final class BetweenTest extends AbstractUnitTestCase
                 ],
             ],
             'where'  => [
-                'type' => Opcode::BETWEEN_NOT->value,
+                'type'  => Opcode::BETWEEN_NOT->value,
                 'left'  => [
                     'type' => Opcode::QUALIFIED->value,
                     'name' => 'UnitPrice',
                 ],
                 'right' => [
-                    'type' => Opcode::AND->value,
+                    'type'  => Opcode::AND->value,
                     'left'  => [
-                        'type' => Opcode::INTEGER->value,
+                        'type'  => Opcode::INTEGER->value,
                         'value' => '5',
                     ],
                     'right' => [
-                        'type' => Opcode::INTEGER->value,
+                        'type'  => Opcode::INTEGER->value,
                         'value' => '100',
                     ],
                 ],

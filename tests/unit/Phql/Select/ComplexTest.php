@@ -20,8 +20,6 @@ use Phalcon\Phql\Tests\AbstractUnitTestCase;
 final class ComplexTest extends AbstractUnitTestCase
 {
     /**
-     * @return void
-     *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2026-04-09
      */
@@ -36,7 +34,7 @@ final class ComplexTest extends AbstractUnitTestCase
             . "LIMIT :limit: "
             . "OFFSET :offset:";
         $expected = [
-            'type' => Opcode::SELECT->value,
+            'type'    => Opcode::SELECT->value,
             'select'  => [
                 'columns' => [
                     0 => [
@@ -51,34 +49,34 @@ final class ComplexTest extends AbstractUnitTestCase
                 ],
             ],
             'where'   => [
-                'type' => Opcode::BETWEEN->value,
+                'type'  => Opcode::BETWEEN->value,
                 'left'  => [
-                    'type' => Opcode::EQUALS->value,
+                    'type'  => Opcode::EQUALS->value,
                     'left'  => [
                         'type' => Opcode::QUALIFIED->value,
                         'name' => 'inv_cst_id',
                     ],
                     'right' => [
-                        'type' => Opcode::AND->value,
+                        'type'  => Opcode::AND->value,
                         'left'  => [
-                            'type' => Opcode::AND->value,
+                            'type'  => Opcode::AND->value,
                             'left'  => [
-                                'type' => Opcode::SPLACEHOLDER->value,
+                                'type'  => Opcode::SPLACEHOLDER->value,
                                 'value' => 'cstId',
                             ],
                             'right' => [
-                                'type' => Opcode::IN->value,
+                                'type'  => Opcode::IN->value,
                                 'left'  => [
                                     'type' => Opcode::QUALIFIED->value,
                                     'name' => 'inv_status_flag',
                                 ],
                                 'right' => [
                                     0 => [
-                                        'type' => Opcode::INTEGER->value,
+                                        'type'  => Opcode::INTEGER->value,
                                         'value' => '0',
                                     ],
                                     1 => [
-                                        'type' => Opcode::INTEGER->value,
+                                        'type'  => Opcode::INTEGER->value,
                                         'value' => '1',
                                     ],
                                 ],
@@ -91,13 +89,13 @@ final class ComplexTest extends AbstractUnitTestCase
                     ],
                 ],
                 'right' => [
-                    'type' => Opcode::AND->value,
+                    'type'  => Opcode::AND->value,
                     'left'  => [
-                        'type' => Opcode::SPLACEHOLDER->value,
+                        'type'  => Opcode::SPLACEHOLDER->value,
                         'value' => 'min',
                     ],
                     'right' => [
-                        'type' => Opcode::SPLACEHOLDER->value,
+                        'type'  => Opcode::SPLACEHOLDER->value,
                         'value' => 'max',
                     ],
                 ],
@@ -111,11 +109,11 @@ final class ComplexTest extends AbstractUnitTestCase
             ],
             'limit'   => [
                 'number' => [
-                    'type' => Opcode::SPLACEHOLDER->value,
+                    'type'  => Opcode::SPLACEHOLDER->value,
                     'value' => 'limit',
                 ],
                 'offset' => [
-                    'type' => Opcode::SPLACEHOLDER->value,
+                    'type'  => Opcode::SPLACEHOLDER->value,
                     'value' => 'offset',
                 ],
             ],
@@ -125,8 +123,6 @@ final class ComplexTest extends AbstractUnitTestCase
     }
 
     /**
-     * @return void
-     *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2026-04-09
      */
@@ -138,13 +134,13 @@ final class ComplexTest extends AbstractUnitTestCase
             . "GROUP BY inv_status_flag "
             . "ORDER BY cnt DESC";
         $expected = [
-            'type' => Opcode::SELECT->value,
+            'type'    => Opcode::SELECT->value,
             'select'  => [
                 'columns' => [
                     0 => [
-                        'type' => Opcode::EXPR->value,
+                        'type'   => Opcode::EXPR->value,
                         'column' => [
-                            'type' => Opcode::FCALL->value,
+                            'type'      => Opcode::FCALL->value,
                             'name'      => 'COUNT',
                             'arguments' => [
                                 0 => [
@@ -155,7 +151,7 @@ final class ComplexTest extends AbstractUnitTestCase
                         'alias'  => 'cnt',
                     ],
                     1 => [
-                        'type' => Opcode::EXPR->value,
+                        'type'   => Opcode::EXPR->value,
                         'column' => [
                             'type' => Opcode::QUALIFIED->value,
                             'name' => 'inv_status_flag',
@@ -193,8 +189,6 @@ final class ComplexTest extends AbstractUnitTestCase
     }
 
     /**
-     * @return void
-     *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2026-04-09
      */
@@ -208,33 +202,33 @@ final class ComplexTest extends AbstractUnitTestCase
             . "ORDER BY total DESC "
             . "LIMIT 10";
         $expected = [
-            'type' => Opcode::SELECT->value,
+            'type'    => Opcode::SELECT->value,
             'select'  => [
                 'columns' => [
                     0 => [
-                        'type' => Opcode::EXPR->value,
+                        'type'   => Opcode::EXPR->value,
                         'column' => [
-                            'type' => Opcode::QUALIFIED->value,
+                            'type'   => Opcode::QUALIFIED->value,
                             'domain' => 'i',
                             'name'   => 'inv_id',
                         ],
                     ],
                     1 => [
-                        'type' => Opcode::EXPR->value,
+                        'type'   => Opcode::EXPR->value,
                         'column' => [
-                            'type' => Opcode::QUALIFIED->value,
+                            'type'   => Opcode::QUALIFIED->value,
                             'domain' => 'i',
                             'name'   => 'inv_title',
                         ],
                     ],
                     2 => [
-                        'type' => Opcode::EXPR->value,
+                        'type'   => Opcode::EXPR->value,
                         'column' => [
-                            'type' => Opcode::FCALL->value,
+                            'type'      => Opcode::FCALL->value,
                             'name'      => 'SUM',
                             'arguments' => [
                                 0 => [
-                                    'type' => Opcode::QUALIFIED->value,
+                                    'type'   => Opcode::QUALIFIED->value,
                                     'domain' => 'i',
                                     'name'   => 'inv_total',
                                 ],
@@ -252,14 +246,14 @@ final class ComplexTest extends AbstractUnitTestCase
                 ],
             ],
             'where'   => [
-                'type' => Opcode::EQUALS->value,
+                'type'  => Opcode::EQUALS->value,
                 'left'  => [
-                    'type' => Opcode::QUALIFIED->value,
+                    'type'   => Opcode::QUALIFIED->value,
                     'domain' => 'i',
                     'name'   => 'inv_status_flag',
                 ],
                 'right' => [
-                    'type' => Opcode::INTEGER->value,
+                    'type'  => Opcode::INTEGER->value,
                     'value' => '1',
                 ],
             ],
@@ -271,31 +265,31 @@ final class ComplexTest extends AbstractUnitTestCase
                 'sort'   => 328,
             ],
             'groupBy' => [
-                'type' => Opcode::QUALIFIED->value,
+                'type'   => Opcode::QUALIFIED->value,
                 'domain' => 'i',
                 'name'   => 'inv_cst_id',
             ],
             'having'  => [
-                'type' => Opcode::GREATER->value,
+                'type'  => Opcode::GREATER->value,
                 'left'  => [
-                    'type' => Opcode::FCALL->value,
+                    'type'      => Opcode::FCALL->value,
                     'name'      => 'SUM',
                     'arguments' => [
                         0 => [
-                            'type' => Opcode::QUALIFIED->value,
+                            'type'   => Opcode::QUALIFIED->value,
                             'domain' => 'i',
                             'name'   => 'inv_total',
                         ],
                     ],
                 ],
                 'right' => [
-                    'type' => Opcode::INTEGER->value,
+                    'type'  => Opcode::INTEGER->value,
                     'value' => '500',
                 ],
             ],
             'limit'   => [
                 'number' => [
-                    'type' => Opcode::INTEGER->value,
+                    'type'  => Opcode::INTEGER->value,
                     'value' => '10',
                 ],
             ],

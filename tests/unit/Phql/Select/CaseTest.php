@@ -20,8 +20,6 @@ use Phalcon\Phql\Tests\AbstractUnitTestCase;
 final class CaseTest extends AbstractUnitTestCase
 {
     /**
-     * @return void
-     *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2026-04-10
      */
@@ -33,44 +31,44 @@ final class CaseTest extends AbstractUnitTestCase
             . "ELSE 'unknown' END "
             . "FROM Invoices";
         $expected = [
-            'type' => Opcode::SELECT->value,
+            'type'   => Opcode::SELECT->value,
             'select' => [
                 'columns' => [
                     0 => [
-                        'type' => Opcode::EXPR->value,
+                        'type'   => Opcode::EXPR->value,
                         'column' => [
-                            'type' => Opcode::CASE->value,
+                            'type'  => Opcode::CASE->value,
                             'left'  => [
                                 'type' => Opcode::QUALIFIED->value,
                                 'name' => 'inv_status_flag',
                             ],
                             'right' => [
                                 0 => [
-                                    'type' => Opcode::WHEN->value,
+                                    'type'  => Opcode::WHEN->value,
                                     'left'  => [
-                                        'type' => Opcode::INTEGER->value,
+                                        'type'  => Opcode::INTEGER->value,
                                         'value' => '0',
                                     ],
                                     'right' => [
-                                        'type' => Opcode::STRING->value,
+                                        'type'  => Opcode::STRING->value,
                                         'value' => 'pending',
                                     ],
                                 ],
                                 1 => [
-                                    'type' => Opcode::WHEN->value,
+                                    'type'  => Opcode::WHEN->value,
                                     'left'  => [
-                                        'type' => Opcode::INTEGER->value,
+                                        'type'  => Opcode::INTEGER->value,
                                         'value' => '1',
                                     ],
                                     'right' => [
-                                        'type' => Opcode::STRING->value,
+                                        'type'  => Opcode::STRING->value,
                                         'value' => 'paid',
                                     ],
                                 ],
                                 2 => [
                                     'type' => Opcode::ELSE->value,
                                     'left' => [
-                                        'type' => Opcode::STRING->value,
+                                        'type'  => Opcode::STRING->value,
                                         'value' => 'unknown',
                                     ],
                                 ],
@@ -91,8 +89,6 @@ final class CaseTest extends AbstractUnitTestCase
     }
 
     /**
-     * @return void
-     *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2026-04-10
      */
@@ -104,44 +100,44 @@ final class CaseTest extends AbstractUnitTestCase
             . "ELSE 'unknown' END AS status "
             . "FROM Invoices";
         $expected = [
-            'type' => Opcode::SELECT->value,
+            'type'   => Opcode::SELECT->value,
             'select' => [
                 'columns' => [
                     0 => [
-                        'type' => Opcode::EXPR->value,
+                        'type'   => Opcode::EXPR->value,
                         'column' => [
-                            'type' => Opcode::CASE->value,
+                            'type'  => Opcode::CASE->value,
                             'left'  => [
                                 'type' => Opcode::QUALIFIED->value,
                                 'name' => 'inv_status_flag',
                             ],
                             'right' => [
                                 0 => [
-                                    'type' => Opcode::WHEN->value,
+                                    'type'  => Opcode::WHEN->value,
                                     'left'  => [
-                                        'type' => Opcode::INTEGER->value,
+                                        'type'  => Opcode::INTEGER->value,
                                         'value' => '0',
                                     ],
                                     'right' => [
-                                        'type' => Opcode::STRING->value,
+                                        'type'  => Opcode::STRING->value,
                                         'value' => 'pending',
                                     ],
                                 ],
                                 1 => [
-                                    'type' => Opcode::WHEN->value,
+                                    'type'  => Opcode::WHEN->value,
                                     'left'  => [
-                                        'type' => Opcode::INTEGER->value,
+                                        'type'  => Opcode::INTEGER->value,
                                         'value' => '1',
                                     ],
                                     'right' => [
-                                        'type' => Opcode::STRING->value,
+                                        'type'  => Opcode::STRING->value,
                                         'value' => 'paid',
                                     ],
                                 ],
                                 2 => [
                                     'type' => Opcode::ELSE->value,
                                     'left' => [
-                                        'type' => Opcode::STRING->value,
+                                        'type'  => Opcode::STRING->value,
                                         'value' => 'unknown',
                                     ],
                                 ],
@@ -163,8 +159,6 @@ final class CaseTest extends AbstractUnitTestCase
     }
 
     /**
-     * @return void
-     *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2026-04-10
      */
@@ -173,7 +167,7 @@ final class CaseTest extends AbstractUnitTestCase
         $source   = "SELECT * FROM Invoices "
             . "WHERE CASE inv_status_flag WHEN 1 THEN 1 ELSE 0 END = 1";
         $expected = [
-            'type' => Opcode::SELECT->value,
+            'type'   => Opcode::SELECT->value,
             'select' => [
                 'columns' => [
                     0 => [
@@ -188,36 +182,36 @@ final class CaseTest extends AbstractUnitTestCase
                 ],
             ],
             'where'  => [
-                'type' => Opcode::EQUALS->value,
+                'type'  => Opcode::EQUALS->value,
                 'left'  => [
-                    'type' => Opcode::CASE->value,
+                    'type'  => Opcode::CASE->value,
                     'left'  => [
                         'type' => Opcode::QUALIFIED->value,
                         'name' => 'inv_status_flag',
                     ],
                     'right' => [
                         0 => [
-                            'type' => Opcode::WHEN->value,
+                            'type'  => Opcode::WHEN->value,
                             'left'  => [
-                                'type' => Opcode::INTEGER->value,
+                                'type'  => Opcode::INTEGER->value,
                                 'value' => '1',
                             ],
                             'right' => [
-                                'type' => Opcode::INTEGER->value,
+                                'type'  => Opcode::INTEGER->value,
                                 'value' => '1',
                             ],
                         ],
                         1 => [
                             'type' => Opcode::ELSE->value,
                             'left' => [
-                                'type' => Opcode::INTEGER->value,
+                                'type'  => Opcode::INTEGER->value,
                                 'value' => '0',
                             ],
                         ],
                     ],
                 ],
                 'right' => [
-                    'type' => Opcode::INTEGER->value,
+                    'type'  => Opcode::INTEGER->value,
                     'value' => '1',
                 ],
             ],

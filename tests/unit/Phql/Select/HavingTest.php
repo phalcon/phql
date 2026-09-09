@@ -20,8 +20,6 @@ use Phalcon\Phql\Tests\AbstractUnitTestCase;
 final class HavingTest extends AbstractUnitTestCase
 {
     /**
-     * @return void
-     *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2026-04-09
      */
@@ -32,20 +30,20 @@ final class HavingTest extends AbstractUnitTestCase
             . "GROUP BY inv_status_flag "
             . "HAVING COUNT(*) > 5";
         $expected = [
-            'type' => Opcode::SELECT->value,
+            'type'    => Opcode::SELECT->value,
             'select'  => [
                 'columns' => [
                     0 => [
-                        'type' => Opcode::EXPR->value,
+                        'type'   => Opcode::EXPR->value,
                         'column' => [
                             'type' => Opcode::QUALIFIED->value,
                             'name' => 'inv_status_flag',
                         ],
                     ],
                     1 => [
-                        'type' => Opcode::EXPR->value,
+                        'type'   => Opcode::EXPR->value,
                         'column' => [
-                            'type' => Opcode::FCALL->value,
+                            'type'      => Opcode::FCALL->value,
                             'name'      => 'COUNT',
                             'arguments' => [
                                 0 => [
@@ -68,9 +66,9 @@ final class HavingTest extends AbstractUnitTestCase
                 'name' => 'inv_status_flag',
             ],
             'having'  => [
-                'type' => Opcode::GREATER->value,
+                'type'  => Opcode::GREATER->value,
                 'left'  => [
-                    'type' => Opcode::FCALL->value,
+                    'type'      => Opcode::FCALL->value,
                     'name'      => 'COUNT',
                     'arguments' => [
                         0 => [
@@ -79,7 +77,7 @@ final class HavingTest extends AbstractUnitTestCase
                     ],
                 ],
                 'right' => [
-                    'type' => Opcode::INTEGER->value,
+                    'type'  => Opcode::INTEGER->value,
                     'value' => '5',
                 ],
             ],
@@ -89,8 +87,6 @@ final class HavingTest extends AbstractUnitTestCase
     }
 
     /**
-     * @return void
-     *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2026-04-09
      */
@@ -101,20 +97,20 @@ final class HavingTest extends AbstractUnitTestCase
             . "GROUP BY inv_cst_id "
             . "HAVING cnt > 10";
         $expected = [
-            'type' => Opcode::SELECT->value,
+            'type'    => Opcode::SELECT->value,
             'select'  => [
                 'columns' => [
                     0 => [
-                        'type' => Opcode::EXPR->value,
+                        'type'   => Opcode::EXPR->value,
                         'column' => [
                             'type' => Opcode::QUALIFIED->value,
                             'name' => 'inv_cst_id',
                         ],
                     ],
                     1 => [
-                        'type' => Opcode::EXPR->value,
+                        'type'   => Opcode::EXPR->value,
                         'column' => [
-                            'type' => Opcode::FCALL->value,
+                            'type'      => Opcode::FCALL->value,
                             'name'      => 'COUNT',
                             'arguments' => [
                                 0 => [
@@ -137,13 +133,13 @@ final class HavingTest extends AbstractUnitTestCase
                 'name' => 'inv_cst_id',
             ],
             'having'  => [
-                'type' => Opcode::GREATER->value,
+                'type'  => Opcode::GREATER->value,
                 'left'  => [
                     'type' => Opcode::QUALIFIED->value,
                     'name' => 'cnt',
                 ],
                 'right' => [
-                    'type' => Opcode::INTEGER->value,
+                    'type'  => Opcode::INTEGER->value,
                     'value' => '10',
                 ],
             ],
@@ -153,8 +149,6 @@ final class HavingTest extends AbstractUnitTestCase
     }
 
     /**
-     * @return void
-     *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2026-04-09
      */
@@ -165,20 +159,20 @@ final class HavingTest extends AbstractUnitTestCase
             . "GROUP BY inv_cst_id "
             . "HAVING SUM(inv_total) > 1000";
         $expected = [
-            'type' => Opcode::SELECT->value,
+            'type'    => Opcode::SELECT->value,
             'select'  => [
                 'columns' => [
                     0 => [
-                        'type' => Opcode::EXPR->value,
+                        'type'   => Opcode::EXPR->value,
                         'column' => [
                             'type' => Opcode::QUALIFIED->value,
                             'name' => 'inv_cst_id',
                         ],
                     ],
                     1 => [
-                        'type' => Opcode::EXPR->value,
+                        'type'   => Opcode::EXPR->value,
                         'column' => [
-                            'type' => Opcode::FCALL->value,
+                            'type'      => Opcode::FCALL->value,
                             'name'      => 'SUM',
                             'arguments' => [
                                 0 => [
@@ -202,9 +196,9 @@ final class HavingTest extends AbstractUnitTestCase
                 'name' => 'inv_cst_id',
             ],
             'having'  => [
-                'type' => Opcode::GREATER->value,
+                'type'  => Opcode::GREATER->value,
                 'left'  => [
-                    'type' => Opcode::FCALL->value,
+                    'type'      => Opcode::FCALL->value,
                     'name'      => 'SUM',
                     'arguments' => [
                         0 => [
@@ -214,7 +208,7 @@ final class HavingTest extends AbstractUnitTestCase
                     ],
                 ],
                 'right' => [
-                    'type' => Opcode::INTEGER->value,
+                    'type'  => Opcode::INTEGER->value,
                     'value' => '1000',
                 ],
             ],

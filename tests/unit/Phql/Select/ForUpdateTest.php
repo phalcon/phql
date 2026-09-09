@@ -20,8 +20,6 @@ use Phalcon\Phql\Tests\AbstractUnitTestCase;
 final class ForUpdateTest extends AbstractUnitTestCase
 {
     /**
-     * @return void
-     *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2026-04-09
      */
@@ -30,7 +28,7 @@ final class ForUpdateTest extends AbstractUnitTestCase
         $source   = "SELECT * "
             . "FROM Invoices FOR UPDATE";
         $expected = [
-            'type' => Opcode::SELECT->value,
+            'type'      => Opcode::SELECT->value,
             'select'    => [
                 'columns' => [
                     0 => [
@@ -52,8 +50,6 @@ final class ForUpdateTest extends AbstractUnitTestCase
     }
 
     /**
-     * @return void
-     *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2026-04-09
      */
@@ -63,7 +59,7 @@ final class ForUpdateTest extends AbstractUnitTestCase
             . "FROM Invoices "
             . "WHERE inv_id = 1 FOR UPDATE";
         $expected = [
-            'type' => Opcode::SELECT->value,
+            'type'      => Opcode::SELECT->value,
             'select'    => [
                 'columns' => [
                     0 => [
@@ -78,13 +74,13 @@ final class ForUpdateTest extends AbstractUnitTestCase
                 ],
             ],
             'where'     => [
-                'type' => Opcode::EQUALS->value,
+                'type'  => Opcode::EQUALS->value,
                 'left'  => [
                     'type' => Opcode::QUALIFIED->value,
                     'name' => 'inv_id',
                 ],
                 'right' => [
-                    'type' => Opcode::INTEGER->value,
+                    'type'  => Opcode::INTEGER->value,
                     'value' => '1',
                 ],
             ],

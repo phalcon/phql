@@ -20,8 +20,6 @@ use Phalcon\Phql\Tests\AbstractUnitTestCase;
 final class MatchAgainstTest extends AbstractUnitTestCase
 {
     /**
-     * @return void
-     *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2026-04-09
      */
@@ -29,7 +27,7 @@ final class MatchAgainstTest extends AbstractUnitTestCase
     {
         $source   = "SELECT * FROM Invoices WHERE inv_title AGAINST 'invoice'";
         $expected = [
-            'type' => Opcode::SELECT->value,
+            'type'   => Opcode::SELECT->value,
             'select' => [
                 'columns' => [
                     0 => [
@@ -44,13 +42,13 @@ final class MatchAgainstTest extends AbstractUnitTestCase
                 ],
             ],
             'where'  => [
-                'type' => Opcode::AGAINST->value,
+                'type'  => Opcode::AGAINST->value,
                 'left'  => [
                     'type' => Opcode::QUALIFIED->value,
                     'name' => 'inv_title',
                 ],
                 'right' => [
-                    'type' => Opcode::STRING->value,
+                    'type'  => Opcode::STRING->value,
                     'value' => 'invoice',
                 ],
             ],
@@ -60,8 +58,6 @@ final class MatchAgainstTest extends AbstractUnitTestCase
     }
 
     /**
-     * @return void
-     *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2026-04-09
      */
@@ -69,7 +65,7 @@ final class MatchAgainstTest extends AbstractUnitTestCase
     {
         $source   = "SELECT * FROM Invoices WHERE MATCH(inv_title) AGAINST ('invoice')";
         $expected = [
-            'type' => Opcode::SELECT->value,
+            'type'   => Opcode::SELECT->value,
             'select' => [
                 'columns' => [
                     0 => [
@@ -84,9 +80,9 @@ final class MatchAgainstTest extends AbstractUnitTestCase
                 ],
             ],
             'where'  => [
-                'type' => Opcode::AGAINST->value,
+                'type'  => Opcode::AGAINST->value,
                 'left'  => [
-                    'type' => Opcode::FCALL->value,
+                    'type'      => Opcode::FCALL->value,
                     'name'      => 'MATCH',
                     'arguments' => [
                         0 => [
@@ -98,7 +94,7 @@ final class MatchAgainstTest extends AbstractUnitTestCase
                 'right' => [
                     'type' => Opcode::ENCLOSED->value,
                     'left' => [
-                        'type' => Opcode::STRING->value,
+                        'type'  => Opcode::STRING->value,
                         'value' => 'invoice',
                     ],
                 ],

@@ -20,8 +20,6 @@ use Phalcon\Phql\Tests\AbstractUnitTestCase;
 final class ScalarTest extends AbstractUnitTestCase
 {
     /**
-     * @return void
-     *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2026-04-09
      */
@@ -29,13 +27,13 @@ final class ScalarTest extends AbstractUnitTestCase
     {
         $source   = "SELECT ABS(inv_total) FROM Invoices";
         $expected = [
-            'type' => Opcode::SELECT->value,
+            'type'   => Opcode::SELECT->value,
             'select' => [
                 'columns' => [
                     0 => [
-                        'type' => Opcode::EXPR->value,
+                        'type'   => Opcode::EXPR->value,
                         'column' => [
-                            'type' => Opcode::FCALL->value,
+                            'type'      => Opcode::FCALL->value,
                             'name'      => 'ABS',
                             'arguments' => [
                                 0 => [
@@ -59,8 +57,6 @@ final class ScalarTest extends AbstractUnitTestCase
     }
 
     /**
-     * @return void
-     *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2026-04-09
      */
@@ -68,13 +64,13 @@ final class ScalarTest extends AbstractUnitTestCase
     {
         $source   = "SELECT COALESCE(inv_title, 'N/A') FROM Invoices";
         $expected = [
-            'type' => Opcode::SELECT->value,
+            'type'   => Opcode::SELECT->value,
             'select' => [
                 'columns' => [
                     0 => [
-                        'type' => Opcode::EXPR->value,
+                        'type'   => Opcode::EXPR->value,
                         'column' => [
-                            'type' => Opcode::FCALL->value,
+                            'type'      => Opcode::FCALL->value,
                             'name'      => 'COALESCE',
                             'arguments' => [
                                 0 => [
@@ -82,7 +78,7 @@ final class ScalarTest extends AbstractUnitTestCase
                                     'name' => 'inv_title',
                                 ],
                                 1 => [
-                                    'type' => Opcode::STRING->value,
+                                    'type'  => Opcode::STRING->value,
                                     'value' => 'N/A',
                                 ],
                             ],
@@ -102,8 +98,6 @@ final class ScalarTest extends AbstractUnitTestCase
     }
 
     /**
-     * @return void
-     *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2026-04-09
      */
@@ -111,13 +105,13 @@ final class ScalarTest extends AbstractUnitTestCase
     {
         $source   = "SELECT CONCAT(inv_title, ' - paid') FROM Invoices";
         $expected = [
-            'type' => Opcode::SELECT->value,
+            'type'   => Opcode::SELECT->value,
             'select' => [
                 'columns' => [
                     0 => [
-                        'type' => Opcode::EXPR->value,
+                        'type'   => Opcode::EXPR->value,
                         'column' => [
-                            'type' => Opcode::FCALL->value,
+                            'type'      => Opcode::FCALL->value,
                             'name'      => 'CONCAT',
                             'arguments' => [
                                 0 => [
@@ -125,7 +119,7 @@ final class ScalarTest extends AbstractUnitTestCase
                                     'name' => 'inv_title',
                                 ],
                                 1 => [
-                                    'type' => Opcode::STRING->value,
+                                    'type'  => Opcode::STRING->value,
                                     'value' => ' - paid',
                                 ],
                             ],
@@ -145,8 +139,6 @@ final class ScalarTest extends AbstractUnitTestCase
     }
 
     /**
-     * @return void
-     *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2026-04-09
      */
@@ -154,13 +146,13 @@ final class ScalarTest extends AbstractUnitTestCase
     {
         $source   = "SELECT IFNULL(inv_title, 'N/A') FROM Invoices";
         $expected = [
-            'type' => Opcode::SELECT->value,
+            'type'   => Opcode::SELECT->value,
             'select' => [
                 'columns' => [
                     0 => [
-                        'type' => Opcode::EXPR->value,
+                        'type'   => Opcode::EXPR->value,
                         'column' => [
-                            'type' => Opcode::FCALL->value,
+                            'type'      => Opcode::FCALL->value,
                             'name'      => 'IFNULL',
                             'arguments' => [
                                 0 => [
@@ -168,7 +160,7 @@ final class ScalarTest extends AbstractUnitTestCase
                                     'name' => 'inv_title',
                                 ],
                                 1 => [
-                                    'type' => Opcode::STRING->value,
+                                    'type'  => Opcode::STRING->value,
                                     'value' => 'N/A',
                                 ],
                             ],
@@ -188,8 +180,6 @@ final class ScalarTest extends AbstractUnitTestCase
     }
 
     /**
-     * @return void
-     *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2026-04-09
      */
@@ -197,13 +187,13 @@ final class ScalarTest extends AbstractUnitTestCase
     {
         $source   = "SELECT LENGTH(inv_title) FROM Invoices";
         $expected = [
-            'type' => Opcode::SELECT->value,
+            'type'   => Opcode::SELECT->value,
             'select' => [
                 'columns' => [
                     0 => [
-                        'type' => Opcode::EXPR->value,
+                        'type'   => Opcode::EXPR->value,
                         'column' => [
-                            'type' => Opcode::FCALL->value,
+                            'type'      => Opcode::FCALL->value,
                             'name'      => 'LENGTH',
                             'arguments' => [
                                 0 => [
@@ -227,8 +217,6 @@ final class ScalarTest extends AbstractUnitTestCase
     }
 
     /**
-     * @return void
-     *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2026-04-09
      */
@@ -236,13 +224,13 @@ final class ScalarTest extends AbstractUnitTestCase
     {
         $source   = "SELECT LOWER(inv_title) FROM Invoices";
         $expected = [
-            'type' => Opcode::SELECT->value,
+            'type'   => Opcode::SELECT->value,
             'select' => [
                 'columns' => [
                     0 => [
-                        'type' => Opcode::EXPR->value,
+                        'type'   => Opcode::EXPR->value,
                         'column' => [
-                            'type' => Opcode::FCALL->value,
+                            'type'      => Opcode::FCALL->value,
                             'name'      => 'LOWER',
                             'arguments' => [
                                 0 => [
@@ -266,8 +254,6 @@ final class ScalarTest extends AbstractUnitTestCase
     }
 
     /**
-     * @return void
-     *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2026-04-09
      */
@@ -275,13 +261,13 @@ final class ScalarTest extends AbstractUnitTestCase
     {
         $source   = "SELECT MONTH(inv_created_at), COUNT(*) FROM Invoices GROUP BY MONTH(inv_created_at)";
         $expected = [
-            'type' => Opcode::SELECT->value,
+            'type'    => Opcode::SELECT->value,
             'select'  => [
                 'columns' => [
                     0 => [
-                        'type' => Opcode::EXPR->value,
+                        'type'   => Opcode::EXPR->value,
                         'column' => [
-                            'type' => Opcode::FCALL->value,
+                            'type'      => Opcode::FCALL->value,
                             'name'      => 'MONTH',
                             'arguments' => [
                                 0 => [
@@ -292,9 +278,9 @@ final class ScalarTest extends AbstractUnitTestCase
                         ],
                     ],
                     1 => [
-                        'type' => Opcode::EXPR->value,
+                        'type'   => Opcode::EXPR->value,
                         'column' => [
-                            'type' => Opcode::FCALL->value,
+                            'type'      => Opcode::FCALL->value,
                             'name'      => 'COUNT',
                             'arguments' => [
                                 0 => [
@@ -312,7 +298,7 @@ final class ScalarTest extends AbstractUnitTestCase
                 ],
             ],
             'groupBy' => [
-                'type' => Opcode::FCALL->value,
+                'type'      => Opcode::FCALL->value,
                 'name'      => 'MONTH',
                 'arguments' => [
                     0 => [
@@ -327,8 +313,6 @@ final class ScalarTest extends AbstractUnitTestCase
     }
 
     /**
-     * @return void
-     *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2026-04-09
      */
@@ -336,11 +320,11 @@ final class ScalarTest extends AbstractUnitTestCase
     {
         $source   = "SELECT NOW() FROM Invoices";
         $expected = [
-            'type' => Opcode::SELECT->value,
+            'type'   => Opcode::SELECT->value,
             'select' => [
                 'columns' => [
                     0 => [
-                        'type' => Opcode::EXPR->value,
+                        'type'   => Opcode::EXPR->value,
                         'column' => [
                             'type' => Opcode::FCALL->value,
                             'name' => 'NOW',
@@ -360,8 +344,6 @@ final class ScalarTest extends AbstractUnitTestCase
     }
 
     /**
-     * @return void
-     *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2026-04-09
      */
@@ -369,13 +351,13 @@ final class ScalarTest extends AbstractUnitTestCase
     {
         $source   = "SELECT ROUND(inv_total, 2) FROM Invoices";
         $expected = [
-            'type' => Opcode::SELECT->value,
+            'type'   => Opcode::SELECT->value,
             'select' => [
                 'columns' => [
                     0 => [
-                        'type' => Opcode::EXPR->value,
+                        'type'   => Opcode::EXPR->value,
                         'column' => [
-                            'type' => Opcode::FCALL->value,
+                            'type'      => Opcode::FCALL->value,
                             'name'      => 'ROUND',
                             'arguments' => [
                                 0 => [
@@ -383,7 +365,7 @@ final class ScalarTest extends AbstractUnitTestCase
                                     'name' => 'inv_total',
                                 ],
                                 1 => [
-                                    'type' => Opcode::INTEGER->value,
+                                    'type'  => Opcode::INTEGER->value,
                                     'value' => '2',
                                 ],
                             ],
@@ -403,8 +385,6 @@ final class ScalarTest extends AbstractUnitTestCase
     }
 
     /**
-     * @return void
-     *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2026-04-09
      */
@@ -412,13 +392,13 @@ final class ScalarTest extends AbstractUnitTestCase
     {
         $source   = "SELECT TRIM(inv_title) FROM Invoices";
         $expected = [
-            'type' => Opcode::SELECT->value,
+            'type'   => Opcode::SELECT->value,
             'select' => [
                 'columns' => [
                     0 => [
-                        'type' => Opcode::EXPR->value,
+                        'type'   => Opcode::EXPR->value,
                         'column' => [
-                            'type' => Opcode::FCALL->value,
+                            'type'      => Opcode::FCALL->value,
                             'name'      => 'TRIM',
                             'arguments' => [
                                 0 => [
@@ -442,8 +422,6 @@ final class ScalarTest extends AbstractUnitTestCase
     }
 
     /**
-     * @return void
-     *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2026-04-09
      */
@@ -451,13 +429,13 @@ final class ScalarTest extends AbstractUnitTestCase
     {
         $source   = "SELECT UPPER(inv_title) FROM Invoices";
         $expected = [
-            'type' => Opcode::SELECT->value,
+            'type'   => Opcode::SELECT->value,
             'select' => [
                 'columns' => [
                     0 => [
-                        'type' => Opcode::EXPR->value,
+                        'type'   => Opcode::EXPR->value,
                         'column' => [
-                            'type' => Opcode::FCALL->value,
+                            'type'      => Opcode::FCALL->value,
                             'name'      => 'UPPER',
                             'arguments' => [
                                 0 => [
@@ -481,8 +459,6 @@ final class ScalarTest extends AbstractUnitTestCase
     }
 
     /**
-     * @return void
-     *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2026-04-09
      */
@@ -490,13 +466,13 @@ final class ScalarTest extends AbstractUnitTestCase
     {
         $source   = "SELECT YEAR(inv_created_at) FROM Invoices";
         $expected = [
-            'type' => Opcode::SELECT->value,
+            'type'   => Opcode::SELECT->value,
             'select' => [
                 'columns' => [
                     0 => [
-                        'type' => Opcode::EXPR->value,
+                        'type'   => Opcode::EXPR->value,
                         'column' => [
-                            'type' => Opcode::FCALL->value,
+                            'type'      => Opcode::FCALL->value,
                             'name'      => 'YEAR',
                             'arguments' => [
                                 0 => [
