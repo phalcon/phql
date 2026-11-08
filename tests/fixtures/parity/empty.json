@@ -1,0 +1,16 @@
+{
+    "generator": "ext-phalcon 5.23.0",
+    "cases": {
+        "empty": {"source":"","parse":{"outcome":"value","value":null},"parseNoLiterals":{"outcome":"value","value":null}},
+        "space": {"source":" ","parse":{"outcome":"value","value":null},"parseNoLiterals":{"outcome":"value","value":null}},
+        "tabs and newlines": {"source":"\n\t\r\n ","parse":{"outcome":"value","value":null},"parseNoLiterals":{"outcome":"value","value":null}},
+        "nul": {"source":"\u0000","parse":{"outcome":"value","value":null},"parseNoLiterals":{"outcome":"value","value":null}},
+        "nul then statement": {"source":"\u0000SELECT * FROM r","parse":{"outcome":"value","value":null},"parseNoLiterals":{"outcome":"value","value":null}},
+        "space nul statement": {"source":" \u0000SELECT * FROM r","parse":{"outcome":"value","value":null},"parseNoLiterals":{"outcome":"value","value":null}},
+        "nul then garbage": {"source":"\u0000\u0001\u0002","parse":{"outcome":"value","value":null},"parseNoLiterals":{"outcome":"value","value":null}},
+        "control byte only": {"source":"\u0001","parse":{"outcome":"throw","value":"Scanning error before '' when parsing: \u0001 (1)","exception":"Phalcon\\Mvc\\Model\\Exception"},"parseNoLiterals":{"outcome":"throw","value":"Scanning error before '' when parsing: \u0001 (1)","exception":"Phalcon\\Mvc\\Model\\Exception"}},
+        "single keyword": {"source":"SELECT","parse":{"outcome":"throw","value":"Syntax error, unexpected EOF","exception":"Phalcon\\Mvc\\Model\\Exception"},"parseNoLiterals":{"outcome":"throw","value":"Syntax error, unexpected EOF","exception":"Phalcon\\Mvc\\Model\\Exception"}},
+        "single identifier": {"source":"a","parse":{"outcome":"throw","value":"Syntax error, unexpected EOF","exception":"Phalcon\\Mvc\\Model\\Exception"},"parseNoLiterals":{"outcome":"throw","value":"Syntax error, unexpected EOF","exception":"Phalcon\\Mvc\\Model\\Exception"}},
+        "single literal": {"source":"1","parse":{"outcome":"throw","value":"Syntax error, unexpected EOF","exception":"Phalcon\\Mvc\\Model\\Exception"},"parseNoLiterals":{"outcome":"throw","value":"Literals are disabled in PHQL statements","exception":"Phalcon\\Mvc\\Model\\Exception"}}
+    }
+}

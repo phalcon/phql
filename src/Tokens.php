@@ -13,102 +13,109 @@ declare(strict_types=1);
 
 namespace Phalcon\Phql;
 
+use Phalcon\Phql\Scanner\Opcode;
+
 /**
- * Human readable token names, used by the generated parser to build syntax
- * error messages ("unexpected token X"). The values are the
- * Phalcon\Phql\Scanner\Opcode codes; they are written as integers because an
- * enum case value cannot be used in a static property initializer on PHP 8.1.
+ * Human readable token names, used in syntax error messages ("unexpected
+ * token X").
  */
-class Tokens
+final class Tokens
 {
     /**
-     * @var array<string, int>
+     * The name cphalcon prints for a token in "Syntax error, unexpected
+     * token ..." messages: the phql_tokens[] table of base.c, in its order.
+     * Tokens the table does not list (TRUE, FALSE, BPLACEHOLDER, BETWEEN_NOT,
+     * `~`, `^`, whitespace) print as UNKNOWN.
      */
-    public static array $names = [
-        'INTEGER'              => 258, // Opcode::INTEGER
-        'DOUBLE'               => 259, // Opcode::DOUBLE
-        'STRING'               => 260, // Opcode::STRING
-        'IDENTIFIER'           => 265, // Opcode::IDENTIFIER
-        'HEXAINTEGER'          => 414, // Opcode::HINTEGER
-        'MINUS'                => 367, // Opcode::MINUS
-        '+'                    => 43, // Opcode::ADD
-        '-'                    => 45, // Opcode::SUB
-        '*'                    => 42, // Opcode::MUL
-        '/'                    => 47, // Opcode::DIV
-        '&'                    => 38, // Opcode::BITWISE_AND
-        '|'                    => 124, // Opcode::BITWISE_OR
-        '@@'                   => 401, // Opcode::OP_MATCHES
-        '@>'                   => 402, // Opcode::OP_CONTAINS
-        '<@'                   => 403, // Opcode::OP_CONTAINED
-        '&&'                   => 404, // Opcode::OP_OVERLAPS
-        '||'                   => 405, // Opcode::OP_CONCAT
-        '->'                   => 406, // Opcode::OP_JSON_GET
-        '->>'                  => 416, // Opcode::OP_JSON_GET_TEXT
-        '#>'                   => 417, // Opcode::OP_JSON_PATH
-        '#>>'                  => 418, // Opcode::OP_JSON_PATH_TEXT
-        '%%'                   => 37, // Opcode::MOD
-        'AND'                  => 266, // Opcode::AND
-        'OR'                   => 267, // Opcode::OR
-        'LIKE'                 => 268, // Opcode::LIKE
-        'ILIKE'                => 275, // Opcode::ILIKE
-        'DOT'                  => 46, // Opcode::DOT
-        'COLON'                => 58, // Opcode::COLON
-        'COMMA'                => 269, // Opcode::COMMA
-        'EQUALS'               => 61, // Opcode::EQUALS
-        'NOT EQUALS'           => 270, // Opcode::NOTEQUALS
-        'NOT'                  => 33, // Opcode::NOT
-        '<'                    => 60, // Opcode::LESS
-        '<='                   => 271, // Opcode::LESSEQUAL
-        '>'                    => 62, // Opcode::GREATER
-        '>='                   => 272, // Opcode::GREATEREQUAL
-        '('                    => 40, // Opcode::PARENTHESES_OPEN
-        ')'                    => 41, // Opcode::PARENTHESES_CLOSE
-        'NUMERIC PLACEHOLDER'  => 273, // Opcode::NPLACEHOLDER
-        'STRING PLACEHOLDER'   => 274, // Opcode::SPLACEHOLDER
-        'UPDATE'               => 300, // Opcode::UPDATE
-        'SET'                  => 301, // Opcode::SET
-        'WHERE'                => 302, // Opcode::WHERE
-        'DELETE'               => 303, // Opcode::DELETE
-        'FROM'                 => 304, // Opcode::FROM
-        'AS'                   => 305, // Opcode::AS
-        'INSERT'               => 306, // Opcode::INSERT
-        'INTO'                 => 307, // Opcode::INTO
-        'VALUES'               => 308, // Opcode::VALUES
-        'SELECT'               => 309, // Opcode::SELECT
-        'ORDER'                => 310, // Opcode::ORDER
-        'BY'                   => 311, // Opcode::BY
-        'LIMIT'                => 312, // Opcode::LIMIT
-        'OFFSET'               => 329, // Opcode::OFFSET
-        'GROUP'                => 313, // Opcode::GROUP
-        'HAVING'               => 314, // Opcode::HAVING
-        'IN'                   => 315, // Opcode::IN
-        'ON'                   => 316, // Opcode::ON
-        'INNER'                => 317, // Opcode::INNER
-        'JOIN'                 => 318, // Opcode::JOIN
-        'LEFT'                 => 319, // Opcode::LEFT
-        'RIGHT'                => 320, // Opcode::RIGHT
-        'IS'                   => 321, // Opcode::IS
-        'NULL'                 => 322, // Opcode::NULL
-        'NOT IN'               => 323, // Opcode::NOTIN
-        'CROSS'                => 324, // Opcode::CROSS
-        'OUTER'                => 326, // Opcode::OUTER
-        'FULL'                 => 325, // Opcode::FULL
-        'ASC'                  => 327, // Opcode::ASC
-        'DESC'                 => 328, // Opcode::DESC
-        'BETWEEN'              => 331, // Opcode::BETWEEN
-        'DISTINCT'             => 330, // Opcode::DISTINCT
-        'AGAINST'              => 276, // Opcode::AGAINST
-        'CAST'                 => 333, // Opcode::CAST
-        'CONVERT'              => 336, // Opcode::CONVERT
-        'USING'                => 337, // Opcode::USING
-        'ALL'                  => 338, // Opcode::ALL
-        'EXISTS'               => 408, // Opcode::EXISTS
-        'CASE'                 => 409, // Opcode::CASE
-        'WHEN'                 => 410, // Opcode::WHEN
-        'THEN'                 => 413, // Opcode::THEN
-        'ELSE'                 => 411, // Opcode::ELSE
-        'END'                  => 412, // Opcode::END
-        'FOR'                  => 339, // Opcode::FOR
-        'WITH'                 => 415, // Opcode::WITH
-    ];
+    public static function name(int $opcode): string
+    {
+        return match ($opcode) {
+            Opcode::INTEGER->value           => 'INTEGER',
+            Opcode::DOUBLE->value            => 'DOUBLE',
+            Opcode::STRING->value            => 'STRING',
+            Opcode::IDENTIFIER->value        => 'IDENTIFIER',
+            Opcode::HINTEGER->value          => 'HEXAINTEGER',
+            Opcode::MINUS->value             => 'MINUS',
+            Opcode::ADD->value               => '+',
+            Opcode::SUB->value               => '-',
+            Opcode::MUL->value               => '*',
+            Opcode::DIV->value               => '/',
+            Opcode::BITWISE_AND->value       => '&',
+            Opcode::BITWISE_OR->value        => '|',
+            Opcode::OP_MATCHES->value        => '@@',
+            Opcode::OP_CONTAINS->value       => '@>',
+            Opcode::OP_CONTAINED->value      => '<@',
+            Opcode::OP_OVERLAPS->value       => '&&',
+            Opcode::OP_CONCAT->value         => '||',
+            Opcode::OP_JSON_GET->value       => '->',
+            Opcode::OP_JSON_GET_TEXT->value  => '->>',
+            Opcode::OP_JSON_PATH->value      => '#>',
+            Opcode::OP_JSON_PATH_TEXT->value => '#>>',
+            Opcode::MOD->value               => '%%',
+            Opcode::AND->value               => 'AND',
+            Opcode::OR->value                => 'OR',
+            Opcode::LIKE->value              => 'LIKE',
+            Opcode::ILIKE->value             => 'ILIKE',
+            Opcode::DOT->value               => 'DOT',
+            Opcode::COLON->value             => 'COLON',
+            Opcode::COMMA->value             => 'COMMA',
+            Opcode::EQUALS->value            => 'EQUALS',
+            Opcode::NOTEQUALS->value         => 'NOT EQUALS',
+            Opcode::NOT->value               => 'NOT',
+            Opcode::LESS->value              => '<',
+            Opcode::LESSEQUAL->value         => '<=',
+            Opcode::GREATER->value           => '>',
+            Opcode::GREATEREQUAL->value      => '>=',
+            Opcode::PARENTHESES_OPEN->value  => '(',
+            Opcode::PARENTHESES_CLOSE->value => ')',
+            Opcode::NPLACEHOLDER->value      => 'NUMERIC PLACEHOLDER',
+            Opcode::SPLACEHOLDER->value      => 'STRING PLACEHOLDER',
+            Opcode::UPDATE->value            => 'UPDATE',
+            Opcode::SET->value               => 'SET',
+            Opcode::WHERE->value             => 'WHERE',
+            Opcode::DELETE->value            => 'DELETE',
+            Opcode::FROM->value              => 'FROM',
+            Opcode::AS->value                => 'AS',
+            Opcode::INSERT->value            => 'INSERT',
+            Opcode::INTO->value              => 'INTO',
+            Opcode::VALUES->value            => 'VALUES',
+            Opcode::SELECT->value            => 'SELECT',
+            Opcode::ORDER->value             => 'ORDER',
+            Opcode::BY->value                => 'BY',
+            Opcode::LIMIT->value             => 'LIMIT',
+            Opcode::OFFSET->value            => 'OFFSET',
+            Opcode::GROUP->value             => 'GROUP',
+            Opcode::HAVING->value            => 'HAVING',
+            Opcode::IN->value                => 'IN',
+            Opcode::ON->value                => 'ON',
+            Opcode::INNER->value             => 'INNER',
+            Opcode::JOIN->value              => 'JOIN',
+            Opcode::LEFT->value              => 'LEFT',
+            Opcode::RIGHT->value             => 'RIGHT',
+            Opcode::IS->value                => 'IS',
+            Opcode::NULL->value              => 'NULL',
+            Opcode::NOTIN->value             => 'NOT IN',
+            Opcode::CROSS->value             => 'CROSS',
+            Opcode::OUTER->value             => 'OUTER',
+            Opcode::FULL->value              => 'FULL',
+            Opcode::ASC->value               => 'ASC',
+            Opcode::DESC->value              => 'DESC',
+            Opcode::BETWEEN->value           => 'BETWEEN',
+            Opcode::DISTINCT->value          => 'DISTINCT',
+            Opcode::AGAINST->value           => 'AGAINST',
+            Opcode::CAST->value              => 'CAST',
+            Opcode::CONVERT->value           => 'CONVERT',
+            Opcode::USING->value             => 'USING',
+            Opcode::ALL->value               => 'ALL',
+            Opcode::EXISTS->value            => 'EXISTS',
+            Opcode::CASE->value              => 'CASE',
+            Opcode::WHEN->value              => 'WHEN',
+            Opcode::THEN->value              => 'THEN',
+            Opcode::ELSE->value              => 'ELSE',
+            Opcode::END->value               => 'END',
+            Opcode::FOR->value               => 'FOR',
+            Opcode::WITH->value              => 'WITH',
+            default                          => 'UNKNOWN',
+        };
+    }
 }

@@ -1,5 +1,14 @@
 <?php
 
+/**
+ * This file is part of the Phalcon Framework.
+ *
+ * (c) Phalcon Team <team@phalcon.io>
+ *
+ * For the full copyright and license information, please view the LICENSE.txt
+ * file that was distributed with this source code.
+ */
+
 declare(strict_types=1);
 
 namespace Phalcon\Phql\Tests\Unit\Scanner;
@@ -10,39 +19,24 @@ use Phalcon\Phql\Tests\AbstractUnitTestCase;
 
 final class TokenTest extends AbstractUnitTestCase
 {
-    public function testConstructionWithAllValues(): void
+    public function testHoldsOpcodeAndValue(): void
     {
-        $token = new Token(Opcode::SELECT, null, 6);
+        $token = new Token(Opcode::IDENTIFIER->value, 'robots');
 
-        $this->assertSame(Opcode::SELECT, $token->opcode);
-        $this->assertNull($token->value);
-        $this->assertSame(6, $token->length);
+        $this->assertSame([Opcode::IDENTIFIER->value, 'robots'], [$token->opcode, $token->value]);
     }
 
-    public function testConstructionWithValue(): void
+    /**
+     * EOF is Lemon's end-of-input token number; scanning errors use a code no
+     * PHQL token can have.
+     */
+    public function testSentinelOpcodes(): void
     {
-        $token = new Token(Opcode::IDENTIFIER, 'Invoices', 8);
-
-        $this->assertSame(Opcode::IDENTIFIER, $token->opcode);
-        $this->assertSame('Invoices', $token->value);
-        $this->assertSame(8, $token->length);
+        $this->assertSame([0, -2], [Token::EOF, Token::SCAN_ERROR]);
     }
 
-    public function testDefaultConstruction(): void
+    public function testValueDefaultsToNull(): void
     {
-        $token = new Token();
-
-        $this->assertNull($token->opcode);
-        $this->assertNull($token->value);
-        $this->assertSame(0, $token->length);
-    }
-
-    public function testIsReadonly(): void
-    {
-        $token = new Token(Opcode::SELECT, null, 6);
-
-        $this->expectException(\Error::class);
-        // @phpstan-ignore-next-line
-        $token->opcode = Opcode::FROM;
+        $this->assertNull((new Token(Opcode::COMMA->value))->value);
     }
 }
