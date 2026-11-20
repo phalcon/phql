@@ -1,4 +1,7 @@
 parameters:
+    # Pin the analyzed PHP version so the CI matrix (8.1-8.6) produces
+    # identical results regardless of the runtime PHP.
+    phpVersion: 80100
     paths:
         - ../src
     level: max
