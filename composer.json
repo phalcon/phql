@@ -51,7 +51,8 @@
     "autoload-dev": {
         "psr-4": {
             "Phalcon\\Phql\\Tests\\": "tests/",
-            "Phalcon\\Phql\\Tests\\Support\\": "tests/support/"
+            "Phalcon\\Phql\\Tests\\Support\\": "tests/support/",
+            "Phalcon\\Phql\\Tests\\Unit\\": "tests/unit/"
         }
     },
     "minimum-stability": "stable",
